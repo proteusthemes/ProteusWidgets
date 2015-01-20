@@ -20,9 +20,9 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		public function __construct() {
 			parent::__construct(
 				false, // ID, auto generate when false
-				_x( 'ProteusThemes: Featured Page' , 'backend', 'proteuswidgets'), // Name
+				_x( 'ProteusThemes: Featured Page' , 'backend', 'proteuswidgets' ), // Name
 				array(
-					'description' => _x( 'Featured Page for Page Builder.', 'backend', 'proteuswidgets'),
+					'description' => _x( 'Featured Page for Page Builder.', 'backend', 'proteuswidgets' ),
 					'classname'   => 'widget-featured-page',
 				)
 			);
@@ -108,7 +108,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'page_id' ); ?>"><?php _ex( 'Page:', 'backend', 'proteuswidgets'); ?></label> <br>
+				<label for="<?php echo $this->get_field_id( 'page_id' ); ?>"><?php _ex( 'Page:', 'backend', 'proteuswidgets' ); ?></label> <br>
 				<?php
 					wp_dropdown_pages( array(
 						'selected' => $page_id,
@@ -132,6 +132,6 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 
 			<?php
 		}
-	}
+	} // class PW_Featured_Page
 	add_action( 'widgets_init', create_function( '', 'register_widget( "PW_Featured_Page" );' ) );
 }

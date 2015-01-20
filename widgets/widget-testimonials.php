@@ -15,9 +15,9 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		public function __construct() {
 			parent::__construct(
 				false, // ID, auto generate when false
-				_x( 'ProteusThemes: Testimonials' , 'backend', 'proteuswidgets'), // Name
+				_x( 'ProteusThemes: Testimonials' , 'backend', 'proteuswidgets' ), // Name
 				array(
-					'description' => _x( 'Testimonials for Page Builder.', 'backend', 'proteuswidgets'),
+					'description' => _x( 'Testimonials for Page Builder.', 'backend', 'proteuswidgets' ),
 					'classname'   => 'widget-testimonials',
 				)
 			);
@@ -148,12 +148,12 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _ex( 'Title:', 'backend', 'proteuswidgets'); ?></label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _ex( 'Title:', 'backend', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'autocycle' ); ?>"><?php _ex( 'Automatically cycle the carousel?', 'backend', 'proteuswidgets'); ?>:</label>
+				<label for="<?php echo $this->get_field_id( 'autocycle' ); ?>"><?php _ex( 'Automatically cycle the carousel?', 'backend', 'proteuswidgets' ); ?>:</label>
 				<select class="widefat" name="<?php echo $this->get_field_name( 'autocycle' ); ?>" id="<?php echo $this->get_field_id( 'autocycle' ); ?>">
 					<option value="yes"<?php selected( $autocycle, 'yes' ) ?>><?php _e( 'Yes', 'proteuswidgets' ); ?></option>
 					<option value="no"<?php selected( $autocycle, 'no' ) ?>><?php _e( 'No', 'proteuswidgets' ); ?></option>
@@ -161,7 +161,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'interval' ); ?>"><?php _ex( 'Interval (in miliseconds):', 'backend', 'proteuswidgets'); ?>:</label>
+				<label for="<?php echo $this->get_field_id( 'interval' ); ?>"><?php _ex( 'Interval (in miliseconds):', 'backend', 'proteuswidgets' ); ?>:</label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'interval' ); ?>" name="<?php echo $this->get_field_name( 'interval' ); ?>" type="number" min="0" step="500" value="<?php echo esc_attr( $interval ); ?>" />
 			</p>
 
@@ -171,18 +171,18 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 			<script type="text/template" id="js-pt-testimonial-<?php echo $this->id; ?>">
 				<p>
-					<label for="<?php echo $this->get_field_id( 'quote' ); ?>-<%- id %>-title"><?php _ex( 'Quote', 'backend', 'proteuswidgets'); ?>:</label>
+					<label for="<?php echo $this->get_field_id( 'quote' ); ?>-<%- id %>-title"><?php _ex( 'Quote', 'backend', 'proteuswidgets' ); ?>:</label>
 					<textarea rows="4" class="widefat" id="<?php echo $this->get_field_id( 'quote' ); ?>-<%- id %>-title" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[<%- id %>][quote]"><%- quote %></textarea>
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-<%- id %>-author"><?php _ex( 'Author:', 'backend', 'proteuswidgets'); ?></label> <br>
+					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-<%- id %>-author"><?php _ex( 'Author:', 'backend', 'proteuswidgets' ); ?></label> <br>
 					<input class="widefat" id="<?php echo $this->get_field_id( 'testimonials' ); ?>-<%- id %>-author" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[<%- id %>][author]" type="text" value="<%- author %>" />
 				</p>
 
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-<%- id %>-rating"><?php _ex( 'Rating:', 'backend', 'proteuswidgets'); ?></label>
+					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-<%- id %>-rating"><?php _ex( 'Rating:', 'backend', 'proteuswidgets' ); ?></label>
 					<select name="<?php echo $this->get_field_name( 'testimonials' ); ?>[<%- id %>][rating]" id="<?php echo $this->get_field_id( 'rating' ); ?>">
 						<option value="0" <% print( rating == 0 ? 'selected="selected"' : '' ); %>>0</option>
 						<option value="1" <% print( rating == 1 ? 'selected="selected"' : '' ); %>>1</option>
@@ -216,6 +216,6 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			<?php
 		}
 
-	} // Class PW_Social_Icons
+	} // class PW_Testimonials
 	add_action( 'widgets_init', create_function( '', 'register_widget( "PW_Testimonials" );' ) );
 }

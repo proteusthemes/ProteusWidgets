@@ -7,8 +7,8 @@
  */
 
 
-if ( ! class_exists( 'PW_Footer_Facebook' ) ) {
-	class PW_Footer_Facebook extends WP_Widget {
+if ( ! class_exists( 'PW_Facebook' ) ) {
+	class PW_Facebook extends WP_Widget {
 
 		/**
 		 * Register widget with WordPress.
@@ -16,9 +16,9 @@ if ( ! class_exists( 'PW_Footer_Facebook' ) ) {
 		public function __construct() {
 			parent::__construct(
 				false, // ID, auto generate when false
-				_x( 'ProteusThemes: Facebook', 'backend' , 'proteuswidgets'), // Name
+				_x( 'ProteusThemes: Facebook', 'backend' , 'proteuswidgets' ), // Name
 				array(
-					'description' => _x( 'Use this widget only in the footer of the BuildPress theme', 'backend', 'proteuswidgets'),
+					'description' => _x( 'Use this widget only in the footer of the BuildPress theme', 'backend', 'proteuswidgets' ),
 				)
 			);
 
@@ -116,12 +116,12 @@ if ( ! class_exists( 'PW_Footer_Facebook' ) ) {
 
 			?>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _ex( 'Title:', 'backend', 'proteuswidgets'); ?></label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _ex( 'Title:', 'backend', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'like_link' ); ?>"><?php _ex( 'FB Page to like (the whole URL)', 'backend', 'proteuswidgets'); ?>:</label> <br />
+				<label for="<?php echo $this->get_field_id( 'like_link' ); ?>"><?php _ex( 'FB Page to like (the whole URL)', 'backend', 'proteuswidgets' ); ?>:</label> <br />
 				<input class="widefat" id="<?php echo $this->get_field_id( 'like_link' ); ?>" name="<?php echo $this->get_field_name( 'like_link' ); ?>" type="text" value="<?php echo $like_link; ?>" />
 			</p>
 
@@ -131,7 +131,7 @@ if ( ! class_exists( 'PW_Footer_Facebook' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'colorscheme' ); ?>"><?php _ex( 'Color scheme', 'backend', 'proteuswidgets'); ?>:</label> <br />
+				<label for="<?php echo $this->get_field_id( 'colorscheme' ); ?>"><?php _ex( 'Color scheme', 'backend', 'proteuswidgets' ); ?>:</label> <br />
 				<select id="<?php echo $this->get_field_id( 'colorscheme' ); ?>" name="<?php echo $this->get_field_name( 'colorscheme' ); ?>">
 					<option value="light"<?php selected( $colorscheme, 'light' ); ?>><?php _ex( 'Light', 'backend', 'proteuswidgets' ); ?></option>
 					<option value="dark"<?php selected( $colorscheme, 'dark' ); ?>><?php _ex( 'Dark', 'backend', 'proteuswidgets' ); ?></option>
@@ -139,13 +139,13 @@ if ( ! class_exists( 'PW_Footer_Facebook' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'background' ); ?>"><?php _ex( 'Background color:', 'backend', 'proteuswidgets'); ?></label> <br>
+				<label for="<?php echo $this->get_field_id( 'background' ); ?>"><?php _ex( 'Background color:', 'backend', 'proteuswidgets' ); ?></label> <br>
 				<input class="js-pt-color-picker" id="<?php echo $this->get_field_id( 'background' ); ?>" name="<?php echo $this->get_field_name( 'background' ); ?>" type="text" value="<?php echo esc_attr( $background ); ?>" data-default-color="<?php echo '#ffffff'; ?>" />
 			</p>
 
 			<?php
 		}
 
-	} // class PW_Footer_Facebook
-	add_action( 'widgets_init', create_function( '', 'register_widget( "PW_Footer_Facebook" );' ) );
+	} // class PW_Facebook
+	add_action( 'widgets_init', create_function( '', 'register_widget( "PW_Facebook" );' ) );
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Opening Times Widget
+ * Opening Time Widget
  *
  * @package ProteusWidgets
  * @since 0.1.0

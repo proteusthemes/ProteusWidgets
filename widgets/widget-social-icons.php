@@ -17,9 +17,9 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		public function __construct() {
 			parent::__construct(
 				false, // ID, auto generate when false
-				_x( 'ProteusThemes: Social Icons' , 'backend', 'proteuswidgets'), // Name
+				_x( 'ProteusThemes: Social Icons' , 'backend', 'proteuswidgets' ), // Name
 				array(
-					'description' => _x( 'Social Icons for Header of the page.', 'backend', 'proteuswidgets'),
+					'description' => _x( 'Social Icons for Header of the page.', 'backend', 'proteuswidgets' ),
 					'classname'   => 'widget-social-icons',
 				)
 			);
@@ -93,7 +93,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $new_tab, 'on'); ?> id="<?php echo $this->get_field_id( 'new_tab' ); ?>" name="<?php echo $this->get_field_name( 'new_tab' ); ?>" value="on" />
-				<label for="<?php echo $this->get_field_id( 'new_tab' ); ?>"><?php _e('Open Links in New Tab', 'proteuswidgets'); ?></label>
+				<label for="<?php echo $this->get_field_id( 'new_tab' ); ?>"><?php _e('Open Links in New Tab', 'proteuswidgets' ); ?></label>
 			</p>
 			<hr>
 
@@ -101,12 +101,12 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 				foreach ( $btn_links as $i => $btn_link ) :
 			?>
 				<p>
-					<label for="<?php echo $this->get_field_id( 'btn_link_' . $i ); ?>"><?php _ex( 'Link', 'backend', 'proteuswidgets'); ?>:</label> <br />
+					<label for="<?php echo $this->get_field_id( 'btn_link_' . $i ); ?>"><?php _ex( 'Link', 'backend', 'proteuswidgets' ); ?>:</label> <br />
 					<input style="width: 100%;" id="<?php echo $this->get_field_id( 'btn_link_' . $i ); ?>" name="<?php echo $this->get_field_name( 'btn_link_' . $i ); ?>" type="text" value="<?php echo $btn_link; ?>" />
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'icon_' . $i ); ?>"><?php _ex( 'Select social network', 'backend', 'proteuswidgets'); ?>:</label>
+					<label for="<?php echo $this->get_field_id( 'icon_' . $i ); ?>"><?php _ex( 'Select social network', 'backend', 'proteuswidgets' ); ?>:</label>
 					<select name="<?php echo $this->get_field_name( 'icon_' . $i ); ?>" id="<?php echo $this->get_field_id( 'icon_' . $i ); ?>">
 						<option value="fa-facebook" <?php selected( $icons[$i], 'fa-facebook' ); ?>>Facebook</option>
 						<option value="fa-twitter" <?php selected( $icons[$i], 'fa-twitter' ); ?>>Twitter</option>
@@ -135,6 +135,6 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 			<?php
 		}
 
-	} // Class PW_Social_Icons
+	} // class PW_Social_Icons
 	add_action( 'widgets_init', create_function( '', 'register_widget( "PW_Social_Icons" );' ) );
 }

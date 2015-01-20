@@ -15,9 +15,9 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		public function __construct() {
 			parent::__construct(
 				false, // ID, auto generate when false
-				_x( 'ProteusThemes: Brochure Box' , 'backend', 'proteuswidgets'), // Name
+				_x( 'ProteusThemes: Brochure Box' , 'backend', 'proteuswidgets' ), // Name
 				array(
-					'description' => _x( 'Brochure Box for the Sidebar and Page Builder.', 'backend', 'proteuswidgets'),
+					'description' => _x( 'Brochure Box for the Sidebar and Page Builder.', 'backend', 'proteuswidgets' ),
 					'classname'   => 'widget-brochure-box',
 				)
 			);
@@ -98,28 +98,28 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _ex( 'Title', 'backend', 'proteuswidgets'); ?>:</label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _ex( 'Title', 'backend', 'proteuswidgets' ); ?>:</label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'brochure_url' ); ?>"><?php _ex( 'Brochure URL', 'backend', 'proteuswidgets'); ?>:</label> <br />
+				<label for="<?php echo $this->get_field_id( 'brochure_url' ); ?>"><?php _ex( 'Brochure URL', 'backend', 'proteuswidgets' ); ?>:</label> <br />
 				<input class="widefat" id="<?php echo $this->get_field_id( 'brochure_url' ); ?>" name="<?php echo $this->get_field_name( 'brochure_url' ); ?>" type="text" value="<?php echo $brochure_url; ?>" />
 			</p>
 
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $new_tab, 'on' ); ?> id="<?php echo $this->get_field_id( 'new_tab' ); ?>" name="<?php echo $this->get_field_name( 'new_tab' ); ?>" value="on" />
-				<label for="<?php echo $this->get_field_id( 'new_tab' ); ?>"><?php _ex('Open link in new tab', 'backend', 'proteuswidgets'); ?></label>
+				<label for="<?php echo $this->get_field_id( 'new_tab' ); ?>"><?php _ex('Open link in new tab', 'backend', 'proteuswidgets' ); ?></label>
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'brochure_text' ); ?>"><?php _ex( 'Brochure Text', 'backend', 'proteuswidgets'); ?>:</label>
+				<label for="<?php echo $this->get_field_id( 'brochure_text' ); ?>"><?php _ex( 'Brochure Text', 'backend', 'proteuswidgets' ); ?>:</label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'brochure_text' ); ?>" name="<?php echo $this->get_field_name( 'brochure_text' ); ?>" type="text" value="<?php echo esc_attr( $brochure_text ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'brochure_icon' ); ?>"><?php _ex( 'Brochure Icon', 'backend', 'proteuswidgets'); ?>:</label> <br />
-				<small><?php printf( _x( 'Click on the icon below or manually select from the %s website', 'backend', 'proteuswidgets'), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?>.</small>
+				<label for="<?php echo $this->get_field_id( 'brochure_icon' ); ?>"><?php _ex( 'Brochure Icon', 'backend', 'proteuswidgets' ); ?>:</label> <br />
+				<small><?php printf( _x( 'Click on the icon below or manually select from the %s website', 'backend', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?>.</small>
 				<input id="<?php echo $this->get_field_id( 'brochure_icon' ); ?>" name="<?php echo $this->get_field_name( 'brochure_icon' ); ?>" type="text" value="<?php echo $brochure_icon; ?>" class="widefat  js-icon-input" /> <br><br>
 				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-o"><i class="fa fa-lg fa-file-o"></i></a>
 				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-pdf-o"><i class="fa fa-lg fa-file-pdf-o"></i></a>
@@ -144,7 +144,7 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 			<?php
 		}
 
-	} // Class PW_Brochure_Box
+	} // class PW_Brochure_Box
 	add_action( 'widgets_init', create_function( '', 'register_widget( "PW_Brochure_Box" );' ) );
 	add_action( 'admin_enqueue_scripts', array( 'PW_Brochure_Box', 'enqueue_js_css' ), 20 );
 }
