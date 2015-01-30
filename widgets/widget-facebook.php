@@ -147,5 +147,5 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		}
 
 	} // class PW_Facebook
-	add_action( 'widgets_init', create_function( '', 'register_widget( "PW_Facebook" );' ) );
+	register_widget( 'PW_Facebook' );
 }

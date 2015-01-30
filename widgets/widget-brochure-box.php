@@ -145,6 +145,6 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		}
 
 	} // class PW_Brochure_Box
-	add_action( 'widgets_init', create_function( '', 'register_widget( "PW_Brochure_Box" );' ) );
+	register_widget( 'PW_Brochure_Box' );
 	add_action( 'admin_enqueue_scripts', array( 'PW_Brochure_Box', 'enqueue_js_css' ), 20 );
 }

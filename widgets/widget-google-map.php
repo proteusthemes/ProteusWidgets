@@ -195,5 +195,5 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		}
 
 	} // class PW_Google_Map
-	add_action( 'widgets_init', create_function( '', 'register_widget( "PW_Google_Map" );' ) );
+	register_widget( 'PW_Google_Map' );
 }

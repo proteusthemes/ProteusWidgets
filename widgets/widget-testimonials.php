@@ -217,5 +217,5 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		}
 
 	} // class PW_Testimonials
-	add_action( 'widgets_init', create_function( '', 'register_widget( "PW_Testimonials" );' ) );
+	register_widget( 'PW_Testimonials' );
 }

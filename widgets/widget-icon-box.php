@@ -171,6 +171,6 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 		}
 
 	} // class PW_Icon_Box
-	add_action( 'widgets_init', create_function( '', 'register_widget( "PW_Icon_Box" );' ) );
+	register_widget( 'PW_Icon_Box' );
 	add_action( 'admin_enqueue_scripts', array( 'PW_Icon_Box', 'enqueue_js_css' ), 20 );
 }

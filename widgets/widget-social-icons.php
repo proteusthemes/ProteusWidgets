@@ -136,5 +136,5 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		}
 
 	} // class PW_Social_Icons
-	add_action( 'widgets_init', create_function( '', 'register_widget( "PW_Social_Icons" );' ) );
+	register_widget( 'PW_Social_Icons' );
 }

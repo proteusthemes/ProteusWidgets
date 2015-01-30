@@ -12,9 +12,44 @@ Donate link: http://www.proteusthemes.com/#donate
 Text domain: proteuswidgets
 */
 
-if ( ! function_exists( 'proteuswidgets_loaded' ) ) {
-	function proteuswidgets_loaded() {
+
+
+// Path to root of this plugin, with trailing slash
+define( 'PROTEUSWUIDGETS_PATH', plugin_dir_path(__FILE__) );
+
+
+
+/**
+* ProteusWidgets class, so we don't have to worry about namespace
+*/
+class ProteusWidgets {
+	function __construct() {
+		// actions
+		add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
+		add_action( 'widgets_init', array( __CLASS__, 'widgets_init' ) );
+	}
+
+
+	/**
+	 * Define some constants as soon as the plugins are loaded
+	 */
+	public static function plugins_loaded() {
 		define( 'PROTEUSWIDGETS_VERSION', get_plugin_data( __FILE__ )['Version'] );
 	}
-	add_action( 'plugins_loaded', 'proteuswidgets_loaded' );
+
+
+	/**
+	 * Define some constants as soon as the plugins are loaded
+	 */
+	public static function widgets_init() {
+		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-brochure-box.php';
+		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-facebook.php';
+		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-featured-page.php';
+		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-google-map.php';
+		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-icon-box.php';
+		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-opening-time.php';
+		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-social-icons.php';
+		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-testimonials.php';
+	}
 }
+new ProteusWidgets;

@@ -256,5 +256,5 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 		}
 
 	} // class PW_Opening_Time
-	add_action( 'widgets_init', create_function( '', 'register_widget( "PW_Opening_Time" );' ) );
+	register_widget( 'PW_Opening_Time' );
 }
