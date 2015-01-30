@@ -23,17 +23,35 @@ define( 'PROTEUSWUIDGETS_PATH', plugin_dir_path(__FILE__) );
 * ProteusWidgets class, so we don't have to worry about namespace
 */
 class ProteusWidgets {
+	/**
+	 * List of widgets
+	 * @var array
+	 */
+	public $widgets;
+
 	function __construct() {
+		// initialize widgets array
+		$this->widgets = apply_filters( 'pw/loaded_widgets', array(
+			'widget-brochure-box',
+			'widget-facebook',
+			'widget-featured-page',
+			'widget-google-map',
+			'widget-icon-box',
+			'widget-opening-time',
+			'widget-social-icons',
+			'widget-testimonials',
+		) );
+
 		// actions
-		add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
-		add_action( 'widgets_init', array( __CLASS__, 'widgets_init' ) );
+		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
+		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 	}
 
 
 	/**
 	 * Define some constants as soon as the plugins are loaded
 	 */
-	public static function plugins_loaded() {
+	public function plugins_loaded() {
 		define( 'PROTEUSWIDGETS_VERSION', get_plugin_data( __FILE__ )['Version'] );
 	}
 
@@ -41,15 +59,10 @@ class ProteusWidgets {
 	/**
 	 * Define some constants as soon as the plugins are loaded
 	 */
-	public static function widgets_init() {
-		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-brochure-box.php';
-		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-facebook.php';
-		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-featured-page.php';
-		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-google-map.php';
-		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-icon-box.php';
-		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-opening-time.php';
-		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-social-icons.php';
-		require_once PROTEUSWUIDGETS_PATH . 'widgets/widget-testimonials.php';
+	public function widgets_init() {
+		foreach ( $this->widgets as $filename ) {
+			require_once sprintf( '%swidgets/%s.php', PROTEUSWUIDGETS_PATH, $filename );
+		}
 	}
 }
 new ProteusWidgets;
