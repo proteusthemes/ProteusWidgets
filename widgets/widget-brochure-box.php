@@ -15,7 +15,7 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		public function __construct() {
 			parent::__construct(
 				false, // ID, auto generate when false
-				_x( 'ProteusThemes: Brochure Box' , 'backend', 'proteuswidgets' ), // Name
+				sprintf( 'ProteusThemes: %s', _x( 'Brochure Box', 'backend', 'proteuswidgets' ) ),
 				array(
 					'description' => _x( 'Brochure Box for the Sidebar and Page Builder.', 'backend', 'proteuswidgets' ),
 					'classname'   => 'widget-brochure-box',
@@ -42,17 +42,15 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			echo $args['before_widget'];
+
 			if ( ! empty ( $instance['title'] ) ) :
+				printf( '%s%s%s', $args['before_title'], apply_filters( 'widget_title', $instance['title'], $instance ), $args['after_title'] );
+			endif;
 			?>
 
-			<h4 class="sidebar__headings"><?php echo $instance['title']; ?></h4>
-			<?php
-				else :
-					endif;
-			?>
-			<a class="brochure-box" href="<?php echo $instance['brochure_url']; ?>" <?php echo empty ( $instance['new_tab'] ) ? '' : 'target="_blank"'; ?>>
-				<i class="fa  <?php echo $instance['brochure_icon']; ?>"></i>
-				<h5 class="brochure-box__text"><?php echo $instance['brochure_text']; ?></h5>
+			<a class="brochure-box" href="<?php echo esc_url( $instance['brochure_url'] ); ?>" <?php echo empty ( $instance['new_tab'] ) ? '' : 'target="_blank"'; ?>>
+				<span class="brochure-box__icon"><i class="fa  <?php echo $instance['brochure_icon']; ?>"></i></span>
+				<h5 class="brochure-box__text"><?php echo wp_kses_post( $instance['brochure_text'] ); ?></h5>
 			</a>
 
 			<?php
