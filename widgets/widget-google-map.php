@@ -23,9 +23,9 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		public function __construct() {
 			parent::__construct(
 				false, // ID, auto generate when false
-				_x( 'ProteusThemes: Google Map', 'backend', 'proteuswidgets' ), // Name
+				sprintf( 'ProteusThemes: %s', __( 'Google Map', 'proteuswidgets' ) ), // Name
 				array(
-					'description' => _x( 'For use in the page builder', 'backend', 'proteuswidgets' )
+					'description' => __( 'For use in the page builder', 'proteuswidgets' )
 				)
 			);
 		}
@@ -113,13 +113,13 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'latLng' ); ?>"><?php _ex( 'Latitude and longitude of the map center:', 'backend', 'proteuswidgets' ); ?></label> <br>
-				<small><?php printf( _x( "Get this from %s (right click on map and select What's here?) or %s. Latitude and longitude separated by comma.", 'backend', 'proteuswidgets' ), '<a href="https://maps.google.com/" target="_blank">Google Maps</a>', '<a href="http://www.findlatitudeandlongitude.com/" target="_blank">this site</a>' ); ?></small>
+				<label for="<?php echo $this->get_field_id( 'latLng' ); ?>"><?php _ex( 'Latitude and longitude of the map center:', 'proteuswidgets' ); ?></label> <br>
+				<small><?php printf( __( "Get this from %s (right click on map and select What's here?) or %s. Latitude and longitude separated by comma.", 'proteuswidgets' ), '<a href="https://maps.google.com/" target="_blank">Google Maps</a>', '<a href="http://www.findlatitudeandlongitude.com/" target="_blank">this site</a>' ); ?></small>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'latLng' ); ?>" name="<?php echo $this->get_field_name( 'latLng' ); ?>" value="<?php echo esc_attr( $latLng ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'zoom' ); ?>"><?php _ex( 'Zoom (more is closer view):', 'backend', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'zoom' ); ?>"><?php _ex( 'Zoom (more is closer view):', 'proteuswidgets' ); ?></label>
 				<select class="widefat" id="<?php echo $this->get_field_id( 'zoom' ); ?>" name="<?php echo $this->get_field_name( 'zoom' ); ?>">
 				<?php for ( $i=1; $i < 25; $i++ ) : ?>
 					<option value="<?php echo $i; ?>" <?php selected( $zoom, $i ); ?>><?php echo $i; ?></option>
@@ -128,7 +128,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'type' ); ?>"><?php _ex( 'Type:', 'backend', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'type' ); ?>"><?php _ex( 'Type:', 'proteuswidgets' ); ?></label>
 				<select class="widefat" id="<?php echo $this->get_field_id( 'type' ); ?>" name="<?php echo $this->get_field_name( 'type' ); ?>">
 				<?php foreach ( $map_types as $map_type ) : ?>
 					<option value="<?php echo $map_type; ?>" <?php selected( $type, $map_type ); ?>><?php echo ucfirst( $map_type ); ?></option>
@@ -137,7 +137,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'style' ); ?>"><?php _ex( 'Style:', 'backend', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'style' ); ?>"><?php _ex( 'Style:', 'proteuswidgets' ); ?></label>
 				<select class="widefat" id="<?php echo $this->get_field_id( 'style' ); ?>" name="<?php echo $this->get_field_name( 'style' ); ?>">
 				<?php foreach ( $this->map_styles as $style_name => $val ) : ?>
 					<option value="<?php echo $style_name; ?>" <?php selected( $style, $style_name ); ?>><?php echo $style_name; ?></option>
@@ -146,34 +146,34 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'height' ); ?>"><?php _ex( 'Height of map (in pixels):', 'backend', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'height' ); ?>"><?php _ex( 'Height of map (in pixels):', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'height' ); ?>" name="<?php echo $this->get_field_name( 'height' ); ?>" type="number" min="0" step="20" value="<?php echo esc_attr( $height ); ?>" />
 			</p>
 
 
-			<h4><?php _ex( 'Locations:', 'backend', 'proteuswidgets' ); ?></h4>
+			<h4><?php _ex( 'Locations:', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-location-<?php echo $this->id; ?>">
 				<p>
-					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-<%- id %>-title"><?php _ex( 'Title of location:', 'backend', 'proteuswidgets' ); ?></label> <br>
-					<small><?php _ex( 'This is shown on pin mouse hover.', 'backend', 'proteuswidgets' ); ?></small>
+					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-<%- id %>-title"><?php _ex( 'Title of location:', 'proteuswidgets' ); ?></label> <br>
+					<small><?php _ex( 'This is shown on pin mouse hover.', 'proteuswidgets' ); ?></small>
 					<input class="widefat" id="<?php echo $this->get_field_id( 'locations' ); ?>-<%- id %>-title" name="<?php echo $this->get_field_name( 'locations' ); ?>[<%- id %>][title]" type="text" value="<%- title %>" />
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-<%- id %>-locationlatlng"><?php _ex( 'Latitude and longitude of this location:', 'backend', 'proteuswidgets' ); ?></label> <br>
-					<small><?php _ex( 'The same format as above for the map center.', 'backend', 'proteuswidgets' ); ?></small>
+					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-<%- id %>-locationlatlng"><?php _ex( 'Latitude and longitude of this location:', 'proteuswidgets' ); ?></label> <br>
+					<small><?php _ex( 'The same format as above for the map center.', 'proteuswidgets' ); ?></small>
 					<input class="widefat" id="<?php echo $this->get_field_id( 'locations' ); ?>-<%- id %>-locationlatlng" name="<?php echo $this->get_field_name( 'locations' ); ?>[<%- id %>][locationlatlng]" type="text" placeholder="40.724885,-74.00264" value="<%- locationlatlng %>" />
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-<%- id %>-custompinimage"><?php _ex( 'Custom pin icon URL:', 'backend', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-<%- id %>-custompinimage"><?php _ex( 'Custom pin icon URL:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo $this->get_field_id( 'locations' ); ?>-<%- id %>-custompinimage" name="<?php echo $this->get_field_name( 'locations' ); ?>[<%- id %>][custompinimage]" type="text" value="<%- custompinimage %>" />
 				</p>
 
 				<p>
 					<input name="<?php echo $this->get_field_name( 'locations' ); ?>[<%- id %>][id]" type="hidden" value="<%- id %>" />
-					<a href="#" class="pt-remove-location  js-pt-remove-location"><span class="dashicons dashicons-dismiss"></span> <?php _ex( 'Remove Location', 'backend', 'proteuswidgets' ); ?></a>
+					<a href="#" class="pt-remove-location  js-pt-remove-location"><span class="dashicons dashicons-dismiss"></span> <?php _ex( 'Remove Location', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
 			<div class="pt-widget-locations" id="locations-<?php echo $this->id; ?>">

@@ -27,7 +27,7 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 		public function __construct() {
 			parent::__construct(
 				false, // ID, auto generate when false
-				__( "Hairpress: Opening Time" , 'proteusthemes'), // Name
+				sprintf( 'ProteusThemes: %s', __( 'Opening Time', 'proteusthemes' ) ), // Name
 				array(
 					'description' => __( 'Opening Time Widget for placing it into the sidebar or above the slider' , 'proteusthemes'),
 					'classname' => 'opening-time'

@@ -15,9 +15,9 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 		public function __construct() {
 			parent::__construct(
 				false, // ID, auto generate when false
-				_x( 'ProteusThemes: Icon Box' , 'backend', 'proteuswidgets' ), // Name
+				sprintf( 'ProteusThemes: %s', __( 'Icon Box', 'proteuswidgets' ) ), // Name
 				array(
-					'description' => _x( 'Icon Box for the Header of the page.', 'backend', 'proteuswidgets' ),
+					'description' => __( 'Icon Box for the Header of the page.', 'proteuswidgets' ),
 					'classname'   => 'widget-icon-box',
 				)
 			);
@@ -97,29 +97,29 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _ex( 'Title', 'backend', 'proteuswidgets' ); ?>:</label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _ex( 'Title', 'proteuswidgets' ); ?>:</label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'text' ); ?>"><?php _ex( 'Text', 'backend', 'proteuswidgets' ); ?>:</label> <br />
+				<label for="<?php echo $this->get_field_id( 'text' ); ?>"><?php _ex( 'Text', 'proteuswidgets' ); ?>:</label> <br />
 				<input class="widefat" id="<?php echo $this->get_field_id( 'text' ); ?>" name="<?php echo $this->get_field_name( 'text' ); ?>" type="text" value="<?php echo $text; ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'btn_link' ); ?>"><?php _ex( 'Link', 'backend', 'proteuswidgets' ); ?>:</label> <br />
-				<small><?php _ex( 'URL to any page, optional.', 'backend', 'proteuswidgets' ); ?></small> <br>
+				<label for="<?php echo $this->get_field_id( 'btn_link' ); ?>"><?php _ex( 'Link', 'proteuswidgets' ); ?>:</label> <br />
+				<small><?php _ex( 'URL to any page, optional.', 'proteuswidgets' ); ?></small> <br>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'btn_link' ); ?>" name="<?php echo $this->get_field_name( 'btn_link' ); ?>" type="text" value="<?php echo $btn_link; ?>" />
 			</p>
 
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $new_tab, 'on' ); ?> id="<?php echo $this->get_field_id( 'new_tab' ); ?>" name="<?php echo $this->get_field_name( 'new_tab' ); ?>" value="on" />
-				<label for="<?php echo $this->get_field_id( 'new_tab' ); ?>"><?php _ex('Open link in new tab', 'backend', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'new_tab' ); ?>"><?php _ex('Open link in new tab', 'proteuswidgets' ); ?></label>
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'icon' ); ?>"><?php _ex( 'Icon', 'backend', 'proteuswidgets' ); ?>:</label> <br />
-				<small><?php printf( _x( 'Click on the icon below or manually select from the %s website', 'backend', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?>.</small>
+				<label for="<?php echo $this->get_field_id( 'icon' ); ?>"><?php _ex( 'Icon', 'proteuswidgets' ); ?>:</label> <br />
+				<small><?php printf( __( 'Click on the icon below or manually select from the %s website', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?>.</small>
 				<input id="<?php echo $this->get_field_id( 'icon' ); ?>" name="<?php echo $this->get_field_name( 'icon' ); ?>" type="text" value="<?php echo $icon; ?>" class="widefat  js-icon-input" /> <br><br>
 				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-home"><i class="fa fa-lg fa-home"></i></a>
 				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-phone"><i class="fa fa-lg fa-phone"></i></a>

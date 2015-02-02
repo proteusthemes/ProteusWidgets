@@ -20,9 +20,9 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		public function __construct() {
 			parent::__construct(
 				false, // ID, auto generate when false
-				_x( 'ProteusThemes: Featured Page' , 'backend', 'proteuswidgets' ), // Name
+				sprintf( 'ProteusThemes: %s', __( 'Featured Page', 'proteuswidgets' ) ), // Name
 				array(
-					'description' => _x( 'Featured Page for Page Builder.', 'backend', 'proteuswidgets' ),
+					'description' => __( 'Featured Page for Page Builder.', 'proteuswidgets' ),
 					'classname'   => 'widget-featured-page',
 				)
 			);
@@ -75,7 +75,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				}
 			}
 			else {
-				echo _ex( 'Select page in widget settings', 'backend', 'proteuswidgets' );
+				echo _ex( 'Select page in widget settings', 'proteuswidgets' );
 			}
 
 			echo $args['after_widget'];
@@ -108,7 +108,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'page_id' ); ?>"><?php _ex( 'Page:', 'backend', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo $this->get_field_id( 'page_id' ); ?>"><?php _ex( 'Page:', 'proteuswidgets' ); ?></label> <br>
 				<?php
 					wp_dropdown_pages( array(
 						'selected' => $page_id,
@@ -119,10 +119,10 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'layout' ); ?>"><?php _ex( 'Layout:', 'backend', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo $this->get_field_id( 'layout' ); ?>"><?php _ex( 'Layout:', 'proteuswidgets' ); ?></label> <br>
 				<select id="<?php echo $this->get_field_id( 'layout' ); ?>" name="<?php echo $this->get_field_name( 'layout' ); ?>">
-					<option value="block" <?php selected( $layout, 'block' ); ?>><?php _ex( 'With big picture', 'backend', 'proteuswidgets' ); ?></option>
-					<option value="inline" <?php selected( $layout, 'inline' ); ?>><?php _ex( 'With small picture, inline', 'backend', 'proteuswidgets' ); ?></option>
+					<option value="block" <?php selected( $layout, 'block' ); ?>><?php _ex( 'With big picture', 'proteuswidgets' ); ?></option>
+					<option value="inline" <?php selected( $layout, 'inline' ); ?>><?php _ex( 'With small picture, inline', 'proteuswidgets' ); ?></option>
 				</select>
 			</p>
 
