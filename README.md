@@ -1,7 +1,7 @@
 # ProteusWidgets #
 **Contributors:** cyman  
 **Tags:** widget, widgets, plugin, admin, sidebar, javascript  
-**Requires at least:** 3.0.1  
+**Requires at least:** 4.0  
 **Tested up to:** 4.1  
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
