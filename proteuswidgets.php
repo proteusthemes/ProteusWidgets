@@ -44,7 +44,7 @@ class ProteusWidgets {
 		) );
 
 		// actions
-		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
+		add_action( 'admin_init', array( $this, 'define_version' ) );
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 	}
 
@@ -52,7 +52,7 @@ class ProteusWidgets {
 	/**
 	 * Define some constants as soon as the plugins are loaded
 	 */
-	public function plugins_loaded() {
+	public function define_version() {
 		define( 'PROTEUSWIDGETS_VERSION', apply_filters( 'pw/version', get_plugin_data( __FILE__ )['Version'] ) );
 	}
 
