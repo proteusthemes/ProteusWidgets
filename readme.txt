@@ -1,10 +1,9 @@
-=== Pwtest ===
-Contributors: (this should be a list of wordpress.org userid's)
-Donate link: http://example.com/
-Tags: comments, spam
+=== ProteusWidgets ===
+Contributors: cyman
+Tags: widget, widgets, plugin, admin, sidebar, javascript
 Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 4.3
+Tested up to: 4.1
+Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,8 +21,7 @@ A few notes about the sections above:
 *   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
 *   "Tags" is a comma separated list of tags that apply to the plugin
 *   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
+*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on higher versions... this is just the highest one you've verified.
 *   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
 stable.
 
