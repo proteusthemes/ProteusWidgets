@@ -146,6 +146,6 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 			<?php
 		}
 
-	} // class PW_Facebook
+	}
 	register_widget( 'PW_Facebook' );
 }

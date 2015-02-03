@@ -132,6 +132,6 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 
 			<?php
 		}
-	} // class PW_Featured_Page
+	}
 	register_widget( 'PW_Featured_Page' );
 }

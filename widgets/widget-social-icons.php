@@ -135,6 +135,6 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 			<?php
 		}
 
-	} // class PW_Social_Icons
+	}
 	register_widget( 'PW_Social_Icons' );
 }

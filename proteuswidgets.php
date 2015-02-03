@@ -15,7 +15,7 @@ Text domain: proteuswidgets
 
 
 // Path to root of this plugin, with trailing slash
-define( 'PROTEUSWUIDGETS_PATH', plugin_dir_path(__FILE__) );
+define( 'PROTEUSWUIDGETS_PATH', apply_filters( 'pw/plugin_dir_path', plugin_dir_path(__FILE__) ) );
 
 
 
@@ -32,6 +32,7 @@ class ProteusWidgets {
 	function __construct() {
 		// initialize widgets array
 		$this->widgets = apply_filters( 'pw/loaded_widgets', array(
+			'widget-author',
 			'widget-brochure-box',
 			'widget-facebook',
 			'widget-featured-page',
@@ -52,7 +53,7 @@ class ProteusWidgets {
 	 * Define some constants as soon as the plugins are loaded
 	 */
 	public function plugins_loaded() {
-		define( 'PROTEUSWIDGETS_VERSION', get_plugin_data( __FILE__ )['Version'] );
+		define( 'PROTEUSWIDGETS_VERSION', apply_filters( 'pw/version', get_plugin_data( __FILE__ )['Version'] ) );
 	}
 
 

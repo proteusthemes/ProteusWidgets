@@ -216,6 +216,6 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			<?php
 		}
 
-	} // class PW_Testimonials
+	}
 	register_widget( 'PW_Testimonials' );
 }

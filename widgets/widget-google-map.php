@@ -194,6 +194,6 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			<?php
 		}
 
-	} // class PW_Google_Map
+	}
 	register_widget( 'PW_Google_Map' );
 }
