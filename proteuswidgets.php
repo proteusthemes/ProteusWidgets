@@ -13,6 +13,8 @@ Text domain: proteuswidgets
 */
 
 
+//include php files
+require_once( plugin_dir_path( __FILE__ ) . '/PWFunctions.php');
 
 // Path to root of this plugin, with trailing slash
 define( 'PROTEUSWUIDGETS_PATH', apply_filters( 'pw/plugin_dir_path', plugin_dir_path(__FILE__) ) );

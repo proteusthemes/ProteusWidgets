@@ -51,15 +51,18 @@ if ( ! class_exists( 'PW_Author' ) ) {
 						</p>
 						<?php endif ?>
 						<?php
-							$icons = get_social_icons_links( get_user_meta( $selected_user_id ) );
-							if ( count( $icons ) ) {
-								echo '<p class="social-icons__author">';
-							}
-							foreach ( $icons as $service => $url ) {
-								printf( '<a href="%s" class="social-icons__container"><span class="%s"></span></a>', esc_url( $url[0] ), $service );
-							}
-							if ( count( $icons ) ) {
-								echo '</p>';
+							if ( is_callable( 'PWFunctions::get_social_icons_links' ) ) {
+								$icons = PWFunctions::get_social_icons_links( get_user_meta( $selected_user_id ) );
+								if ( count( $icons ) ) {
+									echo '<p class="social-icons__author">';
+								}
+								foreach ( $icons as $service => $url ) {
+									$service_icon = substr( $service, 3 );
+									printf( '<a href="%s" class="social-icons__container"><i class="fa fa-%s"></i></a>', esc_url( $url[0] ), $service_icon );
+								}
+								if ( count( $icons ) ) {
+									echo '</p>';
+								}
 							}
 						?>
 					</div>
@@ -98,6 +101,8 @@ if ( ! class_exists( 'PW_Author' ) ) {
 				) ); ?>
 
 			</p>
+
+			<p><small>To add the social icons to this widget, please install the <a href="https://wordpress.org/plugins/extra-user-details/" target="_blank">Extra User Details</a> plugin and fill in the details in the "Users" section.</small></p>
 
 			<?php
 
