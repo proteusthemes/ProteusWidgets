@@ -40,7 +40,7 @@ if ( ! class_exists( 'PW_Author' ) ) {
 						<?php echo get_avatar( $selected_user_id, 90 ); ?>
 					</a>
 				</div>
-				<div class="row">
+				<div class="row widget-author__content">
 					<div class="col-xs-10  col-xs-offset-1">
 						<?php echo $before_title; ?><?php the_author_meta( 'display_name', $selected_user_id ); ?><?php echo $after_title; ?>
 						<?php echo wpautop( get_the_author_meta( 'description', $selected_user_id ) ); ?>

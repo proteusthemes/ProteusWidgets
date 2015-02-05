@@ -51,6 +51,12 @@ module.exports = function ( grunt ) {
 				livereload: true,
 			},
 
+			// autoprefix the files
+			autoprefixer: {
+				files: ['.tmp/*.css'],
+				tasks: ['autoprefixer:style_css'],
+			},
+
 			// minify js files
 			minifyjs: {
 				files: ['assets/js/**/*.js'],
@@ -95,12 +101,19 @@ module.exports = function ( grunt ) {
 				}
 			}
 		},
+
+		// https://npmjs.org/package/grunt-concurrent
+		concurrent: {
+			server: [
+				'compass:dev',
+				'watch'
+			]
+		},
 	} );
 
 	// when developing
 	grunt.registerTask( 'default', [
-		'compass:dev',
-		'watch'
+		'concurrent:server'
 	] );
 
 	// build

@@ -102,23 +102,22 @@ $screen-md-max:              ($screen-lg-min - 1) !default;
 }
 
 .widget-author__content {
-	text-align: left;
-
-	@media (min-width: $screen-sm-min) {
-		margin-bottom: 45px;
-	}
-
 	p {
-		font-family: $primary-font;
-		font-size: 18px;
-		color: #40454a;
+		margin-bottom: 7px;
 	}
 
-	h4 {
-		margin: -20px 0 15px 0;
-
-		@media (min-width: $screen-sm-min) {
-			margin: 25px 0 30px 0;
-		}
+	h2 {
+		margin-bottom: 10px;
 	}
+}
+
+.social-icons__container {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background: #efefeb;
+	margin: 0 3px;
+	line-height: 40px;
+	border: none;
+	border-radius: 4px;
 }
