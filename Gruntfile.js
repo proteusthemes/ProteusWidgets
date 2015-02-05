@@ -7,6 +7,44 @@ module.exports = function ( grunt ) {
 	grunt.initConfig( {
 		pgk: grunt.file.readJSON( 'package.json' ),
 
+		// https://npmjs.org/package/grunt-contrib-compass
+		compass: {
+			options: {
+				sassDir:        'assets/sass',
+				cssDir:         '.tmp/',
+				imagesDir:      'assets/images',
+				outputStyle:    'compact',
+				relativeAssets: true,
+				noLineComments: true
+				// importPath:     ['bower_components/bootstrap-sass-official/assets/stylesheets']
+			},
+			dev: {
+				options: {
+					watch: true
+				}
+			},
+			build: {
+				options: {
+					watch: false,
+					force: true
+				}
+			}
+		},
+
+		// Parse CSS and add vendor-prefixed CSS properties using the Can I Use database. Based on Autoprefixer.
+		// https://github.com/nDmitry/grunt-autoprefixer
+		autoprefixer: {
+			options: {
+				browsers: ['last 2 versions', 'ie 9', 'ie 10']
+			},
+			style_css: {
+				expand: true,
+				cwd:    '.tmp/',
+				src:    '*.css',
+				dest:   './'
+			},
+		},
+
 		// https://npmjs.org/package/grunt-contrib-watch
 		watch: {
 			options: {
@@ -61,11 +99,14 @@ module.exports = function ( grunt ) {
 
 	// when developing
 	grunt.registerTask( 'default', [
+		'compass:dev',
 		'watch'
 	] );
 
 	// build
 	grunt.registerTask( 'build', [
+		'compass:build',
+		'autoprefixer',
 		'requirejs',
 		'wp_readme_to_markdown',
 	] );

@@ -59,8 +59,8 @@ class ProteusWidgets {
 	 * @return void
 	 */
 	public static function admin_enqueue_js_css() {
-		wp_enqueue_script( 'custom-admin-js', plugin_dir_url( __FILE__ ) . 'assets/js/admin.js' , array( 'jquery') );
-		wp_register_style( 'fontawesome-icons', plugin_dir_url( __FILE__ ) . 'bower_components/fontawesome/css/font-awesome.min.css');
+		wp_enqueue_script( 'custom-admin-js', plugin_dir_url( __FILE__ ) . 'assets/js/admin.js' , array( 'jquery' ) );
+		wp_register_style( 'fontawesome-icons', plugin_dir_url( __FILE__ ) . 'bower_components/fontawesome/css/font-awesome.min.css' );
 	}
 
 
@@ -70,7 +70,9 @@ class ProteusWidgets {
 	 * @return void
 	 */
 	public static function enqueue_js_css() {
-		wp_register_style( 'fontawesome-icons', plugin_dir_url( __FILE__ ) . 'bower_components/fontawesome/css/font-awesome.min.css');
+		wp_register_style( 'fontawesome-icons', plugin_dir_url( __FILE__ ) . 'bower_components/fontawesome/css/font-awesome.min.css' );
+		wp_register_style( 'main-styles', plugin_dir_url( __FILE__ ) . 'main.css' );
+		wp_enqueue_style( 'main-styles' );
 	}
 
 
