@@ -29,7 +29,7 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		 * @return void
 		 */
 		public static function enqueue_js_css() {
-			wp_enqueue_style( 'fontawesome-icons', get_template_directory_uri() . '/bower_components/fontawesome/css/font-awesome.min.css' );
+			wp_enqueue_style( 'fontawesome-icons' );
 		}
 
 		/**
@@ -143,6 +143,7 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		}
 
 	}
-	register_widget( 'PW_Brochure_Box' );
+	add_action( 'wp_enqueue_scripts', array( 'PW_Brochure_Box', 'enqueue_js_css' ), 20 );
 	add_action( 'admin_enqueue_scripts', array( 'PW_Brochure_Box', 'enqueue_js_css' ), 20 );
+	register_widget( 'PW_Brochure_Box' );
 }

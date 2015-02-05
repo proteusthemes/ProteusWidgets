@@ -13,12 +13,12 @@ Text domain: proteuswidgets
 */
 
 
-//include php files
-require_once( plugin_dir_path( __FILE__ ) . '/PWFunctions.php');
 
 // Path to root of this plugin, with trailing slash
 define( 'PROTEUSWUIDGETS_PATH', apply_filters( 'pw/plugin_dir_path', plugin_dir_path(__FILE__) ) );
 
+//include php files
+require_once( PROTEUSWUIDGETS_PATH . 'inc/PWFunctions.php');
 
 
 /**
@@ -47,7 +47,30 @@ class ProteusWidgets {
 
 		// actions
 		add_action( 'admin_init', array( $this, 'define_version' ) );
+		add_action( 'admin_enqueue_scripts', array( $this , 'admin_enqueue_js_css' ), 20 );
+		add_action( 'wp_enqueue_scripts', array( $this , 'enqueue_js_css' ), 20 );
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
+	}
+
+
+	/**
+	 * Enqueue the JS and CSS files for backend (admin area) with the right action
+	 * @see admin_enqueue_scripts
+	 * @return void
+	 */
+	public static function admin_enqueue_js_css() {
+		wp_enqueue_script( 'custom-admin-js', plugin_dir_url( __FILE__ ) . 'assets/js/admin.js' , array( 'jquery') );
+		wp_register_style( 'fontawesome-icons', plugin_dir_url( __FILE__ ) . 'bower_components/fontawesome/css/font-awesome.min.css');
+	}
+
+
+	/**
+	 * Enqueue the JS and CSS files for frontend with the right action
+	 * @see wp_enqueue_scripts
+	 * @return void
+	 */
+	public static function enqueue_js_css() {
+		wp_register_style( 'fontawesome-icons', plugin_dir_url( __FILE__ ) . 'bower_components/fontawesome/css/font-awesome.min.css');
 	}
 
 
