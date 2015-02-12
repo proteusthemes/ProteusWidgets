@@ -84,8 +84,8 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 												echo '<i class="fa  fa-star"></i>';
 											}
 										?>
+										</div>
 									<?php endif; ?>
-									</div>
 								</div>
 							<?php endforeach; ?>
 							</div>
@@ -171,30 +171,30 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 			<script type="text/template" id="js-pt-testimonial-<?php echo $this->id; ?>">
 				<p>
-					<label for="<?php echo $this->get_field_id( 'quote' ); ?>-<%- id %>-title"><?php _ex( 'Quote', 'proteuswidgets' ); ?>:</label>
-					<textarea rows="4" class="widefat" id="<?php echo $this->get_field_id( 'quote' ); ?>-<%- id %>-title" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[<%- id %>][quote]"><%- quote %></textarea>
+					<label for="<?php echo $this->get_field_id( 'quote' ); ?>-{{id}}-title"><?php _ex( 'Quote', 'backend', 'buildpress_wp'); ?>:</label>
+					<textarea rows="4" class="widefat" id="<?php echo $this->get_field_id( 'quote' ); ?>-{{id}}-title" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][quote]">{{quote}}</textarea>
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-<%- id %>-author"><?php _ex( 'Author:', 'proteuswidgets' ); ?></label> <br>
-					<input class="widefat" id="<?php echo $this->get_field_id( 'testimonials' ); ?>-<%- id %>-author" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[<%- id %>][author]" type="text" value="<%- author %>" />
+					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author"><?php _ex( 'Author:', 'backend', 'buildpress_wp'); ?></label> <br>
+					<input class="widefat" id="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][author]" type="text" value="{{author}}" />
 				</p>
 
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-<%- id %>-rating"><?php _ex( 'Rating:', 'proteuswidgets' ); ?></label>
-					<select name="<?php echo $this->get_field_name( 'testimonials' ); ?>[<%- id %>][rating]" id="<?php echo $this->get_field_id( 'rating' ); ?>">
-						<option value="0" <% print( rating == 0 ? 'selected="selected"' : '' ); %>>0</option>
-						<option value="1" <% print( rating == 1 ? 'selected="selected"' : '' ); %>>1</option>
-						<option value="2" <% print( rating == 2 ? 'selected="selected"' : '' ); %>>2</option>
-						<option value="3" <% print( rating == 3 ? 'selected="selected"' : '' ); %>>3</option>
-						<option value="4" <% print( rating == 4 ? 'selected="selected"' : '' ); %>>4</option>
-						<option value="5" <% print( rating == 5 ? 'selected="selected"' : '' ); %>>5</option>
-					</select>
+					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-rating"><?php _ex( 'Rating:', 'backend', 'buildpress_wp'); ?></label>
+					<select name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][rating]" id="<?php echo $this->get_field_id( 'rating' ); ?>-{{id}}-rating" class="js-rating">
+						<option value="0">0</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+ 					</select>
 				</p>
 
 				<p>
-					<input name="<?php echo $this->get_field_name( 'testimonials' ); ?>[<%- id %>][id]" type="hidden" value="<%- id %>" />
+					<input name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
 					<a href="#" class="pt-remove-testimonial  js-pt-remove-testimonial"><span class="dashicons dashicons-dismiss"></span> <?php _ex( 'Remove Testimonial', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>

@@ -14,7 +14,8 @@
     "tests"
   ],
   "dependencies": {
-    "fontawesome": "^4.2.0"
+    "fontawesome": "^4.2.0",
+    "mustache": "~1.0.0"
   },
   "devDependencies": {
     "requirejs": "~2.1.11",

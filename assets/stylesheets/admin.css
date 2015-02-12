@@ -1,0 +1,31 @@
+/**
+ * Admin CSS
+ */
+
+/* google map widget */
+.pt-widget-single-location,
+.pt-widget-single-testimonial {
+	padding: 0 10px;
+	border: 1px solid rgba(0,0,0,0.1);
+	background-color: rgba(0,0,0,0.03);
+	margin-bottom: 10px;
+}
+.pt-remove-location,
+.pt-remove-testimonial {
+	text-decoration: none;
+}
+
+/* banner widget */
+.button-shortcodes {
+	color: #999999;
+}
+
+/* icon box */
+.icon-widget {
+	font-size: 16px;
+	color: #999999;
+}
+
+.icon-widget:hover {
+	color: #454545;
+}
