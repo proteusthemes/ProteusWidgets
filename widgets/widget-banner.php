@@ -39,16 +39,22 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 
 			echo $args['before_widget'];
 			?>
-				<div class="banner">
-					<a href="<?php echo $link ?>" target="<?php echo ( '1' == $open_new ) ? '_blank' : '_self' ?>">
-						<div class="banner__title">
-							<?php echo $title; ?>
-						</div>
-						<div class="banner__content">
-							<?php echo $content; ?>
-						</div>
+				<?php	if( empty( $link ) ) : ?>
+					<div class="banner">
+				<?php else : ?>
+					<a class="banner" href="<?php echo $link ?>" target="<?php echo ( '1' == $open_new ) ? '_blank' : '_self' ?>">
+				<?php endif; ?>
+					<div class="banner__title">
+						<?php echo $title; ?>
+					</div>
+					<div class="banner__content">
+						<?php echo $content; ?>
+					</div>
+				<?php	if( empty( $link ) ) : ?>
+					</div>
+				<?php else : ?>
 					</a>
-				</div>
+				<?php endif; ?>
 			<?php
 			echo $args['after_widget'];
 		}
