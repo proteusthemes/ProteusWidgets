@@ -155,24 +155,24 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 
 			<script type="text/template" id="js-pt-location-<?php echo $this->id; ?>">
 				<p>
-					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-<%- id %>-title"><?php _ex( 'Title of location:', 'proteuswidgets' ); ?></label> <br>
+					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-{{id}}-title"><?php _ex( 'Title of location:', 'backend', 'buildpress_wp' ); ?></label> <br>
 					<small><?php _ex( 'This is shown on pin mouse hover.', 'proteuswidgets' ); ?></small>
-					<input class="widefat" id="<?php echo $this->get_field_id( 'locations' ); ?>-<%- id %>-title" name="<?php echo $this->get_field_name( 'locations' ); ?>[<%- id %>][title]" type="text" value="<%- title %>" />
+					<input class="widefat" id="<?php echo $this->get_field_id( 'locations' ); ?>-{{id}}-title" name="<?php echo $this->get_field_name( 'locations' ); ?>[{{id}}][title]" type="text" value="{{title}}" />
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-<%- id %>-locationlatlng"><?php _ex( 'Latitude and longitude of this location:', 'proteuswidgets' ); ?></label> <br>
+					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-{{id}}-locationlatlng"><?php _ex( 'Latitude and longitude of this location:', 'backend', 'buildpress_wp' ); ?></label> <br>
 					<small><?php _ex( 'The same format as above for the map center.', 'proteuswidgets' ); ?></small>
-					<input class="widefat" id="<?php echo $this->get_field_id( 'locations' ); ?>-<%- id %>-locationlatlng" name="<?php echo $this->get_field_name( 'locations' ); ?>[<%- id %>][locationlatlng]" type="text" placeholder="40.724885,-74.00264" value="<%- locationlatlng %>" />
+					<input class="widefat" id="<?php echo $this->get_field_id( 'locations' ); ?>-{{id}}-locationlatlng" name="<?php echo $this->get_field_name( 'locations' ); ?>[{{id}}][locationlatlng]" type="text" placeholder="40.724885,-74.00264" value="{{locationlatlng}}" />
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-<%- id %>-custompinimage"><?php _ex( 'Custom pin icon URL:', 'proteuswidgets' ); ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id( 'locations' ); ?>-<%- id %>-custompinimage" name="<?php echo $this->get_field_name( 'locations' ); ?>[<%- id %>][custompinimage]" type="text" value="<%- custompinimage %>" />
+					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-{{id}}-custompinimage"><?php _ex( 'Custom pin icon URL:', 'backend', 'buildpress_wp' ); ?></label>
+					<input class="widefat" id="<?php echo $this->get_field_id( 'locations' ); ?>-{{id}}-custompinimage" name="<?php echo $this->get_field_name( 'locations' ); ?>[{{id}}][custompinimage]" type="text" value="{{custompinimage}}" />
 				</p>
 
 				<p>
-					<input name="<?php echo $this->get_field_name( 'locations' ); ?>[<%- id %>][id]" type="hidden" value="<%- id %>" />
+					<input name="<?php echo $this->get_field_name( 'locations' ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
 					<a href="#" class="pt-remove-location  js-pt-remove-location"><span class="dashicons dashicons-dismiss"></span> <?php _ex( 'Remove Location', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>

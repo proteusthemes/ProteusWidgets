@@ -17,6 +17,138 @@ jQuery( document ).ready( function( $ ) {
 } );
 
 /**
+ * Backbone handling of the multiple locations in the maps widget
+ */
+
+var ptMapsLocations = ptMapsLocations || {};
+
+// model for a single location
+ptMapsLocations.Location = Backbone.Model.extend( {
+	defaults: {
+		'title':          'My Business LLC',
+		'locationlatlng': '',
+		'custompinimage': '',
+	},
+
+	parse: function ( attributes ) {
+		// ID is always numeric
+		attributes.id = parseInt( attributes.id, 10 );
+
+		return attributes;
+	},
+} );
+
+// view of a single location
+ptMapsLocations.locationView = Backbone.View.extend( {
+	className: 'pt-widget-single-location',
+
+	events: {
+		'click .js-pt-remove-location': 'destroy'
+	},
+
+	initialize: function ( params ) {
+		this.templateHTML = params.templateHTML;
+
+		return this;
+	},
+
+	render: function () {
+		this.$el.html( Mustache.render( this.templateHTML, this.model.attributes ) );
+
+		return this;
+	},
+
+	destroy: function ( ev ) {
+		ev.preventDefault();
+
+		this.remove();
+		this.model.trigger( 'destroy' );
+	},
+} );
+
+// view of all locations, but associated with each individual widget
+ptMapsLocations.locationsView = Backbone.View.extend( {
+	events: {
+		'click .js-pt-add-location': 'addNew'
+	},
+
+	initialize: function ( params ) {
+		this.widgetId = params.widgetId;
+
+		// cached reference to the element in the DOM
+		this.$locations = this.$( '.locations' );
+
+		// collection of locations, local to each instance of ptMapsLocations.locationsView
+		this.locations = new Backbone.Collection( [], {
+			model: ptMapsLocations.Location,
+		} );
+
+		// listen to adding of the new locations
+		this.listenTo( this.locations, 'add', this.appendOne );
+
+		return this;
+	},
+
+	addNew: function ( ev ) {
+		ev.preventDefault();
+
+		// default, if there is no locations added yet
+		var locationId = 0;
+
+		if ( ! this.locations.isEmpty() ) {
+			var locationsWithMaxId = this.locations.max( function ( location ) {
+				return parseInt( location.id, 10 );
+			} );
+
+			locationId = parseInt( locationsWithMaxId.id, 10 ) + 1;
+		}
+
+		this.locations.add( new ptMapsLocations.Location( {
+			id: locationId,
+		} ) );
+
+		return this;
+	},
+
+	appendOne: function ( location ) {
+		var renderedLocation = new ptMapsLocations.locationView( {
+			model:    location,
+			templateHTML: jQuery( '#js-pt-location-' + this.widgetId ).html(),
+		} ).render();
+
+		this.$locations.append( renderedLocation.el );
+
+		return this;
+	}
+} );
+
+
+/**
+ * Function which adds the existing locations to the DOM
+ * @param  {json} locationsJSON
+ * @param  {string} widgetId ID of widget from PHP $this->id
+ * @return {void}
+ */
+var repopulateLocations = function ( locationsJSON, widgetId ) {
+	// view of all locations
+	var locationsView = new ptMapsLocations.locationsView( {
+		el:       '#locations-' + widgetId,
+		widgetId: widgetId,
+	} );
+
+	// convert to array if needed
+	if ( _( locationsJSON ).isObject() ) {
+		locationsJSON = _( locationsJSON ).values();
+	};
+
+	// add all locations to collection of newly created view
+	locationsView.locations.add( locationsJSON, { parse: true } );
+};
+
+
+
+
+/**
  * Backbone handling of the multiple testimonials
  */
 
