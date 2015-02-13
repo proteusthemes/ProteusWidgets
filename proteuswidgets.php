@@ -35,6 +35,7 @@ class ProteusWidgets {
 		// initialize widgets array
 		$this->widgets = apply_filters( 'pw/loaded_widgets', array(
 			'widget-author',
+			'widget-banner',
 			'widget-brochure-box',
 			'widget-facebook',
 			'widget-featured-page',
