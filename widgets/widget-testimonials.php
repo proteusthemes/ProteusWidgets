@@ -55,13 +55,13 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 			<div class="testimonial">
 			<?php if ( count( $testimonials ) > 2 ) : ?>
-					<a class="testimonial__carousel  testimonial__carousel--left" href="#carousel-testimonials-<?php echo $args['widget_id'] ?>" data-slide="next"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button">Next</span></a>
+					<a class="testimonial__carousel  testimonial__carousel--left" href="#carousel-testimonials-<?php echo $args['widget_id'] ?>" data-slide="prev"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button">Next</span></a>
 				<?php endif; ?>
 				<h2 class="widget-title">
 					<?php echo $title; ?>
 				</h2>
 				<?php if ( count( $testimonials ) > 2 ) : ?>
-					<a class="testimonial__carousel  testimonial__carousel--right" href="#carousel-testimonials-<?php echo $args['widget_id'] ?>" data-slide="prev"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button">Previous</span></a>
+					<a class="testimonial__carousel  testimonial__carousel--right" href="#carousel-testimonials-<?php echo $args['widget_id'] ?>" data-slide="next"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button">Previous</span></a>
 				<?php endif; ?>
 				<div id="carousel-testimonials-<?php echo $args['widget_id'] ?>" class="carousel slide" <?php echo $autocycle ? 'data-ride="carousel" data-interval="' . $interval . '"' : ''; ?>>
 					<!-- Wrapper for slides -->
