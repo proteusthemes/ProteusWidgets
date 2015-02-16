@@ -15,8 +15,8 @@ module.exports = function ( grunt ) {
 				imagesDir:      'assets/images',
 				outputStyle:    'compact',
 				relativeAssets: true,
-				noLineComments: true
-				// importPath:     ['bower_components/bootstrap-sass-official/assets/stylesheets']
+				noLineComments: true,
+				importPath:     ['bower_components/bootstrap-sass/assets/stylesheets']
 			},
 			dev: {
 				options: {

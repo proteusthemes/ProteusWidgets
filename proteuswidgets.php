@@ -78,6 +78,14 @@ class ProteusWidgets {
 		wp_register_style( 'fontawesome-icons', plugin_dir_url( __FILE__ ) . 'bower_components/fontawesome/css/font-awesome.min.css' );
 		wp_register_style( 'main-styles', plugin_dir_url( __FILE__ ) . 'main.css' );
 		wp_enqueue_style( 'main-styles' );
+
+		// main JS file
+		wp_enqueue_script( 'main-js', plugin_dir_url( __FILE__ )  . '/assets/js/main.min.js', array( 'jquery', 'underscore' ) );
+
+		// Pass data to the main script
+		wp_localize_script( 'main-js', 'ProteusWidgetsVars', array(
+			'pathToPlugin'  => plugin_dir_url( __FILE__ ),
+		) );
 	}
 
 

@@ -15,7 +15,8 @@
   ],
   "dependencies": {
     "fontawesome": "^4.2.0",
-    "mustache": "~1.0.0"
+    "mustache": "~1.0.0",
+    "bootstrap-sass": "~3.3.3"
   },
   "devDependencies": {
     "requirejs": "~2.1.11",
