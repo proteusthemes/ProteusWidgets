@@ -39,9 +39,9 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 			?>
 				<a class="skype-button" href="<?php echo $skype_username ?>">
 					<?php if ( 'skype' == substr( $skype_username, 0, 5 ) ) : ?>
-							<i class="fa  fa-3x  fa-skype"></i>
+							<i class="fa  fa-skype"></i>
 					<?php else :?>
-							<i class="fa  fa-3x  fa-phone"></i>
+							<i class="fa  fa-phone"></i>
 					<?php endif; ?>
 					<span class="skype-button__title"><?php echo $title; ?></span>
 				</a>
