@@ -29,3 +29,11 @@
 .icon-widget:hover {
 	color: #454545;
 }
+
+/* skype widget */
+.skype-widget-small-text {
+	color: #999999;
+}
+.skype-widget-small-text code{
+	font-size: 10px;
+}

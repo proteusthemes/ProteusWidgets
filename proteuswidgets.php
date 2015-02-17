@@ -44,6 +44,7 @@ class ProteusWidgets {
 			'widget-opening-time',
 			'widget-social-icons',
 			'widget-testimonials',
+			'widget-skype',
 		) );
 
 		// actions
