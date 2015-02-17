@@ -43,7 +43,7 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 					<?php else :?>
 							<i class="fa  fa-phone"></i>
 					<?php endif; ?>
-					<span class="skype-button__title"><?php echo $title; ?></span>
+					<p class="skype-button__title"><?php echo $title; ?></p>
 				</a>
 			<?php
 			echo $args['after_widget'];
