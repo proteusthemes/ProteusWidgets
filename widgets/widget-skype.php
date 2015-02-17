@@ -38,9 +38,12 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 			echo $args['before_widget'];
 			?>
 				<a class="skype-button" href="<?php echo $skype_username ?>">
-					<div class="skype-button__title">
-						<?php echo $title; ?>
-					</div>
+					<?php if ( 'skype' == substr( $skype_username, 0, 5 ) ) : ?>
+							<i class="fa  fa-3x  fa-skype"></i>
+					<?php else :?>
+							<i class="fa  fa-3x  fa-phone"></i>
+					<?php endif; ?>
+					<span class="skype-button__title"><?php echo $title; ?></span>
 				</a>
 			<?php
 			echo $args['after_widget'];
