@@ -9,6 +9,8 @@
 if ( ! class_exists( 'PW_Testimonials' ) ) {
 	class PW_Testimonials extends WP_Widget {
 
+		private $fields;
+
 		/**
 		 * Register widget with WordPress.
 		 */
@@ -21,6 +23,19 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 					'classname'   => 'widget-testimonials',
 				)
 			);
+
+			// get the settings for the testimonial widgets
+			$this->fields = apply_filters( 'pw/testimonial_widget', array(
+				'rating' => true,
+				'author_description' => false,
+				'number_of_testimonial_per_slide' => 2,
+			) );
+
+			//set the max number of testimonials per slide to 2
+			if ( $this->fields['number_of_testimonial_per_slide'] > 2 ) {
+				$this->fields['number_of_testimonial_per_slide'] = 2;
+			}
+
 		}
 
 		/**
@@ -41,6 +56,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 					'quote'  => $instance['quote'],
 					'author' => $instance['author'],
 					'rating' => $instance['rating'],
+					'author_description' => $instance['author_description'],
 				) );
 			}
 			else {
@@ -49,18 +65,23 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 			$spans = count( $testimonials ) < 2 ? '12' : '6';
 
+			// set the layout of the testimonials per slide
+			if ( $this->fields['number_of_testimonial_per_slide'] < 2 ) {
+				$spans = '12';
+			}
+
 			echo $args['before_widget'];
 
 			?>
 
 			<div class="testimonial">
-			<?php if ( count( $testimonials ) > 2 ) : ?>
+			<?php if ( count( $testimonials ) > $this->fields['number_of_testimonial_per_slide'] ) : ?>
 					<a class="testimonial__carousel  testimonial__carousel--left" href="#carousel-testimonials-<?php echo $args['widget_id'] ?>" data-slide="prev"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button">Next</span></a>
 				<?php endif; ?>
 				<h2 class="widget-title">
 					<?php echo $title; ?>
 				</h2>
-				<?php if ( count( $testimonials ) > 2 ) : ?>
+				<?php if ( count( $testimonials ) > $this->fields['number_of_testimonial_per_slide'] ) : ?>
 					<a class="testimonial__carousel  testimonial__carousel--right" href="#carousel-testimonials-<?php echo $args['widget_id'] ?>" data-slide="next"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button">Previous</span></a>
 				<?php endif; ?>
 				<div id="carousel-testimonials-<?php echo $args['widget_id'] ?>" class="carousel slide" <?php echo $autocycle ? 'data-ride="carousel" data-interval="' . $interval . '"' : ''; ?>>
@@ -69,24 +90,32 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 						<div class="item active">
 							<div class="row">
 							<?php foreach ($testimonials as $index => $testimonial) : ?>
-								<?php echo ( 0 !== $index && 0 === $index % 2 ) ? '</div></div> <div class="item"><div class="row">' : ''; ?>
+								<?php echo ( 0 !== $index && 0 === $index % $this->fields['number_of_testimonial_per_slide'] ) ? '</div></div> <div class="item"><div class="row">' : ''; ?>
 								<div class="col-xs-12  col-sm-<?php echo $spans; ?>">
-									<blockquote class="testimonial__quote">
-										<?php echo $testimonial['quote']; ?>
-									</blockquote>
-									<cite class="testimonial__author">
-										<?php echo $testimonial['author']; ?>
-									</cite>
+									<blockquote>
+										<p class="testimonial__quote">
+											<?php echo $testimonial['quote']; ?>
+										</p>
+										<cite class="testimonial__author">
+											<?php echo $testimonial['author']; ?>
+										</cite>
 
-									<?php if ( absint( $testimonial['rating'] ) > 0 ): ?>
-										<div class="testimonial__rating">
-										<?php
-											for ( $i = 0; $i < $testimonial['rating']; $i++) {
-												echo '<i class="fa  fa-star"></i>';
-											}
-										?>
-										</div>
-									<?php endif; ?>
+										<?php if ( $this->fields['author_description'] ) : ?>
+											<div class="testimonial__author-description">
+												<?php echo $testimonial['author_description']; ?>
+											</div>
+										<?php endif; ?>
+
+										<?php if ( $this->fields['rating'] && absint( $testimonial['rating'] ) > 0 ): ?>
+											<div class="testimonial__rating">
+											<?php
+												for ( $i = 0; $i < $testimonial['rating']; $i++) {
+													echo '<i class="fa  fa-star"></i>';
+												}
+											?>
+											</div>
+										<?php endif; ?>
+									</blockquote>
 								</div>
 							<?php endforeach; ?>
 							</div>
@@ -133,6 +162,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 					'quote'  => $instance['quote'],
 					'author' => $instance['author'],
 					'rating' => $instance['rating'],
+					'author_description' => $instance['author_description'],
 				) );
 			}
 			else {
@@ -142,6 +172,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 						'quote'  => '',
 						'author' => '',
 						'rating' => 5,
+						'author_description' => '',
 					)
 				);
 			}
@@ -172,18 +203,25 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 			<script type="text/template" id="js-pt-testimonial-<?php echo $this->id; ?>">
 				<p>
-					<label for="<?php echo $this->get_field_id( 'quote' ); ?>-{{id}}-title"><?php _ex( 'Quote', 'backend', 'buildpress_wp'); ?>:</label>
+					<label for="<?php echo $this->get_field_id( 'quote' ); ?>-{{id}}-title"><?php _ex( 'Quote', 'backend', 'proteus_widgets'); ?>:</label>
 					<textarea rows="4" class="widefat" id="<?php echo $this->get_field_id( 'quote' ); ?>-{{id}}-title" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][quote]">{{quote}}</textarea>
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author"><?php _ex( 'Author:', 'backend', 'buildpress_wp'); ?></label> <br>
+					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author"><?php _ex( 'Author:', 'backend', 'proteus_widgets'); ?></label> <br>
 					<input class="widefat" id="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][author]" type="text" value="{{author}}" />
 				</p>
 
-
+				<?php if ( $this->fields['author_description'] ) : ?>
 				<p>
-					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-rating"><?php _ex( 'Rating:', 'backend', 'buildpress_wp'); ?></label>
+					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author_description"><?php _ex( 'Author Description:', 'backend', 'proteus_widgets'); ?></label>
+					<input class="widefat" id="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author_description" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][author_description]" type="text" value="{{author_description}}" />
+				</p>
+				<?php endif; ?>
+
+				<?php if ( $this->fields['rating'] ) : ?>
+				<p>
+					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-rating"><?php _ex( 'Rating:', 'backend', 'proteus_widgets'); ?></label>
 					<select name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][rating]" id="<?php echo $this->get_field_id( 'rating' ); ?>-{{id}}-rating" class="js-rating">
 						<option value="0">0</option>
 						<option value="1">1</option>
@@ -193,6 +231,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 						<option value="5">5</option>
  					</select>
 				</p>
+				<?php endif; ?>
 
 				<p>
 					<input name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
