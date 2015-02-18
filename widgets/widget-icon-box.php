@@ -24,15 +24,6 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 		}
 
 		/**
-		 * Enqueue the JS and CSS files with the right action
-		 * @see admin_enqueue_scripts
-		 * @return void
-		 */
-		public static function enqueue_js_css() {
-			wp_enqueue_style( 'fontawesome-icons', get_template_directory_uri() . '/bower_components/fontawesome/css/font-awesome.min.css' );
-		}
-
-		/**
 		 * Front-end display of widget.
 		 *
 		 * @see WP_Widget::widget()
@@ -172,5 +163,4 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 
 	}
 	register_widget( 'PW_Icon_Box' );
-	add_action( 'admin_enqueue_scripts', array( 'PW_Icon_Box', 'enqueue_js_css' ), 20 );
 }

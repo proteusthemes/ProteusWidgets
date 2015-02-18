@@ -24,15 +24,6 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		}
 
 		/**
-		 * Enqueue the JS and CSS files with the right action
-		 * @see admin_enqueue_scripts
-		 * @return void
-		 */
-		public static function enqueue_js_css() {
-			wp_enqueue_style( 'fontawesome-icons' );
-		}
-
-		/**
 		 * Front-end display of widget.
 		 *
 		 * @see WP_Widget::widget()
@@ -143,7 +134,5 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		}
 
 	}
-	add_action( 'wp_enqueue_scripts', array( 'PW_Brochure_Box', 'enqueue_js_css' ), 20 );
-	add_action( 'admin_enqueue_scripts', array( 'PW_Brochure_Box', 'enqueue_js_css' ), 20 );
 	register_widget( 'PW_Brochure_Box' );
 }
