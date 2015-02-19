@@ -51,6 +51,9 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 					$page_obj->the_post();
 
 					$excerpt = get_the_excerpt();
+					wp_reset_postdata();
+					$page_obj->rewind_posts();
+					$page_obj->the_post();
 
 					if ( 'inline' === $layout && strlen( $excerpt ) > self::INLINE_EXCERPT ) {
 						$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', self::INLINE_EXCERPT ) ) . ' &hellip;';
