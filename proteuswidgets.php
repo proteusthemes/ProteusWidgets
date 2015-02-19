@@ -15,10 +15,10 @@ Text domain: proteuswidgets
 
 
 // Path to root of this plugin, with trailing slash
-define( 'PROTEUSWUIDGETS_PATH', apply_filters( 'pw/plugin_dir_path', plugin_dir_path(__FILE__) ) );
+define( 'PROTEUSWIDGETS_PATH', apply_filters( 'pw/plugin_dir_path', plugin_dir_path(__FILE__) ) );
 
 //include php files
-require_once( PROTEUSWUIDGETS_PATH . 'inc/PWFunctions.php');
+require_once( PROTEUSWIDGETS_PATH . 'inc/PWFunctions.php');
 
 
 /**
@@ -105,7 +105,7 @@ class ProteusWidgets {
 	 */
 	public function widgets_init() {
 		foreach ( $this->widgets as $filename ) {
-			require_once sprintf( '%swidgets/%s.php', PROTEUSWUIDGETS_PATH, $filename );
+			require_once sprintf( '%swidgets/%s.php', PROTEUSWIDGETS_PATH, $filename );
 		}
 	}
 
