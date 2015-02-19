@@ -17,29 +17,48 @@ jQuery( document ).ready( function( $ ) {
 } );
 
 /**
- * Backbone handling of the multiple locations in the maps widget
+ * Backbone models
  */
 
-var ptMapsLocations = ptMapsLocations || {};
+var proteusWidgets = proteusWidgets || {};
 
 // model for a single location
-ptMapsLocations.Location = Backbone.Model.extend( {
+proteusWidgets.Location = Backbone.Model.extend( {
 	defaults: {
 		'title':          'My Business LLC',
 		'locationlatlng': '',
 		'custompinimage': '',
 	},
+} );
 
-	parse: function ( attributes ) {
-		// ID is always numeric
-		attributes.id = parseInt( attributes.id, 10 );
-
-		return attributes;
+// model for a single testimonial
+proteusWidgets.Testimonial = Backbone.Model.extend( {
+	defaults: {
+		'quote':  '',
+		'author': '',
+		'rating': 5,
+		'author_description': '',
 	},
 } );
 
+// model for a single person
+proteusWidgets.Person = Backbone.Model.extend( {
+	defaults: {
+		'title': 'ABOUT US',
+		'image': '',
+		'name': '',
+		'description': '',
+		'link': '',
+	},
+} );
+
+
+/**
+ * Backbone handling of the multiple locations in the maps widget
+ */
+
 // view of a single location
-ptMapsLocations.locationView = Backbone.View.extend( {
+proteusWidgets.locationView = Backbone.View.extend( {
 	className: 'pt-widget-single-location',
 
 	events: {
@@ -67,7 +86,7 @@ ptMapsLocations.locationView = Backbone.View.extend( {
 } );
 
 // view of all locations, but associated with each individual widget
-ptMapsLocations.locationsView = Backbone.View.extend( {
+proteusWidgets.locationsView = Backbone.View.extend( {
 	events: {
 		'click .js-pt-add-location': 'addNew'
 	},
@@ -78,9 +97,9 @@ ptMapsLocations.locationsView = Backbone.View.extend( {
 		// cached reference to the element in the DOM
 		this.$locations = this.$( '.locations' );
 
-		// collection of locations, local to each instance of ptMapsLocations.locationsView
+		// collection of locations, local to each instance of proteusWidgets.locationsView
 		this.locations = new Backbone.Collection( [], {
-			model: ptMapsLocations.Location,
+			model: proteusWidgets.Location,
 		} );
 
 		// listen to adding of the new locations
@@ -103,7 +122,7 @@ ptMapsLocations.locationsView = Backbone.View.extend( {
 			locationId = parseInt( locationsWithMaxId.id, 10 ) + 1;
 		}
 
-		this.locations.add( new ptMapsLocations.Location( {
+		this.locations.add( new proteusWidgets.Location( {
 			id: locationId,
 		} ) );
 
@@ -111,7 +130,7 @@ ptMapsLocations.locationsView = Backbone.View.extend( {
 	},
 
 	appendOne: function ( location ) {
-		var renderedLocation = new ptMapsLocations.locationView( {
+		var renderedLocation = new proteusWidgets.locationView( {
 			model:    location,
 			templateHTML: jQuery( '#js-pt-location-' + this.widgetId ).html(),
 		} ).render();
@@ -122,7 +141,6 @@ ptMapsLocations.locationsView = Backbone.View.extend( {
 	}
 } );
 
-
 /**
  * Function which adds the existing locations to the DOM
  * @param  {json} locationsJSON
@@ -131,7 +149,7 @@ ptMapsLocations.locationsView = Backbone.View.extend( {
  */
 var repopulateLocations = function ( locationsJSON, widgetId ) {
 	// view of all locations
-	var locationsView = new ptMapsLocations.locationsView( {
+	var locationsView = new proteusWidgets.locationsView( {
 		el:       '#locations-' + widgetId,
 		widgetId: widgetId,
 	} );
@@ -147,31 +165,12 @@ var repopulateLocations = function ( locationsJSON, widgetId ) {
 
 
 
-
 /**
  * Backbone handling of the multiple testimonials
  */
 
-var ptTestimonials = ptTestimonials || {};
-
-// model for a single testimonial
-ptTestimonials.Testimonial = Backbone.Model.extend( {
-	defaults: {
-		'quote':  '',
-		'author': '',
-		'rating': 5,
-	},
-
-	parse: function ( attributes ) {
-		// ID is always numeric
-		attributes.id = parseInt( attributes.id, 10 );
-
-		return attributes;
-	},
-} );
-
 // view of a single testimonial
-ptTestimonials.testimonialView = Backbone.View.extend( {
+proteusWidgets.testimonialView = Backbone.View.extend( {
 	className: 'pt-widget-single-testimonial',
 
 	events: {
@@ -201,7 +200,7 @@ ptTestimonials.testimonialView = Backbone.View.extend( {
 } );
 
 // view of all testimonials, but associated with each individual widget
-ptTestimonials.testimonialsView = Backbone.View.extend( {
+proteusWidgets.testimonialsView = Backbone.View.extend( {
 	events: {
 		'click .js-pt-add-testimonial': 'addNew'
 	},
@@ -212,9 +211,9 @@ ptTestimonials.testimonialsView = Backbone.View.extend( {
 		// cached reference to the element in the DOM
 		this.$testimonials = this.$( '.testimonials' );
 
-		// collection of testimonials, local to each instance of ptTestimonials.testimonialsView
+		// collection of testimonials, local to each instance of proteusWidgets.testimonialsView
 		this.testimonials = new Backbone.Collection( [], {
-			model: ptTestimonials.Testimonial,
+			model: proteusWidgets.Testimonial,
 		} );
 
 		// listen to adding of the new testimonials
@@ -238,7 +237,7 @@ ptTestimonials.testimonialsView = Backbone.View.extend( {
 		}
 
 
-		this.testimonials.add( new ptTestimonials.Testimonial( {
+		this.testimonials.add( new proteusWidgets.Testimonial( {
 			id: testimonialId,
 		} ) );
 
@@ -246,7 +245,7 @@ ptTestimonials.testimonialsView = Backbone.View.extend( {
 	},
 
 	appendOne: function ( testimonial ) {
-		var renderedTestimonial = new ptTestimonials.testimonialView( {
+		var renderedTestimonial = new proteusWidgets.testimonialView( {
 			model:        testimonial,
 			templateHTML: jQuery( '#js-pt-testimonial-' + this.widgetId ).html(),
 		} ).render();
@@ -257,7 +256,6 @@ ptTestimonials.testimonialsView = Backbone.View.extend( {
 	}
 } );
 
-
 /**
  * Function which adds the existing testimonials to the DOM
  * @param  {json} testimonialsJSON
@@ -266,7 +264,7 @@ ptTestimonials.testimonialsView = Backbone.View.extend( {
  */
 var repopulateTestimonials = function ( testimonialsJSON, widgetId ) {
 	// view of all testimonials
-	var testimonialsView = new ptTestimonials.testimonialsView( {
+	var testimonialsView = new proteusWidgets.testimonialsView( {
 		el:       '#testimonials-' + widgetId,
 		widgetId: widgetId,
 	} );
@@ -280,4 +278,120 @@ var repopulateTestimonials = function ( testimonialsJSON, widgetId ) {
 	testimonialsView.testimonials.add( testimonialsJSON, { parse: true } );
 
 	window.testimonialss = testimonialsView;
+};
+
+
+
+/**
+ * Backbone handling of the multiple persons
+ */
+
+// view of a single person
+proteusWidgets.personView = Backbone.View.extend( {
+	className: 'pt-widget-single-person',
+
+	events: {
+		'click .js-pt-remove-person': 'destroy'
+	},
+
+	initialize: function ( params ) {
+		this.templateHTML = params.templateHTML;
+
+		return this;
+	},
+
+	render: function () {
+		this.$el.html( Mustache.render( this.templateHTML, this.model.attributes ) );
+
+		return this;
+	},
+
+	destroy: function ( ev ) {
+		ev.preventDefault();
+
+		this.remove();
+		this.model.trigger( 'destroy' );
+	},
+} );
+
+// view of all persons, but associated with each individual widget
+proteusWidgets.personsView = Backbone.View.extend( {
+	events: {
+		'click .js-pt-add-person': 'addNew'
+	},
+
+	initialize: function ( params ) {
+		this.widgetId = params.widgetId;
+
+		// cached reference to the element in the DOM
+		this.$persons = this.$( '.persons' );
+
+		// collection of persons, local to each instance of proteusWidgets.personsView
+		this.persons = new Backbone.Collection( [], {
+			model: proteusWidgets.Person,
+		} );
+
+		// listen to adding of the new testimonials
+		this.listenTo( this.persons, 'add', this.appendOne );
+
+		return this;
+	},
+
+	addNew: function ( ev ) {
+		ev.preventDefault();
+
+		// default, if there is no testimonials added yet
+		var personId = 0;
+
+		if ( ! this.persons.isEmpty() ) {
+			var personsWithMaxId = this.persons.max( function ( person ) {
+				return parseInt( person.id, 10 );
+			} );
+
+			personId = parseInt( personsWithMaxId.id, 10 ) + 1;
+		}
+
+
+		this.persons.add( new proteusWidgets.Person( {
+			id: personId,
+		} ) );
+
+		return this;
+	},
+
+	appendOne: function ( person ) {
+		var renderedPerson = new proteusWidgets.personView( {
+			model:        person,
+			templateHTML: jQuery( '#js-pt-person-' + this.widgetId ).html(),
+		} ).render();
+
+		this.$persons.append( renderedPerson.el );
+
+		return this;
+	}
+} );
+
+
+/**
+ * Function which adds the existing testimonials to the DOM
+ * @param  {json} testimonialsJSON
+ * @param  {string} widgetId ID of widget from PHP $this->id
+ * @return {void}
+ */
+var repopulatePersons = function ( personsJSON, widgetId ) {
+	// view of all testimonials
+	var personsView = new proteusWidgets.personsView( {
+		el:       '#persons-' + widgetId,
+		widgetId: widgetId,
+	} );
+
+	// convert to array if needed
+	if ( _( personsJSON ).isObject() ) {
+		personsJSON = _( personsJSON ).values();
+	};
+
+	// add all testimonials to collection of newly created view
+	personsView.persons.add( personsJSON, { parse: true } );
+
+	window.persons = personsView;
 };
