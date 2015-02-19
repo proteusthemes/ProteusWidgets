@@ -52,6 +52,7 @@ class ProteusWidgets {
 		add_action( 'admin_enqueue_scripts', array( $this , 'admin_enqueue_js_css' ), 20 );
 		add_action( 'wp_enqueue_scripts', array( $this , 'enqueue_js_css' ), 20 );
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
+		add_action( 'after_setup_theme', array( $this, 'custom_theme_setup' ) , 11 );
 	}
 
 
@@ -64,7 +65,7 @@ class ProteusWidgets {
 		wp_register_script( 'proteuswidgets-mustache', plugin_dir_url( __FILE__ )  . '/bower_components/mustache/mustache.min.js', array(), null, true );
 
 		wp_enqueue_script( 'custom-admin-js', plugin_dir_url( __FILE__ ) . 'assets/js/admin.js' , array( 'jquery', 'underscore', 'backbone', 'proteuswidgets-mustache' ) );
-		wp_register_style( 'fontawesome-icons', plugin_dir_url( __FILE__ ) . 'bower_components/fontawesome/css/font-awesome.min.css' );
+		wp_enqueue_style( 'fontawesome-icons', plugin_dir_url( __FILE__ ) . 'bower_components/fontawesome/css/font-awesome.min.css' );
 
 		wp_enqueue_style( 'admin-styles', plugin_dir_url( __FILE__ ) . '/assets/stylesheets/admin.css' );
 	}
@@ -76,7 +77,7 @@ class ProteusWidgets {
 	 * @return void
 	 */
 	public static function enqueue_js_css() {
-		wp_register_style( 'fontawesome-icons', plugin_dir_url( __FILE__ ) . 'bower_components/fontawesome/css/font-awesome.min.css' );
+		wp_enqueue_style( 'fontawesome-icons', plugin_dir_url( __FILE__ ) . 'bower_components/fontawesome/css/font-awesome.min.css' );
 		wp_register_style( 'main-styles', plugin_dir_url( __FILE__ ) . 'main.css' );
 		wp_enqueue_style( 'main-styles' );
 
@@ -104,6 +105,22 @@ class ProteusWidgets {
 	public function widgets_init() {
 		foreach ( $this->widgets as $filename ) {
 			require_once sprintf( '%swidgets/%s.php', PROTEUSWIDGETS_PATH, $filename );
+		}
+	}
+
+	/**
+	 * Adds theme support - thumbnail for featured page widget
+	 */
+	public function custom_theme_setup() {
+
+		$supportedTypes = get_theme_support( 'post-thumbnails' );
+
+		if( $supportedTypes === false ) {
+			add_theme_support( 'post-thumbnails' );
+			add_image_size( 'page-box', 360, 240, true );
+		}
+		else {
+			add_image_size( 'page-box', 360, 240, true );
 		}
 	}
 }
