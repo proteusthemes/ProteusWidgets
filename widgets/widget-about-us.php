@@ -42,12 +42,11 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 
 			foreach ($persons as $person) :
 			?>
-			<div><?php echo $person['title'] ?></div>
-			<div><?php echo $person['image'] ?></div>
-			<div><?php echo $person['name'] ?></div>
-			<div><?php echo $person['description'] ?></div>
-			<div><?php echo $person['link'] ?></div>
-
+				<div><?php echo $person['title'] ?></div>
+				<img src="<?php echo $person['image'] ?>" width="100%">
+				<h5><?php echo $person['name'] ?></h5>
+				<div><?php echo $person['description'] ?></div>
+				<a href="<?php echo $person['link'] ?>"><?php _e( 'Read more', 'proteuswidgets' ); ?></a>
 			<?php
 			endforeach;
 
