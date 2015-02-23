@@ -68,8 +68,10 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 
 			<?php
 			if ( count( $persons ) > 1 ) : ?>
-					<a class="person__carousel  person__carousel--left" href="#carousel-persons-<?php echo $args['widget_id'] ?>" data-slide="prev"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button">Previous</span></a>
-					<a class="person__carousel  person__carousel--right" href="#carousel-persons-<?php echo $args['widget_id'] ?>" data-slide="next"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button">Next</span></a>
+				<div class="about-us__navigation">
+					<a class="person__carousel  person__carousel--left about-us__navigation__left" href="#carousel-persons-<?php echo $args['widget_id'] ?>" data-slide="prev"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button">Previous</span></a>
+					<a class="person__carousel  person__carousel--right about-us__navigation__right" href="#carousel-persons-<?php echo $args['widget_id'] ?>" data-slide="next"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button">Next</span></a>
+				</div>
 			<?php endif;
 
 			echo $args['after_widget'];
