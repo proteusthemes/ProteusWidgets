@@ -52,6 +52,14 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				<?php if( ! empty( $person['link'] ) ) : ?>
 					<a class="read-more  about-us__link" href="<?php echo $person['link'] ?>"><?php _e( 'Read more', 'proteuswidgets' ); ?></a>
 				<?php endif; ?>
+				<div class="about-us__navigation">
+					<a class="about-us__navigation__left" href="#">
+						<i class="fa  fa-chevron-left" aria-hidden="true"></i>
+					</a>
+					<a class="about-us__navigation__right" href="#">
+						<i class="fa  fa-chevron-right" aria-hidden="true"></i>
+					</a>
+				</div>
 			<?php
 			endforeach;
 
