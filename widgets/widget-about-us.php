@@ -40,15 +40,9 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 
 			foreach ($persons as $person) :
 			?>
-				<div class="about-us__tag">
-					<?php if( ! empty( $person['link'] ) ) : ?>
-					<a class="read-more  about-us__link" href="<?php echo $person['link'] ?>">
-					<?php endif; ?>
-						<?php echo $person['tag'] ?>
-					<?php if( ! empty( $person['link'] ) ) : ?>
-					</a>
-					<?php endif; ?>
-				</div>
+				<<?php if( ! empty( $person['link'] ) ) : ?>a href="<?php echo $person['link'] ?>"<?php else: ?>div<?php endif; ?> class="about-us__tag">
+					<?php echo $person['tag'] ?>
+				</<?php if( ! empty( $person['link'] ) ) : ?>a <?php else: ?>div<?php endif; ?>>
 
 				<?php if( ! empty( $person['image'] ) ) : ?>
 					<img class="about-us__image" src="<?php echo $person['image'] ?>" width="100%">
