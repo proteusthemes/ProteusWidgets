@@ -65,6 +65,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 					endforeach;
 					?>
 			</div>
+		</div>
 
 			<?php
 			if ( count( $persons ) > 1 ) : ?>
@@ -128,21 +129,6 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 
 			?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'autocycle' ); ?>"><?php _ex( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?>:</label>
-				<select class="widefat" name="<?php echo $this->get_field_name( 'autocycle' ); ?>" id="<?php echo $this->get_field_id( 'autocycle' ); ?>">
-					<option value="yes"<?php selected( $autocycle, 'yes' ) ?>><?php _e( 'Yes', 'proteuswidgets' ); ?></option>
-					<option value="no"<?php selected( $autocycle, 'no' ) ?>><?php _e( 'No', 'proteuswidgets' ); ?></option>
-				</select>
-			</p>
-
-			<p>
-				<label for="<?php echo $this->get_field_id( 'interval' ); ?>"><?php _ex( 'Interval (in miliseconds):', 'proteuswidgets' ); ?>:</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'interval' ); ?>" name="<?php echo $this->get_field_name( 'interval' ); ?>" type="number" min="0" step="500" value="<?php echo esc_attr( $interval ); ?>" />
-			</p>
-
-			<hr>
-
 			<h4><?php _ex( 'Persons:', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-person-<?php echo $this->id; ?>">
@@ -191,6 +177,21 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 					repopulatePersons( personsJSON, '<?php echo $this->id; ?>' );
 				}
 			</script>
+
+			<hr>
+
+			<p>
+				<label for="<?php echo $this->get_field_id( 'autocycle' ); ?>"><?php _ex( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?>:</label>
+				<select class="widefat" name="<?php echo $this->get_field_name( 'autocycle' ); ?>" id="<?php echo $this->get_field_id( 'autocycle' ); ?>">
+					<option value="yes"<?php selected( $autocycle, 'yes' ) ?>><?php _e( 'Yes', 'proteuswidgets' ); ?></option>
+					<option value="no"<?php selected( $autocycle, 'no' ) ?>><?php _e( 'No', 'proteuswidgets' ); ?></option>
+				</select>
+			</p>
+
+			<p>
+				<label for="<?php echo $this->get_field_id( 'interval' ); ?>"><?php _ex( 'Interval (in miliseconds):', 'proteuswidgets' ); ?>:</label>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'interval' ); ?>" name="<?php echo $this->get_field_name( 'interval' ); ?>" type="number" min="0" step="500" value="<?php echo esc_attr( $interval ); ?>" />
+			</p>
 
 			<?php
 		}
