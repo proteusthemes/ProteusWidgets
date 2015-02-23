@@ -38,15 +38,26 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 
 			echo $args['before_widget'];
 
-			//TODO: front end display
-
 			foreach ($persons as $person) :
 			?>
-				<div class="about-us__categories"><?php echo $person['title'] ?></div>
-				<img class="about-us__image" src="<?php echo $person['image'] ?>" width="100%">
+				<div class="about-us__tag">
+					<?php if( ! empty( $person['link'] ) ) : ?>
+					<a class="read-more  about-us__link" href="<?php echo $person['link'] ?>">
+					<?php endif; ?>
+						<?php echo $person['tag'] ?>
+					<?php if( ! empty( $person['link'] ) ) : ?>
+					</a>
+					<?php endif; ?>
+				</div>
+
+				<?php if( ! empty( $person['image'] ) ) : ?>
+					<img class="about-us__image" src="<?php echo $person['image'] ?>" width="100%">
+				<?php endif; ?>
 				<h5 class="about-us__name"><?php echo $person['name'] ?></h5>
 				<p class="about-us__description"><?php echo $person['description'] ?></p>
-				<a class="read-more  about-us__link" href="<?php echo $person['link'] ?>"><?php _e( 'Read more', 'proteuswidgets' ); ?></a>
+				<?php if( ! empty( $person['link'] ) ) : ?>
+					<a class="read-more  about-us__link" href="<?php echo $person['link'] ?>"><?php _e( 'Read more', 'proteuswidgets' ); ?></a>
+				<?php endif; ?>
 			<?php
 			endforeach;
 
@@ -77,7 +88,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			if ( isset( $instance['name'] ) ) {
 				$persons = array( array(
 					'id'          => 1,
-					'title'       => $instance['title'],
+					'tag'         => $instance['tag'],
 					'image'       => $instance['image'],
 					'name'        => $instance['name'],
 					'description' => $instance['description'],
@@ -88,7 +99,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				$persons = isset( $instance['persons'] ) ? array_values( $instance['persons'] ) : array(
 					array(
 						'id'          => 1,
-						'title'       => '',
+						'tag'         => '',
 						'image'       => '',
 						'name'        => '',
 						'description' => '',
@@ -103,8 +114,8 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 
 			<script type="text/template" id="js-pt-person-<?php echo $this->id; ?>">
 				<p>
-					<label for="<?php echo $this->get_field_id( 'persons' ); ?>-{{id}}-title"><?php _ex( 'Title', 'backend', 'proteus_widgets'); ?>:</label>
-					<input class="widefat" id="<?php echo $this->get_field_id( 'persons' ); ?>-{{id}}-title" name="<?php echo $this->get_field_name( 'persons' ); ?>[{{id}}][title]" type="text" value="{{title}}" />
+					<label for="<?php echo $this->get_field_id( 'persons' ); ?>-{{id}}-tag"><?php _ex( 'Tag', 'backend', 'proteus_widgets'); ?>:</label>
+					<input class="widefat" id="<?php echo $this->get_field_id( 'persons' ); ?>-{{id}}-tag" name="<?php echo $this->get_field_name( 'persons' ); ?>[{{id}}][tag]" type="text" value="{{tag}}" />
 				</p>
 
 				<p>

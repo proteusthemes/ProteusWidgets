@@ -44,7 +44,7 @@ proteusWidgets.Testimonial = Backbone.Model.extend( {
 // model for a single person
 proteusWidgets.Person = Backbone.Model.extend( {
 	defaults: {
-		'title': 'ABOUT US',
+		'tag': 'ABOUT US',
 		'image': '',
 		'name': '',
 		'description': '',
