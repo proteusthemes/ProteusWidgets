@@ -44,7 +44,6 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 					<?php
 					foreach ($persons as $i => $person) : ?>
 						<div class="item  <?php echo ( $first ) ? 'active' : ''; $first = false; ?>">
-							<div class="row">
 								<?php if ( ! empty( $person['tag'] ) ) : ?>
 								<<?php if( ! empty( $person['link'] ) ) : ?>a href="<?php echo $person['link'] ?>"<?php else: ?>div<?php endif; ?> class="about-us__tag">
 									<?php echo $person['tag'] ?>
@@ -59,7 +58,6 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 								<?php if( ! empty( $person['link'] ) ) : ?>
 									<a class="read-more  about-us__link" href="<?php echo $person['link'] ?>"><?php _e( 'Read more', 'proteuswidgets' ); ?></a>
 								<?php endif; ?>
-							</div>
 						</div>
 					<?php
 					endforeach;
