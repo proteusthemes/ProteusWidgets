@@ -33,7 +33,7 @@ class ProteusWidgets {
 
 	function __construct() {
 		// initialize widgets array
-		$this->widgets = apply_filters( 'pw/loaded_widgets', array(
+		$this->widgets = array(
 			'widget-author',
 			'widget-banner',
 			'widget-brochure-box',
@@ -46,7 +46,7 @@ class ProteusWidgets {
 			'widget-testimonials',
 			'widget-skype',
 			'widget-about-us',
-		) );
+		);
 
 		// actions
 		add_action( 'admin_init', array( $this, 'define_version' ) );
@@ -104,7 +104,7 @@ class ProteusWidgets {
 	 * Define some constants as soon as the plugins are loaded
 	 */
 	public function widgets_init() {
-		foreach ( $this->widgets as $filename ) {
+		foreach ( apply_filters( 'pw/loaded_widgets', $this->widgets ) as $filename ) {
 			require_once sprintf( '%swidgets/%s.php', PROTEUSWIDGETS_PATH, $filename );
 		}
 	}
