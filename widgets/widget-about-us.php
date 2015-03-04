@@ -51,7 +51,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 								<?php endif; ?>
 
 								<?php if( ! empty( $person['image'] ) ) : ?>
-									<img class="about-us__image" src="<?php echo $person['image'] ?>" width="100%">
+									<img class="about-us__image" src="<?php echo $person['image'] ?>" alt="About us image">
 								<?php endif; ?>
 								<h5 class="about-us__name"><?php echo $person['name'] ?></h5>
 								<p class="about-us__description"><?php echo $person['description'] ?></p>
