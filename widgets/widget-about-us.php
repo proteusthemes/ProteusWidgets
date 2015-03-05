@@ -32,17 +32,36 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-			$persons = $instance['persons'];
 			$autocycle = empty( $instance['autocycle'] ) ? false : 'yes' === $instance['autocycle'];
 			$interval  = empty( $instance['interval'] ) ? 5000 : absint( $instance['interval'] );
 			$first = true;
+
+			if ( isset( $instance['persons'] ) ) {
+				$persons = $instance['persons'];
+			}
+			else {
+				$persons = array(
+					array(
+						'id'          => 1,
+						'tag'         => '',
+						'image'       => '',
+						'name'        => '',
+						'description' => '',
+						'link'        => '',
+					)
+				);
+			}
 
 			echo $args['before_widget'];
 			?>
 			<div id="carousel-persons-<?php echo $args['widget_id'] ?>" class="carousel slide" <?php echo $autocycle ? 'data-ride="carousel" data-interval="' . $interval . '"' : ''; ?>>
 				<div class="carousel-inner" role="listbox">
 					<?php
-					foreach ($persons as $i => $person) : ?>
+					foreach ($persons as $person) : ?>
+					<?php
+						//typecast, because of the demo widgets import. By default it's an object(stdClass)
+						$person = (array)$person;
+					?>
 						<div class="item  <?php echo ( $first ) ? 'active' : ''; $first = false; ?>">
 								<?php if ( ! empty( $person['tag'] ) ) : ?>
 								<<?php if( ! empty( $person['link'] ) ) : ?>a href="<?php echo $person['link'] ?>"<?php else: ?>div<?php endif; ?> class="about-us__tag">
@@ -102,18 +121,11 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			$autocycle = empty( $instance['autocycle'] ) ? 'no' : $instance['autocycle'];
 			$interval  = empty( $instance['interval'] ) ? 5000 : $instance['interval'];
 
-			if ( isset( $instance['name'] ) ) {
-				$persons = array( array(
-					'id'          => 1,
-					'tag'         => $instance['tag'],
-					'image'       => $instance['image'],
-					'name'        => $instance['name'],
-					'description' => $instance['description'],
-					'link'        => $instance['link'],
-				) );
+			if ( isset( $instance['persons'] ) ) {
+				$persons = $instance['persons'];
 			}
 			else {
-				$persons = isset( $instance['persons'] ) ? array_values( $instance['persons'] ) : array(
+				$persons = array(
 					array(
 						'id'          => 1,
 						'tag'         => '',
