@@ -21,7 +21,7 @@ require.config( {
 } );
 
 require( [
-		'jquery',
-		'underscore',
-		'bootstrapCarousel'
-	] );
+	'jquery',
+	'underscore',
+	'bootstrapCarousel'
+] );
