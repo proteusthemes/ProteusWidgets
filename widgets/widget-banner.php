@@ -14,7 +14,7 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 		public function __construct() {
 			parent::__construct(
 				false, // ID, auto generate when false
-				_x( 'ProteusThemes: Banner' , 'backend', 'proteuswidgets'), // Name
+				sprintf( 'ProteusThemes: %s', __( 'Banner', 'proteuswidgets' ) ),
 				array(
 					'description' => _x( 'Banner for Page Builder.', 'backend', 'proteuswidgets'),
 					'classname'   => 'widget-banner',
@@ -32,9 +32,9 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 
-			$title = empty( $instance['title'] ) ? '' : $instance['title'];
-			$content = empty( $instance['content'] ) ? '' : $instance['content'];
-			$link = empty( $instance['link'] ) ? '' : $instance['link'];
+			$title    = empty( $instance['title'] ) ? '' : $instance['title'];
+			$content  = empty( $instance['content'] ) ? '' : $instance['content'];
+			$link     = empty( $instance['link'] ) ? '' : $instance['link'];
 			$open_new = empty( $instance['open_new'] ) ? '' : $instance['open_new'];
 
 			echo $args['before_widget'];
@@ -68,9 +68,9 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 		public function update( $new_instance, $old_instance ) {
 			$instance = array();
 
-			$instance['title'] = wp_kses_post( $new_instance['title'] );
-			$instance['content'] = wp_kses_post( $new_instance['content'] );
-			$instance['link'] = wp_kses_post( $new_instance['link'] );
+			$instance['title']    = wp_kses_post( $new_instance['title'] );
+			$instance['content']  = wp_kses_post( $new_instance['content'] );
+			$instance['link']     = esc_url( $new_instance['link'] );
 			$instance['open_new'] = wp_kses_post( $new_instance['open_new'] );
 
 			return $instance;
@@ -82,9 +82,9 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 		 * @param array $instance The widget options
 		 */
 		public function form( $instance ) {
-			$title = empty( $instance['title'] ) ? '' : $instance['title'];
-			$content = empty( $instance['content'] ) ? '' : $instance['content'];
-			$link = empty( $instance['link'] ) ? '' : $instance['link'];
+			$title    = empty( $instance['title'] ) ? '' : $instance['title'];
+			$content  = empty( $instance['content'] ) ? '' : $instance['content'];
+			$link     = empty( $instance['link'] ) ? '' : $instance['link'];
 			$open_new = empty( $instance['open_new'] ) ? '' : $instance['open_new'];
 
 			?>
@@ -102,8 +102,8 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 			<p>
 				<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _ex( 'Link:', 'backend', 'proteuswidgets'); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'link' ); ?>" name="<?php echo $this->get_field_name( 'link' ); ?>" type="text" value="<?php echo esc_attr( $link ); ?>" />
-				<input type="checkbox" name="<?php echo $this->get_field_name( 'open_new' ); ?>" value="1" <?php checked( $open_new, 1 ); ?>>Open link in a new window/tab
-
+				<input type="checkbox" name="<?php echo $this->get_field_name( 'open_new' ); ?>" value="1" <?php checked( $open_new, 1 ); ?>>
+				<?php _e( 'Open link in a new window/tab', 'proteuswidgets' ); ?>
 			</p>
 
 			<?php
