@@ -54,29 +54,28 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 
 			echo $args['before_widget'];
 			?>
-			<div id="carousel-persons-<?php echo $args['widget_id'] ?>" class="carousel slide" <?php echo $autocycle ? 'data-ride="carousel" data-interval="' . $interval . '"' : ''; ?>>
+			<div id="carousel-persons-<?php echo esc_attr( $args['widget_id'] ); ?>" class="carousel slide" <?php echo $autocycle ? 'data-ride="carousel" data-interval="' . esc_attr( $interval ) . '"' : ''; ?>>
 				<div class="carousel-inner" role="listbox">
 					<?php
-					foreach ($persons as $person) : ?>
-					<?php
+						foreach ($persons as $person) :
 						//typecast, because of the demo widgets import. By default it's an object(stdClass)
 						$person = (array)$person;
 					?>
 						<div class="item  <?php echo ( $first ) ? 'active' : ''; $first = false; ?>">
-								<?php if ( ! empty( $person['tag'] ) ) : ?>
-								<<?php if( ! empty( $person['link'] ) ) : ?>a href="<?php echo $person['link'] ?>"<?php else: ?>div<?php endif; ?> class="about-us__tag">
-									<?php echo $person['tag'] ?>
-								</<?php if( ! empty( $person['link'] ) ) : ?>a <?php else: ?>div<?php endif; ?>>
-								<?php endif; ?>
+							<?php if ( ! empty( $person['tag'] ) ) : ?>
+							<<?php if( ! empty( $person['link'] ) ) : ?>a href="<?php echo esc_url( $person['link'] ); ?>"<?php else : ?>div<?php endif; ?> class="about-us__tag">
+								<?php echo $person['tag']; ?>
+							</<?php if( ! empty( $person['link'] ) ) : ?>a <?php else: ?>div<?php endif; ?>>
+							<?php endif; ?>
 
-								<?php if( ! empty( $person['image'] ) ) : ?>
-									<img class="about-us__image" src="<?php echo $person['image'] ?>" alt="About us image">
-								<?php endif; ?>
-								<h5 class="about-us__name"><?php echo $person['name'] ?></h5>
-								<p class="about-us__description"><?php echo $person['description'] ?></p>
-								<?php if( ! empty( $person['link'] ) ) : ?>
-									<a class="read-more  about-us__link" href="<?php echo $person['link'] ?>"><?php _e( 'Read more', 'proteuswidgets' ); ?></a>
-								<?php endif; ?>
+							<?php if( ! empty( $person['image'] ) ) : ?>
+								<img class="about-us__image" src="<?php echo $person['image'] ?>" alt="<?php _e( 'About us image', 'proteuswidgets' ); ?>">
+							<?php endif; ?>
+							<h5 class="about-us__name"><?php echo wp_kses_post( $person['name'] ); ?></h5>
+							<p class="about-us__description"><?php echo wp_kses_post( $person['description'] ); ?></p>
+							<?php if( ! empty( $person['link'] ) ) : ?>
+								<a class="read-more  about-us__link" href="<?php echo esc_url( $person['link'] ); ?>"><?php _e( 'Read more', 'proteuswidgets' ); ?></a>
+							<?php endif; ?>
 						</div>
 					<?php
 					endforeach;
@@ -84,13 +83,15 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			</div>
 		</div>
 
-			<?php
-			if ( count( $persons ) > 1 ) : ?>
-				<div class="about-us__navigation">
-					<a class="person__carousel  person__carousel--left about-us__navigation__left" href="#carousel-persons-<?php echo $args['widget_id'] ?>" data-slide="prev"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button">Previous</span></a>
-					<a class="person__carousel  person__carousel--right about-us__navigation__right" href="#carousel-persons-<?php echo $args['widget_id'] ?>" data-slide="next"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button">Next</span></a>
-				</div>
-			<?php endif;
+		<?php
+			if ( count( $persons ) > 1 ) :
+		?>
+			<div class="about-us__navigation">
+				<a class="person__carousel  person__carousel--left about-us__navigation__left" href="#carousel-persons-<?php echo esc_attr( $args['widget_id'] ); ?>" data-slide="prev"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button"><?php _e( 'Previous', 'proteuswidgets' ); ?></span></a>
+				<a class="person__carousel  person__carousel--right about-us__navigation__right" href="#carousel-persons-<?php echo $args['widget_id'] ?>" data-slide="next"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button"><?php _e( 'Next', 'proteuswidgets' ); ?></span></a>
+			</div>
+		<?php
+			endif;
 
 			echo $args['after_widget'];
 		}
@@ -104,7 +105,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		public function update( $new_instance, $old_instance ) {
 			$instance = array();
 
-			$instance['persons'] = $new_instance['persons'];
+			$instance['persons']   = $new_instance['persons'];
 			$instance['autocycle'] = sanitize_key( $new_instance['autocycle'] );
 			$instance['interval']  = absint( $new_instance['interval'] );
 
@@ -176,7 +177,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			<div class="pt-widget-about-us" id="persons-<?php echo $this->id; ?>">
 				<div class="persons"></div>
 				<p>
-					<a href="#" class="button  js-pt-add-person">Add New Person</a>
+					<a href="#" class="button  js-pt-add-person"><?php _e( 'Add New Person', 'proteuswidgets' ); ?></a>
 				</p>
 			</div>
 			<script type="text/javascript">
@@ -191,7 +192,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			<hr>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'autocycle' ); ?>"><?php _ex( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?>:</label>
+				<label for="<?php echo $this->get_field_id( 'autocycle' ); ?>"><?php _ex( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?></label>
 				<select class="widefat" name="<?php echo $this->get_field_name( 'autocycle' ); ?>" id="<?php echo $this->get_field_id( 'autocycle' ); ?>">
 					<option value="yes"<?php selected( $autocycle, 'yes' ) ?>><?php _e( 'Yes', 'proteuswidgets' ); ?></option>
 					<option value="no"<?php selected( $autocycle, 'no' ) ?>><?php _e( 'No', 'proteuswidgets' ); ?></option>
@@ -199,7 +200,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'interval' ); ?>"><?php _ex( 'Interval (in miliseconds):', 'proteuswidgets' ); ?>:</label>
+				<label for="<?php echo $this->get_field_id( 'interval' ); ?>"><?php _ex( 'Interval (in miliseconds):', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'interval' ); ?>" name="<?php echo $this->get_field_name( 'interval' ); ?>" type="number" min="0" step="500" value="<?php echo esc_attr( $interval ); ?>" />
 			</p>
 
