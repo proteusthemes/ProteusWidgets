@@ -2,7 +2,8 @@
 /**
  * Author box widget
  *
- * @package Restaurant
+ * @package ProteusWidgets
+ * @since 1.0.0
  */
 
 

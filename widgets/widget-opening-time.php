@@ -3,7 +3,7 @@
  * Opening Time Widget
  *
  * @package ProteusWidgets
- * @since 0.1.0
+ * @since 1.0.0
  */
 
 
@@ -29,7 +29,7 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 				false, // ID, auto generate when false
 				sprintf( 'ProteusThemes: %s', __( 'Opening Time', 'proteusthemes' ) ), // Name
 				array(
-					'description' => __( 'Opening Time Widget for placing it into the sidebar or above the slider' , 'proteusthemes'),
+					'description' => __( 'Opening Time Widget shows opening times per day with optional text.' , 'proteusthemes'),
 					'classname' => 'opening-time'
 				)
 			);

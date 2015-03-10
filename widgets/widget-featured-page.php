@@ -3,7 +3,7 @@
  * Featured Page Widget
  *
  * @package ProteusWidgets
- * @since 0.1.0
+ * @since 1.0.0
  */
 
 if ( ! class_exists( 'PW_Featured_Page' ) ) {
@@ -127,10 +127,6 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 					<option value="block" <?php selected( $layout, 'block' ); ?>><?php _e( 'With big picture', 'proteuswidgets' ); ?></option>
 					<option value="inline" <?php selected( $layout, 'inline' ); ?>><?php _e( 'With small picture, inline', 'proteuswidgets' ); ?></option>
 				</select>
-			</p>
-
-			<p>
-				How to change Image and Text for Featured Page can be found in our <a href="http://www.proteusthemes.com/docs/buildpress/#featured-page" target="_blank">Online Documentation</a>.
 			</p>
 
 			<?php

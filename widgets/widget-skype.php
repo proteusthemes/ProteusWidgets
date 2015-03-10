@@ -3,6 +3,7 @@
  * Skype Widget
  *
  * @package ProteusWidgets
+ * @since 1.0.0
  */
 
 if ( ! class_exists( 'PW_Skype' ) ) {
@@ -14,7 +15,7 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		public function __construct() {
 			parent::__construct(
 				false, // ID, auto generate when false
-				_x( 'ProteusThemes: Skype' , 'proteuswidgets'), // Name
+				sprintf( 'ProteusThemes: %s', __( 'Skype', 'proteuswidgets' ) ),
 				array(
 					'description' => __( 'Skype button for sidebar.', 'proteuswidgets'),
 					'classname'   => 'widget-skype',

@@ -3,7 +3,7 @@
  * Social Icons Widget
  *
  * @package ProteusWidgets
- * @since 0.1.0
+ * @since 1.0.0
  */
 
 if ( ! class_exists( 'PW_Social_Icons' ) ) {

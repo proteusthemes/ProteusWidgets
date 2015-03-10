@@ -3,7 +3,7 @@
  * Icon Box Widget
  *
  * @package ProteusWidgets
- * @since 0.1.0
+ * @since 1.0.0
  */
 
 if ( ! class_exists( 'PW_Icon_Box' ) ) {
@@ -41,8 +41,8 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 			<?php endif; ?>
 				<i class="fa  <?php echo $instance['icon']; ?>  fa-3x"></i>
 				<div class="icon-box__text">
-					<h4 class="icon-box__title"><?php echo $instance['title']; ?></h4>
-					<span class="icon-box__subtitle"><?php echo $instance['text']; ?></span>
+					<h4 class="icon-box__title"><?php echo wp_kses_post( $instance['title'] ); ?></h4>
+					<span class="icon-box__subtitle"><?php echo wp_kses_post( $instance['text'] ); ?></span>
 				</div>
 			</<?php echo empty ( $instance['btn_link'] ) ? 'div' : 'a'; ?>>
 			<?php
