@@ -31,7 +31,6 @@ if ( ! class_exists( 'PW_Author' ) ) {
 
 			echo $before_widget;
 			?>
-
 				<div class="widget-author__image-container">
 					<div class="widget-author__avatar--blurred">
 						<?php echo get_avatar( $selected_user_id, 90 ); ?>
@@ -47,7 +46,7 @@ if ( ! class_exists( 'PW_Author' ) ) {
 
 						<?php if ( strlen( get_the_author_meta( 'user_url', $selected_user_id) ) ) : ?>
 						<p>
-							<a href="<?php the_author_meta( 'user_url', $selected_user_id ); ?>"><?php the_author_meta( 'user_url', $selected_user_id ); ?></a>
+							<a href="<?php esc_url( the_author_meta( 'user_url', $selected_user_id ) ); ?>"><?php the_author_meta( 'user_url', $selected_user_id ); ?></a>
 						</p>
 						<?php endif ?>
 						<?php
@@ -58,7 +57,7 @@ if ( ! class_exists( 'PW_Author' ) ) {
 								}
 								foreach ( $icons as $service => $url ) {
 									$service_icon = substr( $service, 3 );
-									printf( '<a href="%s" class="social-icons__container"><i class="fa fa-%s"></i></a>', esc_url( $url[0] ), $service_icon );
+									printf( '<a href="%s" class="social-icons__container"><i class="fa fa-%s"></i></a>', esc_url( $url[0] ), sanitize_key( $service_icon ) );
 								}
 								if ( count( $icons ) ) {
 									echo '</p>';
@@ -102,7 +101,7 @@ if ( ! class_exists( 'PW_Author' ) ) {
 
 			</p>
 
-			<p><small>To add the social icons to this widget, please install the <a href="https://wordpress.org/plugins/extra-user-details/" target="_blank">Extra User Details</a> plugin and fill in the details in the "Users" section.</small></p>
+			<p><small><?php printf( __( 'To add the social icons to this widget, please install the %sExtra User Details%s plugin and fill in the details in the &quot;Users&quot; section.', 'proteuswidgets' ), '<a href="https://wordpress.org/plugins/extra-user-details/" target="_blank">', '</a>' ); ?></small></p>
 
 			<?php
 
