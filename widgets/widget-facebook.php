@@ -18,7 +18,7 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 				false, // ID, auto generate when false
 				sprintf( 'ProteusThemes: %s', __( 'Facebook', 'proteuswidgets' ) ), // Name
 				array(
-					'description' => __( 'Use this widget only in the footer of the BuildPress theme', 'proteuswidgets' ),
+					'description' => __( 'Facebook like box with some customization settings.', 'proteuswidgets' ),
 				)
 			);
 
@@ -44,7 +44,6 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			extract( $args );
-			echo $before_widget;
 			$instance['title']      = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 			$instance['height']     = absint( $instance['height'] );
 			$instance['background'] = esc_attr( $instance['background'] );
@@ -63,6 +62,7 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 				'href'        => $instance['like_link'],
 			);
 
+			echo $before_widget;
 			?>
 				<?php echo $before_title . $instance['title'] . $after_title; ?>
 
@@ -116,30 +116,30 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 
 			?>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _ex( 'Title:', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'like_link' ); ?>"><?php _ex( 'FB Page to like (the whole URL)', 'proteuswidgets' ); ?>:</label> <br />
+				<label for="<?php echo $this->get_field_id( 'like_link' ); ?>"><?php _e( 'FB Page to like (the whole URL)', 'proteuswidgets' ); ?>:</label> <br />
 				<input class="widefat" id="<?php echo $this->get_field_id( 'like_link' ); ?>" name="<?php echo $this->get_field_name( 'like_link' ); ?>" type="text" value="<?php echo $like_link; ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'height' ); ?>"><?php _ex( 'Height (in pixels):', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'height' ); ?>"><?php _e( 'Height (in pixels):', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'height' ); ?>" name="<?php echo $this->get_field_name( 'height' ); ?>" type="number" min="0" step="10" value="<?php echo esc_attr( $height ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'colorscheme' ); ?>"><?php _ex( 'Color scheme', 'proteuswidgets' ); ?>:</label> <br />
+				<label for="<?php echo $this->get_field_id( 'colorscheme' ); ?>"><?php _e( 'Color scheme', 'proteuswidgets' ); ?>:</label> <br />
 				<select id="<?php echo $this->get_field_id( 'colorscheme' ); ?>" name="<?php echo $this->get_field_name( 'colorscheme' ); ?>">
-					<option value="light"<?php selected( $colorscheme, 'light' ); ?>><?php _ex( 'Light', 'proteuswidgets' ); ?></option>
-					<option value="dark"<?php selected( $colorscheme, 'dark' ); ?>><?php _ex( 'Dark', 'proteuswidgets' ); ?></option>
+					<option value="light"<?php selected( $colorscheme, 'light' ); ?>><?php _e( 'Light', 'proteuswidgets' ); ?></option>
+					<option value="dark"<?php selected( $colorscheme, 'dark' ); ?>><?php _e( 'Dark', 'proteuswidgets' ); ?></option>
 				</select>
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'background' ); ?>"><?php _ex( 'Background color:', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo $this->get_field_id( 'background' ); ?>"><?php _e( 'Background color:', 'proteuswidgets' ); ?></label> <br>
 				<input class="js-pt-color-picker" id="<?php echo $this->get_field_id( 'background' ); ?>" name="<?php echo $this->get_field_name( 'background' ); ?>" type="text" value="<?php echo esc_attr( $background ); ?>" data-default-color="<?php echo '#ffffff'; ?>" />
 			</p>
 
