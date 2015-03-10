@@ -34,13 +34,13 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		public function widget( $args, $instance ) {
 			echo $args['before_widget'];
 
-			if ( ! empty ( $instance['title'] ) ) :
+			if ( ! empty ( $instance['title'] ) ) {
 				printf( '%s%s%s', $args['before_title'], apply_filters( 'widget_title', $instance['title'], $instance ), $args['after_title'] );
-			endif;
+			}
 			?>
 
-			<a class="brochure-box" href="<?php echo esc_url( $instance['brochure_url'] ); ?>" <?php echo empty ( $instance['new_tab'] ) ? '' : 'target="_blank"'; ?>>
-				<span class="brochure-box__icon"><i class="fa  <?php echo $instance['brochure_icon']; ?>"></i></span>
+			<a class="brochure-box" href="<?php echo esc_url( $instance['brochure_url'] ); ?>" <?php echo empty( $instance['new_tab'] ) ? '' : 'target="_blank"'; ?>>
+				<span class="brochure-box__icon"><i class="fa  <?php echo sanitize_html_class( $instance['brochure_icon'] ); ?>"></i></span>
 				<h5 class="brochure-box__text"><?php echo wp_kses_post( $instance['brochure_text'] ); ?></h5>
 			</a>
 
