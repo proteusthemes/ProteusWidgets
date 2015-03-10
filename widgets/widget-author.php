@@ -91,7 +91,7 @@ if ( ! class_exists( 'PW_Author' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'selected_user_id' ); ?>"><?php _ex( 'Display author: ', 'readable_wp'); ?></label>
+				<label for="<?php echo $this->get_field_id( 'selected_user_id' ); ?>"><?php _e( 'Display author:', 'proteuswidgets'); ?></label>
 				<?php wp_dropdown_users( array(
 					'name'     => $this->get_field_name( 'selected_user_id' ),
 					'id'       => $this->get_field_id( 'selected_user_id' ),

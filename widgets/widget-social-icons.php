@@ -101,12 +101,12 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 				foreach ( $btn_links as $i => $btn_link ) :
 			?>
 				<p>
-					<label for="<?php echo $this->get_field_id( 'btn_link_' . $i ); ?>"><?php _ex( 'Link', 'proteuswidgets' ); ?>:</label> <br />
+					<label for="<?php echo $this->get_field_id( 'btn_link_' . $i ); ?>"><?php _e( 'Link:', 'proteuswidgets' ); ?></label> <br />
 					<input style="width: 100%;" id="<?php echo $this->get_field_id( 'btn_link_' . $i ); ?>" name="<?php echo $this->get_field_name( 'btn_link_' . $i ); ?>" type="text" value="<?php echo $btn_link; ?>" />
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'icon_' . $i ); ?>"><?php _ex( 'Select social network', 'proteuswidgets' ); ?>:</label>
+					<label for="<?php echo $this->get_field_id( 'icon_' . $i ); ?>"><?php _e( 'Select social network:', 'proteuswidgets' ); ?></label>
 					<select name="<?php echo $this->get_field_name( 'icon_' . $i ); ?>" id="<?php echo $this->get_field_id( 'icon_' . $i ); ?>">
 						<option value="fa-facebook" <?php selected( $icons[$i], 'fa-facebook' ); ?>>Facebook</option>
 						<option value="fa-twitter" <?php selected( $icons[$i], 'fa-twitter' ); ?>>Twitter</option>

@@ -87,27 +87,27 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _ex( 'Title', 'proteuswidgets' ); ?>:</label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'brochure_url' ); ?>"><?php _ex( 'Brochure URL', 'proteuswidgets' ); ?>:</label> <br />
+				<label for="<?php echo $this->get_field_id( 'brochure_url' ); ?>"><?php _e( 'Brochure URL:', 'proteuswidgets' ); ?></label> <br />
 				<input class="widefat" id="<?php echo $this->get_field_id( 'brochure_url' ); ?>" name="<?php echo $this->get_field_name( 'brochure_url' ); ?>" type="text" value="<?php echo $brochure_url; ?>" />
 			</p>
 
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $new_tab, 'on' ); ?> id="<?php echo $this->get_field_id( 'new_tab' ); ?>" name="<?php echo $this->get_field_name( 'new_tab' ); ?>" value="on" />
-				<label for="<?php echo $this->get_field_id( 'new_tab' ); ?>"><?php _ex('Open link in new tab', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'new_tab' ); ?>"><?php _e('Open link in new tab', 'proteuswidgets' ); ?></label>
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'brochure_text' ); ?>"><?php _ex( 'Brochure Text', 'proteuswidgets' ); ?>:</label>
+				<label for="<?php echo $this->get_field_id( 'brochure_text' ); ?>"><?php _e( 'Brochure Text:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'brochure_text' ); ?>" name="<?php echo $this->get_field_name( 'brochure_text' ); ?>" type="text" value="<?php echo esc_attr( $brochure_text ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'brochure_icon' ); ?>"><?php _ex( 'Brochure Icon', 'proteuswidgets' ); ?>:</label> <br />
+				<label for="<?php echo $this->get_field_id( 'brochure_icon' ); ?>"><?php _e( 'Brochure Icon:', 'proteuswidgets' ); ?></label> <br />
 				<small><?php printf( __( 'Click on the icon below or manually select from the %s website', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?>.</small>
 				<input id="<?php echo $this->get_field_id( 'brochure_icon' ); ?>" name="<?php echo $this->get_field_name( 'brochure_icon' ); ?>" type="text" value="<?php echo $brochure_icon; ?>" class="widefat  js-icon-input" /> <br><br>
 				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-o"><i class="fa fa-lg fa-file-o"></i></a>

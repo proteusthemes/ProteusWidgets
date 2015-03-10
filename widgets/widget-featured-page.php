@@ -78,7 +78,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				}
 			}
 			else {
-				echo _ex( 'Select page in widget settings', 'proteuswidgets' );
+				echo _e( 'Select page in widget settings', 'proteuswidgets' );
 			}
 
 			echo $args['after_widget'];
@@ -111,7 +111,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'page_id' ); ?>"><?php _ex( 'Page:', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo $this->get_field_id( 'page_id' ); ?>"><?php _e( 'Page:', 'proteuswidgets' ); ?></label> <br>
 				<?php
 					wp_dropdown_pages( array(
 						'selected' => $page_id,
@@ -122,10 +122,10 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'layout' ); ?>"><?php _ex( 'Layout:', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo $this->get_field_id( 'layout' ); ?>"><?php _e( 'Layout:', 'proteuswidgets' ); ?></label> <br>
 				<select id="<?php echo $this->get_field_id( 'layout' ); ?>" name="<?php echo $this->get_field_name( 'layout' ); ?>">
-					<option value="block" <?php selected( $layout, 'block' ); ?>><?php _ex( 'With big picture', 'proteuswidgets' ); ?></option>
-					<option value="inline" <?php selected( $layout, 'inline' ); ?>><?php _ex( 'With small picture, inline', 'proteuswidgets' ); ?></option>
+					<option value="block" <?php selected( $layout, 'block' ); ?>><?php _e( 'With big picture', 'proteuswidgets' ); ?></option>
+					<option value="inline" <?php selected( $layout, 'inline' ); ?>><?php _e( 'With small picture, inline', 'proteuswidgets' ); ?></option>
 				</select>
 			</p>
 

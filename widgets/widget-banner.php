@@ -16,7 +16,7 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 				false, // ID, auto generate when false
 				sprintf( 'ProteusThemes: %s', __( 'Banner', 'proteuswidgets' ) ),
 				array(
-					'description' => _x( 'Banner for Page Builder.', 'backend', 'proteuswidgets'),
+					'description' => __( 'Banner for Page Builder.', 'proteuswidgets'),
 					'classname'   => 'widget-banner',
 				)
 			);
@@ -90,17 +90,17 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _ex( 'Title:', 'backend', 'proteuswidgets'); ?></label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'proteuswidgets'); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'content' ); ?>"><?php _ex( 'Content:', 'backend', 'proteuswidgets'); ?></label>
+				<label for="<?php echo $this->get_field_id( 'content' ); ?>"><?php _e( 'Content:', 'proteuswidgets'); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'content' ); ?>" name="<?php echo $this->get_field_name( 'content' ); ?>" type="text" value="<?php echo esc_attr( $content ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _ex( 'Link:', 'backend', 'proteuswidgets'); ?></label>
+				<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Link:', 'proteuswidgets'); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'link' ); ?>" name="<?php echo $this->get_field_name( 'link' ); ?>" type="text" value="<?php echo esc_attr( $link ); ?>" />
 				<input type="checkbox" name="<?php echo $this->get_field_name( 'open_new' ); ?>" value="1" <?php checked( $open_new, 1 ); ?>>
 				<?php _e( 'Open link in a new window/tab', 'proteuswidgets' ); ?>

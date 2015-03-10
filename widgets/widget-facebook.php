@@ -121,7 +121,7 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'like_link' ); ?>"><?php _e( 'FB Page to like (the whole URL)', 'proteuswidgets' ); ?>:</label> <br />
+				<label for="<?php echo $this->get_field_id( 'like_link' ); ?>"><?php _e( 'FB Page to like (the whole URL):', 'proteuswidgets' ); ?></label> <br />
 				<input class="widefat" id="<?php echo $this->get_field_id( 'like_link' ); ?>" name="<?php echo $this->get_field_name( 'like_link' ); ?>" type="text" value="<?php echo $like_link; ?>" />
 			</p>
 
@@ -131,7 +131,7 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'colorscheme' ); ?>"><?php _e( 'Color scheme', 'proteuswidgets' ); ?>:</label> <br />
+				<label for="<?php echo $this->get_field_id( 'colorscheme' ); ?>"><?php _e( 'Color scheme:', 'proteuswidgets' ); ?></label> <br />
 				<select id="<?php echo $this->get_field_id( 'colorscheme' ); ?>" name="<?php echo $this->get_field_name( 'colorscheme' ); ?>">
 					<option value="light"<?php selected( $colorscheme, 'light' ); ?>><?php _e( 'Light', 'proteuswidgets' ); ?></option>
 					<option value="dark"<?php selected( $colorscheme, 'dark' ); ?>><?php _e( 'Dark', 'proteuswidgets' ); ?></option>

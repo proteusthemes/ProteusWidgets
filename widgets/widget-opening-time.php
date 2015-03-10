@@ -238,17 +238,17 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 			<?php endforeach; // end days ?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'separator' ); ?>"><?php _e( 'Separator between hours' , 'proteusthemes'); ?>:</label>
+				<label for="<?php echo $this->get_field_id( 'separator' ); ?>"><?php _e( 'Separator between hours:' , 'proteusthemes'); ?></label>
 				<input id="<?php echo $this->get_field_id( 'separator' ); ?>" name="<?php echo $this->get_field_name( 'separator' ); ?>" type="text" value="<?php echo $separator; ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'closed_text' ); ?>"><?php _e( 'Text used for closed days' , 'proteusthemes'); ?>:</label>
+				<label for="<?php echo $this->get_field_id( 'closed_text' ); ?>"><?php _e( 'Text used for closed days:' , 'proteusthemes'); ?></label>
 				<input id="<?php echo $this->get_field_id( 'closed_text' ); ?>" name="<?php echo $this->get_field_name( 'closed_text' ); ?>" type="text" value="<?php echo esc_attr( $closed_text ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'additional_info' ); ?>"><?php _e( 'Text below the timetable for additional info (for example lunch time)' , 'proteusthemes'); ?>:</label>
+				<label for="<?php echo $this->get_field_id( 'additional_info' ); ?>"><?php _e( 'Text below the timetable for additional info (for example lunch time):' , 'proteusthemes'); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'additional_info' ); ?>" name="<?php echo $this->get_field_name( 'additional_info' ); ?>" type="text" value="<?php echo esc_attr( $additional_info ); ?>" />
 			</p>
 

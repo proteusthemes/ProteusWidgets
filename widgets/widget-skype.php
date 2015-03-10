@@ -14,9 +14,9 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		public function __construct() {
 			parent::__construct(
 				false, // ID, auto generate when false
-				_x( 'ProteusThemes: Skype' , 'backend', 'proteuswidgets'), // Name
+				_x( 'ProteusThemes: Skype' , 'proteuswidgets'), // Name
 				array(
-					'description' => _x( 'Skype button for sidebar.', 'backend', 'proteuswidgets'),
+					'description' => __( 'Skype button for sidebar.', 'proteuswidgets'),
 					'classname'   => 'widget-skype',
 				)
 			);
@@ -76,12 +76,12 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _ex( 'Title:', 'backend', 'proteuswidgets'); ?></label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'proteuswidgets'); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'skype_username' ); ?>"><?php _ex( 'Skype username:', 'backend', 'proteuswidgets'); ?></label>
+				<label for="<?php echo $this->get_field_id( 'skype_username' ); ?>"><?php _e( 'Skype username:', 'proteuswidgets'); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'skype_username' ); ?>" placeholder="skype:your_skype_username" name="<?php echo $this->get_field_name( 'skype_username' ); ?>" type="text" value="<?php echo esc_attr( $skype_username ); ?>" />
 				<small class="skype-widget-small-text">Examples of use: <br><code>skype:your_skype_username</code> or <code>tel:your_phone_number</code></small>
 			</p>

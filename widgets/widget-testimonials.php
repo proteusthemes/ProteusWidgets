@@ -180,12 +180,12 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _ex( 'Title:', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'autocycle' ); ?>"><?php _ex( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?>:</label>
+				<label for="<?php echo $this->get_field_id( 'autocycle' ); ?>"><?php _e( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?></label>
 				<select class="widefat" name="<?php echo $this->get_field_name( 'autocycle' ); ?>" id="<?php echo $this->get_field_id( 'autocycle' ); ?>">
 					<option value="yes"<?php selected( $autocycle, 'yes' ) ?>><?php _e( 'Yes', 'proteuswidgets' ); ?></option>
 					<option value="no"<?php selected( $autocycle, 'no' ) ?>><?php _e( 'No', 'proteuswidgets' ); ?></option>
@@ -193,35 +193,35 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'interval' ); ?>"><?php _ex( 'Interval (in miliseconds):', 'proteuswidgets' ); ?>:</label>
+				<label for="<?php echo $this->get_field_id( 'interval' ); ?>"><?php _e( 'Interval (in miliseconds):', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'interval' ); ?>" name="<?php echo $this->get_field_name( 'interval' ); ?>" type="number" min="0" step="500" value="<?php echo esc_attr( $interval ); ?>" />
 			</p>
 
 			<hr>
 
-			<h4><?php _ex( 'Testimonials:', 'proteuswidgets' ); ?></h4>
+			<h4><?php _e( 'Testimonials:', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-testimonial-<?php echo $this->id; ?>">
 				<p>
-					<label for="<?php echo $this->get_field_id( 'quote' ); ?>-{{id}}-title"><?php _ex( 'Quote', 'backend', 'proteus_widgets'); ?>:</label>
+					<label for="<?php echo $this->get_field_id( 'quote' ); ?>-{{id}}-title"><?php _e( 'Quote:', 'proteuswidgets'); ?></label>
 					<textarea rows="4" class="widefat" id="<?php echo $this->get_field_id( 'quote' ); ?>-{{id}}-title" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][quote]">{{quote}}</textarea>
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author"><?php _ex( 'Author:', 'backend', 'proteus_widgets'); ?></label> <br>
+					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author"><?php _e( 'Author:', 'proteuswidgets'); ?></label> <br>
 					<input class="widefat" id="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][author]" type="text" value="{{author}}" />
 				</p>
 
 				<?php if ( $this->fields['author_description'] ) : ?>
 				<p>
-					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author_description"><?php _ex( 'Author Description:', 'backend', 'proteus_widgets'); ?></label>
+					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author_description"><?php _e( 'Author Description:', 'proteuswidgets'); ?></label>
 					<input class="widefat" id="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author_description" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][author_description]" type="text" value="{{author_description}}" />
 				</p>
 				<?php endif; ?>
 
 				<?php if ( $this->fields['rating'] ) : ?>
 				<p>
-					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-rating"><?php _ex( 'Rating:', 'backend', 'proteus_widgets'); ?></label>
+					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-rating"><?php _e( 'Rating:', 'proteuswidgets'); ?></label>
 					<select name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][rating]" id="<?php echo $this->get_field_id( 'rating' ); ?>-{{id}}-rating" class="js-rating">
 						<option value="0">0</option>
 						<option value="1">1</option>
@@ -235,7 +235,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 				<p>
 					<input name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
-					<a href="#" class="pt-remove-testimonial  js-pt-remove-testimonial"><span class="dashicons dashicons-dismiss"></span> <?php _ex( 'Remove Testimonial', 'proteuswidgets' ); ?></a>
+					<a href="#" class="pt-remove-testimonial  js-pt-remove-testimonial"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Testimonial', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
 			<div class="pt-widget-testimonials" id="testimonials-<?php echo $this->id; ?>">
