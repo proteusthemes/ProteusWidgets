@@ -76,20 +76,20 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 			<div class="testimonial">
 			<?php if ( count( $testimonials ) > $this->fields['number_of_testimonial_per_slide'] ) : ?>
-					<a class="testimonial__carousel  testimonial__carousel--left" href="#carousel-testimonials-<?php echo $args['widget_id'] ?>" data-slide="prev"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button">Next</span></a>
+					<a class="testimonial__carousel  testimonial__carousel--left" href="#carousel-testimonials-<?php echo esc_attr( $args['widget_id'] ); ?>" data-slide="prev"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button"><?php _e( 'Next', 'proteuswidgets' ); ?></span></a>
 				<?php endif; ?>
 				<h2 class="widget-title">
 					<?php echo $title; ?>
 				</h2>
 				<?php if ( count( $testimonials ) > $this->fields['number_of_testimonial_per_slide'] ) : ?>
-					<a class="testimonial__carousel  testimonial__carousel--right" href="#carousel-testimonials-<?php echo $args['widget_id'] ?>" data-slide="next"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button">Previous</span></a>
+					<a class="testimonial__carousel  testimonial__carousel--right" href="#carousel-testimonials-<?php echo $args['widget_id'] ?>" data-slide="next"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button"><?php _e( 'Previous', 'proteuswidgets' ); ?></span></a>
 				<?php endif; ?>
-				<div id="carousel-testimonials-<?php echo $args['widget_id'] ?>" class="carousel slide" <?php echo $autocycle ? 'data-ride="carousel" data-interval="' . $interval . '"' : ''; ?>>
+				<div id="carousel-testimonials-<?php echo $args['widget_id'] ?>" class="carousel slide" <?php echo $autocycle ? 'data-ride="carousel" data-interval="' . esc_attr( $interval ) . '"' : ''; ?>>
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner" role="listbox">
 						<div class="item active">
 							<div class="row">
-							<?php foreach ($testimonials as $index => $testimonial) : ?>
+							<?php foreach ( $testimonials as $index => $testimonial ) : ?>
 								<?php echo ( 0 !== $index && 0 === $index % $this->fields['number_of_testimonial_per_slide'] ) ? '</div></div> <div class="item"><div class="row">' : ''; ?>
 								<div class="col-xs-12  col-sm-<?php echo $spans; ?>">
 									<blockquote>

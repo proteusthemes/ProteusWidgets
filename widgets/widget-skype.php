@@ -33,12 +33,12 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 
-			$title = empty( $instance['title'] ) ? '' : $instance['title'];
+			$title          = empty( $instance['title'] ) ? '' : $instance['title'];
 			$skype_username = empty( $instance['skype_username'] ) ? '' : $instance['skype_username'];
 
 			echo $args['before_widget'];
 			?>
-				<a class="skype-button" href="<?php echo $skype_username ?>">
+				<a class="skype-button" href="<?php echo esc_url( $skype_username ); ?>">
 					<?php if ( 'skype' == substr( $skype_username, 0, 5 ) ) : ?>
 							<i class="fa  fa-skype"></i>
 					<?php else :?>
@@ -59,7 +59,7 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		public function update( $new_instance, $old_instance ) {
 			$instance = array();
 
-			$instance['title'] = wp_kses_post( $new_instance['title'] );
+			$instance['title']          = wp_kses_post( $new_instance['title'] );
 			$instance['skype_username'] = wp_kses_post( $new_instance['skype_username'] );
 
 			return $instance;
@@ -71,7 +71,7 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		 * @param array $instance The widget options
 		 */
 		public function form( $instance ) {
-			$title = empty( $instance['title'] ) ? '' : $instance['title'];
+			$title          = empty( $instance['title'] ) ? '' : $instance['title'];
 			$skype_username = empty( $instance['skype_username'] ) ? '' : $instance['skype_username'];
 
 			?>
