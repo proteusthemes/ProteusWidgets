@@ -32,21 +32,17 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			echo $args['before_widget'];
-			if ( ! empty ( $instance['btn_link'] ) ) :
-			?>
-			<a class="icon-box" href="<?php echo $instance['btn_link']; ?>" <?php echo empty ( $instance['new_tab'] ) ? '' : 'target="_blank"'; ?>>
-			<?php else : ?>
-			<div class="icon-box">
-			<?php endif; ?>
-				<i class="fa  <?php echo $instance['icon']; ?>  fa-3x"></i>
-				<div class="icon-box__text">
-					<h4 class="icon-box__title"><?php echo wp_kses_post( $instance['title'] ); ?></h4>
-					<span class="icon-box__subtitle"><?php echo wp_kses_post( $instance['text'] ); ?></span>
-				</div>
-			</<?php echo empty ( $instance['btn_link'] ) ? 'div' : 'a'; ?>>
-			<?php
-			echo $args['after_widget'];
+			// mustache widget-icon-box template rendering
+			global $mustache;
+			echo $mustache->render('widget-icon-box', array(
+				'before-widget' => $args['before_widget'],
+				'after-widget'  => $args['after_widget'],
+				'title'         => $instance['title'],
+				'text'          => $instance['text'],
+				'link'          => esc_url( $instance['btn_link'] ),
+				'target'        => ! empty ( $instance['new_tab'] ) ? '_blank' : '_self',
+				'icon'          => sanitize_html_class( $instance['icon'] ),
+			));
 		}
 
 		/**

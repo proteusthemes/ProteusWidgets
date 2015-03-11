@@ -36,18 +36,16 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 			$title          = empty( $instance['title'] ) ? '' : $instance['title'];
 			$skype_username = empty( $instance['skype_username'] ) ? '' : $instance['skype_username'];
 
-			echo $args['before_widget'];
-			?>
-				<a class="skype-button" href="<?php echo esc_url( $skype_username ); ?>">
-					<?php if ( 'skype' == substr( $skype_username, 0, 5 ) ) : ?>
-							<i class="fa  fa-skype"></i>
-					<?php else :?>
-							<i class="fa  fa-phone"></i>
-					<?php endif; ?>
-					<p class="skype-button__title"><?php echo $title; ?></p>
-				</a>
-			<?php
-			echo $args['after_widget'];
+
+			// mustache widget-skype template rendering
+			global $mustache;
+			echo $mustache->render('widget-skype', array(
+				'before-widget'  => $args['before_widget'],
+				'after-widget'   => $args['after_widget'],
+				'title'          => $title,
+				'skype-or-phone' => 'skype' == substr( $skype_username, 0, 5 ) ? 'skype' : 'phone',
+				'skype-username' => $skype_username,
+			));
 		}
 
 		/**

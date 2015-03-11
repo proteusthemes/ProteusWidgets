@@ -32,20 +32,17 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			echo $args['before_widget'];
-
-			if ( ! empty ( $instance['title'] ) ) {
-				printf( '%s%s%s', $args['before_title'], apply_filters( 'widget_title', $instance['title'], $instance ), $args['after_title'] );
-			}
-			?>
-
-			<a class="brochure-box" href="<?php echo esc_url( $instance['brochure_url'] ); ?>" <?php echo empty( $instance['new_tab'] ) ? '' : 'target="_blank"'; ?>>
-				<span class="brochure-box__icon"><i class="fa  <?php echo sanitize_html_class( $instance['brochure_icon'] ); ?>"></i></span>
-				<h5 class="brochure-box__text"><?php echo wp_kses_post( $instance['brochure_text'] ); ?></h5>
-			</a>
-
-			<?php
-			echo $args['after_widget'];
+			// mustache widget-brochure-box template rendering
+			global $mustache;
+			echo $mustache->render('widget-brochure-box', array(
+				'before-widget' => $args['before_widget'],
+				'after-widget'  => $args['after_widget'],
+				'title'         => ( ! empty ( $instance['title'] ) ) ? $args['before_title'] . apply_filters( 'widget_title', $instance['title'], $instance ) . $args['after_title'] : '',
+				'brochure-url'  => esc_url( $instance['brochure_url'] ),
+				'brochure-icon' => sanitize_html_class( $instance['brochure_icon'] ),
+				'brochure-text' => $instance['brochure_text'],
+				'link-target'   => ( ! empty( $instance['new_tab'] ) ) ? '_blank' : '_self',
+			));
 		}
 
 		/**

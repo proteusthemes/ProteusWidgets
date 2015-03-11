@@ -34,23 +34,25 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			$non_empty_fields = array();
+			$social_icons = array();
 
 			for ( $i=0; $i < $this->num_social_icons; $i++ ) {
 				if ( ! empty ( $instance[ 'btn_link_' . $i ] ) ) {
-					$non_empty_fields[$instance[ 'icon_' . $i ]] = $instance[ 'btn_link_' . $i ];
+					$curent_line = array();
+					$curent_line['link'] = esc_url( $instance[ 'btn_link_' . $i ] );
+					$curent_line['icon'] = sanitize_html_class( $instance[ 'icon_' . $i ] );
+					array_push( $social_icons, $curent_line);
 				}
 			}
 
-			echo $args['before_widget'];
-
-			foreach ( $non_empty_fields as $social_network_class => $url ) :
-			?>
-				<a class="social-icons__link" href="<?php echo $url; ?>" <?php echo empty ( $instance['new_tab'] ) ? '' : 'target="_blank"'; ?>><i class="fa  <?php echo $social_network_class; ?>"></i></a>
-			<?php
-			endforeach;
-
-			echo $args['after_widget'];
+			// mustache widget-social-icons template rendering
+			global $mustache;
+			echo $mustache->render('widget-social-icons', array(
+				'before-widget' => $args['before_widget'],
+				'after-widget'  => $args['after_widget'],
+				'social-icons' => $social_icons,
+				'link-target' => ! empty ( $instance['new_tab'] ) ? '_blank' : '_self',
+			));
 		}
 
 		/**

@@ -1,0 +1,23 @@
+{{{ before-widget }}}
+
+	{{# link }}
+		<a class="icon-box" href="{{{ link }}}" target="{{ target }}">
+	{{/ link }}
+	{{^ link }}
+		<div class="icon-box">
+	{{/ link }}
+
+		<i class="fa  {{{ icon }}}  fa-3x"></i>
+		<div class="icon-box__text">
+			<h4 class="icon-box__title">{{ title }}</h4>
+			<span class="icon-box__subtitle">{{ text }}</span>
+		</div>
+
+	{{# link }}
+		</a>
+	{{/ link }}
+	{{^ link }}
+		</div>
+	{{/ link }}
+
+{{{ after-widget }}}

@@ -13,6 +13,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		 * Length of the line excerpt.
 		 */
 		const INLINE_EXCERPT = 60;
+		const BLOCK_EXCERPT = 240;
 
 		/**
 		 * Register widget with WordPress.
@@ -42,46 +43,35 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			$layout         = sanitize_key( $instance['layout'] );
 			$thumbnail_size = 'inline' === $layout ? 'thumbnail' : 'page-box';
 
-			echo $args['before_widget'];
-
+			// get basic page info
 			if ( $page_id ) {
-				$page_obj = new WP_Query( array( 'page_id' => $page_id ) );
-
-				if ( $page_obj->have_posts() ) {
-					$page_obj->the_post();
-
-					$excerpt = get_the_excerpt();
-					wp_reset_postdata();
-					$page_obj->rewind_posts();
-					$page_obj->the_post();
-
-					if ( 'inline' === $layout && strlen( $excerpt ) > self::INLINE_EXCERPT ) {
-						$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', self::INLINE_EXCERPT ) ) . ' &hellip;';
-					}
-
-					?>
-
-					<div <?php post_class( "page-box  page-box--{$layout}" ); ?>>
-						<a class="page-box__picture" href="<?php the_permalink(); ?>"><?php echo the_post_thumbnail( $thumbnail_size ); ?></a>
-						<div class="page-box__content">
-							<h5 class="page-box__title  text-uppercase"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-							<?php echo $excerpt; ?>
-							<?php if ( 'block' === $layout ) : ?>
-								<p><a href="<?php the_permalink(); ?>" class="read-more  read-more--page-box"><?php _e( 'Read more', 'proteuswidgets' ); ?></a></p>
-							<?php endif; ?>
-						</div>
-					</div>
-
-					<?php
-
-					wp_reset_postdata();
-				}
-			}
-			else {
-				echo _e( 'Select page in widget settings', 'proteuswidgets' );
+				$page = (array)get_post($page_id);
 			}
 
-			echo $args['after_widget'];
+			//prepare the excerpt text
+			$excerpt = ! empty( $page['post_excerpt'] ) ? $page['post_excerpt'] : $page['post_content'];
+
+			if ( 'inline' === $layout && strlen( $excerpt ) > self::INLINE_EXCERPT ) {
+				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', self::INLINE_EXCERPT ) ) . ' &hellip;';
+			}
+			elseif ( strlen( $excerpt ) > self::BLOCK_EXCERPT ) {
+				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', self::BLOCK_EXCERPT ) ) . ' &hellip;';
+			}
+
+			// mustache widget-featured-page template rendering
+			global $mustache;
+			echo $mustache->render('widget-featured-page', array(
+				'before-widget' => $args['before_widget'],
+				'after-widget'  => $args['after_widget'],
+				'title'         => $page['post_title'],
+				'excerpt'       => sanitize_text_field( $excerpt ),
+				'link'          => get_permalink( $page_id ),
+				'thumbnail'     => get_the_post_thumbnail( $page_id, $thumbnail_size ),
+				'block'         => 'block' === $layout,
+				'layout'        => $layout,
+				'read-more'     => __( 'Read more', 'proteuswidgets' ),
+
+			));
 		}
 
 		/**

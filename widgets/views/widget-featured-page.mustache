@@ -1,0 +1,14 @@
+{{{ before-widget }}}
+
+	<div class="page-box  page-box--{{ layout }}">
+		<a class="page-box__picture" href="{{{ link }}}">{{{ thumbnail }}}</a>
+		<div class="page-box__content">
+			<h5 class="page-box__title  text-uppercase"><a href="{{{ link }}}">{{ title }}</a></h5>
+			{{{ excerpt }}}
+			{{# block }}
+				<p><a href="{{{ link }}}" class="read-more  read-more--page-box">{{ read-more }}</a></p>
+			{{/ block }}
+		</div>
+	</div>
+
+{{{ after-widget }}}

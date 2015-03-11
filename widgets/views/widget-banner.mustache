@@ -1,0 +1,22 @@
+{{{ before-widget }}}
+	{{# link }}
+		<a class="banner" href="{{{ link }}}" target="{{ link-target }}">
+	{{/ link }}
+	{{^ link }}
+		<div class="banner">
+	{{/ link }}
+
+		<div class="banner__title">
+			{{ title }}
+		</div>
+		<div class="banner__content">
+			{{ content }}
+		</div>
+
+	{{# link }}
+		</a>
+	{{/ link }}
+	{{^ link }}
+		</div>
+	{{/ link }}
+{{{ after-widget }}}

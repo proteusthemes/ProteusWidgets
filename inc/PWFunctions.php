@@ -31,4 +31,18 @@ class PWFunctions {
 		return strpos( $str , 'pw-' ) === 0;
 	}
 
+	/**
+	 * Reorder the widget array with multiple instances of repeating fields (like multiple testimonials or people).
+	 * Reorders the instances to start with key = 0 and the following instances in further order (1,2,3,...) so that
+	 * PHP mustache can iterate trough them.
+	 * @return array The array of instances with proper order from 0 onward
+	 */
+	public static function reorder_widget_array_key_values( $widget_array ) {
+		$tmp_widget_array = array();
+		foreach ( $widget_array as $instace ) {
+			array_push( $tmp_widget_array , (array)$instace );
+		}
+		return $tmp_widget_array;
+	}
+
 }

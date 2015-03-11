@@ -30,46 +30,30 @@ if ( ! class_exists( 'PW_Author' ) ) {
 			extract( $args );
 			$selected_user_id = intval( $instance['selected_user_id'] );
 
-			echo $before_widget;
-			?>
-				<div class="widget-author__image-container">
-					<div class="widget-author__avatar--blurred">
-						<?php echo get_avatar( $selected_user_id, 90 ); ?>
-					</div>
-					<a href="<?php echo get_author_posts_url( $selected_user_id ); ?>" class="widget-author__avatar">
-						<?php echo get_avatar( $selected_user_id, 90 ); ?>
-					</a>
-				</div>
-				<div class="row widget-author__content">
-					<div class="col-xs-10  col-xs-offset-1">
-						<?php echo $before_title; ?><?php the_author_meta( 'display_name', $selected_user_id ); ?><?php echo $after_title; ?>
-						<?php echo wpautop( get_the_author_meta( 'description', $selected_user_id ) ); ?>
+			$social_icons = array();
 
-						<?php if ( strlen( get_the_author_meta( 'user_url', $selected_user_id) ) ) : ?>
-						<p>
-							<a href="<?php esc_url( the_author_meta( 'user_url', $selected_user_id ) ); ?>"><?php the_author_meta( 'user_url', $selected_user_id ); ?></a>
-						</p>
-						<?php endif ?>
-						<?php
-							if ( is_callable( 'PWFunctions::get_social_icons_links' ) ) {
-								$icons = PWFunctions::get_social_icons_links( get_user_meta( $selected_user_id ) );
-								if ( count( $icons ) ) {
-									echo '<p class="social-icons__author">';
-								}
-								foreach ( $icons as $service => $url ) {
-									$service_icon = substr( $service, 3 );
-									printf( '<a href="%s" class="social-icons__container"><i class="fa fa-%s"></i></a>', esc_url( $url[0] ), sanitize_key( $service_icon ) );
-								}
-								if ( count( $icons ) ) {
-									echo '</p>';
-								}
-							}
-						?>
-					</div>
-				</div>
+			if ( is_callable( 'PWFunctions::get_social_icons_links' ) ) {
+				$icons = PWFunctions::get_social_icons_links( get_user_meta( $selected_user_id ) );
+				foreach ( $icons as $service => $url ) {
+					$service_icon = substr( $service, 3 );
+					array_push( $social_icons, array ( 'icon' => $service_icon, 'url' => $url[0] ) );
+				}
+			}
 
-			<?php
-			echo $after_widget;
+			// mustache author-widget template rendering
+			global $mustache;
+			echo $mustache->render('widget-author', array(
+				'before-widget'           => $args['before_widget'],
+				'after-widget'            => $args['after_widget'],
+				'author-avatar'           => get_avatar( $selected_user_id, 90 ),
+				'author-posts'            => get_author_posts_url( $selected_user_id ),
+				'author-meta-name'        => $before_title . get_the_author_meta( 'display_name', $selected_user_id ) . $after_title,
+				'author-meta-description' => wpautop( get_the_author_meta( 'description', $selected_user_id ) ),
+				'author-meta-user-url'    => get_the_author_meta( 'user_url', $selected_user_id),
+				'social-icons'            => intval( count( $social_icons ) ),
+				'social-icons-list'       => $social_icons,
+			));
+
 		}
 
 		/**

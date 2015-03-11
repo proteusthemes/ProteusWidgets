@@ -50,21 +50,19 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 
 			$locations = json_encode( array_values( $locations ) );
 
-			?>
+			// mustache widget-google-map template rendering
+			global $mustache;
+			echo $mustache->render('widget-google-map', array(
+				'before-widget' => $args['before_widget'],
+				'after-widget'  => $args['after_widget'],
+				'lat-lang'      => esc_attr( $latLng ),
+				'locations'     => esc_attr( $locations ),
+				'zoom'          => absint( $zoom ),
+				'type'          => esc_attr( $type ),
+				'styles'        => esc_attr( $this->map_styles[$style] ),
+				'height'        => absint( $height ),
+			));
 
-			<?php echo $before_widget; ?>
-				<div
-					class="simple-map  js-where-we-are"
-					data-latlng="<?php echo esc_attr( $latLng ); ?>"
-					data-markers="<?php echo esc_attr( $locations ); ?>"
-					data-zoom="<?php echo absint( $zoom ); ?>"
-					data-type="<?php echo esc_attr( $type ); ?>"
-					data-style="<?php echo esc_attr( $this->map_styles[$style] ); ?>"
-					style="height: <?php echo absint( $height ); ?>px;"
-				></div>
-			<?php echo $after_widget; ?>
-
-			<?php
 		}
 
 		/**

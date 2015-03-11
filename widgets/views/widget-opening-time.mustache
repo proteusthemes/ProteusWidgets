@@ -1,0 +1,23 @@
+{{{ before-widget }}}
+
+	<div class="time-table">
+
+		{{# title }}
+			<h3><span class="icon icons-ornament-left"></span>{{{ title }}}<span class="icon icons-ornament-right"></span></h3>
+		{{/ title }}
+
+		<div class="inner-bg">
+			{{# opening-times }}
+				<dl class="week-day {{{ class }}}">
+					<dt>{{ day }}</dt>
+					<dd>{{ day-time }}</dd>
+				</dl>
+			{{/ opening-times }}
+		</div>
+
+		{{# additional-info}}
+			<div class="additional-info">{{ additional-info }}</div>
+		{{/ additional-info}}
+
+	</div>
+{{{ after-widget }}}

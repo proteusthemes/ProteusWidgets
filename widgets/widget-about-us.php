@@ -37,7 +37,6 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		public function widget( $args, $instance ) {
 			$autocycle = empty( $instance['autocycle'] ) ? false : 'yes' === $instance['autocycle'];
 			$interval  = empty( $instance['interval'] ) ? 5000 : absint( $instance['interval'] );
-			$first     = true;
 
 			if ( isset( $instance['persons'] ) ) {
 				$persons = $instance['persons'];
@@ -55,48 +54,25 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				);
 			}
 
-			echo $args['before_widget'];
-			?>
-			<div id="carousel-persons-<?php echo esc_attr( $args['widget_id'] ); ?>" class="carousel slide" <?php echo $autocycle ? 'data-ride="carousel" data-interval="' . esc_attr( $interval ) . '"' : ''; ?>>
-				<div class="carousel-inner" role="listbox">
-					<?php
-						foreach ($persons as $person) :
-						//typecast, because of the demo widgets import. By default it's an object(stdClass)
-						$person = (array)$person;
-					?>
-						<div class="item  <?php echo ( $first ) ? 'active' : ''; $first = false; ?>">
-							<?php if ( ! empty( $person['tag'] ) ) : ?>
-							<<?php if( ! empty( $person['link'] ) ) : ?>a href="<?php echo esc_url( $person['link'] ); ?>"<?php else : ?>div<?php endif; ?> class="about-us__tag">
-								<?php echo $person['tag']; ?>
-							</<?php if( ! empty( $person['link'] ) ) : ?>a <?php else: ?>div<?php endif; ?>>
-							<?php endif; ?>
+			// mustache widget-about-us template rendering
+			$persons = PWFunctions::reorder_widget_array_key_values($persons);
+			if ( isset( $persons[0] ) ) {
+				$persons[0]['active'] = 'active';
+			}
+			global $mustache;
+			echo $mustache->render( 'widget-about-us', array(
+				'before-widget'     => $args['before_widget'],
+				'after-widget'      => $args['after_widget'],
+				'persons'           => $persons,
+				'widget-id'         => esc_attr( $args['widget_id'] ),
+				'data-interval'     => $autocycle ? 'data-interval=' . esc_attr( $interval ) : 'data-interval=false',
+				'navigation'        => count( $persons ) > 1,
+				'image-alt-text'    => esc_attr__( 'About us image', 'proteuswidgets' ),
+				'read-more-text'    => __( 'Read more', 'proteuswidgets' ),
+				'previous-text'     => __( 'Previous', 'proteuswidgets' ),
+				'next-text'         => __( 'Next', 'proteuswidgets' ),
+			) );
 
-							<?php if( ! empty( $person['image'] ) ) : ?>
-								<img class="about-us__image" src="<?php echo $person['image'] ?>" alt="<?php _e( 'About us image', 'proteuswidgets' ); ?>">
-							<?php endif; ?>
-							<h5 class="about-us__name"><?php echo wp_kses_post( $person['name'] ); ?></h5>
-							<p class="about-us__description"><?php echo wp_kses_post( $person['description'] ); ?></p>
-							<?php if( ! empty( $person['link'] ) ) : ?>
-								<a class="read-more  about-us__link" href="<?php echo esc_url( $person['link'] ); ?>"><?php _e( 'Read more', 'proteuswidgets' ); ?></a>
-							<?php endif; ?>
-						</div>
-					<?php
-					endforeach;
-					?>
-			</div>
-		</div>
-
-		<?php
-			if ( count( $persons ) > 1 ) :
-		?>
-			<div class="about-us__navigation">
-				<a class="person__carousel  person__carousel--left about-us__navigation__left" href="#carousel-persons-<?php echo esc_attr( $args['widget_id'] ); ?>" data-slide="prev"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button"><?php _e( 'Previous', 'proteuswidgets' ); ?></span></a>
-				<a class="person__carousel  person__carousel--right about-us__navigation__right" href="#carousel-persons-<?php echo $args['widget_id'] ?>" data-slide="next"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button"><?php _e( 'Next', 'proteuswidgets' ); ?></span></a>
-			</div>
-		<?php
-			endif;
-
-			echo $args['after_widget'];
 		}
 
 		/**

@@ -71,62 +71,33 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				$spans = '12';
 			}
 
-			echo $args['before_widget'];
+			// prepare data for mustache
+			$testimonials = PWFunctions::reorder_widget_array_key_values($testimonials);
+			if ( isset( $testimonials[0] ) ) {
+				$testimonials[0]['active'] = 'active';
+			}
+			foreach ($testimonials as $key => $value) {
+				$testimonials[$key]['more-at-once'] = ( 0 !== $key && 0 === $key % $this->fields['number_of_testimonial_per_slide'] ) ? '</div></div> <div class="item"><div class="row">' : '';
+				if ( $this->fields['rating'] && isset( $testimonials[$key]['rating'] ) ) {
+					$testimonials[$key]['rating'] = ( $testimonials[$key]['rating'] > 0 ) ? range( 0, ( $testimonials[$key]['rating'] - 1 ) ) : 0;
+					$testimonials[$key]['display-ratings'] = $testimonials[$key]['rating'] > 0;
+				}
+			}
 
-			?>
-
-			<div class="testimonial">
-			<?php if ( count( $testimonials ) > $this->fields['number_of_testimonial_per_slide'] ) : ?>
-					<a class="testimonial__carousel  testimonial__carousel--left" href="#carousel-testimonials-<?php echo esc_attr( $args['widget_id'] ); ?>" data-slide="prev"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button"><?php _e( 'Next', 'proteuswidgets' ); ?></span></a>
-				<?php endif; ?>
-				<h2 class="widget-title">
-					<?php echo $title; ?>
-				</h2>
-				<?php if ( count( $testimonials ) > $this->fields['number_of_testimonial_per_slide'] ) : ?>
-					<a class="testimonial__carousel  testimonial__carousel--right" href="#carousel-testimonials-<?php echo $args['widget_id'] ?>" data-slide="next"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button"><?php _e( 'Previous', 'proteuswidgets' ); ?></span></a>
-				<?php endif; ?>
-				<div id="carousel-testimonials-<?php echo $args['widget_id'] ?>" class="carousel slide" <?php echo $autocycle ? 'data-ride="carousel" data-interval="' . esc_attr( $interval ) . '"' : ''; ?>>
-					<!-- Wrapper for slides -->
-					<div class="carousel-inner" role="listbox">
-						<div class="item active">
-							<div class="row">
-							<?php foreach ( $testimonials as $index => $testimonial ) : ?>
-								<?php echo ( 0 !== $index && 0 === $index % $this->fields['number_of_testimonial_per_slide'] ) ? '</div></div> <div class="item"><div class="row">' : ''; ?>
-								<div class="col-xs-12  col-sm-<?php echo $spans; ?>">
-									<blockquote>
-										<p class="testimonial__quote">
-											<?php echo $testimonial['quote']; ?>
-										</p>
-										<cite class="testimonial__author">
-											<?php echo $testimonial['author']; ?>
-										</cite>
-
-										<?php if ( $this->fields['author_description'] ) : ?>
-											<div class="testimonial__author-description">
-												<?php echo $testimonial['author_description']; ?>
-											</div>
-										<?php endif; ?>
-
-										<?php if ( $this->fields['rating'] && absint( $testimonial['rating'] ) > 0 ): ?>
-											<div class="testimonial__rating">
-											<?php
-												for ( $i = 0; $i < $testimonial['rating']; $i++) {
-													echo '<i class="fa  fa-star"></i>';
-												}
-											?>
-											</div>
-										<?php endif; ?>
-									</blockquote>
-								</div>
-							<?php endforeach; ?>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<?php
-			echo $args['after_widget'];
+			// mustache widget-testimonials template rendering
+			global $mustache;
+			echo $mustache->render('widget-testimonials', array(
+				'before-widget'   => $args['before_widget'],
+				'after-widget'    => $args['after_widget'],
+				'title'           => $title,
+				'testimonials'    => $testimonials,
+				'spans'           => $spans,
+				'widget-id'       => esc_attr( $args['widget_id'] ),
+				'slider-settings' => $autocycle ? 'data-ride="carousel" data-interval="' . esc_attr( $interval ) . '"' : '',
+				'navigation'      => count( $testimonials ) > $this->fields['number_of_testimonial_per_slide'],
+				'previous-text'   => __( 'Previous', 'proteuswidgets' ),
+				'next-text'       => __( 'Next', 'proteuswidgets' ),
+			));
 		}
 
 		/**

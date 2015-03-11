@@ -75,56 +75,41 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 			extract( $args );
 			$title = $instance['title'];
 
-			$out = "";
-
-
-			$out .= $before_widget;
-			$out .= '<div class="time-table">' . "\n";
-
-			if ( ! empty( $title ) ) {
-
-				$out .= '<h3><span class="icon icons-ornament-left"></span> ' . apply_filters( 'widget_title', $title, $instance, $this->id_base ) . ' <span class="icon icons-ornament-right"></span></h3>';
-			}
-			$out .= '<div class="inner-bg">' . "\n";
 			$current_time = intval( time() + ( (double)get_option('gmt_offset') * 3600 ) );
+			$opening_times = array();
 
+			// prepare info for mustache template
 			$i = 0;
 			foreach( $this->days as $day_label => $day ) {
-				$class = $i%2==0 ? "" : " light-bg";
+				$current_line = array();
 
-				if ( "1" != $instance[$day_label . '_opened'] ) {
-					$class .= " closed";
-				}
+				$current_line['day'] = $day;
 
-				if ( date( 'D', $current_time ) == $day_label ) {
-					$class .= " today";
-				}
+				$class = $i%2==0 ? '' : ' light-bg';
+				$class .= ( '1' != $instance[$day_label . '_opened'] ) ? ' closed' : '';
+				$class .= ( date( 'D', $current_time ) == $day_label ) ? ' today' : '';
+				$current_line['class'] = esc_attr( $class );
 
-				$out .= '<dl class="week-day' . $class . '">' . "\n";
-				$out .= '<dt>' . $day . '</dt>' . "\n";
-				if ( "1" == $instance[$day_label . '_opened'] ) {
-					$out .= '<dd>' . $instance[$day_label . '_from'] . $instance['separator'] . $instance[$day_label . '_to'] . '</dd>' . "\n";
+				if ( '1' == $instance[$day_label . '_opened'] ) {
+					$current_line['day-time'] = $instance[$day_label . '_from'] . $instance['separator'] . $instance[$day_label . '_to'];
 				} else {
-					$out .= '<dd>' . $instance['closed_text'] . '</dd>' . "\n";
+					$current_line['day-time'] = $instance['closed_text'];
 				}
 
-
-				$out .= '</dl>' . "\n";
+				array_push( $opening_times , $current_line );
 				$i++;
 			}
 
+			// mustache widget-opening-time template rendering
+			global $mustache;
+			echo $mustache->render('widget-opening-time', array(
+				'before-widget' => $args['before_widget'],
+				'after-widget'  => $args['after_widget'],
+				'opening-times' => $opening_times,
+				'title'         => apply_filters( 'widget_title', $title, $instance, $this->id_base ),
+				'additional-info' => $instance['additional_info'] ,
+			));
 
-			$out .= '</div>' . "\n"; // .inner-bg
-
-			if ( ! empty( $instance['additional_info'] ) ) {
-				$out .= '<div class="additional-info">' . $instance['additional_info'] . '</div>' . "\n"; // .inner-bg
-			}
-
-			$out .= '</div>' . "\n"; // .time-table
-			$out .= $after_widget;
-
-
-			echo $out;
 		}
 
 		/**

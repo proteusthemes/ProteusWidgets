@@ -38,26 +38,16 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 			$link     = empty( $instance['link'] ) ? '' : $instance['link'];
 			$open_new = empty( $instance['open_new'] ) ? '' : $instance['open_new'];
 
-			echo $args['before_widget'];
-			?>
-				<?php	if( empty( $link ) ) : ?>
-					<div class="banner">
-				<?php else : ?>
-					<a class="banner" href="<?php echo $link ?>" target="<?php echo ( '1' == $open_new ) ? '_blank' : '_self' ?>">
-				<?php endif; ?>
-					<div class="banner__title">
-						<?php echo $title; ?>
-					</div>
-					<div class="banner__content">
-						<?php echo $content; ?>
-					</div>
-				<?php	if( empty( $link ) ) : ?>
-					</div>
-				<?php else : ?>
-					</a>
-				<?php endif; ?>
-			<?php
-			echo $args['after_widget'];
+			// mustache widget-banner template rendering
+			global $mustache;
+			echo $mustache->render('widget-banner', array(
+				'before-widget' => $args['before_widget'],
+				'after-widget'  => $args['after_widget'],
+				'title'         => $title,
+				'content'       => $content,
+				'link'          => esc_url( $link ),
+				'link-target'   => ( '1' == $open_new ) ? '_blank' : '_self',
+			));
 		}
 
 		/**

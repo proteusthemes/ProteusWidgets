@@ -62,20 +62,16 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 				'href'        => $instance['like_link'],
 			);
 
-			echo $before_widget;
-			?>
-				<?php echo $before_title . $instance['title'] . $after_title; ?>
-
-				<div class="iframe-like-box">
-					<iframe src="//www.facebook.com/plugins/likebox.php?<?php echo http_build_query( $fb_params ); ?>" frameborder="0"></iframe>
-				</div>
-
-				<style type="text/css">
-					.iframe-like-box > iframe { min-height: <?php echo $fb_params['height']; ?>px; background-color: <?php echo $instance['background']; ?>; max-width: 100%; }
-				</style>
-
-			<?php
-			echo $after_widget;
+			// mustache widget-facebook template rendering
+			global $mustache;
+			echo $mustache->render('widget-facebook', array(
+				'before-widget' => $args['before_widget'],
+				'after-widget'  => $args['after_widget'],
+				'title'         => ( ! empty ( $instance['title'] ) ) ? $args['before_title'] . $instance['title'] . $args['after_title'] : '',
+				'http-query'    => http_build_query( $fb_params ),
+				'height'        => $fb_params['height'],
+				'background'    => $instance['background'],
+			));
 		}
 
 		/**
