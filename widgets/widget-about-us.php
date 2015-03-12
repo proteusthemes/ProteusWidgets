@@ -34,7 +34,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		public function widget( $args, $instance ) {
 			$autocycle = empty( $instance['autocycle'] ) ? false : 'yes' === $instance['autocycle'];
 			$interval  = empty( $instance['interval'] ) ? 5000 : absint( $instance['interval'] );
-			$first = true;
+			$first     = true;
 
 			if ( isset( $instance['persons'] ) ) {
 				$persons = $instance['persons'];
