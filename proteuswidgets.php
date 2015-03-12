@@ -96,7 +96,8 @@ class ProteusWidgets {
 	 * Define some constants as soon as the plugins are loaded
 	 */
 	public function define_version() {
-		define( 'PROTEUSWIDGETS_VERSION', apply_filters( 'pw/version', get_plugin_data( __FILE__ )['Version'] ) );
+		$plugin_data = get_plugin_data( __FILE__ );
+		define( 'PROTEUSWIDGETS_VERSION', apply_filters( 'pw/version', $plugin_data['Version'] ) );
 	}
 
 
