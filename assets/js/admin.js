@@ -206,6 +206,7 @@ proteusWidgets.testimonialsView = Backbone.View.extend( {
 	},
 
 	initialize: function ( params ) {
+
 		this.widgetId = params.widgetId;
 
 		// cached reference to the element in the DOM
@@ -250,7 +251,12 @@ proteusWidgets.testimonialsView = Backbone.View.extend( {
 			templateHTML: jQuery( '#js-pt-testimonial-' + this.widgetId ).html(),
 		} ).render();
 
-		this.$testimonials.append( renderedTestimonial.el );
+		var currentWidgetId = this.widgetId;
+
+		// if the widget is in the initialize state (hidden), then do not append a new testimonial
+		if ( '__i__' != currentWidgetId.slice( -5, currentWidgetId.length ) ) {
+			this.$testimonials.append( renderedTestimonial.el );
+		}
 
 		return this;
 	}
