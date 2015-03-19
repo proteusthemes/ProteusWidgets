@@ -190,8 +190,11 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 				// repopulate the form
 				var locationsJSON = <?php echo json_encode( $locations ) ?>;
 
+				// get the right widget id and remove the added < > characters at the start and at the end.
+				var widgetId = '<<?php echo $this->id; ?>>'.slice(1, -1);
+
 				if ( _.isFunction( repopulateLocations ) ) {
-					repopulateLocations( locationsJSON, '<?php echo $this->id; ?>' );
+					repopulateLocations( locationsJSON, widgetId );
 				}
 			</script>
 

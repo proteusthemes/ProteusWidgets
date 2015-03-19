@@ -135,7 +135,12 @@ proteusWidgets.locationsView = Backbone.View.extend( {
 			templateHTML: jQuery( '#js-pt-location-' + this.widgetId ).html(),
 		} ).render();
 
-		this.$locations.append( renderedLocation.el );
+		var currentWidgetId = this.widgetId;
+
+		// if the widget is in the initialize state (hidden), then do not append a new testimonial
+		if ( '__i__' != currentWidgetId.slice( -5, currentWidgetId.length ) ) {
+			this.$locations.append( renderedLocation.el );
+		}
 
 		return this;
 	}
@@ -371,7 +376,12 @@ proteusWidgets.personsView = Backbone.View.extend( {
 			templateHTML: jQuery( '#js-pt-person-' + this.widgetId ).html(),
 		} ).render();
 
-		this.$persons.append( renderedPerson.el );
+		var currentWidgetId = this.widgetId;
+
+		// if the widget is in the initialize state (hidden), then do not append a new testimonial
+		if ( '__i__' != currentWidgetId.slice( -5, currentWidgetId.length ) ) {
+			this.$persons.append( renderedPerson.el );
+		}
 
 		return this;
 	}

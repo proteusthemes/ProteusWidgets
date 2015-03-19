@@ -184,8 +184,11 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				// repopulate the form
 				var personsJSON = <?php echo json_encode( $persons ) ?>;
 
+				// get the right widget id and remove the added < > characters at the start and at the end.
+				var widgetId = '<<?php echo $this->id; ?>>'.slice(1, -1);
+
 				if ( _.isFunction( repopulatePersons ) ) {
-					repopulatePersons( personsJSON, '<?php echo $this->id; ?>' );
+					repopulatePersons( personsJSON, widgetId );
 				}
 			</script>
 
