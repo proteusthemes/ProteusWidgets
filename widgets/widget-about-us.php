@@ -9,6 +9,9 @@
 if ( ! class_exists( 'PW_About_Us' ) ) {
 	class PW_About_Us extends WP_Widget {
 
+		private $current_widget_id;
+
+
 		/**
 		 * Register widget with WordPress.
 		 */
@@ -138,11 +141,19 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				);
 			}
 
+			// Page Builder fix when using repeating fields
+			if ( 'temp' === $this->id ) {
+				$this->current_widget_id = $this->number;
+			}
+			else {
+				$this->current_widget_id = $this->id;
+			}
+
 			?>
 
 			<h4><?php _e( 'Persons:', 'proteuswidgets' ); ?></h4>
 
-			<script type="text/template" id="js-pt-person-<?php echo $this->id; ?>">
+			<script type="text/template" id="js-pt-person-<?php echo $this->current_widget_id; ?>">
 				<p>
 					<label for="<?php echo $this->get_field_id( 'persons' ); ?>-{{id}}-tag"><?php _e( 'Tag:', 'proteuswidgets'); ?></label>
 					<input class="widefat" id="<?php echo $this->get_field_id( 'persons' ); ?>-{{id}}-tag" name="<?php echo $this->get_field_name( 'persons' ); ?>[{{id}}][tag]" type="text" value="{{tag}}" />
@@ -174,7 +185,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 					<a href="#" class="pt-remove-person  js-pt-remove-person"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove person', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-about-us" id="persons-<?php echo $this->id; ?>">
+			<div class="pt-widget-about-us" id="persons-<?php echo $this->current_widget_id; ?>">
 				<div class="persons"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-person"><?php _e( 'Add New Person', 'proteuswidgets' ); ?></a>
@@ -185,7 +196,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				var personsJSON = <?php echo json_encode( $persons ) ?>;
 
 				// get the right widget id and remove the added < > characters at the start and at the end.
-				var widgetId = '<<?php echo $this->id; ?>>'.slice(1, -1);
+				var widgetId = '<<?php echo $this->current_widget_id; ?>>'.slice( 1, -1 );
 
 				if ( _.isFunction( repopulatePersons ) ) {
 					repopulatePersons( personsJSON, widgetId );

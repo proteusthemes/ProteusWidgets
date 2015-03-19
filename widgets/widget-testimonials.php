@@ -10,6 +10,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 	class PW_Testimonials extends WP_Widget {
 
 		private $fields;
+		private $current_widget_id;
 
 		/**
 		 * Register widget with WordPress.
@@ -177,6 +178,14 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				);
 			}
 
+			// Page Builder fix when using repeating fields
+			if ( 'temp' === $this->id ) {
+				$this->current_widget_id = $this->number;
+			}
+			else {
+				$this->current_widget_id = $this->id;
+			}
+
 			?>
 
 			<p>
@@ -201,7 +210,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 			<h4><?php _e( 'Testimonials:', 'proteuswidgets' ); ?></h4>
 
-			<script type="text/template" id="js-pt-testimonial-<?php echo $this->id; ?>">
+			<script type="text/template" id="js-pt-testimonial-<?php echo $this->current_widget_id; ?>">
 				<p>
 					<label for="<?php echo $this->get_field_id( 'quote' ); ?>-{{id}}-title"><?php _e( 'Quote:', 'proteuswidgets'); ?></label>
 					<textarea rows="4" class="widefat" id="<?php echo $this->get_field_id( 'quote' ); ?>-{{id}}-title" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][quote]">{{quote}}</textarea>
@@ -238,7 +247,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 					<a href="#" class="pt-remove-testimonial  js-pt-remove-testimonial"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Testimonial', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-testimonials" id="testimonials-<?php echo $this->id; ?>">
+			<div class="pt-widget-testimonials" id="testimonials-<?php echo $this->current_widget_id; ?>">
 				<div class="testimonials"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-testimonial">Add New Testimonial</a>
@@ -249,7 +258,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				var testimonialsJSON = <?php echo json_encode( $testimonials ) ?>;
 
 				// get the right widget id and remove the added < > characters at the start and at the end.
-				var widgetId = '<<?php echo $this->id; ?>>'.slice(1, -1);
+				var widgetId = '<<?php echo $this->current_widget_id; ?>>'.slice( 1, -1 );
 
 				if ( _.isFunction( repopulateTestimonials ) ) {
 					repopulateTestimonials( testimonialsJSON, widgetId );

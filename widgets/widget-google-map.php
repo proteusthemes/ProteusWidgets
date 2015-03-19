@@ -17,6 +17,8 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			'Blue Water'       => '[{"featureType":"water","stylers":[{"color":"#46bcec"},{"visibility":"on"}]},{"featureType":"landscape","stylers":[{"color":"#f2f2f2"}]},{"featureType":"road","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]}]',
 			'Gowalla'          => '[{"featureType":"road","elementType":"labels","stylers":[{"visibility":"simplified"},{"lightness":20}]},{"featureType":"administrative.land_parcel","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road.local","elementType":"labels","stylers":[{"visibility":"simplified"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"labels","stylers":[{"visibility":"simplified"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"hue":"#a1cdfc"},{"saturation":30},{"lightness":49}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"hue":"#f49935"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"hue":"#fad959"}]}]',
 		);
+		private $current_widget_id;
+
 
 		/**
 		 * Register widget with WordPress.
@@ -114,6 +116,14 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 
 			$map_types = array( 'roadmap', 'satellite', 'hybrid', 'terrain' );
 
+			// Page Builder fix when using repeating fields
+			if ( 'temp' === $this->id ) {
+				$this->current_widget_id = $this->number;
+			}
+			else {
+				$this->current_widget_id = $this->id;
+			}
+
 			?>
 
 			<p>
@@ -157,7 +167,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 
 			<h4><?php _e( 'Locations:', 'proteuswidgets' ); ?></h4>
 
-			<script type="text/template" id="js-pt-location-<?php echo $this->id; ?>">
+			<script type="text/template" id="js-pt-location-<?php echo $this->current_widget_id; ?>">
 				<p>
 					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-{{id}}-title"><?php _e( 'Title of location:', 'proteuswidgets' ); ?></label> <br>
 					<small><?php _e( 'This is shown on pin mouse hover.', 'proteuswidgets' ); ?></small>
@@ -180,7 +190,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 					<a href="#" class="pt-remove-location  js-pt-remove-location"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Location', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-locations" id="locations-<?php echo $this->id; ?>">
+			<div class="pt-widget-locations" id="locations-<?php echo $this->current_widget_id; ?>">
 				<div class="locations"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-location">Add New Location</a>
@@ -191,7 +201,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 				var locationsJSON = <?php echo json_encode( $locations ) ?>;
 
 				// get the right widget id and remove the added < > characters at the start and at the end.
-				var widgetId = '<<?php echo $this->id; ?>>'.slice(1, -1);
+				var widgetId = '<<?php echo $this->current_widget_id; ?>>'.slice( 1, -1 );
 
 				if ( _.isFunction( repopulateLocations ) ) {
 					repopulateLocations( locationsJSON, widgetId );
