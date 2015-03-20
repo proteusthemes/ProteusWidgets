@@ -7,7 +7,7 @@
  */
 
 if ( ! class_exists( 'PW_Featured_Page' ) ) {
-	class PW_Featured_Page extends WP_Widget {
+	class PW_Featured_Page extends Pw_Widget {
 
 		/**
 		 * Length of the line excerpt.
@@ -15,18 +15,16 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		const INLINE_EXCERPT = 60;
 		const BLOCK_EXCERPT = 240;
 
+		// Basic widget settings
+		function widget_name() { return __( 'Featured Page', 'proteuswidgets' ); }
+		function widget_description() { return __( 'Featured Page widget for the Sidebar and Page Builder.', 'proteuswidgets' ); }
+		function widget_class() { return 'widget-featured-page'; }
+
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
-			parent::__construct(
-				false, // ID, auto generate when false
-				sprintf( 'ProteusThemes: %s', __( 'Featured Page', 'proteuswidgets' ) ), // Name
-				array(
-					'description' => __( 'Featured Page for Page Builder.', 'proteuswidgets' ),
-					'classname'   => 'widget-featured-page',
-				)
-			);
+			parent::__construct();
 		}
 
 		/**
@@ -58,9 +56,8 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', self::BLOCK_EXCERPT ) ) . ' &hellip;';
 			}
 
-			// mustache widget-featured-page template rendering
-			global $mustache;
-			echo $mustache->render('widget-featured-page', array(
+			// Mustache widget-featured-page template rendering
+			echo $this->mustache->render('widget-featured-page', array(
 				'before-widget' => $args['before_widget'],
 				'after-widget'  => $args['after_widget'],
 				'title'         => $page['post_title'],

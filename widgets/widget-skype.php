@@ -7,20 +7,18 @@
  */
 
 if ( ! class_exists( 'PW_Skype' ) ) {
-	class PW_Skype extends WP_Widget {
+	class PW_Skype extends PW_Widget {
+
+		// Basic widget settings
+		function widget_name() { return __( 'Skype', 'proteuswidgets' ); }
+		function widget_description() { return __( 'Skype button for sidebar.', 'proteuswidgets' ); }
+		function widget_class() { return 'widget-skype'; }
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
-			parent::__construct(
-				false, // ID, auto generate when false
-				sprintf( 'ProteusThemes: %s', __( 'Skype', 'proteuswidgets' ) ),
-				array(
-					'description' => __( 'Skype button for sidebar.', 'proteuswidgets'),
-					'classname'   => 'widget-skype',
-				)
-			);
+			parent::__construct();
 		}
 
 		/**
@@ -37,9 +35,8 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 			$skype_username = empty( $instance['skype_username'] ) ? '' : $instance['skype_username'];
 
 
-			// mustache widget-skype template rendering
-			global $mustache;
-			echo $mustache->render('widget-skype', array(
+			// Mustache widget-skype template rendering
+			echo $this->mustache->render('widget-skype', array(
 				'before-widget'  => $args['before_widget'],
 				'after-widget'   => $args['after_widget'],
 				'title'          => $title,

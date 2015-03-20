@@ -7,20 +7,18 @@
  */
 
 if ( ! class_exists( 'PW_Brochure_Box' ) ) {
-	class PW_Brochure_Box extends WP_Widget {
+	class PW_Brochure_Box extends PW_Widget {
+
+		// Basic widget settings
+		function widget_name() { return __( 'Brochure Box', 'proteuswidgets' ); }
+		function widget_description() { return __( 'Brochure Box widget for the Sidebar and Page Builder.', 'proteuswidgets' ); }
+		function widget_class() { return 'widget-brochure-box'; }
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
-			parent::__construct(
-				false, // ID, auto generate when false
-				sprintf( 'ProteusThemes: %s', __( 'Brochure Box', 'proteuswidgets' ) ),
-				array(
-					'description' => __( 'Brochure Box for the Sidebar and Page Builder.', 'proteuswidgets' ),
-					'classname'   => 'widget-brochure-box',
-				)
-			);
+			parent::__construct();
 		}
 
 		/**
@@ -32,9 +30,8 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			// mustache widget-brochure-box template rendering
-			global $mustache;
-			echo $mustache->render('widget-brochure-box', array(
+			// Mustache widget-brochure-box template rendering
+			echo $this->mustache->render('widget-brochure-box', array(
 				'before-widget' => $args['before_widget'],
 				'after-widget'  => $args['after_widget'],
 				'title'         => ( ! empty ( $instance['title'] ) ) ? $args['before_title'] . apply_filters( 'widget_title', $instance['title'], $instance ) . $args['after_title'] : '',

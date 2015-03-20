@@ -7,22 +7,20 @@
  */
 
 if ( ! class_exists( 'PW_Social_Icons' ) ) {
-	class PW_Social_Icons extends WP_Widget {
+	class PW_Social_Icons extends PW_Widget {
 
 		private $num_social_icons = 8;
+
+		// Basic widget settings
+		function widget_name() { return __( 'Social Icons', 'proteuswidgets' ); }
+		function widget_description() { return __( 'Social Icons widget for Header of the page.', 'proteuswidgets' ); }
+		function widget_class() { return 'widget-social-icons'; }
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
-			parent::__construct(
-				false, // ID, auto generate when false
-				sprintf( 'ProteusThemes: %s', __( 'Social Icons', 'proteuswidgets' ) ), // Name
-				array(
-					'description' => __( 'Social Icons for Header of the page.', 'proteuswidgets' ),
-					'classname'   => 'widget-social-icons',
-				)
-			);
+			parent::__construct();
 		}
 
 		/**
@@ -45,9 +43,8 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 				}
 			}
 
-			// mustache widget-social-icons template rendering
-			global $mustache;
-			echo $mustache->render('widget-social-icons', array(
+			// Mustache widget-social-icons template rendering
+			echo $this->mustache->render('widget-social-icons', array(
 				'before-widget' => $args['before_widget'],
 				'after-widget'  => $args['after_widget'],
 				'social-icons' => $social_icons,

@@ -7,32 +7,31 @@
  */
 
 if ( ! class_exists( 'PW_Testimonials' ) ) {
-	class PW_Testimonials extends WP_Widget {
+	class PW_Testimonials extends PW_Widget {
 
 		private $fields;
 		private $current_widget_id;
+
+		// Basic widget settings
+		function widget_name() { return __( 'Testimonials', 'proteuswidgets' ); }
+		function widget_description() { return __( 'Testimonials widget for Page Builder.', 'proteuswidgets' ); }
+		function widget_class() { return 'widget-testimonials'; }
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
-			parent::__construct(
-				false, // ID, auto generate when false
-				sprintf( 'ProteusThemes: %s', __( 'Testimonials', 'proteuswidgets' ) ), // Name
-				array(
-					'description' => __( 'Testimonials for Page Builder.', 'proteuswidgets' ),
-					'classname'   => 'widget-testimonials',
-				)
-			);
 
-			// get the settings for the testimonial widgets
+			parent::__construct();
+
+			// Get the settings for the testimonial widgets
 			$this->fields = apply_filters( 'pw/testimonial_widget', array(
 				'rating' => true,
 				'author_description' => false,
 				'number_of_testimonial_per_slide' => 2,
 			) );
 
-			//set the max number of testimonials per slide to 2
+			// Set the max number of testimonials per slide to 2
 			if ( $this->fields['number_of_testimonial_per_slide'] > 2 ) {
 				$this->fields['number_of_testimonial_per_slide'] = 2;
 			}
@@ -84,9 +83,8 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				}
 			}
 
-			// mustache widget-testimonials template rendering
-			global $mustache;
-			echo $mustache->render('widget-testimonials', array(
+			// Mustache widget-testimonials template rendering
+			echo $this->mustache->render('widget-testimonials', array(
 				'before-widget'   => $args['before_widget'],
 				'after-widget'    => $args['after_widget'],
 				'title'           => $title,

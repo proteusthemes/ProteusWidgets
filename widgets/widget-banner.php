@@ -7,20 +7,18 @@
  */
 
 if ( ! class_exists( 'PW_Banner' ) ) {
-	class PW_Banner extends WP_Widget {
+	class PW_Banner extends PW_Widget {
+
+		// Basic widget settings
+		function widget_name() { return __( 'Banner', 'proteuswidgets' ); }
+		function widget_description() { return __( 'Banner widget for the Sidebar and Page Builder..', 'proteuswidgets' ); }
+		function widget_class() { return 'widget-banner'; }
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
-			parent::__construct(
-				false, // ID, auto generate when false
-				sprintf( 'ProteusThemes: %s', __( 'Banner', 'proteuswidgets' ) ),
-				array(
-					'description' => __( 'Banner for Page Builder.', 'proteuswidgets'),
-					'classname'   => 'widget-banner',
-				)
-			);
+			parent::__construct();
 		}
 
 		/**
@@ -38,9 +36,8 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 			$link     = empty( $instance['link'] ) ? '' : $instance['link'];
 			$open_new = empty( $instance['open_new'] ) ? '' : $instance['open_new'];
 
-			// mustache widget-banner template rendering
-			global $mustache;
-			echo $mustache->render('widget-banner', array(
+			// Mustache widget-banner template rendering
+			echo $this->mustache->render('widget-banner', array(
 				'before-widget' => $args['before_widget'],
 				'after-widget'  => $args['after_widget'],
 				'title'         => $title,

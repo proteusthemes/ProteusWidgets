@@ -8,21 +8,20 @@
 
 
 if ( ! class_exists( 'PW_Facebook' ) ) {
-	class PW_Facebook extends WP_Widget {
+	class PW_Facebook extends PW_Widget {
+
+		// Basic widget settings
+		function widget_name() { return __( 'Facebook', 'proteuswidgets' ); }
+		function widget_description() { return __( 'Facebook like box with some customization settings', 'proteuswidgets' ); }
+		function widget_class() { return null; }
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
-			parent::__construct(
-				false, // ID, auto generate when false
-				sprintf( 'ProteusThemes: %s', __( 'Facebook', 'proteuswidgets' ) ), // Name
-				array(
-					'description' => __( 'Facebook like box with some customization settings.', 'proteuswidgets' ),
-				)
-			);
+			parent::__construct();
 
-			// color picker needed
+			// Color picker needed
 			add_action( 'admin_enqueue_scripts', array( $this, 'add_color_picker' ) );
 		}
 
@@ -62,9 +61,8 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 				'href'        => $instance['like_link'],
 			);
 
-			// mustache widget-facebook template rendering
-			global $mustache;
-			echo $mustache->render('widget-facebook', array(
+			// Mustache widget-facebook template rendering
+			echo $this->mustache->render('widget-facebook', array(
 				'before-widget' => $args['before_widget'],
 				'after-widget'  => $args['after_widget'],
 				'title'         => ( ! empty ( $instance['title'] ) ) ? $args['before_title'] . $instance['title'] . $args['after_title'] : '',

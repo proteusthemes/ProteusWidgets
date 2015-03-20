@@ -7,23 +7,20 @@
  */
 
 if ( ! class_exists( 'PW_About_Us' ) ) {
-	class PW_About_Us extends WP_Widget {
+	class PW_About_Us extends PW_Widget {
 
 		private $current_widget_id;
 
+		// Basic widget settings
+		function widget_name() { return __( 'About Us', 'proteuswidgets' ); }
+		function widget_description() { return __( 'About Us widget used in sidebar.', 'proteuswidgets' ); }
+		function widget_class() { return 'widget-about-us'; }
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
-			parent::__construct(
-				false, // ID, auto generate when false
-				sprintf( 'ProteusThemes: %s', __( 'About Us', 'proteuswidgets' ) ), // Name
-				array(
-					'description' => __( 'About Us widget used in sidebar.', 'proteuswidgets' ),
-					'classname'   => 'widget-about-us',
-				)
-			);
+			parent::__construct();
 		}
 
 		/**
@@ -54,13 +51,12 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				);
 			}
 
-			// mustache widget-about-us template rendering
+			// Mustache widget-about-us template rendering
 			$persons = PWFunctions::reorder_widget_array_key_values($persons);
 			if ( isset( $persons[0] ) ) {
 				$persons[0]['active'] = 'active';
 			}
-			global $mustache;
-			echo $mustache->render( 'widget-about-us', array(
+			echo $this->mustache->render( 'widget-about-us', array(
 				'before-widget'     => $args['before_widget'],
 				'after-widget'      => $args['after_widget'],
 				'persons'           => $persons,

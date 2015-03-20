@@ -19,17 +19,7 @@ define( 'PROTEUSWIDGETS_PATH', apply_filters( 'pw/plugin_dir_path', plugin_dir_p
 
 //include php files
 require_once( PROTEUSWIDGETS_PATH . 'inc/PWFunctions.php');
-
-// include autoload from composer for PHP mustache
-require_once( PROTEUSWIDGETS_PATH . 'vendor/autoload.php' );
-
-// set the mustache engine
-$mustache = new Mustache_Engine(
-	array(
-		'loader' => new Mustache_Loader_FilesystemLoader( PROTEUSWIDGETS_PATH . 'widgets/views' ),
-	)
-);
-
+require_once( PROTEUSWIDGETS_PATH . 'inc/class-pw-widget.php');
 
 /**
 * ProteusWidgets class, so we don't have to worry about namespace

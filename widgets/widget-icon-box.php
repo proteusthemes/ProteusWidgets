@@ -7,20 +7,18 @@
  */
 
 if ( ! class_exists( 'PW_Icon_Box' ) ) {
-	class PW_Icon_Box extends WP_Widget {
+	class PW_Icon_Box extends PW_Widget {
+
+		// Basic widget settings
+		function widget_name() { return __( 'Icon Box', 'proteuswidgets' ); }
+		function widget_description() { return __( 'Icon Box widget for the Header of the page.', 'proteuswidgets' ); }
+		function widget_class() { return 'widget-icon-box'; }
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
-			parent::__construct(
-				false, // ID, auto generate when false
-				sprintf( 'ProteusThemes: %s', __( 'Icon Box', 'proteuswidgets' ) ), // Name
-				array(
-					'description' => __( 'Icon Box for the Header of the page.', 'proteuswidgets' ),
-					'classname'   => 'widget-icon-box',
-				)
-			);
+			parent::__construct();
 		}
 
 		/**
@@ -32,9 +30,8 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			// mustache widget-icon-box template rendering
-			global $mustache;
-			echo $mustache->render('widget-icon-box', array(
+			// Mustache widget-icon-box template rendering
+			echo $this->mustache->render('widget-icon-box', array(
 				'before-widget' => $args['before_widget'],
 				'after-widget'  => $args['after_widget'],
 				'title'         => $instance['title'],

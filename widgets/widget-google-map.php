@@ -7,7 +7,7 @@
  */
 
 if ( ! class_exists( 'PW_Google_Map' ) ) {
-	class PW_Google_Map extends WP_Widget {
+	class PW_Google_Map extends PW_Widget {
 
 		// All these default skins can be found on https://snazzymaps.com
 		private $map_styles = array(
@@ -19,18 +19,16 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		);
 		private $current_widget_id;
 
+		// Basic widget settings
+		function widget_name() { return __( 'Google Map', 'proteuswidgets' ); }
+		function widget_description() { return __( 'Google Map widget for Page Builder.', 'proteuswidgets' ); }
+		function widget_class() { return null; }
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
-			parent::__construct(
-				false, // ID, auto generate when false
-				sprintf( 'ProteusThemes: %s', __( 'Google Map', 'proteuswidgets' ) ), // Name
-				array(
-					'description' => __( 'For use in the page builder', 'proteuswidgets' )
-				)
-			);
+			parent::__construct();
 
 			// Add other google map skins through this fiter
 			$this->map_styles = apply_filters( 'pw/google_map_skins' , $this->map_styles );
@@ -50,9 +48,8 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 
 			$locations = json_encode( array_values( $locations ) );
 
-			// mustache widget-google-map template rendering
-			global $mustache;
-			echo $mustache->render('widget-google-map', array(
+			// Mustache widget-google-map template rendering
+			echo $this->mustache->render('widget-google-map', array(
 				'before-widget' => $args['before_widget'],
 				'after-widget'  => $args['after_widget'],
 				'lat-lang'      => esc_attr( $latLng ),

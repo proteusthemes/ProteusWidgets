@@ -14,27 +14,24 @@
  **************************************/
 
 if ( ! class_exists( 'PW_Opening_Time' ) ) {
-	class PW_Opening_Time extends WP_Widget {
+	class PW_Opening_Time extends PW_Widget {
 
-		/**
-		 * Days of the week, needed for display and $instance variable
-		 */
+
+		// Days of the week, needed for display and $instance variable
 		private $days;
+
+		// Basic widget settings
+		function widget_name() { return __( 'Opening Time', 'proteuswidgets' ); }
+		function widget_description() { return __( 'Opening Time widget shows opening times per day with optional text.', 'proteuswidgets' ); }
+		function widget_class() { return 'opening-time'; }
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
-			parent::__construct(
-				false, // ID, auto generate when false
-				sprintf( 'ProteusThemes: %s', __( 'Opening Time', 'proteusthemes' ) ), // Name
-				array(
-					'description' => __( 'Opening Time Widget shows opening times per day with optional text.' , 'proteusthemes'),
-					'classname' => 'opening-time'
-				)
-			);
+			parent::__construct();
 
-			// set the right order of the days
+			// Set the right order of the days
 			$start_of_week = get_option( 'start_of_week ' ); // integer [0,6], 0 = Sunday, 1 = Monday ...
 			$this->days = array(
 				'Sun' => __( 'Sunday', 'proteusthemes' ),
@@ -100,9 +97,8 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 				$i++;
 			}
 
-			// mustache widget-opening-time template rendering
-			global $mustache;
-			echo $mustache->render('widget-opening-time', array(
+			// Mustache widget-opening-time template rendering
+			echo $this->mustache->render('widget-opening-time', array(
 				'before-widget' => $args['before_widget'],
 				'after-widget'  => $args['after_widget'],
 				'opening-times' => $opening_times,

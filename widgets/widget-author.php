@@ -8,19 +8,18 @@
 
 
 if ( ! class_exists( 'PW_Author' ) ) {
-	class PW_Author extends WP_Widget {
+	class PW_Author extends PW_Widget {
+
+		// Basic widget settings
+		function widget_name() { return __( 'Author', 'proteuswidgets' ); }
+		function widget_description() { return __( 'Author widget used in sidebar.', 'proteuswidgets' ); }
+		function widget_class() { return 'widget-author'; }
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
-			parent::__construct(
-				false, // ID, auto generate when false
-				sprintf( 'ProteusThemes: %s', __( 'Author Widget', 'proteuswidgets' ) ),
-				array(
-					'classname' => 'widget-author'
-				)
-			);
+			parent::__construct();
 		}
 
 		/**
@@ -40,9 +39,8 @@ if ( ! class_exists( 'PW_Author' ) ) {
 				}
 			}
 
-			// mustache author-widget template rendering
-			global $mustache;
-			echo $mustache->render('widget-author', array(
+			// Mustache author-widget template rendering
+			echo $this->mustache->render('widget-author', array(
 				'before-widget'           => $args['before_widget'],
 				'after-widget'            => $args['after_widget'],
 				'author-avatar'           => get_avatar( $selected_user_id, 90 ),
