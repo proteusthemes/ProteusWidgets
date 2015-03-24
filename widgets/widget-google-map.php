@@ -49,7 +49,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			$locations = json_encode( array_values( $locations ) );
 
 			// Mustache widget-google-map template rendering
-			echo $this->mustache->render('widget-google-map', array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_google_map_view', 'widget-google-map' ), array(
 				'before-widget' => $args['before_widget'],
 				'after-widget'  => $args['after_widget'],
 				'lat-lang'      => esc_attr( $latLng ),

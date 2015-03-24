@@ -52,11 +52,11 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			}
 
 			// Mustache widget-about-us template rendering
-			$persons = PWFunctions::reorder_widget_array_key_values($persons);
+			$persons = PWFunctions::reorder_widget_array_key_values( $persons );
 			if ( isset( $persons[0] ) ) {
 				$persons[0]['active'] = 'active';
 			}
-			echo $this->mustache->render( 'widget-about-us', array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_about_us_view', 'widget-about-us' ), array(
 				'before-widget'     => $args['before_widget'],
 				'after-widget'      => $args['after_widget'],
 				'persons'           => $persons,

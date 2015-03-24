@@ -62,7 +62,7 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 			);
 
 			// Mustache widget-facebook template rendering
-			echo $this->mustache->render('widget-facebook', array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_facebook_view', 'widget-facebook' ), array(
 				'before-widget' => $args['before_widget'],
 				'after-widget'  => $args['after_widget'],
 				'title'         => ( ! empty ( $instance['title'] ) ) ? $args['before_title'] . $instance['title'] . $args['after_title'] : '',

@@ -31,7 +31,7 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Mustache widget-brochure-box template rendering
-			echo $this->mustache->render('widget-brochure-box', array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_brochure_box_view', 'widget-brochure-box' ), array(
 				'before-widget' => $args['before_widget'],
 				'after-widget'  => $args['after_widget'],
 				'title'         => ( ! empty ( $instance['title'] ) ) ? $args['before_title'] . apply_filters( 'widget_title', $instance['title'], $instance ) . $args['after_title'] : '',

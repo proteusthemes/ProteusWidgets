@@ -84,7 +84,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			}
 
 			// Mustache widget-testimonials template rendering
-			echo $this->mustache->render('widget-testimonials', array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_testimonials_view', 'widget-testimonials' ), array(
 				'before-widget'   => $args['before_widget'],
 				'after-widget'    => $args['after_widget'],
 				'title'           => $title,

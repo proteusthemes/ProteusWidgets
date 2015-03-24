@@ -44,7 +44,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 			}
 
 			// Mustache widget-social-icons template rendering
-			echo $this->mustache->render('widget-social-icons', array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_social_icons_view', 'widget-social-icons' ), array(
 				'before-widget' => $args['before_widget'],
 				'after-widget'  => $args['after_widget'],
 				'social-icons' => $social_icons,

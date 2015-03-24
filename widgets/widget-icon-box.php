@@ -31,7 +31,7 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Mustache widget-icon-box template rendering
-			echo $this->mustache->render('widget-icon-box', array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_icon_box_view', 'widget-icon-box' ), array(
 				'before-widget' => $args['before_widget'],
 				'after-widget'  => $args['after_widget'],
 				'title'         => $instance['title'],

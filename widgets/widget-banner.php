@@ -37,7 +37,7 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 			$open_new = empty( $instance['open_new'] ) ? '' : $instance['open_new'];
 
 			// Mustache widget-banner template rendering
-			echo $this->mustache->render('widget-banner', array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_banner_view', 'widget-banner' ), array(
 				'before-widget' => $args['before_widget'],
 				'after-widget'  => $args['after_widget'],
 				'title'         => $title,

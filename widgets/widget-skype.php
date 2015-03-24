@@ -36,7 +36,7 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 
 
 			// Mustache widget-skype template rendering
-			echo $this->mustache->render('widget-skype', array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_skype_view', 'widget-skype' ), array(
 				'before-widget'  => $args['before_widget'],
 				'after-widget'   => $args['after_widget'],
 				'title'          => $title,
