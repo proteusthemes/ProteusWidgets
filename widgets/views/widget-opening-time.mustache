@@ -1,10 +1,10 @@
-{{{ before-widget }}}
+{{{ args.before_widget }}}
 
 	<div class="time-table">
 
-		{{# title }}
-			<h3><span class="icon icons-ornament-left"></span>{{{ title }}}<span class="icon icons-ornament-right"></span></h3>
-		{{/ title }}
+		{{# instance.title }}
+			<h3><span class="icon icons-ornament-left"></span>{{{ instance.title }}}<span class="icon icons-ornament-right"></span></h3>
+		{{/ instance.title }}
 
 		<div class="inner-bg">
 			{{# opening-times }}
@@ -15,9 +15,10 @@
 			{{/ opening-times }}
 		</div>
 
-		{{# additional-info}}
-			<div class="additional-info">{{ additional-info }}</div>
-		{{/ additional-info}}
+		{{# instance.additional_info }}
+			<div class="additional-info">{{ instance.additional_info }}</div>
+		{{/ instance.additional_info }}
 
 	</div>
-{{{ after-widget }}}
+
+{{{ args.after_widget }}}

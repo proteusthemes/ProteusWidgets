@@ -26,10 +26,9 @@ if ( ! class_exists( 'PW_Author' ) ) {
 		 * Front-end display of widget.
 		 */
 		public function widget( $args, $instance ) {
-			extract( $args );
+			// Prepare data for mustache template
 			$selected_user_id = intval( $instance['selected_user_id'] );
-
-			$social_icons = array();
+			$social_icons     = array();
 
 			if ( is_callable( 'PWFunctions::get_social_icons_links' ) ) {
 				$icons = PWFunctions::get_social_icons_links( get_user_meta( $selected_user_id ) );
@@ -41,11 +40,10 @@ if ( ! class_exists( 'PW_Author' ) ) {
 
 			// Mustache author-widget template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_author_view', 'widget-author' ), array(
-				'before-widget'           => $args['before_widget'],
-				'after-widget'            => $args['after_widget'],
+				'args'                    => $args,
 				'author-avatar'           => get_avatar( $selected_user_id, 90 ),
 				'author-posts'            => get_author_posts_url( $selected_user_id ),
-				'author-meta-name'        => $before_title . get_the_author_meta( 'display_name', $selected_user_id ) . $after_title,
+				'author-meta-name'        => $args['before_title'] . get_the_author_meta( 'display_name', $selected_user_id ) . $args['after_title'],
 				'author-meta-description' => wpautop( get_the_author_meta( 'description', $selected_user_id ) ),
 				'author-meta-user-url'    => get_the_author_meta( 'user_url', $selected_user_id),
 				'social-icons'            => intval( count( $social_icons ) ),

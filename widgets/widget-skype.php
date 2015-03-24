@@ -30,18 +30,13 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-
-			$title          = empty( $instance['title'] ) ? '' : $instance['title'];
-			$skype_username = empty( $instance['skype_username'] ) ? '' : $instance['skype_username'];
-
+			// Prepare data for mustache template
+			$instance['icon'] = 'skype' == substr( $instance['skype_username'], 0, 5 ) ? 'skype' : 'phone';
 
 			// Mustache widget-skype template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_skype_view', 'widget-skype' ), array(
-				'before-widget'  => $args['before_widget'],
-				'after-widget'   => $args['after_widget'],
-				'title'          => $title,
-				'skype-or-phone' => 'skype' == substr( $skype_username, 0, 5 ) ? 'skype' : 'phone',
-				'skype-username' => $skype_username,
+				'args'     => $args,
+				'instance' => $instance,
 			));
 		}
 

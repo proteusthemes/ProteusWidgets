@@ -1,23 +1,23 @@
-{{{ before-widget }}}
+{{{ args.before_widget }}}
 
-	{{# link }}
-		<a class="icon-box" href="{{{ link }}}" target="{{ target }}">
-	{{/ link }}
-	{{^ link }}
+	{{# instance.btn_link }}
+		<a class="icon-box" href="{{{ instance.btn_link }}}" target="{{ instance.target }}">
+	{{/ instance.btn_link }}
+	{{^ instance.btn_link }}
 		<div class="icon-box">
-	{{/ link }}
+	{{/ instance.btn_link }}
 
-		<i class="fa  {{{ icon }}}  fa-3x"></i>
+		<i class="fa  {{{ instance.icon }}}  fa-3x"></i>
 		<div class="icon-box__text">
-			<h4 class="icon-box__title">{{ title }}</h4>
-			<span class="icon-box__subtitle">{{ text }}</span>
+			<h4 class="icon-box__title">{{ instance.title }}</h4>
+			<span class="icon-box__subtitle">{{ instance.text }}</span>
 		</div>
 
-	{{# link }}
+	{{# instance.btn_link }}
 		</a>
-	{{/ link }}
-	{{^ link }}
+	{{/ instance.btn_link }}
+	{{^ instance.btn_link }}
 		</div>
-	{{/ link }}
+	{{/ instance.btn_link }}
 
-{{{ after-widget }}}
+{{{ args.after_widget }}}

@@ -32,9 +32,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-			$autocycle = empty( $instance['autocycle'] ) ? false : 'yes' === $instance['autocycle'];
-			$interval  = empty( $instance['interval'] ) ? 5000 : absint( $instance['interval'] );
-
+			// Prepare data for mustache template
 			if ( isset( $instance['persons'] ) ) {
 				$persons = $instance['persons'];
 			}
@@ -51,22 +49,28 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				);
 			}
 
-			// Mustache widget-about-us template rendering
 			$persons = PWFunctions::reorder_widget_array_key_values( $persons );
 			if ( isset( $persons[0] ) ) {
 				$persons[0]['active'] = 'active';
 			}
+
+			$args['widget_id']           = esc_attr( $args['widget_id'] );
+			$instance['navigation']      = count( $persons ) > 1;
+			$instance['slider_settings'] = 'yes' === $instance['autocycle'] ? esc_attr( empty( $instance['interval'] ) ? 5000 : absint( $instance['interval'] ) ) : 'false';
+
+			$text = array(
+				'image-alt'  => esc_attr__( 'About us image', 'proteuswidgets' ),
+				'read-more'  => __( 'Read more', 'proteuswidgets' ),
+				'previous'   => __( 'Previous', 'proteuswidgets' ),
+				'next'       => __( 'Next', 'proteuswidgets' ),
+			);
+
+			// Mustache widget-about-us template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_about_us_view', 'widget-about-us' ), array(
-				'before-widget'     => $args['before_widget'],
-				'after-widget'      => $args['after_widget'],
-				'persons'           => $persons,
-				'widget-id'         => esc_attr( $args['widget_id'] ),
-				'data-interval'     => $autocycle ? 'data-interval=' . esc_attr( $interval ) : 'data-interval=false',
-				'navigation'        => count( $persons ) > 1,
-				'image-alt-text'    => esc_attr__( 'About us image', 'proteuswidgets' ),
-				'read-more-text'    => __( 'Read more', 'proteuswidgets' ),
-				'previous-text'     => __( 'Previous', 'proteuswidgets' ),
-				'next-text'         => __( 'Next', 'proteuswidgets' ),
+				'args'     => $args,
+				'instance' => $instance,
+				'persons'  => $persons,
+				'text'     => $text,
 			) );
 
 		}

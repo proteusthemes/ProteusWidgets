@@ -1,22 +1,24 @@
-{{{ before-widget }}}
-	{{# link }}
-		<a class="banner" href="{{{ link }}}" target="{{ link-target }}">
-	{{/ link }}
-	{{^ link }}
+{{{ args.before_widget }}}
+
+	{{# instance.link }}
+		<a class="banner" href="{{{ instance.link }}}" target="{{ link-target }}">
+	{{/ instance.link }}
+	{{^ instance.link }}
 		<div class="banner">
-	{{/ link }}
+	{{/ instance.link }}
 
 		<div class="banner__title">
-			{{ title }}
+			{{ instance.title }}
 		</div>
 		<div class="banner__content">
-			{{ content }}
+			{{ instance.content }}
 		</div>
 
-	{{# link }}
+	{{# instance.link }}
 		</a>
-	{{/ link }}
-	{{^ link }}
+	{{/ instance.link }}
+	{{^ instance.link }}
 		</div>
-	{{/ link }}
-{{{ after-widget }}}
+	{{/ instance.link }}
+
+{{{ args.after_widget }}}

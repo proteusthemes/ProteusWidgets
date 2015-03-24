@@ -1,13 +1,13 @@
-{{{ before-widget }}}
+{{{ args.before_widget }}}
 
 	<div
 		class="simple-map  js-where-we-are"
-		data-latlng="{{{ lat-lang }}}"
-		data-markers="{{{ locations }}}"
-		data-zoom="{{ zoom }}"
-		data-type="{{{ type }}}"
-		data-style="{{{ styles }}}"
-		style="height: {{ height }}px;"
+		data-latlng="{{{ instance.latLng }}}"
+		data-markers="{{{ instance.locations }}}"
+		data-zoom="{{ instance.zoom }}"
+		data-type="{{{ instance.type }}}"
+		data-style="{{{ instance.style }}}"
+		style="height: {{ instance.height }}px;"
 	></div>
 
-{{{ after-widget }}}
+{{{ args.after_widget }}}

@@ -42,8 +42,8 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			extract( $args );
-			$instance['title']      = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
+			// Prepare data for mustache template
+			$instance['title']      = $args['before_title'] . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $args['after_title'];
 			$instance['height']     = absint( $instance['height'] );
 			$instance['background'] = esc_attr( $instance['background'] );
 
@@ -63,12 +63,9 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 
 			// Mustache widget-facebook template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_facebook_view', 'widget-facebook' ), array(
-				'before-widget' => $args['before_widget'],
-				'after-widget'  => $args['after_widget'],
-				'title'         => ( ! empty ( $instance['title'] ) ) ? $args['before_title'] . $instance['title'] . $args['after_title'] : '',
-				'http-query'    => http_build_query( $fb_params ),
-				'height'        => $fb_params['height'],
-				'background'    => $instance['background'],
+				'args'       => $args,
+				'instance'   => $instance,
+				'http-query' => http_build_query( $fb_params ),
 			));
 		}
 

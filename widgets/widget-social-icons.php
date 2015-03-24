@@ -32,7 +32,9 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			$social_icons = array();
+			// Prepare data for mustache template
+			$instance['target'] = ! empty ( $instance['new_tab'] ) ? '_blank' : '_self';
+			$social_icons       = array();
 
 			for ( $i=0; $i < $this->num_social_icons; $i++ ) {
 				if ( ! empty ( $instance[ 'btn_link_' . $i ] ) ) {
@@ -45,10 +47,9 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 
 			// Mustache widget-social-icons template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_social_icons_view', 'widget-social-icons' ), array(
-				'before-widget' => $args['before_widget'],
-				'after-widget'  => $args['after_widget'],
+				'args'         => $args,
+				'instance'     => $instance,
 				'social-icons' => $social_icons,
-				'link-target' => ! empty ( $instance['new_tab'] ) ? '_blank' : '_self',
 			));
 		}
 

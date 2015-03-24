@@ -36,37 +36,37 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			// Prepare data for mustache template
+			$page_id            = absint( $instance['page_id'] );
+			$instance['layout'] = sanitize_key( $instance['layout'] );
+			$thumbnail_size     = 'inline' === $instance['layout'] ? 'thumbnail' : 'page-box';
 
-			$page_id        = absint( $instance['page_id'] );
-			$layout         = sanitize_key( $instance['layout'] );
-			$thumbnail_size = 'inline' === $layout ? 'thumbnail' : 'page-box';
-
-			// get basic page info
+			// Get basic page info
 			if ( $page_id ) {
 				$page = (array)get_post($page_id);
 			}
 
-			//prepare the excerpt text
+			// Prepare the excerpt text
 			$excerpt = ! empty( $page['post_excerpt'] ) ? $page['post_excerpt'] : $page['post_content'];
 
-			if ( 'inline' === $layout && strlen( $excerpt ) > self::INLINE_EXCERPT ) {
+			if ( 'inline' === $instance['layout'] && strlen( $excerpt ) > self::INLINE_EXCERPT ) {
 				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', self::INLINE_EXCERPT ) ) . ' &hellip;';
 			}
 			elseif ( strlen( $excerpt ) > self::BLOCK_EXCERPT ) {
 				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', self::BLOCK_EXCERPT ) ) . ' &hellip;';
 			}
 
+			$page['post_excerpt'] = sanitize_text_field( $excerpt );
+			$page['link']         = get_permalink( $page_id );
+			$page['thumbnail']    = get_the_post_thumbnail( $page_id, $thumbnail_size );
+
 			// Mustache widget-featured-page template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_featured_page_view', 'widget-featured-page' ), array(
-				'before-widget' => $args['before_widget'],
-				'after-widget'  => $args['after_widget'],
-				'title'         => $page['post_title'],
-				'excerpt'       => sanitize_text_field( $excerpt ),
-				'link'          => get_permalink( $page_id ),
-				'thumbnail'     => get_the_post_thumbnail( $page_id, $thumbnail_size ),
-				'block'         => 'block' === $layout,
-				'layout'        => $layout,
-				'read-more'     => __( 'Read more', 'proteuswidgets' ),
+				'args'      => $args,
+				'page'      => $page,
+				'instance'  => $instance,
+				'block'     => 'block' === $instance['layout'],
+				'read-more' => __( 'Read more', 'proteuswidgets' ),
 
 			));
 		}

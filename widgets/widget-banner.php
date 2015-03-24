@@ -30,20 +30,14 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-
-			$title    = empty( $instance['title'] ) ? '' : $instance['title'];
-			$content  = empty( $instance['content'] ) ? '' : $instance['content'];
-			$link     = empty( $instance['link'] ) ? '' : $instance['link'];
-			$open_new = empty( $instance['open_new'] ) ? '' : $instance['open_new'];
+			// Prepare data for mustache template
+			$instance['link'] = esc_url( $instance['link'] );
 
 			// Mustache widget-banner template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_banner_view', 'widget-banner' ), array(
-				'before-widget' => $args['before_widget'],
-				'after-widget'  => $args['after_widget'],
-				'title'         => $title,
-				'content'       => $content,
-				'link'          => esc_url( $link ),
-				'link-target'   => ( '1' == $open_new ) ? '_blank' : '_self',
+				'args'        => $args,
+				'instance'    => $instance,
+				'link-target' => ( '1' == $instance['open_new'] ) ? '_blank' : '_self',
 			));
 		}
 

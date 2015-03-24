@@ -43,21 +43,18 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			extract( $args );
-			extract( $instance );
-
-			$locations = json_encode( array_values( $locations ) );
+			// Prepare data for mustache template
+			$instance['locations'] = esc_attr( json_encode( array_values( $instance['locations'] ) ) );
+			$instance['latLng']    = esc_attr( $instance['latLng'] );
+			$instance['zoom']      = absint( $instance['zoom'] );
+			$instance['type']      = esc_attr( $instance['type'] );
+			$instance['style']     = esc_attr( $this->map_styles[$instance['style'] ] );
+			$instance['height']    = absint( $instance['height'] );
 
 			// Mustache widget-google-map template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_google_map_view', 'widget-google-map' ), array(
-				'before-widget' => $args['before_widget'],
-				'after-widget'  => $args['after_widget'],
-				'lat-lang'      => esc_attr( $latLng ),
-				'locations'     => esc_attr( $locations ),
-				'zoom'          => absint( $zoom ),
-				'type'          => esc_attr( $type ),
-				'styles'        => esc_attr( $this->map_styles[$style] ),
-				'height'        => absint( $height ),
+				'args'     => $args,
+				'instance' => $instance,
 			));
 
 		}

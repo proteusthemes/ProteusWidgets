@@ -1,14 +1,14 @@
-{{{ before-widget }}}
+{{{ args.before_widget }}}
 
-	<div class="page-box  page-box--{{ layout }}">
-		<a class="page-box__picture" href="{{{ link }}}">{{{ thumbnail }}}</a>
+	<div class="page-box  page-box--{{ instance.layout }}">
+		<a class="page-box__picture" href="{{{ page.link }}}">{{{ page.thumbnail }}}</a>
 		<div class="page-box__content">
-			<h5 class="page-box__title  text-uppercase"><a href="{{{ link }}}">{{ title }}</a></h5>
-			{{{ excerpt }}}
+			<h5 class="page-box__title  text-uppercase"><a href="{{{ page.link }}}">{{ page.post_title }}</a></h5>
+			{{{ page.post_excerpt }}}
 			{{# block }}
-				<p><a href="{{{ link }}}" class="read-more  read-more--page-box">{{ read-more }}</a></p>
+				<p><a href="{{{ page.link }}}" class="read-more  read-more--page-box">{{ read-more }}</a></p>
 			{{/ block }}
 		</div>
 	</div>
 
-{{{ after-widget }}}
+{{{ args.after_widget }}}

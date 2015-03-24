@@ -47,10 +47,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-			$title     = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
-			$autocycle = empty( $instance['autocycle'] ) ? false : 'yes' === $instance['autocycle'];
-			$interval  = empty( $instance['interval'] ) ? 5000 : absint( $instance['interval'] );
-
+			// Prepare data for mustache template
 			if ( isset( $instance['quote'] ) ) {
 				$testimonials = array( array(
 					'quote'  => $instance['quote'],
@@ -63,14 +60,13 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				$testimonials = array_values( $instance['testimonials'] );
 			}
 
-			$spans = count( $testimonials ) < 2 ? '12' : '6';
+			$instance['spans'] = count( $testimonials ) < 2 ? '12' : '6';
 
 			// set the layout of the testimonials per slide
 			if ( $this->fields['number_of_testimonial_per_slide'] < 2 ) {
-				$spans = '12';
+				$instance['spans'] = '12';
 			}
 
-			// prepare data for mustache
 			$testimonials = PWFunctions::reorder_widget_array_key_values($testimonials);
 			if ( isset( $testimonials[0] ) ) {
 				$testimonials[0]['active'] = 'active';
@@ -83,18 +79,22 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				}
 			}
 
+			$instance['title']           = apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base );
+			$args['widget_id']           = esc_attr( $args['widget_id'] );
+			$instance['navigation']      = count( $testimonials ) > $this->fields['number_of_testimonial_per_slide'];
+			$instance['slider_settings'] = 'yes' === $instance['autocycle'] ? esc_attr( empty( $instance['interval'] ) ? 5000 : absint( $instance['interval'] ) ) : 'false';
+
+			$text = array(
+				'previous'   => __( 'Previous', 'proteuswidgets' ),
+				'next'       => __( 'Next', 'proteuswidgets' ),
+			);
+
 			// Mustache widget-testimonials template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_testimonials_view', 'widget-testimonials' ), array(
-				'before-widget'   => $args['before_widget'],
-				'after-widget'    => $args['after_widget'],
-				'title'           => $title,
-				'testimonials'    => $testimonials,
-				'spans'           => $spans,
-				'widget-id'       => esc_attr( $args['widget_id'] ),
-				'slider-settings' => $autocycle ? 'data-ride="carousel" data-interval="' . esc_attr( $interval ) . '"' : '',
-				'navigation'      => count( $testimonials ) > $this->fields['number_of_testimonial_per_slide'],
-				'previous-text'   => __( 'Previous', 'proteuswidgets' ),
-				'next-text'       => __( 'Next', 'proteuswidgets' ),
+				'args'         => $args,
+				'instance'     => $instance,
+				'testimonials' => $testimonials,
+				'text'         => $text,
 			));
 		}
 

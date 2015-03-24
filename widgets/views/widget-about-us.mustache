@@ -1,6 +1,6 @@
-{{{ before-widget }}}
+{{{ args.before_widget }}}
 
-	<div id="carousel-persons-{{ widget-id }}" class="carousel slide" data-ride="carousel" {{ data-interval }}>
+	<div id="carousel-persons-{{ args.widget_id }}" class="carousel slide" data-ride="carousel" data-interval="{{ instance.slider_settings }}">
 		<div class="carousel-inner" role="listbox">
 			{{# persons }}
 				<div class="item {{ active }}">
@@ -14,30 +14,30 @@
 					{{/ tag }}
 
 					{{# image }}
-						<img class="about-us__image" src="{{ image }}" alt="{{ image-alt-text }}">
+						<img class="about-us__image" src="{{ image }}" alt="{{ text.image-alt }}">
 					{{/ image }}
 
 					<h5 class="about-us__name">{{ name }}</h5>
 					<p class="about-us__description">{{ description }}</p>
 					{{# link }}
-						<a href="{{ link }}" class="read-more  about-us__link">{{ read-more-text }}</a>
+						<a href="{{ link }}" class="read-more  about-us__link">{{ text.read-more }}</a>
 					{{/ link }}
 				</div>
 			{{/ persons }}
 		</div>
 	</div>
 
-	{{# navigation }}
+	{{# instance.navigation }}
 		<div class="about-us__navigation">
-			<a class="person__carousel  person__carousel--left about-us__navigation__left" href="#carousel-persons-{{ widget-id }}" data-slide="prev">
+			<a class="person__carousel  person__carousel--left about-us__navigation__left" href="#carousel-persons-{{ args.widget_id }}" data-slide="prev">
 				<i class="fa  fa-chevron-left" aria-hidden="true"></i>
-				<span class="sr-only" role="button">{{ previous-text }}</span>
+				<span class="sr-only" role="button">{{ text.previous }}</span>
 			</a>
-			<a class="person__carousel  person__carousel--right about-us__navigation__right" href="#carousel-persons-{{ widget-id }}" data-slide="next">
+			<a class="person__carousel  person__carousel--right about-us__navigation__right" href="#carousel-persons-{{ args.widget_id }}" data-slide="next">
 				<i class="fa  fa-chevron-right" aria-hidden="true"></i>
-				<span class="sr-only" role="button">{{ next-text }}</span>
+				<span class="sr-only" role="button">{{ text.next }}</span>
 			</a>
 		</div>
-	{{/ navigation }}
+	{{/ instance.navigation }}
 
-{{{ after-widget }}}
+{{{ args.after_widget }}}

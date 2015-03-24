@@ -1,13 +1,13 @@
-{{{ before-widget }}}
+{{{ args.before_widget }}}
 
-	{{{ title }}}
+	{{{ instance.title }}}
 
 	<div class="iframe-like-box">
 		<iframe src="//www.facebook.com/plugins/likebox.php?{{{ http-query }}}" frameborder="0"></iframe>
 	</div>
 
 	<style type="text/css">
-		.iframe-like-box > iframe { min-height: {{ height }}px; background-color: {{ background }}; max-width: 100%; }
+		.iframe-like-box > iframe { min-height: {{ instance.height }}px; background-color: {{ instance.background }}; max-width: 100%; }
 	</style>
 
-{{{ after-widget }}}
+{{{ args.after_widget }}}
