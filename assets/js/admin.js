@@ -11,7 +11,7 @@ jQuery( document ).ready( function( $ ) {
 	$( 'body' ).on( 'click', '.js-selectable-icon', function ( ev ) {
 		ev.preventDefault();
 		var $this = $( this );
-		$this.siblings( '.js-icon-input' ).val( $this.data( 'iconname' ) );
+		$this.siblings( '.js-icon-input' ).val( $this.data( 'iconname' ) ).change();
 	} );
 
 } );
@@ -49,6 +49,14 @@ proteusWidgets.Person = Backbone.Model.extend( {
 		'name': '',
 		'description': '',
 		'link': '',
+	},
+} );
+
+// model for a single person
+proteusWidgets.SocialIcon = Backbone.Model.extend( {
+	defaults: {
+		'link': '',
+		'icon': 'fa-facebook',
 	},
 } );
 
@@ -410,4 +418,127 @@ var repopulatePersons = function ( personsJSON, widgetId ) {
 	personsView.persons.add( personsJSON, { parse: true } );
 
 	window.persons = personsView;
+};
+
+
+
+/**
+ * Backbone handling of the multiple social icons
+ */
+
+// view of a single social icon
+proteusWidgets.socialIconView = Backbone.View.extend( {
+	className: 'pt-widget-single-social-icon',
+
+	events: {
+		'click .js-pt-remove-social-icon': 'destroy'
+	},
+
+	initialize: function ( params ) {
+		this.templateHTML = params.templateHTML;
+
+		return this;
+	},
+
+	render: function () {
+		this.$el.html( Mustache.render( this.templateHTML, this.model.attributes ) );
+
+		this.$( 'select.js-icon' ).val( this.model.get( 'icon' ) );
+
+		return this;
+	},
+
+	destroy: function ( ev ) {
+		ev.preventDefault();
+
+		this.remove();
+		this.model.trigger( 'destroy' );
+	},
+} );
+
+// view of all social icons, but associated with each individual widget
+proteusWidgets.socialIconsView = Backbone.View.extend( {
+	events: {
+		'click .js-pt-add-social-icon': 'addNew'
+	},
+
+	initialize: function ( params ) {
+
+		this.widgetId = params.widgetId;
+
+		// cached reference to the element in the DOM
+		this.$socialIcons = this.$( '.social-icons' );
+
+		// collection of social icons, local to each instance of proteusWidgets.socialIconsView
+		this.socialIcons = new Backbone.Collection( [], {
+			model: proteusWidgets.SocialIcon,
+		} );
+
+		// listen to adding of the new social icons
+		this.listenTo( this.socialIcons, 'add', this.appendOne );
+
+		return this;
+	},
+
+	addNew: function ( ev ) {
+		ev.preventDefault();
+
+		// default, if there is no social icons added yet
+		var socialIconId = 0;
+
+		if ( ! this.socialIcons.isEmpty() ) {
+			var socialIconsWithMaxId = this.socialIcons.max( function ( socialIcon ) {
+				return parseInt( socialIcon.id, 10 );
+			} );
+
+			socialIconId = parseInt( socialIconsWithMaxId.id, 10 ) + 1;
+		}
+
+
+		this.socialIcons.add( new proteusWidgets.SocialIcon( {
+			id: socialIconId,
+		} ) );
+
+		return this;
+	},
+
+	appendOne: function ( socialIcon ) {
+		var renderedSocialIcon = new proteusWidgets.socialIconView( {
+			model:        socialIcon,
+			templateHTML: jQuery( '#js-pt-social-icon-' + this.widgetId ).html(),
+		} ).render();
+
+		var currentWidgetId = this.widgetId;
+
+		// if the widget is in the initialize state (hidden), then do not append a new social icon
+		if ( '__i__' != currentWidgetId.slice( -5, currentWidgetId.length ) ) {
+			this.$socialIcons.append( renderedSocialIcon.el );
+		}
+
+		return this;
+	}
+} );
+
+/**
+ * Function which adds the existing social icons to the DOM
+ * @param  {json} socialIconsJSON
+ * @param  {string} widgetId ID of widget from PHP $this->id
+ * @return {void}
+ */
+var repopulateSocialIcons = function ( socialIconsJSON, widgetId ) {
+	// view of all social icons
+	var socialIconsView = new proteusWidgets.socialIconsView( {
+		el:       '#social-icons-' + widgetId,
+		widgetId: widgetId,
+	} );
+
+	// convert to array if needed
+	if ( _( socialIconsJSON ).isObject() ) {
+		socialIconsJSON = _( socialIconsJSON ).values();
+	};
+
+	// add all social icons to collection of newly created view
+	socialIconsView.socialIcons.add( socialIconsJSON, { parse: true } );
+
+	window.socialIcons = socialIconsView;
 };

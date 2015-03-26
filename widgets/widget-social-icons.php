@@ -10,6 +10,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 	class PW_Social_Icons extends PW_Widget {
 
 		private $num_social_icons = 8;
+		private $current_widget_id;
 
 		// Basic widget settings
 		function widget_name() { return __( 'Social Icons', 'proteuswidgets' ); }
@@ -33,23 +34,27 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
-			$instance['target'] = ! empty ( $instance['new_tab'] ) ? '_blank' : '_self';
-			$social_icons       = array();
-
-			for ( $i=0; $i < $this->num_social_icons; $i++ ) {
-				if ( ! empty ( $instance[ 'btn_link_' . $i ] ) ) {
-					$curent_line = array();
-					$curent_line['link'] = esc_url( $instance[ 'btn_link_' . $i ] );
-					$curent_line['icon'] = sanitize_html_class( $instance[ 'icon_' . $i ] );
-					array_push( $social_icons, $curent_line);
-				}
+			if ( ! isset( $instance['social_icons'] ) ) {
+				$instance['social_icons'] = array(
+					array(
+						'link' => '',
+						'icon' => '',
+					)
+				);
 			}
+
+			$instance['social_icons'] = PWFunctions::reorder_widget_array_key_values( $instance['social_icons'] );
+			// Escape data
+			for ($i=0; $i < count( $instance['social_icons'] ) ; $i++) {
+				$instance['social_icons'][$i]['link'] = esc_url( $instance['social_icons'][$i]['link'] );
+				$instance['social_icons'][$i]['icon'] = esc_attr( $instance['social_icons'][$i]['icon'] );
+			}
+			$instance['target'] = ! empty ( $instance['new_tab'] ) ? '_blank' : '_self';
 
 			// Mustache widget-social-icons template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_social_icons_view', 'widget-social-icons' ), array(
 				'args'         => $args,
 				'instance'     => $instance,
-				'social-icons' => $social_icons,
 			));
 		}
 
@@ -65,11 +70,9 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 */
 		public function update( $new_instance, $old_instance ) {
 			$instance = array();
-			for ( $i = 0; $i < $this->num_social_icons; $i++ ) {
-				$instance['btn_link_' . $i] = esc_url( $new_instance['btn_link_' . $i] );
-				$instance['icon_' . $i]     = sanitize_key( $new_instance['icon_' . $i] );
-			}
+			$instance['social_icons'] = $new_instance['social_icons'];
 			$instance['new_tab'] = sanitize_key( $new_instance['new_tab'] );
+
 			return $instance;
 		}
 
@@ -81,15 +84,26 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 * @param array $instance Previously saved values from database.
 		 */
 		public function form( $instance ) {
-			$btn_links = array();
-			$icons = array();
+			if ( ! isset( $instance['social_icons'] ) ) {
+				$instance['social_icons'] = array(
+					array(
+						'id'   => 1,
+						'link' => '',
+						'icon' => '',
+					)
+				);
+			}
+
 			$new_tab  = empty( $instance['new_tab'] ) ? '' : $instance['new_tab'];
 
-			for ( $i = 0; $i < $this->num_social_icons; $i++ ) {
-				$btn_links[$i] = empty( $instance['btn_link_' . $i] ) ? '' : $instance['btn_link_' . $i];
-				$icons[$i] = empty( $instance['icon_' . $i] ) ? '' : $instance['icon_' . $i];
+			// Page Builder fix when using repeating fields
+			if ( 'temp' === $this->id ) {
+				$this->current_widget_id = $this->number;
 			}
-			?>
+			else {
+				$this->current_widget_id = $this->id;
+			}
+		?>
 
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $new_tab, 'on'); ?> id="<?php echo $this->get_field_id( 'new_tab' ); ?>" name="<?php echo $this->get_field_name( 'new_tab' ); ?>" value="on" />
@@ -97,40 +111,58 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 			</p>
 			<hr>
 
-			<?php
-				foreach ( $btn_links as $i => $btn_link ) :
-			?>
+
+			<h4><?php _e( 'Social icons:', 'proteuswidgets' ); ?></h4>
+
+			<script type="text/template" id="js-pt-social-icon-<?php echo $this->current_widget_id; ?>">
 				<p>
-					<label for="<?php echo $this->get_field_id( 'btn_link_' . $i ); ?>"><?php _e( 'Link:', 'proteuswidgets' ); ?></label> <br />
-					<input style="width: 100%;" id="<?php echo $this->get_field_id( 'btn_link_' . $i ); ?>" name="<?php echo $this->get_field_name( 'btn_link_' . $i ); ?>" type="text" value="<?php echo $btn_link; ?>" />
+					<label for="<?php echo $this->get_field_id( 'social_icons' ); ?>-{{id}}-link"><?php _e( 'Link:', 'proteuswidgets' ); ?></label>
+					<input class="widefat" id="<?php echo $this->get_field_id( 'social_icons' ); ?>-{{id}}-link" name="<?php echo $this->get_field_name( 'social_icons' ); ?>[{{id}}][link]" type="text" value="{{link}}" />
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'icon_' . $i ); ?>"><?php _e( 'Select social network:', 'proteuswidgets' ); ?></label>
-					<select name="<?php echo $this->get_field_name( 'icon_' . $i ); ?>" id="<?php echo $this->get_field_id( 'icon_' . $i ); ?>">
-						<option value="fa-facebook" <?php selected( $icons[$i], 'fa-facebook' ); ?>>Facebook</option>
-						<option value="fa-twitter" <?php selected( $icons[$i], 'fa-twitter' ); ?>>Twitter</option>
-						<option value="fa-youtube" <?php selected( $icons[$i], 'fa-youtube' ); ?>>Youtube</option>
-						<option value="fa-skype" <?php selected( $icons[$i], 'fa-skype' ); ?>>Skype</option>
-						<option value="fa-google-plus" <?php selected( $icons[$i], 'fa-google-plus' ); ?>>Google Plus</option>
-						<option value="fa-pinterest" <?php selected( $icons[$i], 'fa-pinterest' ); ?>>Pinterest</option>
-						<option value="fa-instagram" <?php selected( $icons[$i], 'fa-instagram' ); ?>>Instagram</option>
-						<option value="fa-vine" <?php selected( $icons[$i], 'fa-vine' ); ?>>Vine</option>
-						<option value="fa-tumblr" <?php selected( $icons[$i], 'fa-tumblr' ); ?>>Tumblr</option>
-						<option value="fa-flickr" <?php selected( $icons[$i], 'fa-flickr' ); ?>>Flickr</option>
-						<option value="fa-vimeo-square" <?php selected( $icons[$i], 'fa-vimeo-square' ); ?>>Vimeo</option>
-						<option value="fa-linkedin" <?php selected( $icons[$i], 'fa-linkedin' ); ?>>Linkedin</option>
-						<option value="fa-dribble" <?php selected( $icons[$i], 'fa-dribble' ); ?>>Dribble</option>
-						<option value="fa-wordpress" <?php selected( $icons[$i], 'fa-wordpress' ); ?>>Wordpress</option>
-						<option value="fa-rss" <?php selected( $icons[$i], 'fa-rss' ); ?>>RSS</option>
+					<label for="<?php echo $this->get_field_id( 'social_icons' ); ?>-{{id}}-icon"><?php _e( 'Select social network:', 'proteuswidgets' ); ?></label>
+					<select name="<?php echo $this->get_field_name( 'social_icons'); ?>[{{id}}][icon]" id="<?php echo $this->get_field_id( 'social_icons' ); ?>-{{id}}-icon" class="js-icon">
+						<option value="fa-facebook" <?php selected( '{{icon}}', 'fa-facebook' ); ?>>Facebook</option>
+						<option value="fa-twitter" <?php selected( '{{icon}}', 'fa-twitter' ); ?>>Twitter</option>
+						<option value="fa-youtube" <?php selected( '{{icon}}', 'fa-youtube' ); ?>>Youtube</option>
+						<option value="fa-skype" <?php selected( '{{icon}}', 'fa-skype' ); ?>>Skype</option>
+						<option value="fa-google-plus" <?php selected( '{{icon}}', 'fa-google-plus' ); ?>>Google Plus</option>
+						<option value="fa-pinterest" <?php selected( '{{icon}}', 'fa-pinterest' ); ?>>Pinterest</option>
+						<option value="fa-instagram" <?php selected( '{{icon}}', 'fa-instagram' ); ?>>Instagram</option>
+						<option value="fa-vine" <?php selected( '{{icon}}', 'fa-vine' ); ?>>Vine</option>
+						<option value="fa-tumblr" <?php selected( '{{icon}}', 'fa-tumblr' ); ?>>Tumblr</option>
+						<option value="fa-flickr" <?php selected( '{{icon}}', 'fa-flickr' ); ?>>Flickr</option>
+						<option value="fa-vimeo-square" <?php selected( '{{icon}}', 'fa-vimeo-square' ); ?>>Vimeo</option>
+						<option value="fa-linkedin" <?php selected( '{{icon}}', 'fa-linkedin' ); ?>>Linkedin</option>
+						<option value="fa-dribble" <?php selected( '{{icon}}', 'fa-dribble' ); ?>>Dribble</option>
+						<option value="fa-wordpress" <?php selected( '{{icon}}', 'fa-wordpress' ); ?>>Wordpress</option>
+						<option value="fa-rss" <?php selected( '{{icon}}', 'fa-rss' ); ?>>RSS</option>
 					</select>
 				</p>
 
-				<hr>
+				<p>
+					<input name="<?php echo $this->get_field_name( 'social_icons' ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
+					<a href="#" class="pt-remove-social-icon  js-pt-remove-social-icon"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove social icon', 'proteuswidgets' ); ?></a>
+				</p>
+			</script>
+			<div class="pt-widget-social-icons" id="social-icons-<?php echo $this->current_widget_id; ?>">
+				<div class="social-icons"></div>
+				<p>
+					<a href="#" class="button  js-pt-add-social-icon"><?php _e( 'Add New Social Icon', 'proteuswidgets' ); ?></a>
+				</p>
+			</div>
+			<script type="text/javascript">
+				// repopulate the form
+				var socialIconsJSON = <?php echo json_encode( $instance['social_icons'] ) ?>;
 
-			<?php
-				endforeach;
-			?>
+				// get the right widget id and remove the added < > characters at the start and at the end.
+				var widgetId = '<<?php echo $this->current_widget_id; ?>>'.slice( 1, -1 );
+
+				if ( _.isFunction( repopulateSocialIcons ) ) {
+					repopulateSocialIcons( socialIconsJSON, widgetId );
+				}
+			</script>
 
 			<?php
 		}
