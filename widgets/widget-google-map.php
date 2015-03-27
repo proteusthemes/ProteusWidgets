@@ -72,13 +72,19 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		public function update( $new_instance, $old_instance ) {
 			$instance = array();
 
-			$instance['latLng'] = wp_kses_post( $new_instance['latLng'] );
+			$instance['latLng'] = sanitize_text_field( $new_instance['latLng'] );
 			$instance['zoom']   = absint( $new_instance['zoom'] );
 			$instance['type']   = sanitize_key( $new_instance['type'] );
-			$instance['style']  = wp_kses_post( $new_instance['style'] );
+			$instance['style']  = sanitize_text_field( $new_instance['style'] );
 			$instance['height'] = absint( $new_instance['height'] );
 
-			$instance['locations'] = $new_instance['locations'];
+			foreach ( $new_instance['locations'] as $key => $location ) {
+				$instance['locations'][$key]['id']             = sanitize_key( $location['id'] );
+				$instance['locations'][$key]['title']          = sanitize_text_field( $location['title'] );
+				$instance['locations'][$key]['locationlatlng'] = sanitize_text_field( $location['locationlatlng'] );
+				$instance['locations'][$key]['custompinimage'] = sanitize_text_field( $location['custompinimage'] );
+
+			}
 
 			return $instance;
 		}

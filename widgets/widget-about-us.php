@@ -84,9 +84,17 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		public function update( $new_instance, $old_instance ) {
 			$instance = array();
 
-			$instance['persons']   = $new_instance['persons'];
 			$instance['autocycle'] = sanitize_key( $new_instance['autocycle'] );
 			$instance['interval']  = absint( $new_instance['interval'] );
+
+			foreach ( $new_instance['persons'] as $key => $person ) {
+				$instance['persons'][$key]['id']          = sanitize_key( $person['id'] );
+				$instance['persons'][$key]['tag']         = sanitize_text_field( $person['tag'] );
+				$instance['persons'][$key]['image']       = sanitize_text_field( $person['image'] );
+				$instance['persons'][$key]['name']        = sanitize_text_field( $person['name'] );
+				$instance['persons'][$key]['description'] = sanitize_text_field( $person['description'] );
+				$instance['persons'][$key]['link']        = sanitize_text_field( $person['link'] );
+			}
 
 			return $instance;
 		}
