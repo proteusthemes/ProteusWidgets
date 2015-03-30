@@ -43,7 +43,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 
 			// Get basic page info
 			if ( $page_id ) {
-				$page = (array)get_post($page_id);
+				$page = (array) get_post( $page_id );
 			}
 
 			// Prepare the excerpt text
@@ -98,7 +98,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'page_id' ); ?>"><?php _e( 'Page:', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>"><?php _e( 'Page:', 'proteuswidgets' ); ?></label> <br>
 				<?php
 					wp_dropdown_pages( array(
 						'selected' => $page_id,
@@ -109,8 +109,8 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'layout' ); ?>"><?php _e( 'Layout:', 'proteuswidgets' ); ?></label> <br>
-				<select id="<?php echo $this->get_field_id( 'layout' ); ?>" name="<?php echo $this->get_field_name( 'layout' ); ?>">
+				<label for="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>"><?php _e( 'Layout:', 'proteuswidgets' ); ?></label> <br>
+				<select id="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'layout' ) ); ?>">
 					<option value="block" <?php selected( $layout, 'block' ); ?>><?php _e( 'With big picture', 'proteuswidgets' ); ?></option>
 					<option value="inline" <?php selected( $layout, 'inline' ); ?>><?php _e( 'With small picture, inline', 'proteuswidgets' ); ?></option>
 				</select>

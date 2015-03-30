@@ -48,7 +48,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			$instance['latLng']    = esc_attr( $instance['latLng'] );
 			$instance['zoom']      = absint( $instance['zoom'] );
 			$instance['type']      = esc_attr( $instance['type'] );
-			$instance['style']     = esc_attr( $this->map_styles[$instance['style'] ] );
+			$instance['style']     = esc_attr( $this->map_styles[ $instance['style'] ] );
 			$instance['height']    = absint( $instance['height'] );
 
 			// Mustache widget-google-map template rendering
@@ -79,10 +79,10 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			$instance['height'] = absint( $new_instance['height'] );
 
 			foreach ( $new_instance['locations'] as $key => $location ) {
-				$instance['locations'][$key]['id']             = sanitize_key( $location['id'] );
-				$instance['locations'][$key]['title']          = sanitize_text_field( $location['title'] );
-				$instance['locations'][$key]['locationlatlng'] = sanitize_text_field( $location['locationlatlng'] );
-				$instance['locations'][$key]['custompinimage'] = sanitize_text_field( $location['custompinimage'] );
+				$instance['locations'][ $key ]['id']             = sanitize_key( $location['id'] );
+				$instance['locations'][ $key ]['title']          = sanitize_text_field( $location['title'] );
+				$instance['locations'][ $key ]['locationlatlng'] = sanitize_text_field( $location['locationlatlng'] );
+				$instance['locations'][ $key ]['custompinimage'] = sanitize_text_field( $location['custompinimage'] );
 
 			}
 
@@ -109,7 +109,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 					'title'          => 'London',
 					'locationlatlng' => '51.507331,-0.127668',
 					'custompinimage' => '',
-				)
+				),
 			);
 
 			$map_types = array( 'roadmap', 'satellite', 'hybrid', 'terrain' );
@@ -122,44 +122,46 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 				$this->current_widget_id = $this->id;
 			}
 
+			$this->current_widget_id = esc_attr( $this->current_widget_id );
+
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'latLng' ); ?>"><?php _e( 'Latitude and longitude of the map center:', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'latLng' ) ); ?>"><?php _e( 'Latitude and longitude of the map center:', 'proteuswidgets' ); ?></label> <br>
 				<small><?php printf( __( "Get this from %s (right click on map and select What's here?) or %s. Latitude and longitude separated by comma.", 'proteuswidgets' ), '<a href="https://maps.google.com/" target="_blank">Google Maps</a>', '<a href="http://www.findlatitudeandlongitude.com/" target="_blank">this site</a>' ); ?></small>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'latLng' ); ?>" name="<?php echo $this->get_field_name( 'latLng' ); ?>" value="<?php echo esc_attr( $latLng ); ?>" />
+				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'latLng' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'latLng' ) ); ?>" value="<?php echo esc_attr( $latLng ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'zoom' ); ?>"><?php _e( 'Zoom (more is closer view):', 'proteuswidgets' ); ?></label>
-				<select class="widefat" id="<?php echo $this->get_field_id( 'zoom' ); ?>" name="<?php echo $this->get_field_name( 'zoom' ); ?>">
-				<?php for ( $i=1; $i < 25; $i++ ) : ?>
-					<option value="<?php echo $i; ?>" <?php selected( $zoom, $i ); ?>><?php echo $i; ?></option>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'zoom' ) ); ?>"><?php _e( 'Zoom (more is closer view):', 'proteuswidgets' ); ?></label>
+				<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'zoom' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'zoom' ) ); ?>">
+				<?php for ( $i = 1; $i < 25; $i++ ) : ?>
+					<option value="<?php echo esc_attr( $i ); ?>" <?php selected( $zoom, $i ); ?>><?php echo esc_html( $i ); ?></option>
 				<?php endfor; ?>
 				</select>
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'type' ); ?>"><?php _e( 'Type:', 'proteuswidgets' ); ?></label>
-				<select class="widefat" id="<?php echo $this->get_field_id( 'type' ); ?>" name="<?php echo $this->get_field_name( 'type' ); ?>">
+				<label for="<?php echo esc_attr( $this->get_field_id( 'type' ) ); ?>"><?php _e( 'Type:', 'proteuswidgets' ); ?></label>
+				<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'type' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'type' ) ); ?>">
 				<?php foreach ( $map_types as $map_type ) : ?>
-					<option value="<?php echo $map_type; ?>" <?php selected( $type, $map_type ); ?>><?php echo ucfirst( $map_type ); ?></option>
+					<option value="<?php echo esc_attr( $map_type ); ?>" <?php selected( $type, $map_type ); ?>><?php echo esc_html( ucfirst( $map_type ) ); ?></option>
 				<?php endforeach; ?>
 				</select>
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'style' ); ?>"><?php _e( 'Style:', 'proteuswidgets' ); ?></label>
-				<select class="widefat" id="<?php echo $this->get_field_id( 'style' ); ?>" name="<?php echo $this->get_field_name( 'style' ); ?>">
+				<label for="<?php echo esc_attr( $this->get_field_id( 'style' ) ); ?>"><?php _e( 'Style:', 'proteuswidgets' ); ?></label>
+				<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'style' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'style' ) ); ?>">
 				<?php foreach ( $this->map_styles as $style_name => $val ) : ?>
-					<option value="<?php echo $style_name; ?>" <?php selected( $style, $style_name ); ?>><?php echo $style_name; ?></option>
+					<option value="<?php echo esc_attr( $style_name ); ?>" <?php selected( $style, $style_name ); ?>><?php echo esc_html( $style_name ); ?></option>
 				<?php endforeach; ?>
 				</select>
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'height' ); ?>"><?php _e( 'Height of map (in pixels):', 'proteuswidgets' ); ?></label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'height' ); ?>" name="<?php echo $this->get_field_name( 'height' ); ?>" type="number" min="0" step="20" value="<?php echo esc_attr( $height ); ?>" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'height' ) ); ?>"><?php _e( 'Height of map (in pixels):', 'proteuswidgets' ); ?></label>
+				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'height' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'height' ) ); ?>" type="number" min="0" step="20" value="<?php echo esc_attr( $height ); ?>" />
 			</p>
 
 
@@ -167,24 +169,24 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 
 			<script type="text/template" id="js-pt-location-<?php echo $this->current_widget_id; ?>">
 				<p>
-					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-{{id}}-title"><?php _e( 'Title of location:', 'proteuswidgets' ); ?></label> <br>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'locations' ) ); ?>-{{id}}-title"><?php _e( 'Title of location:', 'proteuswidgets' ); ?></label> <br>
 					<small><?php _e( 'This is shown on pin mouse hover.', 'proteuswidgets' ); ?></small>
-					<input class="widefat" id="<?php echo $this->get_field_id( 'locations' ); ?>-{{id}}-title" name="<?php echo $this->get_field_name( 'locations' ); ?>[{{id}}][title]" type="text" value="{{title}}" />
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'locations' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'locations' ) ); ?>[{{id}}][title]" type="text" value="{{title}}" />
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-{{id}}-locationlatlng"><?php _e( 'Latitude and longitude of this location:', 'proteuswidgets' ); ?></label> <br>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'locations' ) ); ?>-{{id}}-locationlatlng"><?php _e( 'Latitude and longitude of this location:', 'proteuswidgets' ); ?></label> <br>
 					<small><?php _e( 'The same format as above for the map center.', 'proteuswidgets' ); ?></small>
-					<input class="widefat" id="<?php echo $this->get_field_id( 'locations' ); ?>-{{id}}-locationlatlng" name="<?php echo $this->get_field_name( 'locations' ); ?>[{{id}}][locationlatlng]" type="text" placeholder="40.724885,-74.00264" value="{{locationlatlng}}" />
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'locations' ) ); ?>-{{id}}-locationlatlng" name="<?php echo esc_attr( $this->get_field_name( 'locations' ) ); ?>[{{id}}][locationlatlng]" type="text" placeholder="40.724885,-74.00264" value="{{locationlatlng}}" />
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'locations' ); ?>-{{id}}-custompinimage"><?php _e( 'Custom pin icon URL:', 'proteuswidgets' ); ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id( 'locations' ); ?>-{{id}}-custompinimage" name="<?php echo $this->get_field_name( 'locations' ); ?>[{{id}}][custompinimage]" type="text" value="{{custompinimage}}" />
+					<label for="<?php echo esc_attr( $this->get_field_id( 'locations' ) ); ?>-{{id}}-custompinimage"><?php _e( 'Custom pin icon URL:', 'proteuswidgets' ); ?></label>
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'locations' ) ); ?>-{{id}}-custompinimage" name="<?php echo esc_attr( $this->get_field_name( 'locations' ) ); ?>[{{id}}][custompinimage]" type="text" value="{{custompinimage}}" />
 				</p>
 
 				<p>
-					<input name="<?php echo $this->get_field_name( 'locations' ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
+					<input name="<?php echo esc_attr( $this->get_field_name( 'locations' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
 					<a href="#" class="pt-remove-location  js-pt-remove-location"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Location', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>

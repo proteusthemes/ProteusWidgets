@@ -52,11 +52,11 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 		 * @return void
 		 */
 		private function rotate_days( $num ) {
-			for ( $i=0; $i < $num; $i++ ) {
+			for ( $i = 0; $i < $num; $i++ ) {
 				$keys = array_keys( $this->days );
-				$val  = $this->days[$keys[0]];
-				unset( $this->days[$keys[0]] );
-				$this->days[$keys[0]] = $val;
+				$val  = $this->days[ $keys[0] ];
+				unset( $this->days[ $keys[0] ] );
+				$this->days[ $keys[0] ] = $val;
 			}
 		}
 
@@ -70,22 +70,22 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
-			$current_time = intval( time() + ( (double)get_option('gmt_offset') * 3600 ) );
+			$current_time = intval( time() + ( (double) get_option( 'gmt_offset' ) * 3600 ) );
 			$opening_times = array();
 
 			$i = 0;
-			foreach( $this->days as $day_label => $day ) {
+			foreach ( $this->days as $day_label => $day ) {
 				$current_line = array();
 
 				$current_line['day'] = $day;
 
-				$class = $i%2==0 ? '' : ' light-bg';
-				$class .= ( '1' != $instance[$day_label . '_opened'] ) ? ' closed' : '';
+				$class = $i % 2 == 0 ? '' : ' light-bg';
+				$class .= ( '1' != $instance[ $day_label . '_opened' ] ) ? ' closed' : '';
 				$class .= ( date( 'D', $current_time ) == $day_label ) ? ' today' : '';
 				$current_line['class'] = esc_attr( $class );
 
-				if ( '1' == $instance[$day_label . '_opened'] ) {
-					$current_line['day-time'] = $instance[$day_label . '_from'] . $instance['separator'] . $instance[$day_label . '_to'];
+				if ( '1' == $instance[ $day_label . '_opened' ] ) {
+					$current_line['day-time'] = $instance[ $day_label . '_from' ] . $instance['separator'] . $instance[ $day_label . '_to' ];
 				} else {
 					$current_line['day-time'] = $instance['closed_text'];
 				}
@@ -122,10 +122,10 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 			$instance['title'] = strip_tags( $new_instance['title'] );
 
 			// days
-			foreach( $this->days as $day_label => $day ) {
-				$instance[$day_label . '_opened'] = strip_tags( $new_instance[$day_label . '_opened'] );
-				$instance[$day_label . '_from'] = strip_tags( $new_instance[$day_label . '_from'] );
-				$instance[$day_label . '_to'] = strip_tags( $new_instance[$day_label . '_to'] );
+			foreach ( $this->days as $day_label => $day ) {
+				$instance[ $day_label . '_opened' ] = strip_tags( $new_instance[ $day_label . '_opened' ] );
+				$instance[ $day_label . '_from' ] = strip_tags( $new_instance[ $day_label . '_from' ] );
+				$instance[ $day_label . '_to' ] = strip_tags( $new_instance[ $day_label . '_to' ] );
 			}
 
 			// separator
@@ -146,54 +146,54 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 		 * @param array $instance Previously saved values from database.
 		 */
 		public function form( $instance ) {
-			if ( isset( $instance[ 'title' ] ) ) {
-				$title = $instance[ 'title' ];
+			if ( isset( $instance['title'] ) ) {
+				$title = $instance['title'];
 			}
 			else {
-				$title = __( 'Opening Time' , 'proteusthemes');
+				$title = __( 'Opening Time' , 'proteusthemes' );
 			}
 
 			foreach ( $this->days as $day_label => $day ) {
 				// opened/closed
-				if ( isset( $instance[$day_label . '_opened'] ) ) {
-					if ( "1" == $instance[$day_label . '_opened'] ) {
-						$opened[$day_label] = 'checked="checked"';
+				if ( isset( $instance[ $day_label . '_opened' ] ) ) {
+					if ( '1' == $instance[ $day_label . '_opened' ] ) {
+						$opened[ $day_label ] = 'checked="checked"';
 					} else {
-						$opened[$day_label] = '';
+						$opened[ $day_label ] = '';
 					}
 				} else {
-					$opened[$day_label] = 'checked="checked"';
+					$opened[ $day_label ] = 'checked="checked"';
 				}
 				// from time
-				if ( isset( $instance[$day_label . '_from'] ) ) {
-					$from[$day_label] = $instance[$day_label . '_from'];
+				if ( isset( $instance[ $day_label . '_from' ] ) ) {
+					$from[ $day_label ] = $instance[ $day_label . '_from' ];
 				} else {
-					$from[$day_label] = "8:00";
+					$from[ $day_label ] = '8:00';
 				}
 				// to time
-				if ( isset( $instance[$day_label . '_to'] ) ) {
-					$to[$day_label] = $instance[$day_label . '_to'];
+				if ( isset( $instance[ $day_label . '_to' ] ) ) {
+					$to[ $day_label ] = $instance[ $day_label . '_to' ];
 				} else {
-					$to[$day_label] = "16:00";
+					$to[ $day_label ] = '16:00';
 				}
 			}
 
-			if ( isset( $instance[ 'separator' ] ) ) {
-				$separator = $instance[ 'separator' ];
+			if ( isset( $instance['separator'] ) ) {
+				$separator = $instance['separator'];
 			}
 			else {
-				$separator = __( '-' , 'proteusthemes');
+				$separator = __( '-' , 'proteusthemes' );
 			}
 
-			if ( isset( $instance[ 'closed_text' ] ) ) {
-				$closed_text = $instance[ 'closed_text' ];
+			if ( isset( $instance['closed_text'] ) ) {
+				$closed_text = $instance['closed_text'];
 			}
 			else {
-				$closed_text = __( 'CLOSED' , 'proteusthemes');
+				$closed_text = __( 'CLOSED' , 'proteusthemes' );
 			}
 
-			if ( isset( $instance[ 'additional_info' ] ) ) {
-				$additional_info = $instance[ 'additional_info' ];
+			if ( isset( $instance['additional_info'] ) ) {
+				$additional_info = $instance['additional_info'];
 			}
 			else {
 				$additional_info = '';
@@ -201,33 +201,33 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 
 			?>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' , 'proteusthemes'); ?></label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:' , 'proteusthemes' ); ?></label>
+				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 			<?php // days
 			foreach ( $this->days as $day_label => $day ) : ?>
 			<p>
-				<label for="<?php echo $this->get_field_id( $day_label . '_from' ); ?>"><b><?php echo $day; ?></b></label> <br />
-				<input type="checkbox" id="<?php echo $this->get_field_id( $day_label . '_opened' ) ?>" name="<?php echo $this->get_field_name( $day_label . '_opened' ); ?>" value="1" <?php echo $opened[$day_label]; ?> /> <?php _e( 'opened' , 'proteusthemes'); ?>
+				<label for="<?php echo esc_attr( $this->get_field_id( $day_label . '_from' ) ); ?>"><b><?php echo esc_html( $day ); ?></b></label> <br />
+				<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( $day_label . '_opened' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $day_label . '_opened' ) ); ?>" value="1" <?php echo esc_attr( $opened[ $day_label ] ); ?> /> <?php _e( 'opened' , 'proteusthemes' ); ?>
 				<br />
-				<input type="text" id="<?php echo $this->get_field_id( $day_label . '_from' ) ?>" name="<?php echo $this->get_field_name( $day_label . '_from' ); ?>" value="<?php echo esc_attr( $from[$day_label] ); ?>" size="5" /> <?php _e( "to" , 'proteusthemes') ?>
-				<input type="text" id="<?php echo $this->get_field_id( $day_label . '_to' ) ?>" name="<?php echo $this->get_field_name( $day_label . '_to' ); ?>" value="<?php echo esc_attr( $to[$day_label] ) ?>" size="5" />
+				<input type="text" id="<?php echo esc_attr( $this->get_field_id( $day_label . '_from' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $day_label . '_from' ) ); ?>" value="<?php echo esc_attr( $from[ $day_label ] ); ?>" size="5" /> <?php _e( 'to' , 'proteusthemes' ) ?>
+				<input type="text" id="<?php echo esc_attr( $this->get_field_id( $day_label . '_to' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $day_label . '_to' ) ); ?>" value="<?php echo esc_attr( $to[ $day_label ] ) ?>" size="5" />
 			</p>
 			<?php endforeach; // end days ?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'separator' ); ?>"><?php _e( 'Separator between hours:' , 'proteusthemes'); ?></label>
-				<input id="<?php echo $this->get_field_id( 'separator' ); ?>" name="<?php echo $this->get_field_name( 'separator' ); ?>" type="text" value="<?php echo $separator; ?>" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'separator' ) ); ?>"><?php _e( 'Separator between hours:' , 'proteusthemes' ); ?></label>
+				<input id="<?php echo esc_attr( $this->get_field_id( 'separator' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'separator' ) ); ?>" type="text" value="<?php echo esc_attr( $separator ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'closed_text' ); ?>"><?php _e( 'Text used for closed days:' , 'proteusthemes'); ?></label>
-				<input id="<?php echo $this->get_field_id( 'closed_text' ); ?>" name="<?php echo $this->get_field_name( 'closed_text' ); ?>" type="text" value="<?php echo esc_attr( $closed_text ); ?>" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'closed_text' ) ); ?>"><?php _e( 'Text used for closed days:' , 'proteusthemes' ); ?></label>
+				<input id="<?php echo esc_attr( $this->get_field_id( 'closed_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'closed_text' ) ); ?>" type="text" value="<?php echo esc_attr( $closed_text ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'additional_info' ); ?>"><?php _e( 'Text below the timetable for additional info (for example lunch time):' , 'proteusthemes'); ?></label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'additional_info' ); ?>" name="<?php echo $this->get_field_name( 'additional_info' ); ?>" type="text" value="<?php echo esc_attr( $additional_info ); ?>" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'additional_info' ) ); ?>"><?php _e( 'Text below the timetable for additional info (for example lunch time):' , 'proteusthemes' ); ?></label>
+				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'additional_info' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'additional_info' ) ); ?>" type="text" value="<?php echo esc_attr( $additional_info ); ?>" />
 			</p>
 
 			<?php

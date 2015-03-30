@@ -15,7 +15,7 @@ Text domain: proteuswidgets
 
 
 // Path to root of this plugin, with trailing slash
-define( 'PROTEUSWIDGETS_PATH', apply_filters( 'pw/plugin_dir_path', plugin_dir_path(__FILE__) ) );
+define( 'PROTEUSWIDGETS_PATH', apply_filters( 'pw/plugin_dir_path', plugin_dir_path( __FILE__ ) ) );
 
 //include php files
 require_once( PROTEUSWIDGETS_PATH . 'inc/PWFunctions.php');
@@ -50,8 +50,8 @@ class ProteusWidgets {
 
 		// actions
 		add_action( 'admin_init', array( $this, 'define_version' ) );
-		add_action( 'admin_enqueue_scripts', array( $this , 'admin_enqueue_js_css' ), 20 );
-		add_action( 'wp_enqueue_scripts', array( $this , 'enqueue_js_css' ), 20 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_js_css' ), 20 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_js_css' ), 20 );
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		add_action( 'after_setup_theme', array( $this, 'custom_theme_setup' ) , 11 );
 
@@ -120,7 +120,7 @@ class ProteusWidgets {
 
 		$supportedTypes = get_theme_support( 'post-thumbnails' );
 
-		if( $supportedTypes === false ) {
+		if ( false === $supportedTypes ) {
 			add_theme_support( 'post-thumbnails' );
 			add_image_size( 'page-box', 360, 240, true );
 		}

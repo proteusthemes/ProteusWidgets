@@ -34,7 +34,7 @@ if ( ! class_exists( 'PW_Author' ) ) {
 				$icons = PWFunctions::get_social_icons_links( get_user_meta( $selected_user_id ) );
 				foreach ( $icons as $service => $url ) {
 					$service_icon = substr( $service, 3 );
-					array_push( $social_icons, array ( 'icon' => $service_icon, 'url' => $url[0] ) );
+					array_push( $social_icons, array( 'icon' => $service_icon, 'url' => $url[0] ) );
 				}
 			}
 
@@ -45,7 +45,7 @@ if ( ! class_exists( 'PW_Author' ) ) {
 				'author-posts'            => get_author_posts_url( $selected_user_id ),
 				'author-meta-name'        => $args['before_title'] . get_the_author_meta( 'display_name', $selected_user_id ) . $args['after_title'],
 				'author-meta-description' => wpautop( get_the_author_meta( 'description', $selected_user_id ) ),
-				'author-meta-user-url'    => get_the_author_meta( 'user_url', $selected_user_id),
+				'author-meta-user-url'    => get_the_author_meta( 'user_url', $selected_user_id ),
 				'social-icons'            => intval( count( $social_icons ) ),
 				'social-icons-list'       => $social_icons,
 			));
@@ -72,7 +72,7 @@ if ( ! class_exists( 'PW_Author' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'selected_user_id' ); ?>"><?php _e( 'Display author:', 'proteuswidgets'); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'selected_user_id' ) ); ?>"><?php _e( 'Display author:', 'proteuswidgets' ); ?></label>
 				<?php wp_dropdown_users( array(
 					'name'     => $this->get_field_name( 'selected_user_id' ),
 					'id'       => $this->get_field_id( 'selected_user_id' ),
@@ -85,7 +85,6 @@ if ( ! class_exists( 'PW_Author' ) ) {
 			<p><small><?php printf( __( 'To add the social icons to this widget, please install the %sExtra User Details%s plugin and fill in the details in the &quot;Users&quot; section.', 'proteuswidgets' ), '<a href="https://wordpress.org/plugins/extra-user-details/" target="_blank">', '</a>' ); ?></small></p>
 
 			<?php
-
 
 		}
 

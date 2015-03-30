@@ -99,39 +99,39 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		 * @param array $instance Previously saved values from database.
 		 */
 		public function form( $instance ) {
-				$title       = isset( $instance[ 'title' ] ) ? $instance[ 'title' ] : 'Facebook';
-				$colorscheme = isset( $instance[ 'colorscheme' ] ) ? $instance[ 'colorscheme' ] : 'light';
-				$like_link   = isset( $instance[ 'like_link' ] ) ? $instance[ 'like_link' ] : 'https://www.facebook.com/ProteusThemes';
+				$title       = isset( $instance['title'] ) ? $instance['title'] : 'Facebook';
+				$colorscheme = isset( $instance['colorscheme'] ) ? $instance['colorscheme'] : 'light';
+				$like_link   = isset( $instance['like_link'] ) ? $instance['like_link'] : 'https://www.facebook.com/ProteusThemes';
 				$height      = isset( $instance['height'] ) ? $instance['height'] : 290;
 				$background  = isset( $instance['background'] ) ? $instance['background'] : '#ffffff';
 
 			?>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'proteuswidgets' ); ?></label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'proteuswidgets' ); ?></label>
+				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'like_link' ); ?>"><?php _e( 'FB Page to like (the whole URL):', 'proteuswidgets' ); ?></label> <br />
-				<input class="widefat" id="<?php echo $this->get_field_id( 'like_link' ); ?>" name="<?php echo $this->get_field_name( 'like_link' ); ?>" type="text" value="<?php echo $like_link; ?>" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'like_link' ) ); ?>"><?php _e( 'FB Page to like (the whole URL):', 'proteuswidgets' ); ?></label> <br />
+				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'like_link' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'like_link' ) ); ?>" type="text" value="<?php echo esc_url( $like_link ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'height' ); ?>"><?php _e( 'Height (in pixels):', 'proteuswidgets' ); ?></label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'height' ); ?>" name="<?php echo $this->get_field_name( 'height' ); ?>" type="number" min="0" step="10" value="<?php echo esc_attr( $height ); ?>" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'height' ) ); ?>"><?php _e( 'Height (in pixels):', 'proteuswidgets' ); ?></label>
+				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'height' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'height' ) ); ?>" type="number" min="0" step="10" value="<?php echo esc_attr( $height ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'colorscheme' ); ?>"><?php _e( 'Color scheme:', 'proteuswidgets' ); ?></label> <br />
-				<select id="<?php echo $this->get_field_id( 'colorscheme' ); ?>" name="<?php echo $this->get_field_name( 'colorscheme' ); ?>">
+				<label for="<?php echo esc_attr( $this->get_field_id( 'colorscheme' ) ); ?>"><?php _e( 'Color scheme:', 'proteuswidgets' ); ?></label> <br />
+				<select id="<?php echo esc_attr( $this->get_field_id( 'colorscheme' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'colorscheme' ) ); ?>">
 					<option value="light"<?php selected( $colorscheme, 'light' ); ?>><?php _e( 'Light', 'proteuswidgets' ); ?></option>
 					<option value="dark"<?php selected( $colorscheme, 'dark' ); ?>><?php _e( 'Dark', 'proteuswidgets' ); ?></option>
 				</select>
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'background' ); ?>"><?php _e( 'Background color:', 'proteuswidgets' ); ?></label> <br>
-				<input class="js-pt-color-picker" id="<?php echo $this->get_field_id( 'background' ); ?>" name="<?php echo $this->get_field_name( 'background' ); ?>" type="text" value="<?php echo esc_attr( $background ); ?>" data-default-color="<?php echo '#ffffff'; ?>" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'background' ) ); ?>"><?php _e( 'Background color:', 'proteuswidgets' ); ?></label> <br>
+				<input class="js-pt-color-picker" id="<?php echo esc_attr( $this->get_field_id( 'background' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'background' ) ); ?>" type="text" value="<?php echo esc_attr( $background ); ?>" data-default-color="<?php echo '#ffffff'; ?>" />
 			</p>
 
 			<?php

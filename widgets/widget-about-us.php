@@ -45,7 +45,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 						'name'        => '',
 						'description' => '',
 						'link'        => '',
-					)
+					),
 				);
 			}
 
@@ -88,12 +88,12 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			$instance['interval']  = absint( $new_instance['interval'] );
 
 			foreach ( $new_instance['persons'] as $key => $person ) {
-				$instance['persons'][$key]['id']          = sanitize_key( $person['id'] );
-				$instance['persons'][$key]['tag']         = sanitize_text_field( $person['tag'] );
-				$instance['persons'][$key]['image']       = sanitize_text_field( $person['image'] );
-				$instance['persons'][$key]['name']        = sanitize_text_field( $person['name'] );
-				$instance['persons'][$key]['description'] = sanitize_text_field( $person['description'] );
-				$instance['persons'][$key]['link']        = sanitize_text_field( $person['link'] );
+				$instance['persons'][ $key ]['id']          = sanitize_key( $person['id'] );
+				$instance['persons'][ $key ]['tag']         = sanitize_text_field( $person['tag'] );
+				$instance['persons'][ $key ]['image']       = sanitize_text_field( $person['image'] );
+				$instance['persons'][ $key ]['name']        = sanitize_text_field( $person['name'] );
+				$instance['persons'][ $key ]['description'] = sanitize_text_field( $person['description'] );
+				$instance['persons'][ $key ]['link']        = sanitize_text_field( $person['link'] );
 			}
 
 			return $instance;
@@ -121,7 +121,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 						'name'        => '',
 						'description' => '',
 						'link'        => '',
-					)
+					),
 				);
 			}
 
@@ -132,6 +132,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			else {
 				$this->current_widget_id = $this->id;
 			}
+			$this->current_widget_id = esc_attr( $this->current_widget_id );
 
 			?>
 
@@ -139,33 +140,33 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 
 			<script type="text/template" id="js-pt-person-<?php echo $this->current_widget_id; ?>">
 				<p>
-					<label for="<?php echo $this->get_field_id( 'persons' ); ?>-{{id}}-tag"><?php _e( 'Tag:', 'proteuswidgets'); ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id( 'persons' ); ?>-{{id}}-tag" name="<?php echo $this->get_field_name( 'persons' ); ?>[{{id}}][tag]" type="text" value="{{tag}}" />
+					<label for="<?php echo esc_attr( $this->get_field_id( 'persons' ) ); ?>-{{id}}-tag"><?php _e( 'Tag:', 'proteuswidgets' ); ?></label>
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'persons' ) ); ?>-{{id}}-tag" name="<?php echo esc_attr( $this->get_field_name( 'persons' ) ); ?>[{{id}}][tag]" type="text" value="{{tag}}" />
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'persons' ); ?>-{{id}}-image"><?php _e( 'Image URL:', 'proteuswidgets'); ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id( 'persons' ); ?>-{{id}}-image" name="<?php echo $this->get_field_name( 'persons' ); ?>[{{id}}][image]" type="text" value="{{image}}" />
+					<label for="<?php echo esc_attr( $this->get_field_id( 'persons' ) ); ?>-{{id}}-image"><?php _e( 'Image URL:', 'proteuswidgets' ); ?></label>
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'persons' ) ); ?>-{{id}}-image" name="<?php echo esc_attr( $this->get_field_name( 'persons' ) ); ?>[{{id}}][image]" type="text" value="{{image}}" />
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'persons' ); ?>-{{id}}-name"><?php _e( 'Name:', 'proteuswidgets'); ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id( 'persons' ); ?>-{{id}}-name" name="<?php echo $this->get_field_name( 'persons' ); ?>[{{id}}][name]" type="text" value="{{name}}" />
+					<label for="<?php echo esc_attr( $this->get_field_id( 'persons' ) ); ?>-{{id}}-name"><?php _e( 'Name:', 'proteuswidgets' ); ?></label>
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'persons' ) ); ?>-{{id}}-name" name="<?php echo esc_attr( $this->get_field_name( 'persons' ) ); ?>[{{id}}][name]" type="text" value="{{name}}" />
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'description' ); ?>-{{id}}-title"><?php _e( 'Description:', 'proteuswidgets'); ?></label>
-					<textarea rows="4" class="widefat" id="<?php echo $this->get_field_id( 'description' ); ?>-{{id}}-title" name="<?php echo $this->get_field_name( 'persons' ); ?>[{{id}}][description]">{{description}}</textarea>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'description' ) ); ?>-{{id}}-title"><?php _e( 'Description:', 'proteuswidgets' ); ?></label>
+					<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'description' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'persons' ) ); ?>[{{id}}][description]">{{description}}</textarea>
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'persons' ); ?>-{{id}}-link"><?php _e( 'Link:', 'proteuswidgets'); ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id( 'persons' ); ?>-{{id}}-link" name="<?php echo $this->get_field_name( 'persons' ); ?>[{{id}}][link]" type="text" value="{{link}}" />
+					<label for="<?php echo esc_attr( $this->get_field_id( 'persons' ) ); ?>-{{id}}-link"><?php _e( 'Link:', 'proteuswidgets' ); ?></label>
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'persons' ) ); ?>-{{id}}-link" name="<?php echo esc_attr( $this->get_field_name( 'persons' ) ); ?>[{{id}}][link]" type="text" value="{{link}}" />
 				</p>
 
 
 				<p>
-					<input name="<?php echo $this->get_field_name( 'persons' ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
+					<input name="<?php echo esc_attr( $this->get_field_name( 'persons' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
 					<a href="#" class="pt-remove-person  js-pt-remove-person"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove person', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
@@ -190,16 +191,16 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			<hr>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'autocycle' ); ?>"><?php _e( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?></label>
-				<select class="widefat" name="<?php echo $this->get_field_name( 'autocycle' ); ?>" id="<?php echo $this->get_field_id( 'autocycle' ); ?>">
+				<label for="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>"><?php _e( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?></label>
+				<select class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'autocycle' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>">
 					<option value="yes"<?php selected( $autocycle, 'yes' ) ?>><?php _e( 'Yes', 'proteuswidgets' ); ?></option>
 					<option value="no"<?php selected( $autocycle, 'no' ) ?>><?php _e( 'No', 'proteuswidgets' ); ?></option>
 				</select>
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'interval' ); ?>"><?php _e( 'Interval (in miliseconds):', 'proteuswidgets' ); ?></label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'interval' ); ?>" name="<?php echo $this->get_field_name( 'interval' ); ?>" type="number" min="0" step="500" value="<?php echo esc_attr( $interval ); ?>" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'interval' ) ); ?>"><?php _e( 'Interval (in miliseconds):', 'proteuswidgets' ); ?></label>
+				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'interval' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'interval' ) ); ?>" type="number" min="0" step="500" value="<?php echo esc_attr( $interval ); ?>" />
 			</p>
 
 			<?php

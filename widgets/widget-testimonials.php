@@ -49,12 +49,14 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
 			if ( isset( $instance['quote'] ) ) {
-				$testimonials = array( array(
-					'quote'  => $instance['quote'],
-					'author' => $instance['author'],
-					'rating' => $instance['rating'],
-					'author_description' => $instance['author_description'],
-				) );
+				$testimonials = array(
+					array(
+						'quote'  => $instance['quote'],
+						'author' => $instance['author'],
+						'rating' => $instance['rating'],
+						'author_description' => $instance['author_description'],
+					),
+				);
 			}
 			else {
 				$testimonials = array_values( $instance['testimonials'] );
@@ -67,15 +69,15 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				$instance['spans'] = '12';
 			}
 
-			$testimonials = PWFunctions::reorder_widget_array_key_values($testimonials);
+			$testimonials = PWFunctions::reorder_widget_array_key_values( $testimonials );
 			if ( isset( $testimonials[0] ) ) {
 				$testimonials[0]['active'] = 'active';
 			}
-			foreach ($testimonials as $key => $value) {
-				$testimonials[$key]['more-at-once'] = ( 0 !== $key && 0 === $key % $this->fields['number_of_testimonial_per_slide'] ) ? '</div></div> <div class="item"><div class="row">' : '';
-				if ( $this->fields['rating'] && isset( $testimonials[$key]['rating'] ) ) {
-					$testimonials[$key]['rating'] = ( $testimonials[$key]['rating'] > 0 ) ? range( 0, ( $testimonials[$key]['rating'] - 1 ) ) : 0;
-					$testimonials[$key]['display-ratings'] = $testimonials[$key]['rating'] > 0;
+			foreach ( $testimonials as $key => $value ) {
+				$testimonials[ $key ]['more-at-once'] = ( 0 !== $key && 0 === $key % $this->fields['number_of_testimonial_per_slide'] ) ? '</div></div> <div class="item"><div class="row">' : '';
+				if ( $this->fields['rating'] && isset( $testimonials[ $key ]['rating'] ) ) {
+					$testimonials[ $key ]['rating'] = ( $testimonials[ $key ]['rating'] > 0 ) ? range( 0, ( $testimonials[ $key ]['rating'] - 1 ) ) : 0;
+					$testimonials[ $key ]['display-ratings'] = $testimonials[ $key ]['rating'] > 0;
 				}
 			}
 
@@ -112,11 +114,11 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			$instance['interval']  = absint( $new_instance['interval'] );
 
 			foreach ( $new_instance['testimonials'] as $key => $testimonial ) {
-				$instance['testimonials'][$key]['id']                 = sanitize_key( $testimonial['id'] );
-				$instance['testimonials'][$key]['quote']              = sanitize_text_field( $testimonial['quote'] );
-				$instance['testimonials'][$key]['author']             = sanitize_text_field( $testimonial['author'] );
-				$instance['testimonials'][$key]['rating']             = sanitize_text_field( $testimonial['rating'] );
-				$instance['testimonials'][$key]['author_description'] = sanitize_text_field( $testimonial['author_description'] );
+				$instance['testimonials'][ $key ]['id']                 = sanitize_key( $testimonial['id'] );
+				$instance['testimonials'][ $key ]['quote']              = sanitize_text_field( $testimonial['quote'] );
+				$instance['testimonials'][ $key ]['author']             = sanitize_text_field( $testimonial['author'] );
+				$instance['testimonials'][ $key ]['rating']             = sanitize_text_field( $testimonial['rating'] );
+				$instance['testimonials'][ $key ]['author_description'] = sanitize_text_field( $testimonial['author_description'] );
 			}
 
 			return $instance;
@@ -133,13 +135,15 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			$interval  = empty( $instance['interval'] ) ? 5000 : $instance['interval'];
 
 			if ( isset( $instance['quote'] ) ) {
-				$testimonials = array( array(
-					'id'     => 1,
-					'quote'  => $instance['quote'],
-					'author' => $instance['author'],
-					'rating' => $instance['rating'],
-					'author_description' => $instance['author_description'],
-				) );
+				$testimonials = array(
+					array(
+						'id'     => 1,
+						'quote'  => $instance['quote'],
+						'author' => $instance['author'],
+						'rating' => $instance['rating'],
+						'author_description' => $instance['author_description'],
+					),
+				);
 			}
 			else {
 				$testimonials = isset( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array(
@@ -149,7 +153,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 						'author' => '',
 						'rating' => 5,
 						'author_description' => '',
-					)
+					),
 				);
 			}
 
@@ -161,24 +165,26 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				$this->current_widget_id = $this->id;
 			}
 
+			$this->current_widget_id = esc_attr( $this->current_widget_id );
+
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'proteuswidgets' ); ?></label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'proteuswidgets' ); ?></label>
+				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'autocycle' ); ?>"><?php _e( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?></label>
-				<select class="widefat" name="<?php echo $this->get_field_name( 'autocycle' ); ?>" id="<?php echo $this->get_field_id( 'autocycle' ); ?>">
+				<label for="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>"><?php _e( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?></label>
+				<select class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'autocycle' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>">
 					<option value="yes"<?php selected( $autocycle, 'yes' ) ?>><?php _e( 'Yes', 'proteuswidgets' ); ?></option>
 					<option value="no"<?php selected( $autocycle, 'no' ) ?>><?php _e( 'No', 'proteuswidgets' ); ?></option>
 				</select>
 			</p>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'interval' ); ?>"><?php _e( 'Interval (in miliseconds):', 'proteuswidgets' ); ?></label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'interval' ); ?>" name="<?php echo $this->get_field_name( 'interval' ); ?>" type="number" min="0" step="500" value="<?php echo esc_attr( $interval ); ?>" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'interval' ) ); ?>"><?php _e( 'Interval (in miliseconds):', 'proteuswidgets' ); ?></label>
+				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'interval' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'interval' ) ); ?>" type="number" min="0" step="500" value="<?php echo esc_attr( $interval ); ?>" />
 			</p>
 
 			<hr>
@@ -187,26 +193,26 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 			<script type="text/template" id="js-pt-testimonial-<?php echo $this->current_widget_id; ?>">
 				<p>
-					<label for="<?php echo $this->get_field_id( 'quote' ); ?>-{{id}}-title"><?php _e( 'Quote:', 'proteuswidgets'); ?></label>
-					<textarea rows="4" class="widefat" id="<?php echo $this->get_field_id( 'quote' ); ?>-{{id}}-title" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][quote]">{{quote}}</textarea>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'quote' ) ); ?>-{{id}}-title"><?php _e( 'Quote:', 'proteuswidgets' ); ?></label>
+					<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'quote' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][quote]">{{quote}}</textarea>
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author"><?php _e( 'Author:', 'proteuswidgets'); ?></label> <br>
-					<input class="widefat" id="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][author]" type="text" value="{{author}}" />
+					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author"><?php _e( 'Author:', 'proteuswidgets' ); ?></label> <br>
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][author]" type="text" value="{{author}}" />
 				</p>
 
 				<?php if ( $this->fields['author_description'] ) : ?>
 				<p>
-					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author_description"><?php _e( 'Author Description:', 'proteuswidgets'); ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-author_description" name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][author_description]" type="text" value="{{author_description}}" />
+					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_description"><?php _e( 'Author Description:', 'proteuswidgets' ); ?></label>
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_description" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][author_description]" type="text" value="{{author_description}}" />
 				</p>
 				<?php endif; ?>
 
 				<?php if ( $this->fields['rating'] ) : ?>
 				<p>
-					<label for="<?php echo $this->get_field_id( 'testimonials' ); ?>-{{id}}-rating"><?php _e( 'Rating:', 'proteuswidgets'); ?></label>
-					<select name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][rating]" id="<?php echo $this->get_field_id( 'rating' ); ?>-{{id}}-rating" class="js-rating">
+					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-rating"><?php _e( 'Rating:', 'proteuswidgets' ); ?></label>
+					<select name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][rating]" id="<?php echo esc_attr( $this->get_field_id( 'rating' ) ); ?>-{{id}}-rating" class="js-rating">
 						<option value="0">0</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -218,7 +224,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				<?php endif; ?>
 
 				<p>
-					<input name="<?php echo $this->get_field_name( 'testimonials' ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
+					<input name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
 					<a href="#" class="pt-remove-testimonial  js-pt-remove-testimonial"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Testimonial', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
