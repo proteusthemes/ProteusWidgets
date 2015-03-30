@@ -302,7 +302,7 @@ var repopulateTestimonials = function ( testimonialsJSON, widgetId ) {
 
 
 /**
- * Backbone handling of the multiple persons
+ * Backbone handling of the multiple people
  */
 
 // view of a single person
@@ -333,8 +333,8 @@ proteusWidgets.personView = Backbone.View.extend( {
 	},
 } );
 
-// view of all persons, but associated with each individual widget
-proteusWidgets.personsView = Backbone.View.extend( {
+// view of all people, but associated with each individual widget
+proteusWidgets.peopleView = Backbone.View.extend( {
 	events: {
 		'click .js-pt-add-person': 'addNew'
 	},
@@ -343,15 +343,15 @@ proteusWidgets.personsView = Backbone.View.extend( {
 		this.widgetId = params.widgetId;
 
 		// cached reference to the element in the DOM
-		this.$persons = this.$( '.persons' );
+		this.$people = this.$( '.people' );
 
-		// collection of persons, local to each instance of proteusWidgets.personsView
-		this.persons = new Backbone.Collection( [], {
+		// collection of people, local to each instance of proteusWidgets.peopleView
+		this.people = new Backbone.Collection( [], {
 			model: proteusWidgets.Person,
 		} );
 
 		// listen to adding of the new testimonials
-		this.listenTo( this.persons, 'add', this.appendOne );
+		this.listenTo( this.people, 'add', this.appendOne );
 
 		return this;
 	},
@@ -362,16 +362,16 @@ proteusWidgets.personsView = Backbone.View.extend( {
 		// default, if there is no testimonials added yet
 		var personId = 0;
 
-		if ( ! this.persons.isEmpty() ) {
-			var personsWithMaxId = this.persons.max( function ( person ) {
+		if ( ! this.people.isEmpty() ) {
+			var peopleWithMaxId = this.people.max( function ( person ) {
 				return parseInt( person.id, 10 );
 			} );
 
-			personId = parseInt( personsWithMaxId.id, 10 ) + 1;
+			personId = parseInt( peopleWithMaxId.id, 10 ) + 1;
 		}
 
 
-		this.persons.add( new proteusWidgets.Person( {
+		this.people.add( new proteusWidgets.Person( {
 			id: personId,
 		} ) );
 
@@ -388,7 +388,7 @@ proteusWidgets.personsView = Backbone.View.extend( {
 
 		// if the widget is in the initialize state (hidden), then do not append a new testimonial
 		if ( '__i__' != currentWidgetId.slice( -5, currentWidgetId.length ) ) {
-			this.$persons.append( renderedPerson.el );
+			this.$people.append( renderedPerson.el );
 		}
 
 		return this;
@@ -402,22 +402,22 @@ proteusWidgets.personsView = Backbone.View.extend( {
  * @param  {string} widgetId ID of widget from PHP $this->id
  * @return {void}
  */
-var repopulatePersons = function ( personsJSON, widgetId ) {
+var repopulatePeople = function ( peopleJSON, widgetId ) {
 	// view of all testimonials
-	var personsView = new proteusWidgets.personsView( {
-		el:       '#persons-' + widgetId,
+	var peopleView = new proteusWidgets.peopleView( {
+		el:       '#people-' + widgetId,
 		widgetId: widgetId,
 	} );
 
 	// convert to array if needed
-	if ( _( personsJSON ).isObject() ) {
-		personsJSON = _( personsJSON ).values();
+	if ( _( peopleJSON ).isObject() ) {
+		peopleJSON = _( peopleJSON ).values();
 	};
 
 	// add all testimonials to collection of newly created view
-	personsView.persons.add( personsJSON, { parse: true } );
+	peopleView.people.add( peopleJSON, { parse: true } );
 
-	window.persons = personsView;
+	window.people = peopleView;
 };
 
 
