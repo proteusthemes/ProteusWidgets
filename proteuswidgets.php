@@ -3,7 +3,7 @@
 Plugin Name: ProteusWidgets
 Plugin URI: http://www.proteusthemes.com
 Description: WP widgets for retail businesses by ProteusThemes
-Version: 1.0.2
+Version: 1.0.3
 Author: ProteusThemes
 Author URI: http://www.proteusthemes.com
 License: GPL3
@@ -54,6 +54,9 @@ class ProteusWidgets {
 		add_action( 'wp_enqueue_scripts', array( $this , 'enqueue_js_css' ), 20 );
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		add_action( 'after_setup_theme', array( $this, 'custom_theme_setup' ) , 11 );
+
+		// filters
+		add_filter( 'kses_allowed_protocols', array( $this, 'kses_allowed_protocols' ) );
 	}
 
 
@@ -124,6 +127,15 @@ class ProteusWidgets {
 		else {
 			add_image_size( 'page-box', 360, 240, true );
 		}
+	}
+
+	/**
+	 * Add more allowed protocols
+	 *
+	 * @link https://developer.wordpress.org/reference/functions/wp_allowed_protocols/
+	 */
+	public static function kses_allowed_protocols( $protocols ) {
+		return array_merge( $protocols, array( 'skype' ) );
 	}
 }
 new ProteusWidgets;
