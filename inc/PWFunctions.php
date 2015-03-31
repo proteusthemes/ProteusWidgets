@@ -11,20 +11,20 @@ class PWFunctions {
 	 * @return array The array of the social icons and links, or empty array when there is no options in the DB
 	 */
 	public static function get_social_icons_links ( $all_options ) {
-			if( ! is_array( $all_options ) ) {
-				return array();
-			}
-
-			$out = array();
-
-			foreach ($all_options as $key => $value) {
-				if ( self::starts_with_zocial( $key ) && ! empty( $value ) ) {
-					$out[$key] = $value;
-				}
-			}
-
-			return $out;
+		if ( ! is_array( $all_options ) ) {
+			return array();
 		}
+
+		$out = array();
+
+		foreach ( $all_options as $key => $value ) {
+			if ( self::starts_with_zocial( $key ) && ! empty( $value ) ) {
+				$out[ $key ] = $value;
+			}
+		}
+
+		return $out;
+	}
 
 	// helper functions for the get_social_icons_links function
 	private static function starts_with_zocial( $str ) {
@@ -40,7 +40,7 @@ class PWFunctions {
 	public static function reorder_widget_array_key_values( $widget_array ) {
 		$tmp_widget_array = array();
 		foreach ( $widget_array as $instace ) {
-			array_push( $tmp_widget_array , (array)$instace );
+			array_push( $tmp_widget_array , (array) $instace );
 		}
 		return $tmp_widget_array;
 	}

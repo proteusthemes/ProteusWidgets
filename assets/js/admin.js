@@ -250,7 +250,6 @@ proteusWidgets.testimonialsView = Backbone.View.extend( {
 			testimonialId = parseInt( testimonialsWithMaxId.id, 10 ) + 1;
 		}
 
-
 		this.testimonials.add( new proteusWidgets.Testimonial( {
 			id: testimonialId,
 		} ) );
@@ -369,7 +368,6 @@ proteusWidgets.peopleView = Backbone.View.extend( {
 
 			personId = parseInt( peopleWithMaxId.id, 10 ) + 1;
 		}
-
 
 		this.people.add( new proteusWidgets.Person( {
 			id: personId,
@@ -493,7 +491,6 @@ proteusWidgets.socialIconsView = Backbone.View.extend( {
 
 			socialIconId = parseInt( socialIconsWithMaxId.id, 10 ) + 1;
 		}
-
 
 		this.socialIcons.add( new proteusWidgets.SocialIcon( {
 			id: socialIconId,
