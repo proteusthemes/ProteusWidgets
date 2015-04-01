@@ -115,7 +115,7 @@ module.exports = function ( grunt ) {
 			target: {
 				options: {
 					domainPath: '/languages',
-					exclude: ['vendor', 'tests', 'node_modules', 'bower_components', 'bin', 'assets', '.tmp', '.sass-cache'],
+					exclude: ['vendor/.*', 'tests/.*', 'node_modules/.*', 'bower_components/.*', 'bin/.*', 'assets/.*', '.tmp/.*', '.sass-cache/.*'],
 					mainFile: 'proteuswidgets.php',
 					potComments: 'Copyright (C) {year} ProteusThemes \n# This file is distributed under the GPL 2.0.',
 					potFilename: 'proteuswidgets.pot',
