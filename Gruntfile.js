@@ -119,11 +119,10 @@ module.exports = function ( grunt ) {
 					mainFile: 'proteuswidgets.php',
 					potComments: 'Copyright (C) {year} ProteusThemes \n# This file is distributed under the GPL 2.0.',
 					potFilename: 'proteuswidgets.pot',
-					potHeaders: {	//edit this for { 'report-msgid-bugs-to': 'https://github.com/blazersix/grunt-wp-i18n/issues' }
+					potHeaders: {
 						poedit: true,
 						'report-msgid-bugs-to': 'http://support.proteusthemes.com/hc/en-us',
 					},
-					processPot: null,                 // A callback function for manipulating the POT file.
 					type: 'wp-plugin',
 					updateTimestamp: true,
 					updatePoFiles: true,
@@ -131,6 +130,7 @@ module.exports = function ( grunt ) {
 			}
 		},
 
+		// https://www.npmjs.com/package/grunt-po2mo
 		po2mo: {
 			files: {
 				src: 'languages/*.po',
