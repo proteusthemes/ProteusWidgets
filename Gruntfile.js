@@ -109,6 +109,34 @@ module.exports = function ( grunt ) {
 				'watch'
 			]
 		},
+
+		// https://www.npmjs.com/package/grunt-wp-i18n
+		makepot: {
+			target: {
+				options: {
+					domainPath: '/languages',
+					exclude: ['vendor', 'tests', 'node_modules', 'bower_components', 'bin', 'assets', '.tmp', '.sass-cache'],
+					mainFile: 'proteuswidgets.php',
+					potComments: 'Copyright (C) {year} ProteusThemes \n# This file is distributed under the GPL 2.0.',
+					potFilename: 'proteuswidgets.pot',
+					potHeaders: {	//edit this for { 'report-msgid-bugs-to': 'https://github.com/blazersix/grunt-wp-i18n/issues' }
+						poedit: true,
+						'report-msgid-bugs-to': 'http://support.proteusthemes.com/hc/en-us',
+					},
+					processPot: null,                 // A callback function for manipulating the POT file.
+					type: 'wp-plugin',
+					updateTimestamp: true,
+					updatePoFiles: true,
+				}
+			}
+		},
+
+		po2mo: {
+			files: {
+				src: 'languages/*.po',
+				expand: true,
+			},
+		},
 	} );
 
 	// when developing
@@ -122,5 +150,11 @@ module.exports = function ( grunt ) {
 		'autoprefixer',
 		'requirejs',
 		'wp_readme_to_markdown',
+	] );
+
+	// update languages files
+	grunt.registerTask( 'languages', [
+		'makepot',
+		'po2mo',
 	] );
 };
