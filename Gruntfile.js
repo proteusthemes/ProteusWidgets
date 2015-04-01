@@ -3,6 +3,10 @@ module.exports = function ( grunt ) {
 	// require('load-grunt-tasks')(grunt);
 	require( 'load-grunt-tasks' )( grunt, { pattern: ['grunt-*'] } );
 
+	var settings = {
+		phpFileRegex: '[^/]+\.php$',
+	};
+
 	// configuration
 	grunt.initConfig( {
 		pgk: grunt.file.readJSON( 'package.json' ),
@@ -114,18 +118,18 @@ module.exports = function ( grunt ) {
 		makepot: {
 			target: {
 				options: {
-					domainPath: '/languages',
-					exclude: ['vendor/.*', 'tests/.*', 'node_modules/.*', 'bower_components/.*', 'bin/.*', 'assets/.*', '.tmp/.*', '.sass-cache/.*'],
-					mainFile: 'proteuswidgets.php',
-					potComments: 'Copyright (C) {year} ProteusThemes \n# This file is distributed under the GPL 2.0.',
-					potFilename: 'proteuswidgets.pot',
-					potHeaders: {
+					domainPath:      'languages/',
+					include:         [settings.phpFileRegex, '^widgets/'+settings.phpFileRegex, '^inc/'+settings.phpFileRegex],
+					mainFile:        'proteuswidgets.php',
+					potComments:     'Copyright (C) {year} ProteusThemes \n# This file is distributed under the GPL 2.0.',
+					potFilename:     'proteuswidgets.pot',
+					potHeaders:      {
 						poedit: true,
-						'report-msgid-bugs-to': 'http://support.proteusthemes.com/hc/en-us',
+						'report-msgid-bugs-to': 'http://support.proteusthemes.com/'
 					},
-					type: 'wp-plugin',
-					updateTimestamp: true,
-					updatePoFiles: true,
+					type:            'wp-plugin',
+					updateTimestamp: false,
+					updatePoFiles:   true,
 				}
 			}
 		},
@@ -133,7 +137,7 @@ module.exports = function ( grunt ) {
 		// https://www.npmjs.com/package/grunt-po2mo
 		po2mo: {
 			files: {
-				src: 'languages/*.po',
+				src:    'languages/*.po',
 				expand: true,
 			},
 		},
