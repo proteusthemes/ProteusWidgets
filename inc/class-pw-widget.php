@@ -11,13 +11,14 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 
 		protected $mustache;
 
+		abstract function widget_id_base();
 		abstract function widget_class();
 		abstract function widget_description();
 		abstract function widget_name();
 
 		public function __construct() {
 			parent::__construct(
-				false, // ID, auto generate when false
+				'pw_' . $this->widget_id_base(),
 				sprintf( 'ProteusThemes: %s', $this->widget_name() ), // Name
 				array(
 					'description' => $this->widget_description(),

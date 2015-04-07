@@ -20,6 +20,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		private $current_widget_id;
 
 		// Basic widget settings
+		function widget_id_base() { return 'google_map'; }
 		function widget_name() { return __( 'Google Map', 'proteuswidgets' ); }
 		function widget_description() { return __( 'Google Map widget for Page Builder.', 'proteuswidgets' ); }
 		function widget_class() { return null; }

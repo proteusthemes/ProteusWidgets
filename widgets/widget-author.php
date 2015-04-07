@@ -11,6 +11,7 @@ if ( ! class_exists( 'PW_Author' ) ) {
 	class PW_Author extends PW_Widget {
 
 		// Basic widget settings
+		function widget_id_base() { return 'author'; }
 		function widget_name() { return __( 'Author', 'proteuswidgets' ); }
 		function widget_description() { return __( 'Author widget used in sidebar.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-author'; }

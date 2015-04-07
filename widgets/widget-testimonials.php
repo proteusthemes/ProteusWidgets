@@ -13,6 +13,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		private $current_widget_id;
 
 		// Basic widget settings
+		function widget_id_base() { return 'testimonials'; }
 		function widget_name() { return __( 'Testimonials', 'proteuswidgets' ); }
 		function widget_description() { return __( 'Testimonials widget for Page Builder.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-testimonials'; }

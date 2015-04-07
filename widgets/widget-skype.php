@@ -10,6 +10,7 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 	class PW_Skype extends PW_Widget {
 
 		// Basic widget settings
+		function widget_id_base() { return 'skype'; }
 		function widget_name() { return __( 'Skype', 'proteuswidgets' ); }
 		function widget_description() { return __( 'Skype button for sidebar.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-skype'; }

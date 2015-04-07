@@ -12,6 +12,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		private $current_widget_id;
 
 		// Basic widget settings
+		function widget_id_base() { return 'about_us'; }
 		function widget_name() { return __( 'About Us', 'proteuswidgets' ); }
 		function widget_description() { return __( 'About Us widget used in sidebar.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-about-us'; }

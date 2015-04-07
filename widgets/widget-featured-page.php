@@ -16,6 +16,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		const BLOCK_EXCERPT = 240;
 
 		// Basic widget settings
+		function widget_id_base() { return 'featured_page'; }
 		function widget_name() { return __( 'Featured Page', 'proteuswidgets' ); }
 		function widget_description() { return __( 'Featured Page widget for the Sidebar and Page Builder.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-featured-page'; }

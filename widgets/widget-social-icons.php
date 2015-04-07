@@ -13,6 +13,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		private $current_widget_id;
 
 		// Basic widget settings
+		function widget_id_base() { return 'social_icons'; }
 		function widget_name() { return __( 'Social Icons', 'proteuswidgets' ); }
 		function widget_description() { return __( 'Social Icons widget for Header of the page.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-social-icons'; }

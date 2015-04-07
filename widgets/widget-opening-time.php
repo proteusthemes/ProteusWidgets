@@ -21,6 +21,7 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 		private $days;
 
 		// Basic widget settings
+		function widget_id_base() { return 'opening_time'; }
 		function widget_name() { return __( 'Opening Time', 'proteuswidgets' ); }
 		function widget_description() { return __( 'Opening Time widget shows opening times per day with optional text.', 'proteuswidgets' ); }
 		function widget_class() { return 'opening-time'; }

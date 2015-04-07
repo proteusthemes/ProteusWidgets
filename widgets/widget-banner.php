@@ -10,6 +10,7 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 	class PW_Banner extends PW_Widget {
 
 		// Basic widget settings
+		function widget_id_base() { return 'banner'; }
 		function widget_name() { return __( 'Banner', 'proteuswidgets' ); }
 		function widget_description() { return __( 'Banner widget for the Sidebar and Page Builder..', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-banner'; }

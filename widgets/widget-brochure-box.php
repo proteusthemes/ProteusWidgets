@@ -10,6 +10,7 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 	class PW_Brochure_Box extends PW_Widget {
 
 		// Basic widget settings
+		function widget_id_base() { return 'brochure_box'; }
 		function widget_name() { return __( 'Brochure Box', 'proteuswidgets' ); }
 		function widget_description() { return __( 'Brochure Box widget for the Sidebar and Page Builder.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-brochure-box'; }

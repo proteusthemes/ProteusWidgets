@@ -11,6 +11,7 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 	class PW_Facebook extends PW_Widget {
 
 		// Basic widget settings
+		function widget_id_base() { return 'facebook'; }
 		function widget_name() { return __( 'Facebook', 'proteuswidgets' ); }
 		function widget_description() { return __( 'Facebook like box with some customization settings', 'proteuswidgets' ); }
 		function widget_class() { return null; }
