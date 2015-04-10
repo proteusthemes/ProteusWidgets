@@ -126,7 +126,7 @@ class ProteusWidgets {
 			$page_box_image_size = apply_filters( 'pw/featured_page_widget_page_box_image_size', array( 'width' => 360, 'height' => 240, 'crop' => true ) );
 			$inline_image_size = apply_filters( 'pw/featured_page_widget_inline_image_size', array( 'width' => 100, 'height' => 75, 'crop' => true ) );
 
-			if( false === get_theme_support( 'post-thumbnails' ) ) {
+			if ( false === get_theme_support( 'post-thumbnails' ) ) {
 				add_theme_support( 'post-thumbnails' );
 				add_image_size( 'pw-page-box', $page_box_image_size['width'], $page_box_image_size['height'], $page_box_image_size['crop'] );
 				add_image_size( 'pw-inline', $inline_image_size['width'], $inline_image_size['height'], $inline_image_size['crop'] );
