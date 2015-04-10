@@ -85,7 +85,7 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 
 			$instance['title']       = wp_kses_post( $new_instance['title'] );
 			$instance['colorscheme'] = sanitize_key( $new_instance['colorscheme'] );
-			$instance['like_link']   = esc_url( $new_instance['like_link'] );
+			$instance['like_link']   = esc_url_raw( $new_instance['like_link'] );
 			$instance['height']      = absint( $new_instance['height'] );
 			$instance['background']  = esc_attr( $new_instance['background'] );
 

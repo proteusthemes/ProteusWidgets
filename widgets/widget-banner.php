@@ -53,7 +53,7 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 
 			$instance['title']    = wp_kses_post( $new_instance['title'] );
 			$instance['content']  = wp_kses_post( $new_instance['content'] );
-			$instance['link']     = esc_url( $new_instance['link'] );
+			$instance['link']     = esc_url_raw( $new_instance['link'] );
 			$instance['open_new'] = wp_kses_post( $new_instance['open_new'] );
 
 			return $instance;

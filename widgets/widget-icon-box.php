@@ -58,7 +58,7 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 
 			$instance['title']    = wp_kses_post( $new_instance['title'] );
 			$instance['text']     = wp_kses_post( $new_instance['text'] );
-			$instance['btn_link'] = esc_url( $new_instance['btn_link'] );
+			$instance['btn_link'] = esc_url_raw( $new_instance['btn_link'] );
 			$instance['icon']     = sanitize_key( $new_instance['icon'] );
 			$instance['new_tab']  = sanitize_key( $new_instance['new_tab'] );
 
