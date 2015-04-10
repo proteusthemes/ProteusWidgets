@@ -42,6 +42,12 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			$instance['layout'] = sanitize_key( $instance['layout'] );
 			$thumbnail_size     = 'inline' === $instance['layout'] ? 'thumbnail' : 'page-box';
 
+			// Backwards compatibility for MentalPress 1.0.1 or older and ProteusWidgets version 1.0.3
+			// Use these new image sizes only for the future releases of ProteusWidgets plugin.
+			if ( PWFunctions::installed_after( '1.0.3' ) ) {
+				$thumbnail_size = 'inline' === $instance['layout'] ? 'pw-inline' : 'pw-page-box';
+			}
+
 			// Get basic page info
 			if ( $page_id ) {
 				$page = (array) get_post( $page_id );

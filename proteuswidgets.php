@@ -3,7 +3,7 @@
 Plugin Name: ProteusWidgets
 Plugin URI: http://www.proteusthemes.com
 Description: WP widgets for retail businesses by ProteusThemes
-Version: 1.0.3
+Version: 1.0.4
 Author: ProteusThemes
 Author URI: http://www.proteusthemes.com
 License: GPL3
@@ -57,6 +57,9 @@ class ProteusWidgets {
 
 		// filters
 		add_filter( 'kses_allowed_protocols', array( $this, 'kses_allowed_protocols' ) );
+
+		// plugin activation hook
+		register_activation_hook( __FILE__, array( $this, 'plugin_activation' ) );
 	}
 
 
@@ -117,15 +120,30 @@ class ProteusWidgets {
 	 * Adds theme support - thumbnail for featured page widget
 	 */
 	public function custom_theme_setup() {
+		// Backwards compatibility for MentalPress 1.0.1 or older and ProteusWidgets version 1.0.3
+		// Use these new image sizes only for the future releases of ProteusWidgets plugin.
+		if ( PWFunctions::installed_after( '1.0.3' ) ) {
+			$page_box_image_size = apply_filters( 'pw/featured_page_widget_page_box_image_size', array( 'width' => 360, 'height' => 240, 'crop' => true ) );
+			$inline_image_size = apply_filters( 'pw/featured_page_widget_inline_image_size', array( 'width' => 100, 'height' => 75, 'crop' => true ) );
 
-		$supportedTypes = get_theme_support( 'post-thumbnails' );
-
-		if ( false === $supportedTypes ) {
-			add_theme_support( 'post-thumbnails' );
-			add_image_size( 'page-box', 360, 240, true );
+			if( false === get_theme_support( 'post-thumbnails' ) ) {
+				add_theme_support( 'post-thumbnails' );
+				add_image_size( 'pw-page-box', $page_box_image_size['width'], $page_box_image_size['height'], $page_box_image_size['crop'] );
+				add_image_size( 'pw-inline', $inline_image_size['width'], $inline_image_size['height'], $inline_image_size['crop'] );
+			}
+			else {
+				add_image_size( 'pw-page-box', $page_box_image_size['width'], $page_box_image_size['height'], $page_box_image_size['crop'] );
+				add_image_size( 'pw-inline', $inline_image_size['width'], $inline_image_size['height'], $inline_image_size['crop'] );
+			}
 		}
 		else {
-			add_image_size( 'page-box', 360, 240, true );
+			if ( false === get_theme_support( 'post-thumbnails' ) ) {
+				add_theme_support( 'post-thumbnails' );
+				add_image_size( 'page-box', 360, 240, true );
+			}
+			else {
+				add_image_size( 'page-box', 360, 240, true );
+			}
 		}
 	}
 
@@ -136,6 +154,14 @@ class ProteusWidgets {
 	 */
 	public static function kses_allowed_protocols( $protocols ) {
 		return array_merge( $protocols, array( 'skype' ) );
+	}
+
+	/**
+	 * Plugin activation function - run at plugin activation
+	 */
+	public function plugin_activation() {
+		$plugin_data = get_plugin_data( __FILE__ );
+		add_option( 'proteuswidgets_activation_version', $plugin_data['Version'] );
 	}
 }
 new ProteusWidgets;

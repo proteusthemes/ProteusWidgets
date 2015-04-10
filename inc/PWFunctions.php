@@ -45,4 +45,13 @@ class PWFunctions {
 		return $tmp_widget_array;
 	}
 
+	/**
+	 * Checks if the plugin was installed after the specified version.
+	 * @param  string $version_to_compare
+	 * @return boolean
+	 */
+	public static function installed_after( $version_to_compare ) {
+		return get_option( 'proteuswidgets_activation_version' ) && version_compare( get_option( 'proteuswidgets_activation_version' ), $version_to_compare, '>' );
+	}
+
 }
