@@ -246,6 +246,18 @@ ProteusWidgets.Collections.SocialIcons = ProteusWidgets.Collections.Generic.exte
  ******************** Repopulate Functions *******************
  */
 
+// Generic repopulation function used in all repopulate functions
+var repopulateGeneric = function ( collectionType, parameters, json, widgetId ) {
+	var collection = new collectionType( parameters );
+
+	// Convert to array if needed
+	if ( _( json ).isObject() ) {
+		json = _( json ).values();
+	}
+
+	// Add all items to collection of newly created view
+	collection.items.add( json, { parse: true } );
+};
 
 /**
  * Function which adds the existing locations to the DOM
@@ -254,23 +266,16 @@ ProteusWidgets.Collections.SocialIcons = ProteusWidgets.Collections.Generic.exte
  * @return {void}
  */
 var repopulateLocations = function ( locationsJSON, widgetId ) {
-	// Collection of all locations
-	var locationsCollection = new ProteusWidgets.Collections.Locations( {
+	var parameters = {
 		el:       '#locations-' + widgetId,
 		widgetId: widgetId,
 		itemsClass: '.locations',
 		itemTemplate: '#js-pt-location-',
 		itemsModel: ProteusWidgets.Models.Location,
 		itemView: ProteusWidgets.Views.Location
-	} );
+	};
 
-	// Convert to array if needed
-	if ( _( locationsJSON ).isObject() ) {
-		locationsJSON = _( locationsJSON ).values();
-	}
-
-	// Add all locations to collection of newly created view
-	locationsCollection.items.add( locationsJSON, { parse: true } );
+	repopulateGeneric( ProteusWidgets.Collections.Locations, parameters, locationsJSON, widgetId );
 };
 
 /**
@@ -280,23 +285,16 @@ var repopulateLocations = function ( locationsJSON, widgetId ) {
  * @return {void}
  */
 var repopulateTestimonials = function ( testimonialsJSON, widgetId ) {
-	// Collection of all testimonials
-	var testimonialsCollection = new ProteusWidgets.Collections.Testimonials( {
+	var parameters = {
 		el:       '#testimonials-' + widgetId,
 		widgetId: widgetId,
 		itemsClass: '.testimonials',
 		itemTemplate: '#js-pt-testimonial-',
 		itemsModel: ProteusWidgets.Models.Testimonial,
 		itemView: ProteusWidgets.Views.Testimonial
-	} );
+	};
 
-	// Convert to array if needed
-	if ( _( testimonialsJSON ).isObject() ) {
-		testimonialsJSON = _( testimonialsJSON ).values();
-	}
-
-	// Add all testimonials to collection of newly created view
-	testimonialsCollection.items.add( testimonialsJSON, { parse: true } );
+	repopulateGeneric( ProteusWidgets.Collections.Testimonials, parameters, testimonialsJSON, widgetId );
 };
 
 /**
@@ -306,23 +304,16 @@ var repopulateTestimonials = function ( testimonialsJSON, widgetId ) {
  * @return {void}
  */
 var repopulatePeople = function ( peopleJSON, widgetId ) {
-	// Collection of people
-	var peopleCollection = new ProteusWidgets.Collections.People( {
+	var parameters = {
 		el:       '#people-' + widgetId,
 		widgetId: widgetId,
 		itemsClass: '.people',
 		itemTemplate: '#js-pt-person-',
 		itemsModel: ProteusWidgets.Models.Person,
 		itemView: ProteusWidgets.Views.Person
-	} );
+	};
 
-	// Convert to array if needed
-	if ( _( peopleJSON ).isObject() ) {
-		peopleJSON = _( peopleJSON ).values();
-	}
-
-	// Add people to collection of newly created view
-	peopleCollection.items.add( peopleJSON, { parse: true } );
+	repopulateGeneric( ProteusWidgets.Collections.People, parameters, peopleJSON, widgetId );
 };
 
 /**
@@ -332,21 +323,14 @@ var repopulatePeople = function ( peopleJSON, widgetId ) {
  * @return {void}
  */
 var repopulateSocialIcons = function ( socialIconsJSON, widgetId ) {
-	// Collection of all social icons
-	var socialIconsCollection = new ProteusWidgets.Collections.SocialIcons( {
+	var parameters = {
 		el:       '#social-icons-' + widgetId,
 		widgetId: widgetId,
 		itemsClass: '.social-icons',
 		itemTemplate: '#js-pt-social-icon-',
 		itemsModel: ProteusWidgets.Models.SocialIcon,
 		itemView: ProteusWidgets.Views.SocialIcon
-	} );
+	};
 
-	// Convert to array if needed
-	if ( _( socialIconsJSON ).isObject() ) {
-		socialIconsJSON = _( socialIconsJSON ).values();
-	}
-
-	// Add all social icons to collection of newly created view
-	socialIconsCollection.items.add( socialIconsJSON, { parse: true } );
+	repopulateGeneric( ProteusWidgets.Collections.SocialIcons, parameters, socialIconsJSON, widgetId );
 };
