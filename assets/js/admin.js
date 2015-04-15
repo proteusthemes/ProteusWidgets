@@ -1,13 +1,11 @@
 /**
- * Utilities for the administration when using ProteusThemes products
+ * Utilities for the admin dashboard
  */
 
 jQuery( document ).ready( function( $ ) {
 	'use strict';
 
-	/**
-	 * Select Icon on Click
-	 */
+	// Select Icon on Click
 	$( 'body' ).on( 'click', '.js-selectable-icon', function ( ev ) {
 		ev.preventDefault();
 		var $this = $( this );
@@ -17,52 +15,57 @@ jQuery( document ).ready( function( $ ) {
 } );
 
 
+/********************************************************
+ 			Backbone code for repeating fields in widgets
+********************************************************/
+
 /**
  ******************** Backbone Models *******************
  */
 
+// Namespacing for Backbone modules
 window.ProteusWidgets = {
 	Models: {},
 	Collections: {},
 	Views: {}
 };
 
-// model for a single location
+// Model for a single location
 ProteusWidgets.Models.Location = Backbone.Model.extend( {
 	defaults: {
 		'title':          'My Business LLC',
 		'locationlatlng': '',
-		'custompinimage': '',
-	},
+		'custompinimage': ''
+	}
 } );
 
-// model for a single testimonial
+// Model for a single testimonial
 ProteusWidgets.Models.Testimonial = Backbone.Model.extend( {
 	defaults: {
 		'quote':  '',
 		'author': '',
 		'rating': 5,
-		'author_description': '',
-	},
+		'author_description': ''
+	}
 } );
 
-// model for a single person
+// Model for a single person
 ProteusWidgets.Models.Person = Backbone.Model.extend( {
 	defaults: {
 		'tag': 'ABOUT US',
 		'image': '',
 		'name': '',
 		'description': '',
-		'link': '',
-	},
+		'link': ''
+	}
 } );
 
-// model for a single social icon
+// Model for a single social icon
 ProteusWidgets.Models.SocialIcon = Backbone.Model.extend( {
 	defaults: {
 		'link': '',
-		'icon': 'fa-facebook',
-	},
+		'icon': 'fa-facebook'
+	}
 } );
 
 
@@ -70,7 +73,7 @@ ProteusWidgets.Models.SocialIcon = Backbone.Model.extend( {
  ******************** Backbone Views *******************
  */
 
-// generic single view that others can extend from
+// Generic single view that others can extend from
 ProteusWidgets.Views.Generic = Backbone.View.extend( {
 	initialize: function ( params ) {
 		this.templateHTML = params.templateHTML;
@@ -92,7 +95,7 @@ ProteusWidgets.Views.Generic = Backbone.View.extend( {
 	}
 } );
 
-// view of a single location
+// View of a single location
 ProteusWidgets.Views.Location = ProteusWidgets.Views.Generic.extend( {
 	className: 'pt-widget-single-location',
 
@@ -101,7 +104,7 @@ ProteusWidgets.Views.Location = ProteusWidgets.Views.Generic.extend( {
 	}
 } );
 
-// view of a single testimonial
+// View of a single testimonial
 ProteusWidgets.Views.Testimonial = ProteusWidgets.Views.Generic.extend( {
 	className: 'pt-widget-single-testimonial',
 
@@ -118,7 +121,7 @@ ProteusWidgets.Views.Testimonial = ProteusWidgets.Views.Generic.extend( {
 	}
 } );
 
-// view of a single person
+// View of a single person
 ProteusWidgets.Views.Person = ProteusWidgets.Views.Generic.extend( {
 	className: 'pt-widget-single-person',
 
@@ -127,7 +130,7 @@ ProteusWidgets.Views.Person = ProteusWidgets.Views.Generic.extend( {
 	}
 } );
 
-// view of a single social icon
+// View of a single social icon
 ProteusWidgets.Views.SocialIcon = ProteusWidgets.Views.Generic.extend( {
 	className: 'pt-widget-single-social-icon',
 
@@ -157,15 +160,15 @@ ProteusWidgets.Collections.Generic = Backbone.View.extend( {
 		this.itemView = params.itemView;
 		this.itemTemplate = params.itemTemplate;
 
-		// cached reference to the element in the DOM
+		// Cached reference to the element in the DOM
 		this.$items = this.$( params.itemsClass );
 
-		// collection of locations, local to each instance of ProteusWidgets.Collections.Locations
+		// Collection of items(locations, people, testimonials,...),
 		this.items = new Backbone.Collection( [], {
 			model: this.itemsModel
 		} );
 
-		// listen to adding of the new locations
+		// Listen to adding of the new items
 		this.listenTo( this.items, 'add', this.appendOne );
 
 		return this;
@@ -174,7 +177,7 @@ ProteusWidgets.Collections.Generic = Backbone.View.extend( {
 	addNew: function ( ev ) {
 		ev.preventDefault();
 
-		// default, if there is no locations added yet
+		// Default, if there are no items added yet
 		var itemId = 0;
 
 		if ( ! this.items.isEmpty() ) {
@@ -200,7 +203,7 @@ ProteusWidgets.Collections.Generic = Backbone.View.extend( {
 
 		var currentWidgetId = this.widgetId;
 
-		// if the widget is in the initialize state (hidden), then do not append a new testimonial
+		// If the widget is in the initialize state (hidden), then do not append a new item
 		if ( '__i__' != currentWidgetId.slice( -5, currentWidgetId.length ) ) {
 			this.$items.append( renderedItem.el );
 		}
@@ -209,7 +212,7 @@ ProteusWidgets.Collections.Generic = Backbone.View.extend( {
 	}
 } );
 
-// collection of all locations, but associated with each individual widget
+// Collection of all locations, but associated with each individual widget
 ProteusWidgets.Collections.Locations = ProteusWidgets.Collections.Generic.extend( {
 	events: {
 		'click .js-pt-add-location': 'addNew'
@@ -217,21 +220,21 @@ ProteusWidgets.Collections.Locations = ProteusWidgets.Collections.Generic.extend
 } );
 
 
-// collection of all testimonials, but associated with each individual widget
+// Collection of all testimonials, but associated with each individual widget
 ProteusWidgets.Collections.Testimonials = ProteusWidgets.Collections.Generic.extend( {
 	events: {
 		'click .js-pt-add-testimonial': 'addNew'
 	}
 } );
 
-// view of all people, but associated with each individual widget
+// Collection of all people, but associated with each individual widget
 ProteusWidgets.Collections.People = ProteusWidgets.Collections.Generic.extend( {
 	events: {
 		'click .js-pt-add-person': 'addNew'
 	}
 } );
 
-// view of all social icons, but associated with each individual widget
+// Collection of all social icons, but associated with each individual widget
 ProteusWidgets.Collections.SocialIcons = ProteusWidgets.Collections.Generic.extend( {
 	events: {
 		'click .js-pt-add-social-icon': 'addNew'
@@ -251,7 +254,7 @@ ProteusWidgets.Collections.SocialIcons = ProteusWidgets.Collections.Generic.exte
  * @return {void}
  */
 var repopulateLocations = function ( locationsJSON, widgetId ) {
-	// collection of all locations
+	// Collection of all locations
 	var locationsCollection = new ProteusWidgets.Collections.Locations( {
 		el:       '#locations-' + widgetId,
 		widgetId: widgetId,
@@ -261,12 +264,12 @@ var repopulateLocations = function ( locationsJSON, widgetId ) {
 		itemView: ProteusWidgets.Views.Location
 	} );
 
-	// convert to array if needed
+	// Convert to array if needed
 	if ( _( locationsJSON ).isObject() ) {
 		locationsJSON = _( locationsJSON ).values();
 	}
 
-	// add all locations to collection of newly created view
+	// Add all locations to collection of newly created view
 	locationsCollection.items.add( locationsJSON, { parse: true } );
 };
 
@@ -277,7 +280,7 @@ var repopulateLocations = function ( locationsJSON, widgetId ) {
  * @return {void}
  */
 var repopulateTestimonials = function ( testimonialsJSON, widgetId ) {
-	// collection of all testimonials
+	// Collection of all testimonials
 	var testimonialsCollection = new ProteusWidgets.Collections.Testimonials( {
 		el:       '#testimonials-' + widgetId,
 		widgetId: widgetId,
@@ -287,12 +290,12 @@ var repopulateTestimonials = function ( testimonialsJSON, widgetId ) {
 		itemView: ProteusWidgets.Views.Testimonial
 	} );
 
-	// convert to array if needed
+	// Convert to array if needed
 	if ( _( testimonialsJSON ).isObject() ) {
 		testimonialsJSON = _( testimonialsJSON ).values();
 	}
 
-	// add all testimonials to collection of newly created view
+	// Add all testimonials to collection of newly created view
 	testimonialsCollection.items.add( testimonialsJSON, { parse: true } );
 };
 
@@ -303,7 +306,7 @@ var repopulateTestimonials = function ( testimonialsJSON, widgetId ) {
  * @return {void}
  */
 var repopulatePeople = function ( peopleJSON, widgetId ) {
-	// collection of people
+	// Collection of people
 	var peopleCollection = new ProteusWidgets.Collections.People( {
 		el:       '#people-' + widgetId,
 		widgetId: widgetId,
@@ -313,12 +316,12 @@ var repopulatePeople = function ( peopleJSON, widgetId ) {
 		itemView: ProteusWidgets.Views.Person
 	} );
 
-	// convert to array if needed
+	// Convert to array if needed
 	if ( _( peopleJSON ).isObject() ) {
 		peopleJSON = _( peopleJSON ).values();
 	}
 
-	// add people to collection of newly created view
+	// Add people to collection of newly created view
 	peopleCollection.items.add( peopleJSON, { parse: true } );
 };
 
@@ -329,7 +332,7 @@ var repopulatePeople = function ( peopleJSON, widgetId ) {
  * @return {void}
  */
 var repopulateSocialIcons = function ( socialIconsJSON, widgetId ) {
-	// collection of all social icons
+	// Collection of all social icons
 	var socialIconsCollection = new ProteusWidgets.Collections.SocialIcons( {
 		el:       '#social-icons-' + widgetId,
 		widgetId: widgetId,
@@ -339,11 +342,11 @@ var repopulateSocialIcons = function ( socialIconsJSON, widgetId ) {
 		itemView: ProteusWidgets.Views.SocialIcon
 	} );
 
-	// convert to array if needed
+	// Convert to array if needed
 	if ( _( socialIconsJSON ).isObject() ) {
 		socialIconsJSON = _( socialIconsJSON ).values();
 	}
 
-	// add all social icons to collection of newly created view
+	// Add all social icons to collection of newly created view
 	socialIconsCollection.items.add( socialIconsJSON, { parse: true } );
 };
