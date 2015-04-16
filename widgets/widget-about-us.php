@@ -178,15 +178,17 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				</p>
 			</div>
 			<script type="text/javascript">
-				// repopulate the form
-				var peopleJSON = <?php echo json_encode( $people ) ?>;
+				(function() {
+					// repopulate the form
+					var peopleJSON = <?php echo wp_json_encode( $people ) ?>;
 
-				// get the right widget id and remove the added < > characters at the start and at the end.
-				var widgetId = '<<?php echo $this->current_widget_id; ?>>'.slice( 1, -1 );
+					// get the right widget id and remove the added < > characters at the start and at the end.
+					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-				if ( _.isFunction( repopulatePeople ) ) {
-					repopulatePeople( peopleJSON, widgetId );
-				}
+					if ( _.isFunction( ProteusWidgets.Utils.repopulatePeople ) ) {
+						ProteusWidgets.Utils.repopulatePeople( peopleJSON, widgetId );
+					}
+				})();
 			</script>
 
 			<hr>
