@@ -164,4 +164,4 @@ class ProteusWidgets {
 		add_option( 'proteuswidgets_activation_version', $plugin_data['Version'] );
 	}
 }
-new ProteusWidgets;
+$ProteusWidgets = new ProteusWidgets();
