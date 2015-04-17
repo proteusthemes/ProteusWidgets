@@ -18,7 +18,7 @@ class PWFunctions {
 		$out = array();
 
 		foreach ( $all_options as $key => $value ) {
-			if ( self::starts_with_zocial( $key ) && ! empty( $value ) ) {
+			if ( self::starts_with_pw( $key ) && ! empty( $value ) ) {
 				$out[ $key ] = $value;
 			}
 		}
@@ -27,7 +27,7 @@ class PWFunctions {
 	}
 
 	// helper functions for the get_social_icons_links function
-	private static function starts_with_zocial( $str ) {
+	private static function starts_with_pw( $str ) {
 		return strpos( $str , 'pw-' ) === 0;
 	}
 
