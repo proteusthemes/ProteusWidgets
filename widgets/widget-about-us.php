@@ -51,6 +51,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			}
 
 			$people = PWFunctions::reorder_widget_array_key_values( $people );
+
 			if ( isset( $people[0] ) ) {
 				$people[0]['active'] = 'active';
 			}
@@ -60,7 +61,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			$instance['slider_settings'] = 'yes' === $instance['autocycle'] ? esc_attr( empty( $instance['interval'] ) ? 5000 : absint( $instance['interval'] ) ) : 'false';
 
 			$text = array(
-				'image-alt'  => esc_attr__( 'About us image', 'proteuswidgets' ),
+				'image-alt'  => __( 'About us image', 'proteuswidgets' ),
 				'read-more'  => __( 'Read more', 'proteuswidgets' ),
 				'previous'   => __( 'Previous', 'proteuswidgets' ),
 				'next'       => __( 'Next', 'proteuswidgets' ),
@@ -133,6 +134,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			else {
 				$this->current_widget_id = $this->id;
 			}
+
 			$this->current_widget_id = esc_attr( $this->current_widget_id );
 
 			?>

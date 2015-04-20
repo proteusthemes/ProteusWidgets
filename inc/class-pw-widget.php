@@ -26,18 +26,21 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 				)
 			);
 
-			// include autoload from composer for PHP mustache
+			// Include autoload from composer for PHP mustache
 			require_once( PW_PATH . 'vendor/autoload.php' );
 
-			// set the mustache engine
+			// Set the mustache engine
+			// Learn more: https://github.com/bobthecow/mustache.php/wiki/Template-Loading
 			$this->mustache = new Mustache_Engine(
 				array(
 					'loader' => new Mustache_Loader_CascadingLoader(
 						array(
-							// first loader for the theme overriding the views via filters
-							new Mustache_Loader_FilesystemLoader( apply_filters( 'pw/widget_views_path' , PW_PATH . 'widgets/views' ) ),
-							// second/default loader
+							// FilesystemLoader from configurable path
+							new Mustache_Loader_FilesystemLoader( apply_filters( 'pw/widget_views_path', PW_PATH . 'widgets/views' ) ),
+							// Default FilesystemLoader from this plugin
 							new Mustache_Loader_FilesystemLoader( PW_PATH . 'widgets/views' ),
+							// Default string longer, if nothing works from above
+							new Mustache_Loader_StringLoader,
 						)
 					)
 				)
