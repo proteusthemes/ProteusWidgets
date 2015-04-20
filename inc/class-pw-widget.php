@@ -27,7 +27,7 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 			);
 
 			// include autoload from composer for PHP mustache
-			require_once( PROTEUSWIDGETS_PATH . 'vendor/autoload.php' );
+			require_once( PW_PATH . 'vendor/autoload.php' );
 
 			// set the mustache engine
 			$this->mustache = new Mustache_Engine(
@@ -35,9 +35,9 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 					'loader' => new Mustache_Loader_CascadingLoader(
 						array(
 							// first loader for the theme overriding the views via filters
-							new Mustache_Loader_FilesystemLoader( apply_filters( 'pw/widget_views_path' , PROTEUSWIDGETS_PATH . 'widgets/views' ) ),
+							new Mustache_Loader_FilesystemLoader( apply_filters( 'pw/widget_views_path' , PW_PATH . 'widgets/views' ) ),
 							// second/default loader
-							new Mustache_Loader_FilesystemLoader( PROTEUSWIDGETS_PATH . 'widgets/views' ),
+							new Mustache_Loader_FilesystemLoader( PW_PATH . 'widgets/views' ),
 						)
 					)
 				)

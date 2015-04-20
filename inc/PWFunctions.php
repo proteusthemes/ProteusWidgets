@@ -64,7 +64,7 @@ class PWFunctions {
 	 * @return boolean
 	 */
 	public static function installed_after( $version_to_compare ) {
-		return get_option( 'proteuswidgets_activation_version' ) && version_compare( get_option( 'proteuswidgets_activation_version' ), $version_to_compare, '>' );
+		return get_option( 'pw_activation_version' ) && version_compare( get_option( 'pw_activation_version' ), $version_to_compare, '>' );
 	}
 
 }

@@ -8,7 +8,6 @@ class PWFunctionsTest extends WP_UnitTestCase {
 
 	function test_class_is_available() {
 		$this->assertTrue( class_exists( 'PWFunctions' ) );
-		$this->assertInstanceOf( 'ProteusWidgets', $this->ProteusWidgets );
 	}
 
 	function test_all_methods_exist_and_are_callable() {
@@ -66,25 +65,15 @@ class PWFunctionsTest extends WP_UnitTestCase {
 		);
 	}
 
-	/**
-	 * TODO move to tests where we test PW
-	 */
-	function test_plugin_activation() {
-		$this->assertFalse( get_option( 'proteuswidgets_activation_version' ), 'not in db yet' );
-
-		$this->ProteusWidgets->plugin_activation();
-
-		$installed_version = get_option( 'proteuswidgets_activation_version' );
-
-		$this->assertNotEmpty( $installed_version );
-
-		return $installed_version;
-	}
-
 	function test_installed_after() {
 		$this->ProteusWidgets->plugin_activation();
 		$this->assertTrue( PWFunctions::installed_after( '0' ), 'all versions are installed after 0' );
 		$this->assertFalse( PWFunctions::installed_after( '999' ), 'we will never have such great version number' );
+
+		update_option( 'pw_activation_version', '1.5.0' );
+
+		$this->assertFalse( PWFunctions::installed_after( '1.5.0' ), 'equal versions should be false' );
+		$this->assertTrue( PWFunctions::installed_after( '1.4.9' ) );
 	}
 
 	/**

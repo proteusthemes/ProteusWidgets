@@ -17,7 +17,7 @@ require.config( {
 } );
 
 require.config( {
-	baseUrl: ProteusWidgetsVars.pathToPlugin
+	baseUrl: PWVars.pathToPlugin
 } );
 
 require( [
