@@ -141,6 +141,20 @@ module.exports = function ( grunt ) {
 				expand: true,
 			},
 		},
+
+		// https://www.npmjs.com/package/grunt-githooks
+		githooks: {
+			all: {
+				'pre-commit': {
+					taskNames:   'pre-commit',
+					hashbang:    '#!/bin/sh',
+					template:    'git-hooks/pre-commit',
+					startMarker: '## GRUNT GITHOOKS STARTS',
+					endMarker:   '## GRUNT GITHOOKS ENDS'
+				},
+			},
+		},
+
 	} );
 
 	// when developing
