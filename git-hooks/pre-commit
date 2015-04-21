@@ -1,34 +1,56 @@
-# A hook script to verify the WordPress standards of the PHP files.
+# A pre-commit git hook
 # Called by "git commit" with no arguments.  The hook should
 # exit with non-zero status after issuing an appropriate message if
 # it wants to stop the commit.
-#
-# To enable this hook, rename this file to "pre-commit".
+
+# Allows us to read user input below, assigns stdin to keyboard
+exec < /dev/tty
 
 # Define colors
 red=`tput setaf 1`
 green=`tput setaf 2`
 reset=`tput sgr0`
 
-# Allows us to read user input below, assigns stdin to keyboard
-exec < /dev/tty
+# A hook script to verify PHP linting
 
 # Store stashed files for commit
 files=$(git diff --cached --name-only | grep "\.php$")
 
+errorlinting=0
+
+for file in $files
+do
+	linting=$(php -l $file)
+	if echo $linting | grep -v "No syntax errors detected in" >/dev/null 2>&1
+	then
+		errorlinting=$(( $errorlinting + 1 ))
+		echo "$linting"
+	fi
+done
+
+if [[ "$errorlinting" -gt "0" ]]
+then
+	echo "\n${red}Total number of lint errors: $errorlinting. Fix them!${reset}\n"
+	exit 1
+fi
+
+# END OF:  A hook script to verify PHP linting
+
+# A hook script to verify the WordPress standards of the PHP files.
+
 if [[ "${#files}" -gt "0" ]]
 then
-	# Store the output
-	output=$(phpcs --colors --standard=WordPress $files)
+	# Store the wpstandard
+	wpstandard=$(phpcs --colors --standard=WordPress $files)
 
-	# Check if there are any problems with the code (checking the length of the output)
-	if [[ "${#output}" -gt "0" ]]
+	# Check if there are any problems with the code (checking the length of the wpstandard)
+	if [[ "${#wpstandard}" -gt "0" ]]
 	then
 		# If there are some problems display the errors/warnings
-		echo "$output"
+		echo "$wpstandard"
 
 		# See if some automatic warnings/errors exist
-		if echo $output | grep "PHPCBF CAN FIX THE \d" >/dev/null 2>&1
+		if echo $wpstandard | grep "PHPCBF CAN FIX THE \d" >/dev/null 2>&1
 		then
 			# Ask the user if he wants to correct the problems automatically
 			read -p "Do you want to fix the marked warnings/errors automatically?[y/n]" autocorrect
@@ -56,6 +78,8 @@ else
 	# No php files commited to check for WordPress standard so exit properly
 	exit 0
 fi
+
+# END OF: A hook script to verify the WordPress standards of the PHP files.
 
 # Disable this command above: Allows us to read user input below, assigns stdin to keyboard
 exec <&-
