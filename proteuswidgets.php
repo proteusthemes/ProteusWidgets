@@ -51,6 +51,7 @@ class ProteusWidgets {
 		);
 
 		// actions
+		add_action( 'admin_init', array( $this, 'update_plugin_version' ) );
 		add_action( 'plugins_loaded', array( $this, 'define_version' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_js_css' ), 20 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_js_css' ), 20 );
@@ -99,13 +100,23 @@ class ProteusWidgets {
 
 
 	/**
+	 * Write to the DB the current installed plugin version
+	 */
+	public function update_plugin_version() {
+		$plugin_data = get_plugin_data( __FILE__ );
+
+		return update_option( 'pw_installed_version', $plugin_data['Version'] );
+	}
+
+
+	/**
 	 * Define some constants as soon as the plugins are loaded
 	 */
 	public function define_version() {
-		$plugin_data = get_plugin_data( __FILE__ );
+		$version = get_option( 'pw_installed_version', '0.0.1' );
 
 		if ( ! defined( 'PW_VERSION' ) ) {
-			define( 'PW_VERSION', apply_filters( 'pw/version', $plugin_data['Version'] ) );
+			define( 'PW_VERSION', apply_filters( 'pw/version', $version ) );
 		}
 
 		return PW_VERSION;
