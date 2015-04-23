@@ -31,8 +31,8 @@ if ( ! class_exists( 'PW_Author' ) ) {
 			$selected_user_id = intval( $instance['selected_user_id'] );
 			$social_icons     = array();
 
-			if ( is_callable( 'PWFunctions::get_social_icons_links' ) ) {
-				$icons = PWFunctions::get_social_icons_links( get_user_meta( $selected_user_id ) );
+			if ( is_callable( 'PW_Functions::get_social_icons_links' ) ) {
+				$icons = PW_Functions::get_social_icons_links( get_user_meta( $selected_user_id ) );
 				foreach ( $icons as $service => $url ) {
 					$service_icon = substr( $service, 3 );
 					array_push( $social_icons, array( 'icon' => $service_icon, 'url' => $url[0] ) );

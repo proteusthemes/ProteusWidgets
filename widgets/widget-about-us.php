@@ -50,7 +50,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				);
 			}
 
-			$people = PWFunctions::reorder_widget_array_key_values( $people );
+			$people = PW_Functions::reorder_widget_array_key_values( $people );
 
 			if ( isset( $people[0] ) ) {
 				$people[0]['active'] = 'active';

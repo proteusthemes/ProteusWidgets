@@ -70,7 +70,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				$instance['spans'] = '12';
 			}
 
-			$testimonials = PWFunctions::reorder_widget_array_key_values( $testimonials );
+			$testimonials = PW_Functions::reorder_widget_array_key_values( $testimonials );
 			if ( isset( $testimonials[0] ) ) {
 				$testimonials[0]['active'] = 'active';
 			}

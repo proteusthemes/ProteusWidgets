@@ -20,7 +20,7 @@ define( 'PW_PATH', apply_filters( 'pw/plugin_dir_path', plugin_dir_path( __FILE_
 define( 'PW_URL', apply_filters( 'pw/plugin_dir_url', plugin_dir_url( __FILE__ ) ) );
 
 //include php files
-require_once( PW_PATH . 'inc/PWFunctions.php');
+require_once( PW_PATH . 'inc/class-pw-functions.php');
 require_once( PW_PATH . 'inc/class-pw-widget.php');
 
 /**
@@ -138,7 +138,7 @@ class ProteusWidgets {
 	public function after_theme_setup() {
 		// Backwards compatibility for MentalPress 1.0.1 or older and ProteusWidgets version 1.0.3
 		// Use these new image sizes only for the future releases of ProteusWidgets plugin.
-		if ( PWFunctions::installed_after( '1.0.3' ) ) {
+		if ( PW_Functions::installed_after( '1.0.3' ) ) {
 			$page_box_image_size = apply_filters( 'pw/featured_page_widget_page_box_image_size', array( 'width' => 360, 'height' => 240, 'crop' => true ) );
 			$inline_image_size = apply_filters( 'pw/featured_page_widget_inline_image_size', array( 'width' => 100, 'height' => 75, 'crop' => true ) );
 
