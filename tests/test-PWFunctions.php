@@ -74,7 +74,7 @@ class PWFunctionsTest extends WP_UnitTestCase {
 
 	function test_reorder_widget_array_key_values() {
 		$is_array_error = false;
-		$reordered_array = array();
+		$actual_array = array();
 
 		// input array with unordered array keys and a non array value
 		$testing_array = array(
@@ -86,7 +86,7 @@ class PWFunctionsTest extends WP_UnitTestCase {
 		);
 
 		// array with ordered array keys
-		$correct_array = array(
+		$expected_array = array(
 			'0' => array( 'first' ),
 			'1' => array( 'second' ),
 			'2' => array( 'third' ),
@@ -94,16 +94,16 @@ class PWFunctionsTest extends WP_UnitTestCase {
 			'4' => array( 'fifth' ),
 		);
 
-		$reordered_array = PWFunctions::reorder_widget_array_key_values( $testing_array );
-		foreach ( $reordered_array as $array ) {
+		$actual_array = PWFunctions::reorder_widget_array_key_values( $testing_array );
+		foreach ( $actual_array as $array ) {
 			if ( ! is_array( $array ) ) {
 				$is_array_error = true;
 			}
 		}
 
 		$this->assertEquals(
-			array_keys( $reordered_array ),
-			array_keys( $correct_array ),
+			array_keys( $actual_array ),
+			array_keys( $expected_array ),
 			'the array does not have the correct order of its keys'
 		);
 
