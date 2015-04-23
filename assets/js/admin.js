@@ -186,23 +186,26 @@ ProteusWidgets.ListViews.Abstract = Backbone.View.extend( {
 	addNew: function ( ev ) {
 		ev.preventDefault();
 
-		var nextItemId = 1 + this.getMaxId();
+		var currentMaxId = this.getMaxId();
 
 		this.items.add( new this.itemsModel( {
-			id: nextItemId
+			id: (currentMaxId + 1)
 		} ) );
 
 		return this;
 	},
 
 	getMaxId: function () {
-		return this.items.isEmpty() ? -1 : function () {
+		if ( this.items.isEmpty() ) {
+			return -1;
+		}
+		else {
 			var itemWithMaxId = this.items.max( function ( item ) {
 				return parseInt( item.id, 10 );
 			} );
 
 			return parseInt( itemWithMaxId.id, 10 );
-		};
+		}
 	},
 
 	appendOne: function ( item ) {
