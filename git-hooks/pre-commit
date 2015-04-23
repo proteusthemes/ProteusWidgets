@@ -14,7 +14,7 @@ reset=`tput sgr0`
 # A hook script to verify PHP linting
 
 # Store stashed files for commit
-files=$(git diff --cached --name-only | grep "\.php$")
+files=$(git diff --cached --name-only --diff-filter=ACMRTUXB | grep "\.php$")
 
 errorlinting=0
 
