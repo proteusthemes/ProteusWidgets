@@ -28,8 +28,7 @@ do
 	fi
 done
 
-if [[ "$errorlinting" -gt "0" ]]
-then
+if [ "$errorlinting" -gt "0" ]; then
 	echo "\n${red}Total number of lint errors: $errorlinting. Fix them!${reset}\n"
 	exit 1
 fi
@@ -38,20 +37,17 @@ fi
 
 # A hook script to verify the WordPress standards of the PHP files.
 
-if [[ "${#files}" -gt "0" ]]
-then
+if [ "${#files}" -gt "0" ]; then
 	# Store the wpstandard
 	wpstandard=$(phpcs --colors --standard=WordPress $files)
 
 	# Check if there are any problems with the code (checking the length of the wpstandard)
-	if [[ "${#wpstandard}" -gt "0" ]]
-	then
+	if [ "${#wpstandard}" -gt "0" ]; then
 		# If there are some problems display the errors/warnings
 		echo "$wpstandard"
 
 		# See if some automatic warnings/errors exist
-		if echo $wpstandard | grep "PHPCBF CAN FIX THE \d" >/dev/null 2>&1
-		then
+		if echo $wpstandard | grep -q "PHPCBF CAN FIX THE"; then
 			# Ask the user if he wants to correct the problems automatically
 			read -p "Do you want to fix the marked warnings/errors automatically?[y/n]" autocorrect
 			case $autocorrect in

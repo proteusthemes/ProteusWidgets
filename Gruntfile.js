@@ -142,6 +142,18 @@ module.exports = function ( grunt ) {
 			},
 		},
 
+		// https://www.npmjs.com/package/grunt-wget
+		wget: {
+			basic: {
+				files: {
+					'git-hooks/pre-commit': 'https://gist.githubusercontent.com/capuderg/09f5c9c054ee8075d39d/raw/gistfile1.txt',
+				},
+				options: {
+					overwrite: true,
+				},
+			},
+		},
+
 		// https://www.npmjs.com/package/grunt-githooks
 		githooks: {
 			all: {
@@ -174,5 +186,11 @@ module.exports = function ( grunt ) {
 	grunt.registerTask( 'languages', [
 		'makepot',
 		'po2mo',
+	] );
+
+	// update githooks
+	grunt.registerTask( 'updategithooks', [
+		'wget',
+		'githooks',
 	] );
 };
