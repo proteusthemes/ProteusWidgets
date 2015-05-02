@@ -24,5 +24,6 @@ bundle:
 		proteuswidgets/bower_components/fontawesome/ \
 		proteuswidgets/bower_components/mustache/ \
 		proteuswidgets/inc/ \
-		proteuswidgets/widgets/
+		proteuswidgets/widgets/ \
+		proteuswidgets/vendor/
 	mv ../proteuswidgets.zip ~/themes/mentalpress/bundled-plugins/
