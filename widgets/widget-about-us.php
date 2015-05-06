@@ -150,6 +150,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-image"><?php _e( 'Image URL:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-image" name="<?php echo esc_attr( $this->get_field_name( 'people' ) ); ?>[{{id}}][image]" type="text" value="{{image}}" />
+					<input type="button" onclick="ProteusWidgetsUploader.imageUploader.openFileFrame('<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-image');" class="upload-brochure-file button button-secondary pull-right" value="Upload file" />
 				</p>
 
 				<p>

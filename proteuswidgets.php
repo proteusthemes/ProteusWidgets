@@ -74,6 +74,10 @@ class ProteusWidgets {
 	 * @return void
 	 */
 	public static function admin_enqueue_js_css() {
+		//media uploder include files
+		wp_enqueue_media();
+		wp_enqueue_script( 'pw-media-uploader', PW_URL . '/assets/js/BrochureAdmin.js', array( 'jquery' ), '1.0', true );
+
 		wp_register_script( 'pw-mustache', PW_URL  . 'bower_components/mustache/mustache.min.js', array(), null, true );
 		wp_enqueue_script( 'pw-admin-script', PW_URL . 'assets/js/admin.js' , array( 'jquery', 'underscore', 'backbone', 'pw-mustache' ), PW_VERSION );
 

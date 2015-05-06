@@ -90,6 +90,7 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 			<p>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'brochure_url' ) ); ?>"><?php _e( 'Brochure URL:', 'proteuswidgets' ); ?></label> <br />
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'brochure_url' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'brochure_url' ) ); ?>" type="text" value="<?php echo esc_url( $brochure_url ); ?>" />
+				<input type="button" onclick="ProteusWidgetsUploader.fileUploader.openFileFrame('<?php echo $this->get_field_id( 'brochure_url' ); ?>');" class="upload-brochure-file button button-secondary pull-right" value="Upload file" /> <!-- Media uploader button -->
 			</p>
 
 			<p>
