@@ -36,18 +36,20 @@ class ProteusWidgets {
 	function __construct() {
 		// initialize widgets array
 		$this->widgets = array(
+			'widget-about-us',
 			'widget-author',
 			'widget-banner',
 			'widget-brochure-box',
+			'widget-call-to-action',
 			'widget-facebook',
 			'widget-featured-page',
 			'widget-google-map',
 			'widget-icon-box',
+			'widget-number-counter',
 			'widget-opening-time',
+			'widget-skype',
 			'widget-social-icons',
 			'widget-testimonials',
-			'widget-skype',
-			'widget-about-us',
 		);
 
 		// actions
