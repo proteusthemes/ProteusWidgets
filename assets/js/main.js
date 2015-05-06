@@ -27,22 +27,22 @@ require( [
 ], function( $, _ ) {
 	'use strict';
 
-	// Get all number-counter__number elements inside the number counter widget
-	var obj = $( '.widget-number-counters .number-counter__number' );
+	function numberCounterAnimateValue(element, start, end, speed) {
+		// Assumes integer values for start, end and speed and DOM element for the element parameter
 
-	obj.each(function( index, el ) {
+		// The number counter animation has already been started. So skip it!
+		if ( $(element).data('numberCounterFinished') ) {
+			return null;
+		}
+
+		var range = end - start;
 		// No timer shorter than 50ms (not really visible any way)
 		var minTimer = 50;
-
-		// Get data from the element
-		var speed = parseInt( el.dataset.speed );
-		var countTo = parseInt( el.dataset.to );
-
-		// Calculate the step time to show all intermediate values
-		var stepTime = Math.abs( Math.floor( speed / countTo ) );
+		// Calculate step time to show all intermediate values
+		var stepTime = Math.abs(Math.floor(speed / range));
 
 		// Never go below minTimer
-		stepTime = Math.max( stepTime, minTimer );
+		stepTime = Math.max(stepTime, minTimer);
 
 		// Get current time and calculate desired end time
 		var startTime = new Date().getTime();
@@ -51,15 +51,42 @@ require( [
 
 		function run() {
 			var now = new Date().getTime();
-			var remaining = Math.max( ( endTime - now ) / speed, 0 );
-			var value = Math.round( countTo - ( remaining * countTo ) );
-			el.innerHTML = value;
-			if ( value == countTo ) {
-				clearInterval( timer );
+			var remaining = Math.max((endTime - now) / speed, 0);
+			var value = Math.round(end - (remaining * range));
+			element.innerHTML = value;
+			if (value == end) {
+				clearInterval(timer);
 			}
 		}
 
-		timer = setInterval( run, stepTime );
+		timer = setInterval(run, stepTime);
 		run();
+	}
+
+	// Function for detecting if the element is visible on screen
+	function numberCounterIsScrolledIntoView(element) {
+		var docViewTop = $(window).scrollTop();
+    var docViewBottom = docViewTop + $(window).height();
+
+    var elemTop = $(element).offset().top;
+    var elemBottom = elemTop + $(element).height();
+
+    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop))
+	}
+
+	// Get all number counter widgets
+	var numberCounterWidget = $( '.widget-number-counters' );
+
+	// Run numberCounterAnimateValue for each counter, but just once, when the widget is visible on the screen
+	$(document).scroll( function(){
+		numberCounterWidget.each(function(index, el) {
+		if( numberCounterIsScrolledIntoView( $(el) ) ) {
+			$(el).find('.number-counter__number').each(function(childIndex, childEl) {
+				numberCounterAnimateValue(childEl, 0, parseInt(childEl.dataset.to, 10), parseInt(el.dataset.speed, 10));
+				$(childEl).data('numberCounterFinished', true);
+			});
+		}
+		});
 	});
+
 } );
