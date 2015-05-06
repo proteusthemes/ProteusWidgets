@@ -32,7 +32,6 @@ window.ProteusWidgets = {
  ******************** Backbone Models *******************
  */
 
-// Model for a single location
 _.extend( ProteusWidgets.Models, {
 	Location: Backbone.Model.extend( {
 		defaults: {
@@ -65,6 +64,14 @@ _.extend( ProteusWidgets.Models, {
 		defaults: {
 			'link': '',
 			'icon': 'fa-facebook',
+		},
+	} ),
+
+	Counter: Backbone.Model.extend( {
+		defaults: {
+			'title': '',
+			'number': '',
+			'icon': 'fa-users',
 		},
 	} ),
 } );
@@ -146,6 +153,23 @@ _.extend( ProteusWidgets.Views, {
 			this.$el.html( Mustache.render( this.templateHTML, this.model.attributes ) );
 
 			this.$( 'select.js-icon' ).val( this.model.get( 'icon' ) );
+
+			return this;
+		},
+	} ),
+
+	// View of a single counter
+	Counter: ProteusWidgets.Views.Abstract.extend( {
+		className: 'pt-widget-single-counter',
+
+		events: {
+			'click .js-pt-remove-counter': 'destroy',
+		},
+
+		render: function () {
+			this.$el.html( Mustache.render( this.templateHTML, this.model.attributes ) );
+
+			this.$( 'input.js-icon-input' ).val( this.model.get( 'icon' ) );
 
 			return this;
 		},
@@ -255,6 +279,13 @@ _.extend( ProteusWidgets.ListViews, {
 			'click .js-pt-add-social-icon': 'addNew'
 		}
 	} ),
+
+	// Collection of all counters, but associated with each individual widget
+	Counters: ProteusWidgets.ListViews.Abstract.extend( {
+		events: {
+			'click .js-pt-add-counter': 'addNew'
+		}
+	} ),
 } );
 
 
@@ -355,5 +386,25 @@ _.extend( ProteusWidgets.Utils, {
 		};
 
 		this.repopulateGeneric( ProteusWidgets.ListViews.SocialIcons, parameters, socialIconsJSON, widgetId );
+	},
+
+
+	/**
+	 * Function which adds the existing counters to the DOM
+	 * @param  {json} countersJSON
+	 * @param  {string} widgetId ID of widget from PHP $this->id
+	 * @return {void}
+	 */
+	repopulateCounters: function ( countersJSON, widgetId ) {
+		var parameters = {
+			el:           '#counters-' + widgetId,
+			widgetId:     widgetId,
+			itemsClass:   '.counters',
+			itemTemplate: '#js-pt-counter-',
+			itemsModel:   ProteusWidgets.Models.Counter,
+			itemView:     ProteusWidgets.Views.Counter,
+		};
+
+		this.repopulateGeneric( ProteusWidgets.ListViews.Counters, parameters, countersJSON, widgetId );
 	},
 } );

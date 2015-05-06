@@ -1,0 +1,13 @@
+{{{ args.before_widget }}}
+
+	<div class="widget-number-counters">
+		{{# counters }}
+			<div class="number-counter">
+				<i class="number-counter__icon fa {{ icon }}"></i>
+				<div class="number-counter__number" data-to="{{ number }}" data-speed="{{ instance.speed }}">0</div>
+				<div class="number-counter__title">{{ title }}</div>
+			</div>
+		{{/ counters }}
+	</div>
+
+{{{ args.after_widget }}}
