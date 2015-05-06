@@ -5,6 +5,43 @@
 jQuery( document ).ready( function( $ ) {
 	'use strict';
 
+	/**
+	 * Replace 'ProteusThemes: ' with the logo image in the titles of the widgets
+	 */
+	var ptSearchReplace = function ( $el, searchFor ) {
+		if ( _.isUndefined( searchFor ) ) {
+			searchFor = 'ProteusThemes: ';
+		}
+
+		var expression = new RegExp( searchFor );
+
+		$el.html(
+			$el.html().replace(
+				expression,
+				'<img src="' + ProteusWidgetsAdminVars.urlToPlugin + '/assets/images/pt.svg" width="15" height="15" alt="PT" class="proteusthemes-widget-logo" style="position: relative; top: 2px; margin-right: 4px;" /> '
+			)
+		);
+	};
+
+	// For appearance > widgets only
+	$( '.panel-type-wrapper > h3, .widget-title > h4' ).each( function() {
+		ptSearchReplace( $( this ) );
+	} );
+
+	// Same, but inside page builder and appearance > customize > widgets
+	$( document ).on( 'panels_setup panelsopen widget-added', function() {
+		$( this ).find( '#siteorigin-panels-metabox .title > h4, .so-title-bar .widget-name, .widget-title > h4' ).each( function () {
+			ptSearchReplace( $( this ) );
+		} );
+	} );
+
+	// Same, but inside customizer: [PT] Theme Options title
+	$( 'body' ).ready( function () {
+		$( '#accordion-panel-panel_buildpress > .accordion-section-title' ).each( function () {
+			ptSearchReplace( $( this ), '\\[PT\\] ' );
+		} );
+	} );
+
 	// Select Icon on Click
 	$( 'body' ).on( 'click', '.js-selectable-icon', function ( ev ) {
 		ev.preventDefault();

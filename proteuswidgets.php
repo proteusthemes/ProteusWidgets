@@ -75,6 +75,11 @@ class ProteusWidgets {
 		wp_register_script( 'pw-mustache', PW_URL  . 'bower_components/mustache/mustache.min.js', array(), null, true );
 		wp_enqueue_script( 'pw-admin-script', PW_URL . 'assets/js/admin.js' , array( 'jquery', 'underscore', 'backbone', 'pw-mustache' ), PW_VERSION );
 
+		// provide the global variable to the `pw-admin-script`
+		wp_localize_script( 'pw-admin-script', 'ProteusWidgetsAdminVars', array(
+			'urlToPlugin' => PW_URL,
+		) );
+
 		wp_enqueue_style( 'font-awesome', PW_URL . 'bower_components/fontawesome/css/font-awesome.min.css', array(), '4.2.0' );
 		wp_enqueue_style( 'pw-admin-style', PW_URL . 'assets/stylesheets/admin.css', array( 'font-awesome' ), PW_VERSION );
 	}
