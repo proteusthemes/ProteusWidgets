@@ -84,6 +84,7 @@ class ProteusWidgets {
 		// provide the global variable to the `pw-admin-script`
 		wp_localize_script( 'pw-admin-script', 'ProteusWidgetsAdminVars', array(
 			'urlToPlugin' => PW_URL,
+			'ptTextReplacementEnabled' => apply_filters( 'pw/proteus_themes_text_replacement_enabled', true ),
 		) );
 
 		wp_enqueue_style( 'font-awesome', PW_URL . 'bower_components/fontawesome/css/font-awesome.min.css', array(), '4.2.0' );
