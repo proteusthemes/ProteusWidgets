@@ -1,5 +1,10 @@
 {
-    "require": {
-        "mustache/mustache": "~2.7"
-    }
+		"name": "proteusthemes/proteuswidgets",
+		"description": "WordPress widgets used in ProtuesThemes.",
+		"autoload": {
+			"files": ["proteuswidgets.php"]
+		},
+		"require": {
+			"mustache/mustache": "~2.7"
+		}
 }

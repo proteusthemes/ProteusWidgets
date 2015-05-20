@@ -1,23 +1,8 @@
 <?php
-/*
-Plugin Name: ProteusWidgets
-Plugin URI: http://www.proteusthemes.com
-Description: WP widgets for retail businesses by ProteusThemes
-Version: 1.0.6
-Author: ProteusThemes
-Author URI: http://www.proteusthemes.com
-License: GPL3
-License URI: http://www.gnu.org/licenses/gpl.html
-Donate link: http://www.proteusthemes.com/#donate
-Text domain: proteuswidgets
-Prefix: pw
-*/
-
-
 
 // Path/URL to root of this plugin, with trailing slash
-define( 'PW_PATH', apply_filters( 'pw/plugin_dir_path', plugin_dir_path( __FILE__ ) ) );
-define( 'PW_URL', apply_filters( 'pw/plugin_dir_url', plugin_dir_url( __FILE__ ) ) );
+define( 'PW_PATH', apply_filters( 'pw/dir_path', get_template_directory() . '/vendor/proteusthemes/proteuswidgets/' ) );
+define( 'PW_URL', apply_filters( 'pw/dir_url', get_template_directory_uri() . '/vendor/proteusthemes/proteuswidgets/' ) );
 
 //include php files
 require_once( PW_PATH . 'inc/class-pw-functions.php');
@@ -51,8 +36,6 @@ class ProteusWidgets {
 		);
 
 		// actions
-		add_action( 'admin_init', array( $this, 'update_plugin_version' ) );
-		add_action( 'plugins_loaded', array( $this, 'define_version' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_js_css' ), 20 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_js_css' ), 20 );
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
@@ -77,7 +60,7 @@ class ProteusWidgets {
 		wp_enqueue_script( 'pw-media-uploader', PW_URL . '/assets/js/BrochureAdmin.js', array( 'jquery' ), '1.0', true );
 
 		wp_register_script( 'pw-mustache', PW_URL  . 'bower_components/mustache/mustache.min.js', array(), null, true );
-		wp_enqueue_script( 'pw-admin-script', PW_URL . 'assets/js/admin.js' , array( 'jquery', 'underscore', 'backbone', 'pw-mustache' ), PW_VERSION );
+		wp_enqueue_script( 'pw-admin-script', PW_URL . 'assets/js/admin.js' , array( 'jquery', 'underscore', 'backbone', 'pw-mustache' ) );
 
 		// provide the global variable to the `pw-admin-script`
 		wp_localize_script( 'pw-admin-script', 'ProteusWidgetsAdminVars', array(
@@ -86,7 +69,7 @@ class ProteusWidgets {
 		) );
 
 		wp_enqueue_style( 'font-awesome', PW_URL . 'bower_components/fontawesome/css/font-awesome.min.css', array(), '4.2.0' );
-		wp_enqueue_style( 'pw-admin-style', PW_URL . 'assets/stylesheets/admin.css', array( 'font-awesome' ), PW_VERSION );
+		wp_enqueue_style( 'pw-admin-style', PW_URL . 'assets/stylesheets/admin.css', array( 'font-awesome' ) );
 	}
 
 
@@ -97,41 +80,16 @@ class ProteusWidgets {
 	 */
 	public static function enqueue_js_css() {
 		wp_enqueue_style( 'font-awesome', PW_URL . 'bower_components/fontawesome/css/font-awesome.min.css' );
-		wp_enqueue_style( 'pw-style', PW_URL . 'main.css', array( 'font-awesome' ), PW_VERSION );
+		wp_enqueue_style( 'pw-style', PW_URL . 'main.css', array( 'font-awesome' ) );
 
 		// main JS file
-		wp_enqueue_script( 'pw-script', PW_URL  . 'assets/js/main.min.js', array( 'jquery', 'underscore' ), PW_VERSION );
+		wp_enqueue_script( 'pw-script', PW_URL  . 'assets/js/main.min.js', array( 'jquery', 'underscore' ) );
 
 		// Pass data to the main script
 		wp_localize_script( 'pw-script', 'PWVars', array(
 			'pathToPlugin'  => PW_URL,
 		) );
 	}
-
-
-	/**
-	 * Write to the DB the current installed plugin version
-	 */
-	public function update_plugin_version() {
-		$plugin_data = get_plugin_data( __FILE__ );
-
-		return update_option( 'pw_installed_version', $plugin_data['Version'] );
-	}
-
-
-	/**
-	 * Define some constants as soon as the plugins are loaded
-	 */
-	public function define_version() {
-		$version = get_option( 'pw_installed_version', '0.0.1' );
-
-		if ( ! defined( 'PW_VERSION' ) ) {
-			define( 'PW_VERSION', apply_filters( 'pw/version', $version ) );
-		}
-
-		return PW_VERSION;
-	}
-
 
 	/**
 	 * Require all widgets
@@ -146,30 +104,17 @@ class ProteusWidgets {
 	 * Adds theme support - thumbnail for featured page widget
 	 */
 	public function after_theme_setup() {
-		// Backwards compatibility for MentalPress 1.0.1 or older and ProteusWidgets version 1.0.3
-		// Use these new image sizes only for the future releases of ProteusWidgets plugin.
-		if ( PW_Functions::installed_after( '1.0.3' ) ) {
-			$page_box_image_size = apply_filters( 'pw/featured_page_widget_page_box_image_size', array( 'width' => 360, 'height' => 240, 'crop' => true ) );
-			$inline_image_size = apply_filters( 'pw/featured_page_widget_inline_image_size', array( 'width' => 100, 'height' => 75, 'crop' => true ) );
+		$page_box_image_size = apply_filters( 'pw/featured_page_widget_page_box_image_size', array( 'width' => 360, 'height' => 240, 'crop' => true ) );
+		$inline_image_size = apply_filters( 'pw/featured_page_widget_inline_image_size', array( 'width' => 100, 'height' => 75, 'crop' => true ) );
 
-			if ( false === get_theme_support( 'post-thumbnails' ) ) {
-				add_theme_support( 'post-thumbnails' );
-				add_image_size( 'pw-page-box', $page_box_image_size['width'], $page_box_image_size['height'], $page_box_image_size['crop'] );
-				add_image_size( 'pw-inline', $inline_image_size['width'], $inline_image_size['height'], $inline_image_size['crop'] );
-			}
-			else {
-				add_image_size( 'pw-page-box', $page_box_image_size['width'], $page_box_image_size['height'], $page_box_image_size['crop'] );
-				add_image_size( 'pw-inline', $inline_image_size['width'], $inline_image_size['height'], $inline_image_size['crop'] );
-			}
+		if ( false === get_theme_support( 'post-thumbnails' ) ) {
+			add_theme_support( 'post-thumbnails' );
+			add_image_size( 'pw-page-box', $page_box_image_size['width'], $page_box_image_size['height'], $page_box_image_size['crop'] );
+			add_image_size( 'pw-inline', $inline_image_size['width'], $inline_image_size['height'], $inline_image_size['crop'] );
 		}
 		else {
-			if ( false === get_theme_support( 'post-thumbnails' ) ) {
-				add_theme_support( 'post-thumbnails' );
-				add_image_size( 'page-box', 360, 240, true );
-			}
-			else {
-				add_image_size( 'page-box', 360, 240, true );
-			}
+			add_image_size( 'pw-page-box', $page_box_image_size['width'], $page_box_image_size['height'], $page_box_image_size['crop'] );
+			add_image_size( 'pw-inline', $inline_image_size['width'], $inline_image_size['height'], $inline_image_size['crop'] );
 		}
 	}
 
@@ -180,14 +125,6 @@ class ProteusWidgets {
 	 */
 	public static function kses_allowed_protocols( $protocols ) {
 		return array_merge( $protocols, array( 'skype' ) );
-	}
-
-	/**
-	 * Plugin activation function - run at plugin activation
-	 */
-	public function plugin_activation() {
-		$plugin_data = get_plugin_data( __FILE__ );
-		add_option( 'pw_activation_version', $plugin_data['Version'] );
 	}
 }
 $ProteusWidgets = new ProteusWidgets();
