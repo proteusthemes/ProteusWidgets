@@ -39,7 +39,7 @@ jQuery( document ).ready( function( $ ) {
 
 		// Same, but inside customizer: [PT] Theme Options title
 		$( 'body' ).ready( function () {
-			$( '#accordion-panel-panel_buildpress > .accordion-section-title' ).each( function () {
+			$( '.accordion-section > .accordion-section-title' ).each( function () {
 				ptSearchReplace( $( this ), '\\[PT\\] ' );
 			} );
 		} );
