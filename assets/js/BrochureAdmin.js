@@ -7,26 +7,26 @@ var ProteusWidgetsUploader = ProteusWidgetsUploader || {};
 ProteusWidgetsUploader.mediaUploader = function( frameOptions ) {
 	'use strict';
 
-	// cache jQuery variable to local property
+	// Cache jQuery variable to local property
 	this.$ = jQuery;
 
 	// urlInputId is undefined at first
 	this.urlInputId = undefined;
 
-	// prepare options and create new frame
+	// Prepare options and create new frame
 	this.frameOptions = this.$.extend( {}, this.frameDefaults, frameOptions );
 	this.fileFrame = this.createFileFrame();
 
-	// event listeners
+	// Event listeners
 	this.fileFrame.on( 'select', this.onFrameSelect, this );
 
-	// good practice, for chaining
+	// Good practice, for chaining
 	return this;
 };
 
 jQuery.extend( ProteusWidgetsUploader.mediaUploader.prototype, {
 
-	// default options, can be overriden when initialized
+	// Default options, can be overriden when initialized
 	frameDefaults: {
 		title:    'Choose a file',
 		button:   { text: 'Select' },
@@ -52,7 +52,7 @@ jQuery.extend( ProteusWidgetsUploader.mediaUploader.prototype, {
 	 * @return {this}
 	 */
 	openFileFrame: function ( urlInputId ) {
-		// set the prop urlInputId to passed value
+		// Set the prop urlInputId to passed value
 		this.urlInputId = urlInputId;
 
 		this.fileFrame.open();
@@ -65,15 +65,15 @@ jQuery.extend( ProteusWidgetsUploader.mediaUploader.prototype, {
 	 * @return {this}
 	 */
 	onFrameSelect: function() {
-		// read the json data returned from the Media uploader
+		// Eead the json data returned from the Media uploader
 		var json = this.fileFrame.state().get( 'selection' ).first().toJSON();
 
-		// test if the URL is here
+		// Test if the URL is here
 		if ( 0 > this.$.trim( json.url.length ) ) {
 			return;
 		}
 
-		//add the URL value to the appropriate URL input field
+		// Add the URL value to the appropriate URL input field
 		this.$( '#' + this.urlInputId ).val( json.url );
 
 		this.urlInputId = undefined;
@@ -83,7 +83,7 @@ jQuery.extend( ProteusWidgetsUploader.mediaUploader.prototype, {
 
 } );
 
-// initialization
+// Initialization
 ProteusWidgetsUploader.fileUploader = new ProteusWidgetsUploader.mediaUploader();
 ProteusWidgetsUploader.imageUploader = new ProteusWidgetsUploader.mediaUploader( {
 		title:    'Choose a image',

@@ -2,9 +2,7 @@
 
 /*
  * Abstract class that extends WP_Widget and will be extended by individual widget
- *
- *
-*/
+ */
 
 if ( ! class_exists( 'PW_Widget' ) ) {
 	abstract class PW_Widget extends WP_Widget {
@@ -26,12 +24,14 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 				)
 			);
 
-			// Include autoload from composer for PHP mustache
+			// Include PHP mustache with composer
 			require_once( get_template_directory() . '/vendor/mustache/mustache/src/Mustache/Autoloader.php' );
 			Mustache_Autoloader::register();
 
-			// Set the mustache engine
-			// Learn more: https://github.com/bobthecow/mustache.php/wiki/Template-Loading
+			/*
+			 * Set the mustache engine
+			 * Learn more: https://github.com/bobthecow/mustache.php/wiki/Template-Loading
+			 */
 			$this->mustache = new Mustache_Engine(
 				array(
 					'loader' => new Mustache_Loader_CascadingLoader(

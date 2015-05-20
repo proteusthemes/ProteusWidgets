@@ -1,9 +1,7 @@
 <?php
 /*
-	Here are stored all ProteusWidgets helper functions.
-*/
-
-// define the PW_Functions class that will hold all static helper functions
+ * Here are stored all ProteusWidgets helper functions.
+ */
 
 if ( ! class_exists( 'PW_Functions' ) ) {
 	class PW_Functions {
@@ -38,7 +36,7 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 		}
 
 
-		// helper functions for the get_social_icons_links function
+		// Helper functions for the get_social_icons_links function
 		private static function starts_with( $str, $needle ) {
 			return 0 !== strlen( $str ) && 0 === strpos( $str , $needle );
 		}

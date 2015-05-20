@@ -5,7 +5,7 @@
 jQuery( document ).ready( function( $ ) {
 	'use strict';
 
-	// only replace the text if it is allowed (can be disabled via a WP filter: pw/proteus_themes_text_replacement_enabled )
+	// Only replace the text if it is allowed (can be disabled via a WP filter: pw/proteus_themes_text_replacement_enabled )
 	if ( ProteusWidgetsAdminVars.ptTextReplacementEnabled ) {
 		/**
 		 * Replace 'ProteusThemes: ' with the logo image in the titles of the widgets

@@ -1,10 +1,10 @@
 <?php
 
-// Path/URL to root of this plugin, with trailing slash
+// Path/URL to root of this composer package, with trailing slash
 define( 'PW_PATH', apply_filters( 'pw/dir_path', get_template_directory() . '/vendor/proteusthemes/proteuswidgets/' ) );
 define( 'PW_URL', apply_filters( 'pw/dir_url', get_template_directory_uri() . '/vendor/proteusthemes/proteuswidgets/' ) );
 
-//include php files
+// Include PHP files
 require_once( PW_PATH . 'inc/class-pw-functions.php');
 require_once( PW_PATH . 'inc/class-pw-widget.php');
 
@@ -19,7 +19,7 @@ class ProteusWidgets {
 	public $widgets;
 
 	function __construct() {
-		// initialize widgets array
+		// Initialize widgets array
 		$this->widgets = array(
 			'widget-about-us',
 			'widget-author',
@@ -35,16 +35,13 @@ class ProteusWidgets {
 			'widget-testimonials',
 		);
 
-		// actions
+		// Actions
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_js_css' ), 20 );
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		add_action( 'after_setup_theme', array( $this, 'after_theme_setup' ) , 11 );
 
-		// filters
+		// Filters
 		add_filter( 'kses_allowed_protocols', array( $this, 'kses_allowed_protocols' ) );
-
-		// plugin activation hook
-		register_activation_hook( __FILE__, array( $this, 'plugin_activation' ) );
 	}
 
 
@@ -54,18 +51,19 @@ class ProteusWidgets {
 	 * @return void
 	 */
 	public static function admin_enqueue_js_css() {
-		//media uploder include files
+		// Media uploader include files
 		wp_enqueue_media();
 		wp_enqueue_script( 'pw-media-uploader', PW_URL . '/assets/js/BrochureAdmin.js', array( 'jquery' ), '1.0', true );
 
 		wp_enqueue_script( 'pw-admin-script', PW_URL . 'assets/js/admin.js' , array( 'jquery', 'underscore', 'backbone', 'pt-mustache' ) );
 
-		// provide the global variable to the `pw-admin-script`
+		// Provide variables to the admin.js script
 		wp_localize_script( 'pw-admin-script', 'ProteusWidgetsAdminVars', array(
 			'urlToPlugin' => PW_URL,
 			'ptTextReplacementEnabled' => apply_filters( 'pw/proteus_themes_text_replacement_enabled', true ),
 		) );
 
+		// Enqueue admin dashboard CSS
 		wp_enqueue_style( 'pw-admin-style', PW_URL . 'assets/stylesheets/admin.css', array( 'font-awesome' ) );
 	}
 
@@ -79,7 +77,7 @@ class ProteusWidgets {
 	}
 
 	/**
-	 * Adds theme support - thumbnail for featured page widget
+	 * Add theme support - thumbnail for featured page widget
 	 */
 	public function after_theme_setup() {
 		$page_box_image_size = apply_filters( 'pw/featured_page_widget_page_box_image_size', array( 'width' => 360, 'height' => 240, 'crop' => true ) );
