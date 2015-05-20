@@ -37,7 +37,6 @@ class ProteusWidgets {
 
 		// actions
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_js_css' ), 20 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_js_css' ), 20 );
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		add_action( 'after_setup_theme', array( $this, 'after_theme_setup' ) , 11 );
 
@@ -68,22 +67,6 @@ class ProteusWidgets {
 		) );
 
 		wp_enqueue_style( 'pw-admin-style', PW_URL . 'assets/stylesheets/admin.css', array( 'font-awesome' ) );
-	}
-
-
-	/**
-	 * Enqueue the JS and CSS files for frontend with the right action
-	 * @see wp_enqueue_scripts
-	 * @return void
-	 */
-	public static function enqueue_js_css() {
-		// main JS file
-		wp_enqueue_script( 'pw-script', PW_URL  . 'assets/js/main.js', array( 'jquery', 'underscore' ) );
-
-		// Pass data to the main script
-		wp_localize_script( 'pw-script', 'PWVars', array(
-			'pathToPlugin'  => PW_URL,
-		) );
 	}
 
 	/**
