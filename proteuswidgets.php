@@ -59,8 +59,7 @@ class ProteusWidgets {
 		wp_enqueue_media();
 		wp_enqueue_script( 'pw-media-uploader', PW_URL . '/assets/js/BrochureAdmin.js', array( 'jquery' ), '1.0', true );
 
-		wp_register_script( 'pw-mustache', PW_URL  . 'bower_components/mustache/mustache.min.js', array(), null, true );
-		wp_enqueue_script( 'pw-admin-script', PW_URL . 'assets/js/admin.js' , array( 'jquery', 'underscore', 'backbone', 'pw-mustache' ) );
+		wp_enqueue_script( 'pw-admin-script', PW_URL . 'assets/js/admin.js' , array( 'jquery', 'underscore', 'backbone', 'pt-mustache' ) );
 
 		// provide the global variable to the `pw-admin-script`
 		wp_localize_script( 'pw-admin-script', 'ProteusWidgetsAdminVars', array(
@@ -68,7 +67,6 @@ class ProteusWidgets {
 			'ptTextReplacementEnabled' => apply_filters( 'pw/proteus_themes_text_replacement_enabled', true ),
 		) );
 
-		wp_enqueue_style( 'font-awesome', PW_URL . 'bower_components/fontawesome/css/font-awesome.min.css', array(), '4.2.0' );
 		wp_enqueue_style( 'pw-admin-style', PW_URL . 'assets/stylesheets/admin.css', array( 'font-awesome' ) );
 	}
 
@@ -79,11 +77,8 @@ class ProteusWidgets {
 	 * @return void
 	 */
 	public static function enqueue_js_css() {
-		wp_enqueue_style( 'font-awesome', PW_URL . 'bower_components/fontawesome/css/font-awesome.min.css' );
-		wp_enqueue_style( 'pw-style', PW_URL . 'main.css', array( 'font-awesome' ) );
-
 		// main JS file
-		wp_enqueue_script( 'pw-script', PW_URL  . 'assets/js/main.min.js', array( 'jquery', 'underscore' ) );
+		wp_enqueue_script( 'pw-script', PW_URL  . 'assets/js/main.js', array( 'jquery', 'underscore' ) );
 
 		// Pass data to the main script
 		wp_localize_script( 'pw-script', 'PWVars', array(
