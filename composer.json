@@ -1,7 +1,4 @@
 {
 		"name": "proteusthemes/proteuswidgets",
-		"description": "WordPress widgets used in ProtuesThemes.",
-		"require": {
-			"mustache/mustache": "~2.7"
-		}
+		"description": "WordPress widgets used in ProtuesThemes."
 }
