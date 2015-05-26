@@ -2,7 +2,7 @@
  * Admin CSS
  */
 
-/* google map widget */
+/* Google map widget */
 .pt-widget-single-location,
 .pt-widget-single-testimonial,
 .pt-widget-single-person,
@@ -13,6 +13,7 @@
 	background-color: rgba(0,0,0,0.03);
 	margin-bottom: 10px;
 }
+
 .pt-remove-location,
 .pt-remove-testimonial,
 .pt-remove-person,
@@ -21,12 +22,12 @@
 	text-decoration: none;
 }
 
-/* banner widget */
+/* Banner widget */
 .button-shortcodes {
 	color: #999999;
 }
 
-/* icon box */
+/* Icon box */
 .icon-widget {
 	font-size: 16px;
 	color: #999999;
@@ -36,10 +37,11 @@
 	color: #454545;
 }
 
-/* skype widget */
+/* Skype widget */
 .skype-widget-small-text {
 	color: #999999;
 }
+
 .skype-widget-small-text code{
 	font-size: 10px;
 }

@@ -44,7 +44,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 				);
 			}
 
-			$instance['social_icons'] = PW_Functions::reorder_widget_array_key_values( $instance['social_icons'] );
+			$instance['social_icons'] = array_values( $instance['social_icons'] );
 			// Escape data
 			for ( $i = 0; $i < count( $instance['social_icons'] ); $i++ ) {
 				$instance['social_icons'][ $i ]['link'] = esc_url( $instance['social_icons'][ $i ]['link'] );

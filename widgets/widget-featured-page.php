@@ -6,6 +6,9 @@
  * @since 1.0.0
  */
 
+// add new thumbnails if we need this widget
+add_action( 'after_setup_theme', array( 'ProteusWidgets', 'after_theme_setup' ), 11 );
+
 if ( ! class_exists( 'PW_Featured_Page' ) ) {
 	class PW_Featured_Page extends Pw_Widget {
 
@@ -40,13 +43,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			// Prepare data for mustache template
 			$page_id            = absint( $instance['page_id'] );
 			$instance['layout'] = sanitize_key( $instance['layout'] );
-			$thumbnail_size     = 'inline' === $instance['layout'] ? 'thumbnail' : 'page-box';
-
-			// Backwards compatibility for MentalPress 1.0.1 or older and ProteusWidgets version 1.0.3
-			// Use these new image sizes only for the future releases of ProteusWidgets plugin.
-			if ( PW_Functions::installed_after( '1.0.3' ) ) {
-				$thumbnail_size = 'inline' === $instance['layout'] ? 'pw-inline' : 'pw-page-box';
-			}
+			$thumbnail_size     = 'inline' === $instance['layout'] ? 'pw-inline' : 'pw-page-box';
 
 			// Get basic page info
 			if ( $page_id ) {
