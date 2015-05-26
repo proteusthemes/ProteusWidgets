@@ -1,5 +1,7 @@
 <?php
 
+require 'vendor/autoload.php';
+
 // Path/URL to root of this composer package, with trailing slash
 define( 'PW_PATH', apply_filters( 'pw/dir_path', get_template_directory() . '/vendor/proteusthemes/proteuswidgets/' ) );
 define( 'PW_URL', apply_filters( 'pw/dir_url', get_template_directory_uri() . '/vendor/proteusthemes/proteuswidgets/' ) );
@@ -51,4 +53,3 @@ class ProteusWidgets {
 		add_image_size( 'pw-inline', $inline_image_size['width'], $inline_image_size['height'], $inline_image_size['crop'] );
 	}
 }
-$ProteusWidgets = new ProteusWidgets();
