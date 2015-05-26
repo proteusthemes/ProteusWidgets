@@ -118,8 +118,10 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				$instance['testimonials'][ $key ]['id']                 = sanitize_key( $testimonial['id'] );
 				$instance['testimonials'][ $key ]['quote']              = sanitize_text_field( $testimonial['quote'] );
 				$instance['testimonials'][ $key ]['author']             = sanitize_text_field( $testimonial['author'] );
-				$instance['testimonials'][ $key ]['rating']             = sanitize_text_field( $testimonial['rating'] );
 				$instance['testimonials'][ $key ]['author_description'] = sanitize_text_field( $testimonial['author_description'] );
+				if ( $this->fields['rating'] ) {
+					$instance['testimonials'][ $key ]['rating']           = sanitize_text_field( $testimonial['rating'] );
+				}
 			}
 
 			return $instance;
