@@ -14,9 +14,7 @@ require_once( PW_PATH . 'inc/class-pw-widget.php');
 class ProteusWidgets {
 
 	function __construct() {
-		// Actions
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_js_css' ), 20 );
-		add_action( 'after_setup_theme', array( $this, 'after_theme_setup' ) , 11 );
 	}
 
 
@@ -45,7 +43,7 @@ class ProteusWidgets {
 	/**
 	 * Add theme support - thumbnail for featured page widget
 	 */
-	public function after_theme_setup() {
+	public static function after_theme_setup() {
 		$page_box_image_size = apply_filters( 'pw/featured_page_widget_page_box_image_size', array( 'width' => 360, 'height' => 240, 'crop' => true ) );
 		$inline_image_size = apply_filters( 'pw/featured_page_widget_inline_image_size', array( 'width' => 100, 'height' => 75, 'crop' => true ) );
 

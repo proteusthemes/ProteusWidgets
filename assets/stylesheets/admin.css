@@ -13,6 +13,7 @@
 	background-color: rgba(0,0,0,0.03);
 	margin-bottom: 10px;
 }
+
 .pt-remove-location,
 .pt-remove-testimonial,
 .pt-remove-person,
@@ -40,6 +41,7 @@
 .skype-widget-small-text {
 	color: #999999;
 }
+
 .skype-widget-small-text code{
 	font-size: 10px;
 }
