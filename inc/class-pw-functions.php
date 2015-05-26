@@ -7,15 +7,6 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 	class PW_Functions {
 
 		/**
-		 * This is singleton class
-		 * @link http://www.phptherightway.com/pages/Design-Patterns.html#singleton
-		 */
-		protected function __construct() {}
-		private function __clone() {}
-		private function __wakeup() {}
-
-
-		/**
 		 * Filter the array to return only the social icons links / values
 		 * @return array The array of the social icons and links, or empty array when there is no options in the DB
 		 */
@@ -38,33 +29,7 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 
 		// Helper functions for the get_social_icons_links function
 		private static function starts_with( $str, $needle ) {
-			return 0 !== strlen( $str ) && 0 === strpos( $str , $needle );
-		}
-
-
-		/**
-		 * Reorder the widget array with multiple instances of repeating fields (like multiple testimonials or people).
-		 * Reorders the instances to start with key = 0 and the following instances in further order (1,2,3,...) so that
-		 * PHP mustache can iterate trough them.
-		 * @return array The array of instances with proper order from 0 onward
-		 * @todo write tests @capuderg
-		 */
-		public static function reorder_widget_array_key_values( $widget_array ) {
-			$tmp_widget_array = array();
-			foreach ( $widget_array as $instace ) {
-				array_push( $tmp_widget_array , (array) $instace );
-			}
-			return $tmp_widget_array;
-		}
-
-
-		/**
-		 * Checks if the plugin was installed after the specified version.
-		 * @param  string $version_to_compare
-		 * @return boolean
-		 */
-		public static function installed_after( $version_to_compare ) {
-			return get_option( 'pw_activation_version' ) && version_compare( get_option( 'pw_activation_version' ), $version_to_compare, '>' );
+			return 0 !== strlen( $str ) && 0 === strpos( $str, $needle );
 		}
 
 	}

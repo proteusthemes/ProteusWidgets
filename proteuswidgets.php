@@ -12,36 +12,11 @@ require_once( PW_PATH . 'inc/class-pw-widget.php');
 * ProteusWidgets class, so we don't have to worry about namespace
 */
 class ProteusWidgets {
-	/**
-	 * List of widgets
-	 * @var array
-	 */
-	public $widgets;
 
 	function __construct() {
-		// Initialize widgets array
-		$this->widgets = array(
-			'widget-about-us',
-			'widget-author',
-			'widget-banner',
-			'widget-brochure-box',
-			'widget-facebook',
-			'widget-featured-page',
-			'widget-google-map',
-			'widget-icon-box',
-			'widget-opening-time',
-			'widget-skype',
-			'widget-social-icons',
-			'widget-testimonials',
-		);
-
 		// Actions
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_js_css' ), 20 );
-		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		add_action( 'after_setup_theme', array( $this, 'after_theme_setup' ) , 11 );
-
-		// Filters
-		add_filter( 'kses_allowed_protocols', array( $this, 'kses_allowed_protocols' ) );
 	}
 
 
@@ -59,21 +34,12 @@ class ProteusWidgets {
 
 		// Provide variables to the admin.js script
 		wp_localize_script( 'pw-admin-script', 'ProteusWidgetsAdminVars', array(
-			'urlToPlugin' => PW_URL,
+			'urlToPlugin'              => PW_URL,
 			'ptTextReplacementEnabled' => apply_filters( 'pw/proteus_themes_text_replacement_enabled', true ),
 		) );
 
 		// Enqueue admin dashboard CSS
 		wp_enqueue_style( 'pw-admin-style', PW_URL . 'assets/stylesheets/admin.css', array( 'font-awesome' ) );
-	}
-
-	/**
-	 * Require all widgets
-	 */
-	public function widgets_init() {
-		foreach ( apply_filters( 'pw/loaded_widgets', $this->widgets ) as $filename ) {
-			require_once sprintf( '%swidgets/%s.php', PW_PATH, $filename );
-		}
 	}
 
 	/**
@@ -83,24 +49,8 @@ class ProteusWidgets {
 		$page_box_image_size = apply_filters( 'pw/featured_page_widget_page_box_image_size', array( 'width' => 360, 'height' => 240, 'crop' => true ) );
 		$inline_image_size = apply_filters( 'pw/featured_page_widget_inline_image_size', array( 'width' => 100, 'height' => 75, 'crop' => true ) );
 
-		if ( false === get_theme_support( 'post-thumbnails' ) ) {
-			add_theme_support( 'post-thumbnails' );
-			add_image_size( 'pw-page-box', $page_box_image_size['width'], $page_box_image_size['height'], $page_box_image_size['crop'] );
-			add_image_size( 'pw-inline', $inline_image_size['width'], $inline_image_size['height'], $inline_image_size['crop'] );
-		}
-		else {
-			add_image_size( 'pw-page-box', $page_box_image_size['width'], $page_box_image_size['height'], $page_box_image_size['crop'] );
-			add_image_size( 'pw-inline', $inline_image_size['width'], $inline_image_size['height'], $inline_image_size['crop'] );
-		}
-	}
-
-	/**
-	 * Add more allowed protocols
-	 *
-	 * @link https://developer.wordpress.org/reference/functions/wp_allowed_protocols/
-	 */
-	public static function kses_allowed_protocols( $protocols ) {
-		return array_merge( $protocols, array( 'skype' ) );
+		add_image_size( 'pw-page-box', $page_box_image_size['width'], $page_box_image_size['height'], $page_box_image_size['crop'] );
+		add_image_size( 'pw-inline', $inline_image_size['width'], $inline_image_size['height'], $inline_image_size['crop'] );
 	}
 }
 $ProteusWidgets = new ProteusWidgets();
