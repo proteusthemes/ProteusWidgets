@@ -6,6 +6,7 @@
  * @since 1.0.0
  */
 
+
 if ( ! class_exists( 'PW_Skype' ) ) {
 	class PW_Skype extends PW_Widget {
 

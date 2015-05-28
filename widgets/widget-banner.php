@@ -6,6 +6,7 @@
  * @since 1.0.0
  */
 
+
 if ( ! class_exists( 'PW_Banner' ) ) {
 	class PW_Banner extends PW_Widget {
 

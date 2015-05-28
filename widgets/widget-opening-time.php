@@ -2,16 +2,12 @@
 /**
  * Opening Time Widget
  *
+ * Adds the opening time, suitable for the sidebar or used above the slider
+ *
  * @package ProteusWidgets
  * @since 1.0.0
  */
 
-
-/**************************************
- * Opening Time Widget
- * -----------------------------------
- * Adds the opening time, suitable for the sidebar or used above the slider
- **************************************/
 
 if ( ! class_exists( 'PW_Opening_Time' ) ) {
 	class PW_Opening_Time extends PW_Widget {
