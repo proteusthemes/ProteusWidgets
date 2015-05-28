@@ -6,6 +6,7 @@
  * @since 1.0.0
  */
 
+
 // add new thumbnails if we need this widget
 add_action( 'after_setup_theme', array( 'ProteusWidgets', 'after_theme_setup' ), 11 );
 
@@ -123,5 +124,4 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			<?php
 		}
 	}
-	register_widget( 'PW_Featured_Page' );
 }

@@ -6,6 +6,7 @@
  * @since 1.0.0
  */
 
+
 if ( ! class_exists( 'PW_Icon_Box' ) ) {
 	class PW_Icon_Box extends PW_Widget {
 
@@ -156,5 +157,4 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 		}
 
 	}
-	register_widget( 'PW_Icon_Box' );
 }

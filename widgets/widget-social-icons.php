@@ -6,6 +6,7 @@
  * @since 1.0.0
  */
 
+
 if ( ! class_exists( 'PW_Social_Icons' ) ) {
 	class PW_Social_Icons extends PW_Widget {
 
@@ -24,6 +25,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		public function __construct() {
 			parent::__construct();
 		}
+
 
 		/**
 		 * Front-end display of widget.
@@ -179,7 +181,5 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 
 			<?php
 		}
-
 	}
-	register_widget( 'PW_Social_Icons' );
 }

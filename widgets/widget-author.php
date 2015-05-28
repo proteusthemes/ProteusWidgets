@@ -90,5 +90,4 @@ if ( ! class_exists( 'PW_Author' ) ) {
 		}
 
 	}
-	register_widget( 'PW_Author' );
 }

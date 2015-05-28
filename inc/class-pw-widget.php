@@ -37,9 +37,9 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 					'loader' => new Mustache_Loader_CascadingLoader(
 						array(
 							// FilesystemLoader from configurable path
-							new Mustache_Loader_FilesystemLoader( apply_filters( 'pw/widget_views_path', PW_PATH . 'widgets/views' ) ),
+							new Mustache_Loader_FilesystemLoader( apply_filters( 'pw/widget_views_path', PW_PATH . '/widgets/views' ) ),
 							// Default FilesystemLoader from this plugin
-							new Mustache_Loader_FilesystemLoader( PW_PATH . 'widgets/views' ),
+							new Mustache_Loader_FilesystemLoader( PW_PATH . '/widgets/views' ),
 							// Default string longer, if nothing works from above
 							new Mustache_Loader_StringLoader,
 						)
