@@ -139,5 +139,4 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		}
 
 	}
-	register_widget( 'PW_Facebook' );
 }

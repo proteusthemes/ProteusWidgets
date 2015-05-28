@@ -214,5 +214,4 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		}
 
 	}
-	register_widget( 'PW_About_Us' );
 }

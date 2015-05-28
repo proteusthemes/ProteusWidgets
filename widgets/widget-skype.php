@@ -81,7 +81,5 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 
 			<?php
 		}
-
-	} // Class PW_Banner
-	register_widget( 'PW_Skype' );
+	}
 }

@@ -132,5 +132,4 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		}
 
 	}
-	register_widget( 'PW_Brochure_Box' );
 }

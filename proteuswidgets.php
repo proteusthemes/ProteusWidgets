@@ -1,17 +1,13 @@
 <?php
 
-// Path/URL to root of this composer package, with trailing slash
+// Path/URL to root of this composer package, without trailing slash
 if ( ! defined( 'PW_PATH' ) ) {
-	define( 'PW_PATH', apply_filters( 'pw/dir_path', get_template_directory() . '/vendor/proteusthemes/proteuswidgets/' ) );
+	define( 'PW_PATH', apply_filters( 'pw/dir_path', get_template_directory() . '/vendor/proteusthemes/proteuswidgets' ) );
 }
 
 if ( ! defined( 'PW_URL' ) ) {
-	define( 'PW_URL', apply_filters( 'pw/dir_url', get_template_directory_uri() . '/vendor/proteusthemes/proteuswidgets/' ) );
+	define( 'PW_URL', apply_filters( 'pw/dir_url', get_template_directory_uri() . '/vendor/proteusthemes/proteuswidgets' ) );
 }
-
-// Include PHP files
-require_once( PW_PATH . 'inc/class-pw-functions.php');
-require_once( PW_PATH . 'inc/class-pw-widget.php');
 
 /**
 * ProteusWidgets class, so we don't have to worry about namespace
@@ -33,7 +29,7 @@ class ProteusWidgets {
 		wp_enqueue_media();
 		wp_enqueue_script( 'pw-media-uploader', PW_URL . '/assets/js/BrochureAdmin.js', array( 'jquery' ), '1.0', true );
 
-		wp_enqueue_script( 'pw-admin-script', PW_URL . 'assets/js/admin.js' , array( 'jquery', 'underscore', 'backbone', 'mustache.js' ) );
+		wp_enqueue_script( 'pw-admin-script', PW_URL . '/assets/js/admin.js' , array( 'jquery', 'underscore', 'backbone', 'mustache.js' ) );
 
 		// Provide variables to the admin.js script
 		wp_localize_script( 'pw-admin-script', 'ProteusWidgetsAdminVars', array(
@@ -42,7 +38,7 @@ class ProteusWidgets {
 		) );
 
 		// Enqueue admin dashboard CSS
-		wp_enqueue_style( 'pw-admin-style', PW_URL . 'assets/stylesheets/admin.css', array( 'font-awesome' ) );
+		wp_enqueue_style( 'pw-admin-style', PW_URL . '/assets/stylesheets/admin.css', array( 'font-awesome' ) );
 	}
 
 	/**

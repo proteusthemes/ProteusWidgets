@@ -157,5 +157,4 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 		}
 
 	}
-	register_widget( 'PW_Icon_Box' );
 }

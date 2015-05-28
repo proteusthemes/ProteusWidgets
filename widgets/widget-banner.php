@@ -92,7 +92,5 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 
 			<?php
 		}
-
-	} // Class PW_Banner
-	register_widget( 'PW_Banner' );
+	}
 }

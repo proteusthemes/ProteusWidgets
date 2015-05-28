@@ -231,5 +231,4 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 		}
 
 	}
-	register_widget( 'PW_Opening_Time' );
 }

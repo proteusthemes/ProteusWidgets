@@ -124,5 +124,4 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			<?php
 		}
 	}
-	register_widget( 'PW_Featured_Page' );
 }

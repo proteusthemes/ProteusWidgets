@@ -256,5 +256,4 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		}
 
 	}
-	register_widget( 'PW_Testimonials' );
 }
