@@ -24,6 +24,12 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 */
 		public function __construct() {
 			parent::__construct();
+
+			add_action( 'widgets_init', array( $this, 'register_widget' ) );
+		}
+
+		private static function register_widget() {
+			register_widget( __CLASS__ );
 		}
 
 		/**
@@ -179,5 +185,4 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		}
 
 	}
-	register_widget( 'PW_Social_Icons' );
 }
