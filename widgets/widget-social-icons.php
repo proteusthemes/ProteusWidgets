@@ -13,6 +13,8 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		private $num_social_icons = 8;
 		private $current_widget_id;
 
+		private $font_awesome_icons_list;
+
 		// Basic widget settings
 		function widget_id_base() { return 'social_icons'; }
 		function widget_name() { return __( 'Social Icons', 'proteuswidgets' ); }
@@ -24,8 +26,33 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 */
 		public function __construct() {
 			parent::__construct();
-		}
 
+			// A list of icons to choose from in the widget backend
+			$this->font_awesome_icons_list = apply_filters(
+				'pw/social_icons_fa_icons_list',
+				array(
+					'fa-facebook',
+					'fa-twitter',
+					'fa-youtube',
+					'fa-skype',
+					'fa-google-plus',
+					'fa-pinterest',
+					'fa-instagram',
+					'fa-vine',
+					'fa-tumblr',
+					'fa-foursquare',
+					'fa-xing',
+					'fa-flickr',
+					'fa-vimeo',
+					'fa-linkedin',
+					'fa-dribble',
+					'fa-wordpress',
+					'fa-rss',
+					'fa-github',
+					'fa-bitbucket',
+				)
+			);
+		}
 
 		/**
 		 * Front-end display of widget.
@@ -134,24 +161,12 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-icon"><?php _e( 'Select social network:', 'proteuswidgets' ); ?></label>
-					<select name="<?php echo esc_attr( $this->get_field_name( 'social_icons' ) ); ?>[{{id}}][icon]" id="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-icon" class="js-icon">
-						<option value="fa-facebook" <?php selected( '{{icon}}', 'fa-facebook' ); ?>>Facebook</option>
-						<option value="fa-twitter" <?php selected( '{{icon}}', 'fa-twitter' ); ?>>Twitter</option>
-						<option value="fa-youtube" <?php selected( '{{icon}}', 'fa-youtube' ); ?>>Youtube</option>
-						<option value="fa-skype" <?php selected( '{{icon}}', 'fa-skype' ); ?>>Skype</option>
-						<option value="fa-google-plus" <?php selected( '{{icon}}', 'fa-google-plus' ); ?>>Google Plus</option>
-						<option value="fa-pinterest" <?php selected( '{{icon}}', 'fa-pinterest' ); ?>>Pinterest</option>
-						<option value="fa-instagram" <?php selected( '{{icon}}', 'fa-instagram' ); ?>>Instagram</option>
-						<option value="fa-vine" <?php selected( '{{icon}}', 'fa-vine' ); ?>>Vine</option>
-						<option value="fa-tumblr" <?php selected( '{{icon}}', 'fa-tumblr' ); ?>>Tumblr</option>
-						<option value="fa-flickr" <?php selected( '{{icon}}', 'fa-flickr' ); ?>>Flickr</option>
-						<option value="fa-vimeo-square" <?php selected( '{{icon}}', 'fa-vimeo-square' ); ?>>Vimeo</option>
-						<option value="fa-linkedin" <?php selected( '{{icon}}', 'fa-linkedin' ); ?>>Linkedin</option>
-						<option value="fa-dribble" <?php selected( '{{icon}}', 'fa-dribble' ); ?>>Dribble</option>
-						<option value="fa-wordpress" <?php selected( '{{icon}}', 'fa-wordpress' ); ?>>Wordpress</option>
-						<option value="fa-rss" <?php selected( '{{icon}}', 'fa-rss' ); ?>>RSS</option>
-					</select>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-icon"><?php _e( 'Select social icon:', 'proteuswidgets' ); ?></label> <br />
+					<small><?php printf( __( 'Click on the icon below or manually select from the %s website', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?>.</small>
+					<input id="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-icon" name="<?php echo esc_attr( $this->get_field_name( 'social_icons' ) ); ?>[{{id}}][icon]" type="text" value="{{icon}}" class="widefat  js-icon-input" /> <br><br>
+					<?php foreach ( $this->font_awesome_icons_list as $icon ) : ?>
+						<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo $icon ?>"><i class="fa fa-lg <?php echo $icon ?>"></i></a>
+					<?php endforeach; ?>
 				</p>
 
 				<p>
