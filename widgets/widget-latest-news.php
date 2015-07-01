@@ -4,90 +4,19 @@
  */
 
 if ( ! class_exists( 'PW_Latest_News' ) ) {
-	class PW_Latest_News extends WP_Widget {
+	class PW_Latest_News extends PW_Widget {
 
-		const MAX_POST_NUMBER = 10;
+		private $max_post_number = 10;
 		private $current_widget_id;
 
 		// Basic widget settings
 		function widget_id_base() { return 'latest_news'; }
-		function widget_name() { return __( 'Latest News', 'legalpress-pt' ); }
-		function widget_description() { return __( 'Latest news widget for Page Builder.', 'legalpress-pt' ); }
+		function widget_name() { return __( 'Latest News', 'proteuswidgets' ); }
+		function widget_description() { return __( 'Latest news widget for Page Builder.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-latest-news'; }
 
 		public function __construct() {
-			parent::__construct(
-				'pw_' . $this->widget_id_base(),
-				sprintf( 'ProteusThemes: %s', $this->widget_name() ), // Name
-				array(
-					'description' => $this->widget_description(),
-					'classname'   => $this->widget_class(),
-				)
-			);
-		}
-
-		/*
-		 * Get the post excerpt. If post_excerpt data is defined use that, otherwise
-		 * trim down the content to the proper size.
-		 *
-		 * @param string $post_excerpt
-		 * @param string $post_content
-		 *
-		 */
-		function get_post_excerpt( $post_excerpt, $post_content ) {
-			if ( ! empty( $post_excerpt ) ) {
-				return $post_excerpt;
-			}
-
-			$text = strip_shortcodes( $post_content );
-			$text = strip_tags( $text );
-			$text = str_replace( ']]>', ']]&gt;', $text );
-			$excerpt_length = apply_filters( 'excerpt_length', 55 );
-			$excerpt_more = apply_filters( 'excerpt_more', ' ' . '[&hellip;]' );
-			$text = wp_trim_words( $text, $excerpt_length, $excerpt_more );
-
-			return $text;
-		}
-
-		/*
-		 * Fetch recent posts data from DB (cache it on first widget instance) and then
-		 * fetch the data from cache for all other widget instances.
-		 */
-		function get_cached_data( $cache_name ) {
-			// Get/set cache data just once for multiple widgets
-			$recent_posts_data = wp_cache_get( $cache_name );
-			if ( false === $recent_posts_data ) {
-				$recent_posts_original_args = array(
-					'numberposts'         => self::MAX_POST_NUMBER,
-					'orderby'             => 'post_date',
-					'order'               => 'DESC',
-					'post_type'           => 'post',
-					'post_status'         => 'publish',
-					// 'suppress_filters' => false // If some WPML problems occur, uncomment this line
-				);
-				$recent_posts_original = wp_get_recent_posts( $recent_posts_original_args );
-
-				// var_dump($recent_posts_original);
-
-				// Prepare the data that we need for display
-				$recent_posts_data = array();
-				foreach ( $recent_posts_original as $key => $post ) {
-					$recent_posts_data[ $key ]['id']        = $post['ID'];
-					$recent_posts_data[ $key ]['date']      = get_the_date( 'M j', $post['ID'] );
-					$split_date                             = explode( ' ', $recent_posts_data[ $key ]['date'] );
-					$recent_posts_data[ $key ]['day']       = $split_date[1];
-					$recent_posts_data[ $key ]['month']     = $split_date[0];
-					$recent_posts_data[ $key ]['full_date'] = get_the_date( get_option( 'date_format' ), $post['ID'] );
-					$recent_posts_data[ $key ]['image']     = get_the_post_thumbnail( $post['ID'] );
-					$recent_posts_data[ $key ]['link']      = get_permalink( $post['ID'] );
-					$recent_posts_data[ $key ]['title']     = $post['post_title'];
-					$recent_posts_data[ $key ]['author']    = get_the_author_meta( 'display_name', $post['post_author'] );
-					$recent_posts_data[ $key ]['excerpt']   = $this->get_post_excerpt( $post['post_excerpt'], $post['post_content'] );
-				}
-
-				wp_cache_set( $cache_name, $recent_posts_data );
-			}
-			return $recent_posts_data;
+			parent::__construct();
 		}
 
 		/**
@@ -104,65 +33,42 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			$to        = ! empty( $instance['to'] ) ? $instance['to'] : '';
 			$more_news = ! empty( $instance['more_news'] ) ? $instance['more_news'] : '';
 
+			// prepare data for mustache template
+			$instance['more_news_on']      = ! empty( $instance['more_news'] ) ? true : false;
+			$instance['link_to_more_news'] = get_permalink( get_option( 'page_for_posts' ) );
+
 			// Get/set cache data just once for multiple widgets
-			$recent_posts_data = $this->get_cached_data( 'legalpress_recent_posts' );
+			$recent_posts_data = PW_Functions::get_cached_data( 'legalpress_recent_posts', $this->max_post_number );
 
 			// Array with posts to display
 			$recent_posts = array();
 
 			switch ( $type ) {
 				case 'block':
+					$instance['block'] = true;
 					if ( $from <= count( $recent_posts_data ) ) {
 						$recent_posts[] = $recent_posts_data[ $from - 1 ];
 					}
 					break;
 
 				case 'inline':
+					$instance['block'] = false;
 					$recent_posts = array_intersect_key( $recent_posts_data, array_flip( range( $from - 1, $to - 1 ) ) );
 					break;
 			}
 
-			echo $args['before_widget']; ?>
-				<?php if ( 'inline' === $type ) : ?>
-					<div class="latest-news__container">
-				<?php endif; ?>
-				<?php foreach ( $recent_posts as $post ) :?>
-						<a href="<?php echo esc_url( $post['link'] ); ?>" class="latest-news  latest-news--<?php echo esc_attr( $type ); ?>">
-							<?php if ( 'block' === $type ) : ?>
-								<div class="latest-news__date">
-										<?php echo esc_html( $post['day'] ); ?>
-										<?php echo esc_html( $post['month'] ); ?>
-								</div>
-								<div class="latest-news__image">
-									<?php echo $post['image']; ?>
-								</div>
-							<?php endif; ?>
-							<div class="latest-news__content">
-								<h4 class="latest-news__title"><?php echo esc_html( $post['title'] ); ?></h4>
-								<?php if ( 'block' === $type ) : ?>
-									<div class="latest-news__excerpt">
-										<?php echo $post['excerpt']; ?>
-									</div>
-								<?php else : ?>
-									<div class="latest-news__full-date">
-										<?php echo $post['full_date']; ?>
-									</div>
-								<?php endif; ?>
-							</div>
-						</a>
-					<?php
-					endforeach;
-					if ( 'on' === $more_news ) :
-					?>
-						<a href="<?php get_permalink( get_option( 'page_for_posts' ) ) ?>" class="latest-news  latest-news--more-news">
-							<?php _e( 'More news', 'legalpress-pt' ); ?>
-						</a>
-					<?php endif; ?>
-				<?php if ( 'inline' === $type ) : ?>
-					</div>
-				<?php endif; ?>
-			<?php
-				echo $args['after_widget'];
+			$text = array(
+				'by'        => __( 'By', 'proteuswidgets' ),
+				'more_news' => __( 'More news', 'proteuswidgets' ),
+			);
+
+			// Mustache widget-latest-news template rendering
+			echo $this->mustache->render( apply_filters( 'pw/widget_latest_news_view', 'widget-latest-news' ), array(
+				'args'     => $args,
+				'instance' => $instance,
+				'posts'    => $recent_posts,
+				'text'     => $text,
+			));
 		}
 
 		/**
@@ -188,15 +94,15 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			if ( $instance['from'] < 1 ) {
 				$instance['from'] = 1;
 			}
-			elseif ( $instance['from'] > self::MAX_POST_NUMBER ) {
-				$instance['from'] = self::MAX_POST_NUMBER;
+			elseif ( $instance['from'] > $this->max_post_number ) {
+				$instance['from'] = $this->max_post_number;
 			}
 
 			if ( $instance['to'] < 1 ) {
 				$instance['to'] = 1;
 			}
-			elseif ( $instance['to'] > self::MAX_POST_NUMBER ) {
-				$instance['to'] = self::MAX_POST_NUMBER;
+			elseif ( $instance['to'] > $this->max_post_number ) {
+				$instance['to'] = $this->max_post_number;
 			}
 
 			// to can't be lower than from
@@ -239,10 +145,10 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>"><?php _ex( 'Post order number from:', 'backend', 'legalpress-pt' ); ?></label>
-					<input id="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'from' ) ); ?>" type="number" min="1" max="<?php echo self::MAX_POST_NUMBER; ?>" value="<?php echo esc_attr( $from ); ?>" />
+					<input id="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'from' ) ); ?>" type="number" min="1" max="<?php echo $this->max_post_number; ?>" value="<?php echo esc_attr( $from ); ?>" />
 					<span class="latest-news-to-fields-group" id="<?php echo esc_attr( $this->get_field_id( 'to' ) ); ?>-fields-group">
 					<label for="<?php echo esc_attr( $this->get_field_id( 'to' ) ); ?>"><?php _ex( 'To:', 'backend', 'legalpress-pt' ); ?></label>
-					<input id="<?php echo esc_attr( $this->get_field_id( 'to' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'to' ) ); ?>" type="number" min="1" max="<?php echo esc_attr( self::MAX_POST_NUMBER ); ?>" value="<?php echo esc_attr( $to ); ?>" />
+					<input id="<?php echo esc_attr( $this->get_field_id( 'to' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'to' ) ); ?>" type="number" min="1" max="<?php echo esc_attr( $this->max_post_number ); ?>" value="<?php echo esc_attr( $to ); ?>" />
 				</span>
 				</p>
 
