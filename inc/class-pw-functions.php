@@ -97,5 +97,16 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 			return $recent_posts_data;
 		}
 
+		/**
+		 * Bound an integer between two numbers
+		 *
+		 * @param int $input
+		 * @param int $min
+		 * @param int $max
+		 */
+		public static function bound( $input, $min, $max ) {
+			return min( max( $input, $min ), $max );
+		}
+
 	}
 }

@@ -91,19 +91,9 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 				$instance['more_news'] = '';
 			}
 
-			if ( $instance['from'] < 1 ) {
-				$instance['from'] = 1;
-			}
-			elseif ( $instance['from'] > $this->max_post_number ) {
-				$instance['from'] = $this->max_post_number;
-			}
-
-			if ( $instance['to'] < 1 ) {
-				$instance['to'] = 1;
-			}
-			elseif ( $instance['to'] > $this->max_post_number ) {
-				$instance['to'] = $this->max_post_number;
-			}
+			// Bound from and to between 1 and max_post_number
+			$instance['from'] = PW_Functions::bound( $instance['from'], 1, $this->max_post_number );
+			$instance['to']   = PW_Functions::bound( $instance['to'], 1, $this->max_post_number );
 
 			// to can't be lower than from
 			if ( $instance['from'] > $instance['to'] ) {
