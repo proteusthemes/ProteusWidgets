@@ -66,7 +66,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			echo $this->mustache->render( apply_filters( 'pw/widget_latest_news_view', 'widget-latest-news' ), array(
 				'args'     => $args,
 				'instance' => $instance,
-				'posts'    => $recent_posts,
+				'posts'    => array_values( (array) $recent_posts ),
 				'text'     => $text,
 			));
 		}
@@ -80,9 +80,9 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 		public function update( $new_instance, $old_instance ) {
 			$instance = array();
 
-			$instance['type']      = sanitize_key( $new_instance['type'] );
-			$instance['from']      = sanitize_text_field( $new_instance['from'] );
-			$instance['to']        = sanitize_text_field( $new_instance['to'] );
+			$instance['type'] = sanitize_key( $new_instance['type'] );
+			$instance['from'] = sanitize_text_field( $new_instance['from'] );
+			$instance['to']   = sanitize_text_field( $new_instance['to'] );
 
 			if ( ! empty( $new_instance['more_news'] ) ) {
 				$instance['more_news'] = sanitize_text_field( $new_instance['more_news'] );

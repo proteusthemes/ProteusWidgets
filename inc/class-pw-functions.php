@@ -76,13 +76,11 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 				);
 				$recent_posts_original = wp_get_recent_posts( $recent_posts_original_args );
 
-				// var_dump($recent_posts_original);
-
 				// Prepare the data that we need for display
 				$recent_posts_data = array();
 				foreach ( $recent_posts_original as $key => $post ) {
 					$recent_posts_data[ $key ]['id']        = $post['ID'];
-					$recent_posts_data[ $key ]['date']      = get_the_date( 'M j', $post['ID'] );
+					$recent_posts_data[ $key ]['date']      = get_the_date( apply_filters( 'pw/widget_latest_news_short_date_format', 'M j' ), $post['ID'] );
 					$split_date                             = explode( ' ', $recent_posts_data[ $key ]['date'] );
 					$recent_posts_data[ $key ]['day']       = $split_date[1];
 					$recent_posts_data[ $key ]['month']     = $split_date[0];
