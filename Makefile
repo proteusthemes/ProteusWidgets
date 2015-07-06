@@ -10,6 +10,7 @@ deploy:
 	rm proteuswidgets.tar.gz
 
 bundle:
+	composer install
 	composer dumpautoload
 	cd .. && zip -r proteuswidgets.zip \
 		proteuswidgets/readme.txt \
@@ -18,6 +19,7 @@ bundle:
 		proteuswidgets/*.json \
 		proteuswidgets/*.css \
 		proteuswidgets/assets/ \
+		proteuswidgets/languages/ \
 		proteuswidgets/bower_components/bootstrap-sass/ \
 		proteuswidgets/bower_components/fontawesome/ \
 		proteuswidgets/bower_components/mustache/ \
