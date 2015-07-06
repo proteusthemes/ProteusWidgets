@@ -19,6 +19,8 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		const INLINE_EXCERPT = 60;
 		const BLOCK_EXCERPT = 240;
 
+		private $fields;
+
 		// Basic widget settings
 		function widget_id_base() { return 'featured_page'; }
 		function widget_name() { return __( 'Featured Page', 'proteuswidgets' ); }
@@ -30,6 +32,11 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		 */
 		public function __construct() {
 			parent::__construct();
+
+			// Get the settings for the this widget
+			$this->fields = apply_filters( 'pw/featured_page_fields', array(
+				'read_more_text' => true,
+			) );
 		}
 
 		/**
@@ -86,7 +93,9 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 
 			$instance['page_id']        = absint( $new_instance['page_id'] );
 			$instance['layout']         = sanitize_key( $new_instance['layout'] );
-			$instance['read_more_text'] = sanitize_text_field( $new_instance['read_more_text'] );
+			if ( $this->fields['read_more_text'] ) {
+				$instance['read_more_text'] = sanitize_text_field( $new_instance['read_more_text'] );
+			}
 
 			return $instance;
 		}
@@ -122,10 +131,12 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				</select>
 			</p>
 
+			<?php if ( $this->fields['read_more_text'] ) : ?>
 			<p>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>"><?php _ex( 'Read more text:', 'backend', 'proteuswidgets' ); ?></label> <br>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'read_more_text' ) ); ?>" type="text" value="<?php echo esc_attr( $read_more_text ); ?>" />
 			</p>
+			<?php endif; ?>
 
 			<?php
 		}
