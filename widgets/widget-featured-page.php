@@ -42,9 +42,10 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
-			$page_id            = absint( $instance['page_id'] );
-			$instance['layout'] = sanitize_key( $instance['layout'] );
-			$thumbnail_size     = 'inline' === $instance['layout'] ? 'pw-inline' : 'pw-page-box';
+			$page_id                    = absint( $instance['page_id'] );
+			$instance['layout']         = sanitize_key( $instance['layout'] );
+			$instance['read_more_text'] = empty( $instance['read_more_text'] ) ? __( 'Read more', 'proteuswidgets' ) : sanitize_text_field( $instance['read_more_text'] );
+			$thumbnail_size             = 'inline' === $instance['layout'] ? 'pw-inline' : 'pw-page-box';
 
 			// Get basic page info
 			if ( $page_id ) {
@@ -71,8 +72,6 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				'page'      => $page,
 				'instance'  => $instance,
 				'block'     => 'block' === $instance['layout'],
-				'read-more' => __( 'Read more', 'proteuswidgets' ),
-
 			));
 		}
 
@@ -85,8 +84,9 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		public function update( $new_instance, $old_instance ) {
 			$instance = array();
 
-			$instance['page_id'] = absint( $new_instance['page_id'] );
-			$instance['layout']  = sanitize_key( $new_instance['layout'] );
+			$instance['page_id']        = absint( $new_instance['page_id'] );
+			$instance['layout']         = sanitize_key( $new_instance['layout'] );
+			$instance['read_more_text'] = sanitize_text_field( $new_instance['read_more_text'] );
 
 			return $instance;
 		}
@@ -97,13 +97,14 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		 * @param array $instance The widget options
 		 */
 		public function form( $instance ) {
-			$page_id = empty( $instance['page_id'] ) ? 0 : (int) $instance['page_id'];
-			$layout  = empty( $instance['layout'] ) ? '' : $instance['layout'];
+			$page_id        = empty( $instance['page_id'] ) ? 0 : (int) $instance['page_id'];
+			$layout         = empty( $instance['layout'] ) ? '' : $instance['layout'];
+			$read_more_text = empty( $instance['read_more_text'] ) ? __( 'Read more', 'proteuswidgets' ) : $instance['read_more_text'];
 
 			?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>"><?php _e( 'Page:', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>"><?php _ex( 'Page:', 'backend', 'proteuswidgets' ); ?></label> <br>
 				<?php
 					wp_dropdown_pages( array(
 						'selected' => $page_id,
@@ -114,11 +115,16 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>"><?php _e( 'Layout:', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>"><?php _ex( 'Layout:', 'backend', 'proteuswidgets' ); ?></label> <br>
 				<select id="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'layout' ) ); ?>">
-					<option value="block" <?php selected( $layout, 'block' ); ?>><?php _e( 'With big picture', 'proteuswidgets' ); ?></option>
-					<option value="inline" <?php selected( $layout, 'inline' ); ?>><?php _e( 'With small picture, inline', 'proteuswidgets' ); ?></option>
+					<option value="block" <?php selected( $layout, 'block' ); ?>><?php _ex( 'With big picture', 'backend', 'proteuswidgets' ); ?></option>
+					<option value="inline" <?php selected( $layout, 'inline' ); ?>><?php _ex( 'With small picture, inline', 'backend', 'proteuswidgets' ); ?></option>
 				</select>
+			</p>
+
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>"><?php _ex( 'Read more text:', 'backend', 'proteuswidgets' ); ?></label> <br>
+				<input id="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'read_more_text' ) ); ?>" type="text" value="<?php echo esc_attr( $read_more_text ); ?>" />
 			</p>
 
 			<?php

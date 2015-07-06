@@ -6,7 +6,7 @@
 			<h5 class="page-box__title  text-uppercase"><a href="{{{ page.link }}}">{{ page.post_title }}</a></h5>
 			<p>{{{ page.post_excerpt }}}</p>
 			{{# block }}
-				<p><a href="{{{ page.link }}}" class="read-more  read-more--page-box">{{ read-more }}</a></p>
+				<p><a href="{{{ page.link }}}" class="read-more  read-more--page-box">{{ instance.read_more_text }}</a></p>
 			{{/ block }}
 		</div>
 	</div>
