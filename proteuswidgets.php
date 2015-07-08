@@ -16,6 +16,7 @@ class ProteusWidgets {
 
 	function __construct() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_js_css' ), 20 );
+		add_action( 'after_setup_theme', array( $this, 'after_theme_setup' ), 11 );
 	}
 
 
