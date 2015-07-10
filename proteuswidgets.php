@@ -3,7 +3,7 @@
 Plugin Name: ProteusWidgets
 Plugin URI: http://www.proteusthemes.com
 Description: WP widgets for retail businesses by ProteusThemes
-Version: 1.0.6
+Version: 1.0.7
 Author: ProteusThemes
 Author URI: http://www.proteusthemes.com
 License: GPL3
@@ -53,6 +53,7 @@ class ProteusWidgets {
 		// actions
 		add_action( 'admin_init', array( $this, 'update_plugin_version' ) );
 		add_action( 'plugins_loaded', array( $this, 'define_version' ) );
+		add_action( 'plugins_loaded', array( $this, 'plugin_textdomain' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_js_css' ), 20 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_js_css' ), 20 );
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
@@ -120,6 +121,14 @@ class ProteusWidgets {
 		}
 
 		return PW_VERSION;
+	}
+
+
+	/**
+	 * Load the plugin textdomain
+	 */
+	public function plugin_textdomain() {
+		load_plugin_textdomain( 'proteuswidgets', false, plugin_basename( dirname( __FILE__ ) ) . '/languages/' );
 	}
 
 
