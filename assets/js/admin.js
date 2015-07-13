@@ -103,7 +103,7 @@ _.extend( ProteusWidgets.Models, {
 	SocialIcon: Backbone.Model.extend( {
 		defaults: {
 			'link': '',
-			'icon': 'fa-facebook',
+			'icon': ProteusWidgetsAdminVars.defaultSocialIcon,
 		},
 	} ),
 
