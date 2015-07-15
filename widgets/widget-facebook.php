@@ -21,17 +21,6 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		 */
 		public function __construct() {
 			parent::__construct();
-
-			// Color picker needed
-			add_action( 'admin_enqueue_scripts', array( $this, 'add_color_picker' ) );
-		}
-
-		/**
-		 * Add color picker as we need it in this widget
-		 */
-		public function add_color_picker() {
-			wp_enqueue_style( 'wp-color-picker' );
-			wp_enqueue_script( 'wp-color-picker' );
 		}
 
 		/**
@@ -44,22 +33,22 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
-			$instance['title']      = $args['before_title'] . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $args['after_title'];
-			$instance['height']     = absint( $instance['height'] );
-			$instance['background'] = esc_attr( $instance['background'] );
+			$instance['title']  = $args['before_title'] . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $args['after_title'];
+			$instance['width']  = absint( $instance['width'] );
+			$instance['height'] = absint( $instance['height'] );
 
 			// params for the iframe
-			// @see https://developers.facebook.com/docs/plugins/like-box-for-pages
+			// @see https://developers.facebook.com/docs/plugins/like-box-for-pages (Out-dated)
+			// @see https://developers.facebook.com/docs/plugins/page-plugin
 
 			$fb_params = array(
-				'colorscheme' => $instance['colorscheme'],
-				'stream'      => 'false',
-				'show_border' => 'false',
-				'header'      => 'false',
-				'show_faces'  => 'true',
-				'width'       => 263,
-				'height'      => $instance['height'],
-				'href'        => $instance['like_link'],
+				'href'          => $instance['like_link'],
+				'width'         => $instance['width'],
+				'height'        => $instance['height'],
+				'hide_cover'    => ! empty( $instance['hide_cover'] ),
+				'show_facepile' => empty( $instance['show_facepile'] ),
+				'show_posts'    => ! empty( $instance['show_posts'] ),
+				'small_header'  => ! empty( $instance['small_header'] ),
 			);
 
 			// Mustache widget-facebook template rendering
@@ -83,11 +72,14 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		public function update( $new_instance, $old_instance ) {
 			$instance = array();
 
-			$instance['title']       = wp_kses_post( $new_instance['title'] );
-			$instance['colorscheme'] = sanitize_key( $new_instance['colorscheme'] );
-			$instance['like_link']   = esc_url_raw( $new_instance['like_link'] );
-			$instance['height']      = absint( $new_instance['height'] );
-			$instance['background']  = esc_attr( $new_instance['background'] );
+			$instance['title']         = wp_kses_post( $new_instance['title'] );
+			$instance['like_link']     = esc_url_raw( $new_instance['like_link'] );
+			$instance['width']         = absint( $new_instance['width'] );
+			$instance['height']        = absint( $new_instance['height'] );
+			$instance['hide_cover']    = ! empty( $new_instance['hide_cover'] ) ? sanitize_key( $new_instance['hide_cover'] ) : '';
+			$instance['show_facepile'] = ! empty( $new_instance['show_facepile'] ) ? sanitize_key( $new_instance['show_facepile'] ) : '';
+			$instance['show_posts']    = ! empty( $new_instance['show_posts'] ) ? sanitize_key( $new_instance['show_posts'] ) : '';
+			$instance['small_header']  = ! empty( $new_instance['small_header'] ) ? sanitize_key( $new_instance['small_header'] ) : '';
 
 			return $instance;
 		}
@@ -100,11 +92,14 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		 * @param array $instance Previously saved values from database.
 		 */
 		public function form( $instance ) {
-				$title       = isset( $instance['title'] ) ? $instance['title'] : 'Facebook';
-				$colorscheme = isset( $instance['colorscheme'] ) ? $instance['colorscheme'] : 'light';
-				$like_link   = isset( $instance['like_link'] ) ? $instance['like_link'] : 'https://www.facebook.com/ProteusThemes';
-				$height      = isset( $instance['height'] ) ? $instance['height'] : 290;
-				$background  = isset( $instance['background'] ) ? $instance['background'] : '#ffffff';
+				$title         = isset( $instance['title'] ) ? $instance['title'] : 'Facebook';
+				$like_link     = isset( $instance['like_link'] ) ? $instance['like_link'] : 'https://www.facebook.com/ProteusThemes';
+				$width         = isset( $instance['width'] ) ? $instance['width'] : 340;
+				$height        = isset( $instance['height'] ) ? $instance['height'] : 500;
+				$hide_cover    = isset( $instance['hide_cover'] ) ? $instance['hide_cover'] : '';
+				$show_facepile = isset( $instance['show_facepile'] ) ? $instance['show_facepile'] : '';
+				$show_posts    = isset( $instance['show_posts'] ) ? $instance['show_posts'] : '';
+				$small_header  = isset( $instance['small_header'] ) ? $instance['small_header'] : '';
 
 			?>
 			<p>
@@ -118,21 +113,27 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'height' ) ); ?>"><?php _e( 'Height (in pixels):', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'width' ) ); ?>"><?php _e( 'Width (in pixels, Min: 180, Max: 500):', 'proteuswidgets' ); ?></label>
+				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'width' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'width' ) ); ?>" type="number" min="0" step="10" value="<?php echo esc_attr( $width ); ?>" />
+			</p>
+
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'height' ) ); ?>"><?php _e( 'Height (in pixels, Min: 70):', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'height' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'height' ) ); ?>" type="number" min="0" step="10" value="<?php echo esc_attr( $height ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'colorscheme' ) ); ?>"><?php _e( 'Color scheme:', 'proteuswidgets' ); ?></label> <br />
-				<select id="<?php echo esc_attr( $this->get_field_id( 'colorscheme' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'colorscheme' ) ); ?>">
-					<option value="light"<?php selected( $colorscheme, 'light' ); ?>><?php _e( 'Light', 'proteuswidgets' ); ?></option>
-					<option value="dark"<?php selected( $colorscheme, 'dark' ); ?>><?php _e( 'Dark', 'proteuswidgets' ); ?></option>
-				</select>
-			</p>
+				<input class="checkbox" type="checkbox" <?php checked( $hide_cover, 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id( 'hide_cover' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'hide_cover' ) ); ?>" value="on" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'hide_cover' ) ); ?>"><?php _e( 'Hide Cover Photo', 'proteuswidgets' ); ?></label>
 
-			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'background' ) ); ?>"><?php _e( 'Background color:', 'proteuswidgets' ); ?></label> <br>
-				<input class="js-pt-color-picker" id="<?php echo esc_attr( $this->get_field_id( 'background' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'background' ) ); ?>" type="text" value="<?php echo esc_attr( $background ); ?>" data-default-color="<?php echo '#ffffff'; ?>" />
+				<input class="checkbox" type="checkbox" <?php checked( $show_facepile, 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id( 'show_facepile' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'show_facepile' ) ); ?>" value="on" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'show_facepile' ) ); ?>"><?php _e( 'Hide Friend\'s Faces', 'proteuswidgets' ); ?></label>
+
+				<input class="checkbox" type="checkbox" <?php checked( $show_posts, 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id( 'show_posts' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'show_posts' ) ); ?>" value="on" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'show_posts' ) ); ?>"><?php _e( 'Show Page Posts', 'proteuswidgets' ); ?></label>
+
+				<input class="checkbox" type="checkbox" <?php checked( $small_header, 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id( 'small_header' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'small_header' ) ); ?>" value="on" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'small_header' ) ); ?>"><?php _e( 'Use Small Header', 'proteuswidgets' ); ?></label>
 			</p>
 
 			<?php
