@@ -85,7 +85,7 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 					$recent_posts_data[ $key ]['day']       = $split_date[1];
 					$recent_posts_data[ $key ]['month']     = $split_date[0];
 					$recent_posts_data[ $key ]['full_date'] = get_the_date( get_option( 'date_format' ), $post['ID'] );
-					$recent_posts_data[ $key ]['image']     = get_the_post_thumbnail( $post['ID'] );
+					$recent_posts_data[ $key ]['image']     = get_the_post_thumbnail( $post['ID'], 'pw-latest-news' );
 					$recent_posts_data[ $key ]['link']      = get_permalink( $post['ID'] );
 					$recent_posts_data[ $key ]['title']     = $post['post_title'];
 					$recent_posts_data[ $key ]['author']    = get_the_author_meta( 'display_name', $post['post_author'] );

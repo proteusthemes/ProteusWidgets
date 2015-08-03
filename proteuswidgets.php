@@ -49,8 +49,10 @@ class ProteusWidgets {
 	public static function after_theme_setup() {
 		$page_box_image_size = apply_filters( 'pw/featured_page_widget_page_box_image_size', array( 'width' => 360, 'height' => 240, 'crop' => true ) );
 		$inline_image_size = apply_filters( 'pw/featured_page_widget_inline_image_size', array( 'width' => 100, 'height' => 75, 'crop' => true ) );
+		$latest_news_image_size = apply_filters( 'pw/latest_news_widget_image_size', array( 'width' => 360, 'height' => 204, 'crop' => true ) );
 
 		add_image_size( 'pw-page-box', $page_box_image_size['width'], $page_box_image_size['height'], $page_box_image_size['crop'] );
 		add_image_size( 'pw-inline', $inline_image_size['width'], $inline_image_size['height'], $inline_image_size['crop'] );
+		add_image_size( 'pw-latest-news', $latest_news_image_size['width'], $latest_news_image_size['height'], $latest_news_image_size['crop'] );
 	}
 }
