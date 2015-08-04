@@ -79,17 +79,22 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 				// Prepare the data that we need for display
 				$recent_posts_data = array();
 				foreach ( $recent_posts_original as $key => $post ) {
-					$recent_posts_data[ $key ]['id']        = $post['ID'];
-					$recent_posts_data[ $key ]['date']      = get_the_date( apply_filters( 'pw/widget_latest_news_short_date_format', 'M j' ), $post['ID'] );
-					$split_date                             = explode( ' ', $recent_posts_data[ $key ]['date'] );
-					$recent_posts_data[ $key ]['day']       = $split_date[1];
-					$recent_posts_data[ $key ]['month']     = $split_date[0];
-					$recent_posts_data[ $key ]['full_date'] = get_the_date( get_option( 'date_format' ), $post['ID'] );
-					$recent_posts_data[ $key ]['image']     = get_the_post_thumbnail( $post['ID'], 'pw-latest-news' );
-					$recent_posts_data[ $key ]['link']      = get_permalink( $post['ID'] );
-					$recent_posts_data[ $key ]['title']     = $post['post_title'];
-					$recent_posts_data[ $key ]['author']    = get_the_author_meta( 'display_name', $post['post_author'] );
-					$recent_posts_data[ $key ]['excerpt']   = self::get_post_excerpt( $post['post_excerpt'], $post['post_content'] );
+					$recent_posts_data[ $key ]['id']           = $post['ID'];
+					$recent_posts_data[ $key ]['date']         = get_the_date( apply_filters( 'pw/widget_latest_news_short_date_format', 'M j' ), $post['ID'] );
+					$split_date                                = explode( ' ', $recent_posts_data[ $key ]['date'] );
+					$recent_posts_data[ $key ]['day']          = $split_date[1];
+					$recent_posts_data[ $key ]['month']        = $split_date[0];
+					$recent_posts_data[ $key ]['full_date']    = get_the_date( get_option( 'date_format' ), $post['ID'] );
+					$attachment_image_id                       = get_post_thumbnail_id( $post['ID'] );
+					$attachment_image_data                     = wp_get_attachment_image_src( $attachment_image_id, 'pw-latest-news' );
+					$recent_posts_data[ $key ]['image_url']    = $attachment_image_data[0];
+					$recent_posts_data[ $key ]['image_width']  = $attachment_image_data[1];
+					$recent_posts_data[ $key ]['image_height'] = $attachment_image_data[2];
+					$recent_posts_data[ $key ]['srcset']       = self::get_attachment_image_srcs( $attachment_image_id, array( 'pw-latest-news', 'full' ) );
+					$recent_posts_data[ $key ]['link']         = get_permalink( $post['ID'] );
+					$recent_posts_data[ $key ]['title']        = $post['post_title'];
+					$recent_posts_data[ $key ]['author']       = get_the_author_meta( 'display_name', $post['post_author'] );
+					$recent_posts_data[ $key ]['excerpt']      = self::get_post_excerpt( $post['post_excerpt'], $post['post_content'] );
 				}
 
 				wp_cache_set( $cache_name, $recent_posts_data );
@@ -106,6 +111,24 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 		 */
 		public static function bound( $input, $min, $max ) {
 			return min( max( $input, $min ), $max );
+		}
+
+		/**
+		 * Prepare the srcset attribute value.
+		 * @param  int $img_id ID of the image
+		 * @param  array $sizes array of the image sizes. Example: $sizes = array( 'thumbnail', 'full' );
+		 * @uses http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src
+		 * @return string
+		 */
+		public static function get_attachment_image_srcs( $img_id, $sizes ) {
+			$srcset = array();
+
+			foreach ( $sizes as $size ) {
+				$img = wp_get_attachment_image_src( $img_id, $size );
+				$srcset[] = sprintf( '%s %sw', $img[0], $img[1] ); //
+			}
+
+			return implode( ', ' , $srcset );
 		}
 
 	}

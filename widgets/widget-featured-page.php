@@ -72,6 +72,14 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			$page['post_excerpt'] = sanitize_text_field( $excerpt );
 			$page['link']         = get_permalink( $page_id );
 			$page['thumbnail']    = get_the_post_thumbnail( $page_id, $thumbnail_size );
+			if ( 'block' === $instance['layout'] ) {
+				$attachment_image_id   = get_post_thumbnail_id( $page_id );
+				$attachment_image_data = wp_get_attachment_image_src( $attachment_image_id, 'pw-page-box' );
+				$page['image_url']     = $attachment_image_data[0];
+				$page['image_width']   = $attachment_image_data[1];
+				$page['image_height']  = $attachment_image_data[2];
+				$page['srcset']        = PW_Functions::get_attachment_image_srcs( $attachment_image_id, array( 'pw-page-box', 'full' ) );
+			}
 
 			// Mustache widget-featured-page template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_featured_page_view', 'widget-featured-page' ), array(
