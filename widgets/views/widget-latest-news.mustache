@@ -11,9 +11,11 @@
 						{{ day }}
 					</div>
 				</div>
+				{{# image_url }}
 				<div class="latest-news__image">
 					<img src="{{{ image_url }}}" width="{{{ image_width }}}" height="{{{ image_height }}}" srcset="{{{ srcset }}}" sizes="(min-width: 781px) 360px, calc(100vw - 30px)" class="wp-post-image" alt="{{ title }}">
 				</div>
+				{{/ image_url }}
 
 				<div class="latest-news__content">
 					<h4 class="latest-news__title">{{ title }}</h4>

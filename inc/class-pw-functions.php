@@ -87,10 +87,15 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 					$recent_posts_data[ $key ]['full_date']    = get_the_date( get_option( 'date_format' ), $post['ID'] );
 					$attachment_image_id                       = get_post_thumbnail_id( $post['ID'] );
 					$attachment_image_data                     = wp_get_attachment_image_src( $attachment_image_id, 'pw-latest-news' );
-					$recent_posts_data[ $key ]['image_url']    = $attachment_image_data[0];
-					$recent_posts_data[ $key ]['image_width']  = $attachment_image_data[1];
-					$recent_posts_data[ $key ]['image_height'] = $attachment_image_data[2];
-					$recent_posts_data[ $key ]['srcset']       = self::get_attachment_image_srcs( $attachment_image_id, array( 'pw-latest-news', 'full' ) );
+
+					// get featured image data if a featured image is set
+					if ( ! empty( $attachment_image_data ) ) {
+						$recent_posts_data[ $key ]['image_url']    = $attachment_image_data[0];
+						$recent_posts_data[ $key ]['image_width']  = $attachment_image_data[1];
+						$recent_posts_data[ $key ]['image_height'] = $attachment_image_data[2];
+						$recent_posts_data[ $key ]['srcset']       = self::get_attachment_image_srcs( $attachment_image_id, array( 'pw-latest-news', 'full' ) );
+					}
+
 					$recent_posts_data[ $key ]['link']         = get_permalink( $post['ID'] );
 					$recent_posts_data[ $key ]['title']        = $post['post_title'];
 					$recent_posts_data[ $key ]['author']       = get_the_author_meta( 'display_name', $post['post_author'] );
