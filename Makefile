@@ -1,7 +1,7 @@
 .PHONY: deploy bundle
 
 deploy:
-	tar czf proteuswidgets.tar.gz proteuswidgets.php widgets/ inc/ bower_components/ vendor/ assets/ main.css readme.txt
+	tar czf proteuswidgets.tar.gz readme.txt *.php *.js *.json *.css assets/ languages/ widgets/ inc/ bower_components/ vendor/
 	scp proteuswidgets.tar.gz pt:./
 
 	# extract to prod
