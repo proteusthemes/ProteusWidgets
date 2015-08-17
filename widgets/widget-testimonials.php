@@ -15,8 +15,8 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 		// Basic widget settings
 		function widget_id_base() { return 'testimonials'; }
-		function widget_name() { return __( 'Testimonials', 'proteuswidgets' ); }
-		function widget_description() { return __( 'Testimonials widget for Page Builder.', 'proteuswidgets' ); }
+		function widget_name() { return esc_html__( 'Testimonials', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Testimonials widget for Page Builder.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-testimonials'; }
 
 		/**
@@ -89,8 +89,8 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			$instance['slider_settings'] = 'yes' === $instance['autocycle'] ? esc_attr( empty( $instance['interval'] ) ? 5000 : absint( $instance['interval'] ) ) : 'false';
 
 			$text = array(
-				'previous'   => __( 'Previous', 'proteuswidgets' ),
-				'next'       => __( 'Next', 'proteuswidgets' ),
+				'previous'   => esc_html__( 'Previous', 'proteuswidgets' ),
+				'next'       => esc_html__( 'Next', 'proteuswidgets' ),
 			);
 
 			// Mustache widget-testimonials template rendering
@@ -174,48 +174,48 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>"><?php _e( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>"><?php esc_html_e( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?></label>
 				<select class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'autocycle' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>">
-					<option value="yes"<?php selected( $autocycle, 'yes' ) ?>><?php _e( 'Yes', 'proteuswidgets' ); ?></option>
-					<option value="no"<?php selected( $autocycle, 'no' ) ?>><?php _e( 'No', 'proteuswidgets' ); ?></option>
+					<option value="yes"<?php selected( $autocycle, 'yes' ) ?>><?php esc_html_e( 'Yes', 'proteuswidgets' ); ?></option>
+					<option value="no"<?php selected( $autocycle, 'no' ) ?>><?php esc_html_e( 'No', 'proteuswidgets' ); ?></option>
 				</select>
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'interval' ) ); ?>"><?php _e( 'Interval (in miliseconds):', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'interval' ) ); ?>"><?php esc_html_e( 'Interval (in miliseconds):', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'interval' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'interval' ) ); ?>" type="number" min="0" step="500" value="<?php echo esc_attr( $interval ); ?>" />
 			</p>
 
 			<hr>
 
-			<h4><?php _e( 'Testimonials:', 'proteuswidgets' ); ?></h4>
+			<h4><?php esc_htmlesc_html_e( 'Testimonials:', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-testimonial-<?php echo $this->current_widget_id; ?>">
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'quote' ) ); ?>-{{id}}-title"><?php _e( 'Quote:', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'quote' ) ); ?>-{{id}}-title"><?php esc_html_e( 'Quote:', 'proteuswidgets' ); ?></label>
 					<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'quote' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][quote]">{{quote}}</textarea>
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author"><?php _e( 'Author:', 'proteuswidgets' ); ?></label> <br>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author"><?php esc_html_e( 'Author:', 'proteuswidgets' ); ?></label> <br>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][author]" type="text" value="{{author}}" />
 				</p>
 
 				<?php if ( $this->fields['author_description'] ) : ?>
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_description"><?php _e( 'Author Description:', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_description"><?php esc_html_e( 'Author Description:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_description" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][author_description]" type="text" value="{{author_description}}" />
 				</p>
 				<?php endif; ?>
 
 				<?php if ( $this->fields['rating'] ) : ?>
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-rating"><?php _e( 'Rating:', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-rating"><?php esc_html_e( 'Rating:', 'proteuswidgets' ); ?></label>
 					<select name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][rating]" id="<?php echo esc_attr( $this->get_field_id( 'rating' ) ); ?>-{{id}}-rating" class="js-rating">
 						<option value="0">0</option>
 						<option value="1">1</option>
@@ -229,7 +229,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 				<p>
 					<input name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
-					<a href="#" class="pt-remove-testimonial  js-pt-remove-testimonial"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Testimonial', 'proteuswidgets' ); ?></a>
+					<a href="#" class="pt-remove-testimonial  js-pt-remove-testimonial"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Testimonial', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
 			<div class="pt-widget-testimonials" id="testimonials-<?php echo $this->current_widget_id; ?>">

@@ -12,8 +12,8 @@ if ( ! class_exists( 'PW_Author' ) ) {
 
 		// Basic widget settings
 		function widget_id_base() { return 'author'; }
-		function widget_name() { return __( 'Author', 'proteuswidgets' ); }
-		function widget_description() { return __( 'Author widget used in sidebar.', 'proteuswidgets' ); }
+		function widget_name() { return esc_html__( 'Author', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Author widget used in sidebar.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-author'; }
 
 		/**
@@ -73,7 +73,7 @@ if ( ! class_exists( 'PW_Author' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'selected_user_id' ) ); ?>"><?php _e( 'Display author:', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'selected_user_id' ) ); ?>"><?php esc_html_e( 'Display author:', 'proteuswidgets' ); ?></label>
 				<?php wp_dropdown_users( array(
 					'name'     => $this->get_field_name( 'selected_user_id' ),
 					'id'       => $this->get_field_id( 'selected_user_id' ),
@@ -83,7 +83,7 @@ if ( ! class_exists( 'PW_Author' ) ) {
 
 			</p>
 
-			<p><small><?php printf( __( 'To add the social icons to this widget, please install the %sExtra User Details%s plugin and fill in the details in the &quot;Users&quot; section.', 'proteuswidgets' ), '<a href="https://wordpress.org/plugins/extra-user-details/" target="_blank">', '</a>' ); ?></small></p>
+			<p><small><?php printf( esc_html__( 'To add the social icons to this widget, please install the %sExtra User Details%s plugin and fill in the details in the &quot;Users&quot; section.', 'proteuswidgets' ), '<a href="https://wordpress.org/plugins/extra-user-details/" target="_blank">', '</a>' ); ?></small></p>
 
 			<?php
 

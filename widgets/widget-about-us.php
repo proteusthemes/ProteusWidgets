@@ -14,8 +14,8 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 
 		// Basic widget settings
 		function widget_id_base() { return 'about_us'; }
-		function widget_name() { return __( 'About Us', 'proteuswidgets' ); }
-		function widget_description() { return __( 'About Us widget used in sidebar.', 'proteuswidgets' ); }
+		function widget_name() { return esc_html__( 'About Us', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'About Us widget used in sidebar.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-about-us'; }
 
 		/**
@@ -62,10 +62,10 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			$instance['slider_settings'] = 'yes' === $instance['autocycle'] ? esc_attr( empty( $instance['interval'] ) ? 5000 : absint( $instance['interval'] ) ) : 'false';
 
 			$text = array(
-				'image-alt'  => __( 'About us image', 'proteuswidgets' ),
-				'read-more'  => __( 'Read more', 'proteuswidgets' ),
-				'previous'   => __( 'Previous', 'proteuswidgets' ),
-				'next'       => __( 'Next', 'proteuswidgets' ),
+				'image-alt'  => esc_html__( 'About us image', 'proteuswidgets' ),
+				'read-more'  => esc_html__( 'Read more', 'proteuswidgets' ),
+				'previous'   => esc_html__( 'Previous', 'proteuswidgets' ),
+				'next'       => esc_html__( 'Next', 'proteuswidgets' ),
 			);
 
 			// Mustache widget-about-us template rendering
@@ -140,45 +140,45 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 
 			?>
 
-			<h4><?php _e( 'People:', 'proteuswidgets' ); ?></h4>
+			<h4><?php esc_html_e( 'People:', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-person-<?php echo $this->current_widget_id; ?>">
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-tag"><?php _e( 'Tag:', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-tag"><?php esc_html_e( 'Tag:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-tag" name="<?php echo esc_attr( $this->get_field_name( 'people' ) ); ?>[{{id}}][tag]" type="text" value="{{tag}}" />
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-image"><?php _e( 'Image URL:', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-image"><?php esc_html_e( 'Image URL:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-image" name="<?php echo esc_attr( $this->get_field_name( 'people' ) ); ?>[{{id}}][image]" type="text" value="{{image}}" />
 					<input type="button" onclick="ProteusWidgetsUploader.imageUploader.openFileFrame('<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-image');" class="upload-brochure-file button button-secondary pull-right" value="Upload file" />
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-name"><?php _e( 'Name:', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-name"><?php esc_html_e( 'Name:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-name" name="<?php echo esc_attr( $this->get_field_name( 'people' ) ); ?>[{{id}}][name]" type="text" value="{{name}}" />
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'description' ) ); ?>-{{id}}-title"><?php _e( 'Description:', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'description' ) ); ?>-{{id}}-title"><?php esc_html_e( 'Description:', 'proteuswidgets' ); ?></label>
 					<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'description' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'people' ) ); ?>[{{id}}][description]">{{description}}</textarea>
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-link"><?php _e( 'Link:', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-link"><?php esc_html_e( 'Link:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-link" name="<?php echo esc_attr( $this->get_field_name( 'people' ) ); ?>[{{id}}][link]" type="text" value="{{link}}" />
 				</p>
 
 
 				<p>
 					<input name="<?php echo esc_attr( $this->get_field_name( 'people' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
-					<a href="#" class="pt-remove-person  js-pt-remove-person"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Person', 'proteuswidgets' ); ?></a>
+					<a href="#" class="pt-remove-person  js-pt-remove-person"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Person', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
 			<div class="pt-widget-about-us" id="people-<?php echo $this->current_widget_id; ?>">
 				<div class="people"></div>
 				<p>
-					<a href="#" class="button  js-pt-add-person"><?php _e( 'Add New Person', 'proteuswidgets' ); ?></a>
+					<a href="#" class="button  js-pt-add-person"><?php esc_html_e( 'Add New Person', 'proteuswidgets' ); ?></a>
 				</p>
 			</div>
 			<script type="text/javascript">
@@ -198,15 +198,15 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			<hr>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>"><?php _e( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>"><?php esc_html_e( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?></label>
 				<select class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'autocycle' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>">
-					<option value="yes"<?php selected( $autocycle, 'yes' ) ?>><?php _e( 'Yes', 'proteuswidgets' ); ?></option>
-					<option value="no"<?php selected( $autocycle, 'no' ) ?>><?php _e( 'No', 'proteuswidgets' ); ?></option>
+					<option value="yes"<?php selected( $autocycle, 'yes' ) ?>><?php esc_html_e( 'Yes', 'proteuswidgets' ); ?></option>
+					<option value="no"<?php selected( $autocycle, 'no' ) ?>><?php esc_html_e( 'No', 'proteuswidgets' ); ?></option>
 				</select>
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'interval' ) ); ?>"><?php _e( 'Interval (in miliseconds):', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'interval' ) ); ?>"><?php esc_html_e( 'Interval (in miliseconds):', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'interval' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'interval' ) ); ?>" type="number" min="0" step="500" value="<?php echo esc_attr( $interval ); ?>" />
 			</p>
 

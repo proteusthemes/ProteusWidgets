@@ -11,8 +11,8 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 
 		// Basic widget settings
 		function widget_id_base() { return 'latest_news'; }
-		function widget_name() { return __( 'Latest News', 'proteuswidgets' ); }
-		function widget_description() { return __( 'Latest news widget for Page Builder.', 'proteuswidgets' ); }
+		function widget_name() { return esc_html__( 'Latest News', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Latest news widget for Page Builder.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-latest-news'; }
 
 		public function __construct() {
@@ -58,8 +58,8 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			}
 
 			$text = array(
-				'by'        => __( 'By', 'proteuswidgets' ),
-				'more_news' => __( 'More news', 'proteuswidgets' ),
+				'by'        => esc_html__( 'By', 'proteuswidgets' ),
+				'more_news' => esc_html__( 'More news', 'proteuswidgets' ),
 			);
 
 			// Mustache widget-latest-news template rendering

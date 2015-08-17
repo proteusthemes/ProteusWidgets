@@ -23,8 +23,8 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 
 		// Basic widget settings
 		function widget_id_base() { return 'featured_page'; }
-		function widget_name() { return __( 'Featured Page', 'proteuswidgets' ); }
-		function widget_description() { return __( 'Featured Page widget for the Sidebar and Page Builder.', 'proteuswidgets' ); }
+		function widget_name() { return esc_html__( 'Featured Page', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Featured Page widget for the Sidebar and Page Builder.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-featured-page'; }
 
 		/**
@@ -51,7 +51,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			// Prepare data for mustache template
 			$page_id                    = absint( $instance['page_id'] );
 			$instance['layout']         = sanitize_key( $instance['layout'] );
-			$instance['read_more_text'] = empty( $instance['read_more_text'] ) ? __( 'Read more', 'proteuswidgets' ) : sanitize_text_field( $instance['read_more_text'] );
+			$instance['read_more_text'] = empty( $instance['read_more_text'] ) ? esc_html__( 'Read more', 'proteuswidgets' ) : sanitize_text_field( $instance['read_more_text'] );
 			$thumbnail_size             = 'inline' === $instance['layout'] ? 'pw-inline' : 'pw-page-box';
 
 			// Get basic page info
@@ -116,7 +116,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		public function form( $instance ) {
 			$page_id        = empty( $instance['page_id'] ) ? 0 : (int) $instance['page_id'];
 			$layout         = empty( $instance['layout'] ) ? '' : $instance['layout'];
-			$read_more_text = empty( $instance['read_more_text'] ) ? __( 'Read more', 'proteuswidgets' ) : $instance['read_more_text'];
+			$read_more_text = empty( $instance['read_more_text'] ) ? esc_html__( 'Read more', 'proteuswidgets' ) : $instance['read_more_text'];
 
 			?>
 

@@ -12,8 +12,8 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 
 		// Basic widget settings
 		function widget_id_base() { return 'skype'; }
-		function widget_name() { return __( 'Skype', 'proteuswidgets' ); }
-		function widget_description() { return __( 'Skype button for sidebar.', 'proteuswidgets' ); }
+		function widget_name() { return esc_html__( 'Skype', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Skype button for sidebar.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-skype'; }
 
 		/**
@@ -69,12 +69,12 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'skype_username' ) ); ?>"><?php _e( 'Skype username:', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'skype_username' ) ); ?>"><?php esc_html_e( 'Skype username:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'skype_username' ) ); ?>" placeholder="skype:your_skype_username" name="<?php echo esc_attr( $this->get_field_name( 'skype_username' ) ); ?>" type="text" value="<?php echo esc_attr( $skype_username ); ?>" />
 				<small class="skype-widget-small-text">Examples of use: <br><code>skype:your_skype_username</code> or <code>tel:your_phone_number</code></small>
 			</p>

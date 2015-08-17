@@ -12,8 +12,8 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 
 		// Basic widget settings
 		function widget_id_base() { return 'brochure_box'; }
-		function widget_name() { return __( 'Brochure Box', 'proteuswidgets' ); }
-		function widget_description() { return __( 'Brochure Box widget for the Sidebar and Page Builder.', 'proteuswidgets' ); }
+		function widget_name() { return esc_html__( 'Brochure Box', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Brochure Box widget for the Sidebar and Page Builder.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-brochure-box'; }
 
 		/**
@@ -84,29 +84,29 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'brochure_url' ) ); ?>"><?php _e( 'Brochure URL:', 'proteuswidgets' ); ?></label> <br />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'brochure_url' ) ); ?>"><?php esc_html_e( 'Brochure URL:', 'proteuswidgets' ); ?></label> <br />
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'brochure_url' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'brochure_url' ) ); ?>" type="text" value="<?php echo esc_url( $brochure_url ); ?>" />
 				<input type="button" onclick="ProteusWidgetsUploader.fileUploader.openFileFrame('<?php echo $this->get_field_id( 'brochure_url' ); ?>');" class="upload-brochure-file button button-secondary pull-right" value="Upload file" /> <!-- Media uploader button -->
 			</p>
 
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $new_tab, 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'new_tab' ) ); ?>" value="on" />
-				<label for="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>"><?php _e( 'Open link in new tab', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>"><?php esc_html_e( 'Open link in new tab', 'proteuswidgets' ); ?></label>
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'brochure_text' ) ); ?>"><?php _e( 'Brochure Text:', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'brochure_text' ) ); ?>"><?php esc_html_e( 'Brochure Text:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'brochure_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'brochure_text' ) ); ?>" type="text" value="<?php echo esc_attr( $brochure_text ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'brochure_icon' ) ); ?>"><?php _e( 'Brochure Icon:', 'proteuswidgets' ); ?></label> <br />
-				<small><?php printf( __( 'Click on the icon below or manually select from the %s website', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?>.</small>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'brochure_icon' ) ); ?>"><?php esc_html_e( 'Brochure Icon:', 'proteuswidgets' ); ?></label> <br />
+				<small><?php printf( esc_html__( 'Click on the icon below or manually select from the %s website', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?>.</small>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'brochure_icon' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'brochure_icon' ) ); ?>" type="text" value="<?php echo esc_attr( $brochure_icon ); ?>" class="widefat  js-icon-input" /> <br><br>
 				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-o"><i class="fa fa-lg fa-file-o"></i></a>
 				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-pdf-o"><i class="fa fa-lg fa-file-pdf-o"></i></a>
