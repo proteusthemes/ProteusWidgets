@@ -193,7 +193,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 			<hr>
 
-			<h4><?php esc_htmlesc_html_e( 'Testimonials:', 'proteuswidgets' ); ?></h4>
+			<h4><?php esc_html_e( 'Testimonials:', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-testimonial-<?php echo $this->current_widget_id; ?>">
 				<p>
