@@ -2,7 +2,7 @@
 
 	<div class="page-box  page-box--{{ instance.layout }}">
 		{{# block  }}
-			<a class="page-box__picture" href="{{{ page.link }}}"><img src="{{{ page.image_url }}}" width="{{{ page.image_width }}}" height="{{{ page.image_height }}}" srcset="{{{ page.srcset }}}" sizes="(min-width: 781px) 360px, calc(100vw - 30px)" class="wp-post-image" alt="{{ page.post_title }}"></a>
+			<a class="page-box__picture" href="{{{ page.link }}}"><img src="{{{ page.image_url }}}" width="{{{ page.image_width }}}" height="{{{ page.image_height }}}" srcset="{{{ page.srcset }}}" sizes="(min-width: 991px) 360px, calc(100vw - 30px)" class="wp-post-image" alt="{{ page.post_title }}"></a>
 		{{/ block  }}
 		{{^ block  }}
 			<a class="page-box__picture" href="{{{ page.link }}}">{{{ page.thumbnail }}}</a>
