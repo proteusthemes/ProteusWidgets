@@ -14,7 +14,7 @@
     "tests"
   ],
   "dependencies": {
-    "fontawesome": "^4.2.0",
+    "fontawesome": "^4.4.0",
     "mustache": "~1.0.0",
     "bootstrap-sass": "~3.3.3"
   },
