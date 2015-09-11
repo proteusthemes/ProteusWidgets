@@ -38,7 +38,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			$instance['link_to_more_news'] = get_permalink( get_option( 'page_for_posts' ) );
 
 			// Get/set cache data just once for multiple widgets
-			$recent_posts_data = PW_Functions::get_cached_data( 'legalpress_recent_posts', $this->max_post_number );
+			$recent_posts_data = PW_Functions::get_cached_data( 'pw_recent_posts', $this->max_post_number );
 
 			// Array with posts to display
 			$recent_posts = array();
@@ -126,24 +126,24 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 
 			<div id="<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'type' ) ); ?>"><?php _ex( 'Display type:', 'backend', 'legalpress-pt' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'type' ) ); ?>"><?php _ex( 'Display type:', 'backend', 'proteuswidgets' ); ?></label>
 					<select id="<?php echo esc_attr( $this->get_field_id( 'type' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'type' ) ); ?>" class="latest-news-select-type">
-						<option value="block" <?php selected( $type, 'block' ); ?>><?php _ex( 'Box (one post)', 'backend', 'legalpress-pt' ); ?></option>
-						<option value="inline" <?php selected( $type, 'inline' ); ?>><?php _ex( 'Inline (multiple posts)', 'backend', 'legalpress-pt' ); ?></option>
+						<option value="block" <?php selected( $type, 'block' ); ?>><?php _ex( 'Box (one post)', 'backend', 'proteuswidgets' ); ?></option>
+						<option value="inline" <?php selected( $type, 'inline' ); ?>><?php _ex( 'Inline (multiple posts)', 'backend', 'proteuswidgets' ); ?></option>
 					</select>
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>"><?php _ex( 'Post order number from:', 'backend', 'legalpress-pt' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>"><?php _ex( 'Post order number from:', 'backend', 'proteuswidgets' ); ?></label>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'from' ) ); ?>" type="number" min="1" max="<?php echo $this->max_post_number; ?>" value="<?php echo esc_attr( $from ); ?>" />
 					<span class="latest-news-to-fields-group" id="<?php echo esc_attr( $this->get_field_id( 'to' ) ); ?>-fields-group">
-					<label for="<?php echo esc_attr( $this->get_field_id( 'to' ) ); ?>"><?php _ex( 'To:', 'backend', 'legalpress-pt' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'to' ) ); ?>"><?php _ex( 'To:', 'backend', 'proteuswidgets' ); ?></label>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'to' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'to' ) ); ?>" type="number" min="1" max="<?php echo esc_attr( $this->max_post_number ); ?>" value="<?php echo esc_attr( $to ); ?>" />
 				</span>
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'more_news' ) ); ?>"><?php _ex( 'More news link:', 'backend', 'legalpress-pt' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'more_news' ) ); ?>"><?php _ex( 'More news link:', 'backend', 'proteuswidgets' ); ?></label>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'more_news' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'more_news' ) ); ?>" type="checkbox" <?php checked( $more_news, 'on' ); ?> />
 				</p>
 			</div>
@@ -170,17 +170,17 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 
 							if ( 'block' == $(this.selectedType).val() ) {
 								$(this.toFieldsGroup).hide();
-								$(this.toFieldsGroup).siblings('label').html("<?php _ex( 'Post order number:', 'backend', 'legalpress-pt' ); ?>");
+								$(this.toFieldsGroup).siblings('label').html("<?php _ex( 'Post order number:', 'backend', 'proteuswidgets' ); ?>");
 							}
 						},
 
 						toggle: function(event){
 							if ( 'block' == event.target.value ) {
-								$(this.toFieldsGroup).siblings('label').html("<?php _ex( 'Post order number:', 'backend', 'legalpress-pt' ); ?>");
+								$(this.toFieldsGroup).siblings('label').html("<?php _ex( 'Post order number:', 'backend', 'proteuswidgets' ); ?>");
 								$(this.toFieldsGroup).hide();
 							}
 							else {
-								$(this.toFieldsGroup).siblings('label').html("<?php _ex( 'Post order number from:', 'backend', 'legalpress-pt' ); ?>");
+								$(this.toFieldsGroup).siblings('label').html("<?php _ex( 'Post order number from:', 'backend', 'proteuswidgets' ); ?>");
 								$(this.toFieldsGroup).show();
 							}
 						},
