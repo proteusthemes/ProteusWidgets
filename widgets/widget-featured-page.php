@@ -49,7 +49,17 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
-			$page_id                    = absint( $instance['page_id'] );
+			$page_id = absint( $instance['page_id'] );
+
+			/**
+			 * Support for the Polylang plugin.
+			 * https://proteusthemes.zendesk.com/agent/tickets/5175
+			 * https://polylang.wordpress.com/documentation/documentation-for-developers/functions-reference/#pll_get_post
+			 */
+			if ( function_exists( 'pll_get_post' ) ) {
+				$page_id = pll_get_post( $page_id );
+			}
+
 			$instance['layout']         = sanitize_key( $instance['layout'] );
 			$instance['read_more_text'] = empty( $instance['read_more_text'] ) ? esc_html__( 'Read more', 'proteuswidgets' ) : sanitize_text_field( $instance['read_more_text'] );
 			$thumbnail_size             = 'inline' === $instance['layout'] ? 'pw-inline' : 'pw-page-box';
