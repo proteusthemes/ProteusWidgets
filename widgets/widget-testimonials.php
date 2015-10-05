@@ -197,7 +197,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 			<h4><?php esc_html_e( 'Testimonials:', 'proteuswidgets' ); ?></h4>
 
-			<script type="text/template" id="js-pt-testimonial-<?php echo $this->current_widget_id; ?>">
+			<script type="text/template" id="js-pt-testimonial-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'quote' ) ); ?>-{{id}}-title"><?php esc_html_e( 'Quote:', 'proteuswidgets' ); ?></label>
 					<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'quote' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][quote]">{{quote}}</textarea>
@@ -234,7 +234,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 					<a href="#" class="pt-remove-testimonial  js-pt-remove-testimonial"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Testimonial', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-testimonials" id="testimonials-<?php echo $this->current_widget_id; ?>">
+			<div class="pt-widget-testimonials" id="testimonials-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<div class="testimonials"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-testimonial">Add New Testimonial</a>

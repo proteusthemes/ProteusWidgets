@@ -169,7 +169,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 
 			<h4><?php esc_html_e( 'Locations:', 'proteuswidgets' ); ?></h4>
 
-			<script type="text/template" id="js-pt-location-<?php echo $this->current_widget_id; ?>">
+			<script type="text/template" id="js-pt-location-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'locations' ) ); ?>-{{id}}-title"><?php esc_html_e( 'Title of location:', 'proteuswidgets' ); ?></label> <br>
 					<small><?php esc_html_e( 'This is shown on pin mouse hover.', 'proteuswidgets' ); ?></small>
@@ -192,7 +192,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 					<a href="#" class="pt-remove-location  js-pt-remove-location"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Location', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-locations" id="locations-<?php echo $this->current_widget_id; ?>">
+			<div class="pt-widget-locations" id="locations-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<div class="locations"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-location">Add New Location</a>

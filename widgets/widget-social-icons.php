@@ -154,7 +154,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 
 			<h4><?php esc_html_e( 'Social icons:', 'proteuswidgets' ); ?></h4>
 
-			<script type="text/template" id="js-pt-social-icon-<?php echo $this->current_widget_id; ?>">
+			<script type="text/template" id="js-pt-social-icon-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-link"><?php esc_html_e( 'Link:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-link" name="<?php echo esc_attr( $this->get_field_name( 'social_icons' ) ); ?>[{{id}}][link]" type="text" value="{{link}}" />
@@ -165,7 +165,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 					<small><?php printf( esc_html__( 'Click on the icon below or manually select from the %s website', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?>.</small>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-icon" name="<?php echo esc_attr( $this->get_field_name( 'social_icons' ) ); ?>[{{id}}][icon]" type="text" value="{{icon}}" class="widefat  js-icon-input" /> <br><br>
 					<?php foreach ( $this->font_awesome_icons_list as $icon ) : ?>
-						<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo $icon ?>"><i class="fa fa-lg <?php echo $icon ?>"></i></a>
+						<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo esc_attr( $icon ); ?>"><i class="fa fa-lg <?php echo esc_html( $icon ) ?>"></i></a>
 					<?php endforeach; ?>
 				</p>
 
@@ -174,7 +174,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 					<a href="#" class="pt-remove-social-icon  js-pt-remove-social-icon"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove social icon', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-social-icons" id="social-icons-<?php echo $this->current_widget_id; ?>">
+			<div class="pt-widget-social-icons" id="social-icons-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<div class="social-icons"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-social-icon"><?php esc_html_e( 'Add New Social Icon', 'proteuswidgets' ); ?></a>

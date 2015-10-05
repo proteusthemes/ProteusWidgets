@@ -142,7 +142,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 
 			<h4><?php esc_html_e( 'People:', 'proteuswidgets' ); ?></h4>
 
-			<script type="text/template" id="js-pt-person-<?php echo $this->current_widget_id; ?>">
+			<script type="text/template" id="js-pt-person-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-tag"><?php esc_html_e( 'Tag:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-tag" name="<?php echo esc_attr( $this->get_field_name( 'people' ) ); ?>[{{id}}][tag]" type="text" value="{{tag}}" />
@@ -175,7 +175,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 					<a href="#" class="pt-remove-person  js-pt-remove-person"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Person', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-about-us" id="people-<?php echo $this->current_widget_id; ?>">
+			<div class="pt-widget-about-us" id="people-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<div class="people"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-person"><?php esc_html_e( 'Add New Person', 'proteuswidgets' ); ?></a>
