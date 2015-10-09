@@ -30,6 +30,7 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 			 */
 			$this->mustache = new Mustache_Engine(
 				array(
+					'cache'  => PW_PATH . '/tmp/cache',
 					'loader' => new Mustache_Loader_CascadingLoader(
 						array(
 							// FilesystemLoader from configurable path
