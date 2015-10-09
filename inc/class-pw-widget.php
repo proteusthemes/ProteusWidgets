@@ -24,10 +24,6 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 				)
 			);
 
-			// Include PHP mustache with composer
-			// require_once( get_template_directory() . '/vendor/mustache/mustache/src/Mustache/Autoloader.php' );
-			Mustache_Autoloader::register();
-
 			/*
 			 * Set the mustache engine
 			 * Learn more: https://github.com/bobthecow/mustache.php/wiki/Template-Loading
