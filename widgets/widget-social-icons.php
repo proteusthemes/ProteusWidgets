@@ -142,7 +142,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 			else {
 				$this->current_widget_id = $this->id;
 			}
-			$this->current_widget_id = esc_attr( $this->current_widget_id );
+
 		?>
 
 			<p>

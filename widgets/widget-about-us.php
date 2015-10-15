@@ -136,8 +136,6 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				$this->current_widget_id = $this->id;
 			}
 
-			$this->current_widget_id = esc_attr( $this->current_widget_id );
-
 			?>
 
 			<h4><?php esc_html_e( 'People:', 'proteuswidgets' ); ?></h4>

@@ -171,8 +171,6 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				$this->current_widget_id = $this->id;
 			}
 
-			$this->current_widget_id = esc_attr( $this->current_widget_id );
-
 			?>
 
 			<p>
