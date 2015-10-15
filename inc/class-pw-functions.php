@@ -79,14 +79,15 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 				// Prepare the data that we need for display
 				$recent_posts_data = array();
 				foreach ( $recent_posts_original as $key => $post ) {
-					$recent_posts_data[ $key ]['id']           = $post['ID'];
-					$recent_posts_data[ $key ]['date']         = get_the_date( apply_filters( 'pw/widget_latest_news_short_date_format', 'M j' ), $post['ID'] );
-					$split_date                                = explode( ' ', $recent_posts_data[ $key ]['date'] );
-					$recent_posts_data[ $key ]['day']          = $split_date[1];
-					$recent_posts_data[ $key ]['month']        = $split_date[0];
-					$recent_posts_data[ $key ]['full_date']    = get_the_date( get_option( 'date_format' ), $post['ID'] );
-					$attachment_image_id                       = get_post_thumbnail_id( $post['ID'] );
-					$attachment_image_data                     = wp_get_attachment_image_src( $attachment_image_id, 'pw-latest-news' );
+					$recent_posts_data[ $key ]['id']             = $post['ID'];
+					$recent_posts_data[ $key ]['date']           = get_the_date( apply_filters( 'pw/widget_latest_news_short_date_format', 'M j' ), $post['ID'] );
+					$split_date                                  = explode( ' ', $recent_posts_data[ $key ]['date'] );
+					$recent_posts_data[ $key ]['day']            = $split_date[1];
+					$recent_posts_data[ $key ]['month']          = $split_date[0];
+					$recent_posts_data[ $key ]['full_date']      = get_the_date( get_option( 'date_format' ), $post['ID'] );
+					$recent_posts_data[ $key ]['full_date_time'] = get_the_date( 'c', $post['ID'] );
+					$attachment_image_id                         = get_post_thumbnail_id( $post['ID'] );
+					$attachment_image_data                       = wp_get_attachment_image_src( $attachment_image_id, 'pw-latest-news' );
 
 					// get featured image data if a featured image is set
 					if ( ! empty( $attachment_image_data ) ) {
