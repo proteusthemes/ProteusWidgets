@@ -2,16 +2,16 @@
 
 	<div class="testimonial">
 		{{# instance.navigation }}
-			<a class="testimonial__carousel  testimonial__carousel--left" href="#carousel-testimonials-{{{ args.widget_id }}}" data-slide="prev"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button">{{ text.next }}</span></a>
+			<a class="testimonial__carousel  testimonial__carousel--left" href="#carousel-testimonials-{{ args.widget_id }}" data-slide="prev"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button">{{ text.next }}</span></a>
 		{{/ instance.navigation }}
 
-		{{{ args.before_title }}}{{{ instance.title }}}{{{ args.after_title }}}
+		{{{ args.before_title }}}{{ instance.title }}{{{ args.after_title }}}
 
 		{{# instance.navigation }}
-			<a class="testimonial__carousel  testimonial__carousel--right" href="#carousel-testimonials-{{{ args.widget_id }}}" data-slide="next"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button">{{ text.previous }}</span></a>
+			<a class="testimonial__carousel  testimonial__carousel--right" href="#carousel-testimonials-{{ args.widget_id }}" data-slide="next"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button">{{ text.previous }}</span></a>
 		{{/ instance.navigation }}
 
-		<div id="carousel-testimonials-{{{ args.widget_id }}}" class="carousel slide" data-ride="carousel" data-interval="{{{ instance.slider_settings }}}">
+		<div id="carousel-testimonials-{{ args.widget_id }}" class="carousel slide" data-ride="carousel" data-interval="{{ instance.slider_settings }}">
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
