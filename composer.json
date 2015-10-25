@@ -3,7 +3,8 @@
   "description": "WordPress widgets used in ProtuesThemes.",
   "license": "GPL-2.0+",
   "require": {
-    "mustache/mustache": "~2.8"
+    "mustache/mustache": "~2.8",
+    "khromov/mustache-wordpress-cache": "^1.3"
   },
   "autoload": {
     "classmap": ["widgets/", "inc/", "proteuswidgets.php"]
