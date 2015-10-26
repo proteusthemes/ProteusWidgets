@@ -32,6 +32,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				'author_description'              => false,
 				'author_avatar'                   => false,
 				'number_of_testimonial_per_slide' => 2,
+				'bootstrap_version'               => 3,
 			) );
 
 			// Set the max number of testimonials per slide to 2
@@ -74,11 +75,18 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			}
 
 			$testimonials = array_values( $testimonials );
+
 			if ( isset( $testimonials[0] ) ) {
 				$testimonials[0]['active'] = 'active';
 			}
+
 			foreach ( $testimonials as $key => $value ) {
-				$testimonials[ $key ]['more-at-once'] = ( 0 !== $key && 0 === $key % $this->fields['number_of_testimonial_per_slide'] ) ? '</div></div> <div class="item"><div class="row">' : '';
+				$testimonials[ $key ]['more-at-once'] = '';
+
+				if ( 0 !== $key && 0 === $key % $this->fields['number_of_testimonial_per_slide'] ) {
+					$testimonials[ $key ]['more-at-once'] = '</div></div> <div class="' . ( ( $this->fields['bootstrap_version'] > 3 ) ? 'carousel-' : '' ) . 'item"><div class="row">';
+				}
+
 				if ( $this->fields['rating'] && isset( $testimonials[ $key ]['rating'] ) ) {
 					$testimonials[ $key ]['rating'] = ( $testimonials[ $key ]['rating'] > 0 ) ? range( 0, ( $testimonials[ $key ]['rating'] - 1 ) ) : 0;
 					$testimonials[ $key ]['display-ratings'] = $testimonials[ $key ]['rating'] > 0;
