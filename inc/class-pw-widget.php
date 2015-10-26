@@ -1,5 +1,7 @@
 <?php
 
+use Khromov\Mustache_Cache\Mustache_Cache_WordPressCache as WPCache;
+
 /*
  * Abstract class that extends WP_Widget and will be extended by individual widget
  */
@@ -30,7 +32,7 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 			 */
 			$this->mustache = new Mustache_Engine(
 				array(
-					'cache'  => PW_PATH . '/tmp/cache',
+					'cache'  => new WPCache( 'pw_' ),
 					'loader' => new Mustache_Loader_CascadingLoader(
 						array(
 							// FilesystemLoader from configurable path
