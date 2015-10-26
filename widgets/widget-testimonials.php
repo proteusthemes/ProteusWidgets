@@ -28,8 +28,9 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 			// Get the settings for the testimonial widgets
 			$this->fields = apply_filters( 'pw/testimonial_widget', array(
-				'rating' => true,
-				'author_description' => false,
+				'rating'                          => true,
+				'author_description'              => false,
+				'author_avatar'                   => false,
 				'number_of_testimonial_per_slide' => 2,
 			) );
 
@@ -53,10 +54,11 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			if ( isset( $instance['quote'] ) ) {
 				$testimonials = array(
 					array(
-						'quote'  => $instance['quote'],
-						'author' => $instance['author'],
-						'rating' => $instance['rating'],
+						'quote'              => $instance['quote'],
+						'author'             => $instance['author'],
+						'rating'             => $instance['rating'],
 						'author_description' => $instance['author_description'],
+						'author_avatar'      => $instance['author_avatar'],
 					),
 				);
 			}
@@ -122,6 +124,9 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				if ( $this->fields['author_description'] ) {
 					$instance['testimonials'][ $key ]['author_description'] = sanitize_text_field( $testimonial['author_description'] );
 				}
+				if ( $this->fields['author_avatar'] ) {
+					$instance['testimonials'][ $key ]['author_avatar'] = esc_url_raw( $testimonial['author_avatar'] );
+				}
 				if ( $this->fields['rating'] ) {
 					$instance['testimonials'][ $key ]['rating']           = sanitize_text_field( $testimonial['rating'] );
 				}
@@ -143,22 +148,24 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			if ( isset( $instance['quote'] ) ) {
 				$testimonials = array(
 					array(
-						'id'     => 1,
-						'quote'  => $instance['quote'],
-						'author' => $instance['author'],
-						'rating' => $instance['rating'],
+						'id'                 => 1,
+						'quote'              => $instance['quote'],
+						'author'             => $instance['author'],
+						'rating'             => $instance['rating'],
 						'author_description' => $instance['author_description'],
+						'author_avatar'      => $instance['author_avatar'],
 					),
 				);
 			}
 			else {
 				$testimonials = isset( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array(
 					array(
-						'id'     => 1,
-						'quote'  => '',
-						'author' => '',
-						'rating' => 5,
+						'id'                 => 1,
+						'quote'              => '',
+						'author'             => '',
+						'rating'             => 5,
 						'author_description' => '',
+						'author_avatar'      => '',
 					),
 				);
 			}
@@ -210,6 +217,14 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_description"><?php esc_html_e( 'Author Description:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_description" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][author_description]" type="text" value="{{author_description}}" />
+				</p>
+				<?php endif; ?>
+
+				<?php if ( $this->fields['author_avatar'] ) : ?>
+				<p>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_avatar"><?php esc_html_e( 'Author Avatar:', 'proteuswidgets' ); ?></label>
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_avatar" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][author_avatar]" type="text" value="{{author_avatar}}" />
+					<input type="button" style="margin-top: 5px;" onclick="ProteusWidgetsUploader.imageUploader.openFileFrame('<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_avatar');" class="button button-secondary button-upload-image" value="Upload Image" />
 				</p>
 				<?php endif; ?>
 

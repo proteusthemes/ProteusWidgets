@@ -87,6 +87,7 @@ _.extend( ProteusWidgets.Models, {
 			'author':             '',
 			'rating':             5,
 			'author_description': '',
+			'author_avatar': '',
 		},
 	} ),
 
