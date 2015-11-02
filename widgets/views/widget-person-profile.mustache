@@ -1,0 +1,23 @@
+{{{ args.before_widget }}}
+
+	<div class="card  person-profile">
+		<img class="person-profile__image  wp-post-image" src="{{ instance.image }}" alt="{{ text.picture_of }} {{ instance.name }}">
+		<div class="card-block  person-profile__container">
+			{{# instance.social_icons_are_set }}
+				<div class="person-profile__social-icons">
+					{{# instance.social_icons }}
+						<a class="person-profile__social-icon" href="{{ link }}" target="{{ instance.new_tab }}"><i class="fa  {{ icon }}"></i></a>
+					{{/ instance.social_icons }}
+				</div>
+			{{/ instance.social_icons_are_set }}
+			<div class="person-profile__content">
+				{{# instance.tag_is_set }}
+					<span class="person-profile__tag"> {{ instance.tag }} </span>
+				{{/ instance.tag_is_set }}
+				<h4 class="card-title  person-profile__name">{{ instance.name }}</h4>
+				<p class="card-text  person-profile__description">{{ instance.description }}</p>
+			</div>
+		</div>
+	</div>
+
+{{{ args.after_widget }}}
