@@ -7,7 +7,8 @@
 .pt-widget-single-testimonial,
 .pt-widget-single-person,
 .pt-widget-single-social-icon,
-.pt-widget-single-counter {
+.pt-widget-single-counter,
+.pt-widget-single-accordion-item {
 	padding: 0 10px;
 	border: 1px solid rgba(0,0,0,0.1);
 	background-color: rgba(0,0,0,0.03);
@@ -18,7 +19,8 @@
 .pt-remove-testimonial,
 .pt-remove-person,
 .pt-remove-social-icon,
-.pt-remove-counter {
+.pt-remove-counter,
+.pt-remove-accordion-item {
 	text-decoration: none;
 }
 

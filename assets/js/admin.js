@@ -115,6 +115,13 @@ _.extend( ProteusWidgets.Models, {
 			'icon': 'fa-users',
 		},
 	} ),
+
+	AccordionItem: Backbone.Model.extend( {
+		defaults: {
+			'title': '',
+			'content': '',
+		}
+	} ),
 } );
 
 
@@ -212,6 +219,20 @@ _.extend( ProteusWidgets.Views, {
 
 			this.$( 'input.js-icon-input' ).val( this.model.get( 'icon' ) );
 
+			return this;
+		},
+	} ),
+
+	// View of a single accordion item
+	AccordionItem: ProteusWidgets.Views.Abstract.extend( {
+		className: 'pt-widget-single-accordion-item',
+
+		events: {
+			'click .js-pt-remove-accordion-item': 'destroy',
+		},
+
+		render: function () {
+			this.$el.html( Mustache.render( this.templateHTML, this.model.attributes ) );
 			return this;
 		},
 	} ),
@@ -325,6 +346,13 @@ _.extend( ProteusWidgets.ListViews, {
 	Counters: ProteusWidgets.ListViews.Abstract.extend( {
 		events: {
 			'click .js-pt-add-counter': 'addNew'
+		}
+	} ),
+
+	// Collection of all accordion items, but associated with each individual widget
+	AccordionItems: ProteusWidgets.ListViews.Abstract.extend( {
+		events: {
+			'click .js-pt-add-accordion-item': 'addNew'
 		}
 	} ),
 } );
@@ -447,5 +475,24 @@ _.extend( ProteusWidgets.Utils, {
 		};
 
 		this.repopulateGeneric( ProteusWidgets.ListViews.Counters, parameters, countersJSON, widgetId );
+	},
+
+	/**
+	 * Function which adds the existing accordion items to the DOM
+	 * @param  {json} accordionItemsJSON
+	 * @param  {string} widgetId ID of widget from PHP $this->id
+	 * @return {void}
+	 */
+	repopulateAccordionItems: function ( accordionItemsJSON, widgetId ) {
+		var parameters = {
+			el:           '#accordion-items-' + widgetId,
+			widgetId:     widgetId,
+			itemsClass:   '.accordion-items',
+			itemTemplate: '#js-pt-accordion-item-',
+			itemsModel:   ProteusWidgets.Models.AccordionItem,
+			itemView:     ProteusWidgets.Views.AccordionItem,
+		};
+
+		this.repopulateGeneric( ProteusWidgets.ListViews.AccordionItems, parameters, accordionItemsJSON, widgetId );
 	},
 } );
