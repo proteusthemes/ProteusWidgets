@@ -122,6 +122,15 @@ _.extend( ProteusWidgets.Models, {
 			'content': '',
 		}
 	} ),
+
+	Step: Backbone.Model.extend( {
+		defaults: {
+			'title': '',
+			'icon': 'fa-mobile',
+			'content': '',
+			'step': '',
+		}
+	} ),
 } );
 
 
@@ -233,6 +242,23 @@ _.extend( ProteusWidgets.Views, {
 
 		render: function () {
 			this.$el.html( Mustache.render( this.templateHTML, this.model.attributes ) );
+			return this;
+		},
+	} ),
+
+	// View of a single step
+	Step: ProteusWidgets.Views.Abstract.extend( {
+		className: 'pt-widget-single-step',
+
+		events: {
+			'click .js-pt-remove-step-item': 'destroy',
+		},
+
+		render: function () {
+			this.$el.html( Mustache.render( this.templateHTML, this.model.attributes ) );
+
+			this.$( 'input.js-icon-input' ).val( this.model.get( 'icon' ) );
+
 			return this;
 		},
 	} ),
@@ -353,6 +379,13 @@ _.extend( ProteusWidgets.ListViews, {
 	AccordionItems: ProteusWidgets.ListViews.Abstract.extend( {
 		events: {
 			'click .js-pt-add-accordion-item': 'addNew'
+		}
+	} ),
+
+	// Collection of all steps, but associated with each individual widget
+	Steps: ProteusWidgets.ListViews.Abstract.extend( {
+		events: {
+			'click .js-pt-add-step-item': 'addNew'
 		}
 	} ),
 } );
@@ -494,5 +527,24 @@ _.extend( ProteusWidgets.Utils, {
 		};
 
 		this.repopulateGeneric( ProteusWidgets.ListViews.AccordionItems, parameters, accordionItemsJSON, widgetId );
+	},
+
+	/**
+	 * Function which adds the existing steps to the DOM
+	 * @param  {json} stepItemsJSON
+	 * @param  {string} widgetId ID of widget from PHP $this->id
+	 * @return {void}
+	 */
+	repopulateStepItems: function ( stepItemsJSON, widgetId ) {
+		var parameters = {
+			el:           '#step-items-' + widgetId,
+			widgetId:     widgetId,
+			itemsClass:   '.step-items',
+			itemTemplate: '#js-pt-step-item-',
+			itemsModel:   ProteusWidgets.Models.Step,
+			itemView:     ProteusWidgets.Views.Step,
+		};
+
+		this.repopulateGeneric( ProteusWidgets.ListViews.Steps, parameters, stepItemsJSON, widgetId );
 	},
 } );

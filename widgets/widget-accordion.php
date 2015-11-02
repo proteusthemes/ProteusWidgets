@@ -9,20 +9,20 @@
 if ( ! class_exists( 'PW_Accordion' ) ) {
 	class PW_Accordion extends PW_Widget {
 
+		private $allowed_html_in_content_field;
+
 		// Basic widget settings
 		function widget_id_base() { return 'accordion'; }
-		function widget_name() { return esc_html__( 'Accordion', 'structurepress-pt' ); }
-		function widget_description() { return esc_html__( 'Accordion widget for Page Builder.', 'structurepress-pt' ); }
+		function widget_name() { return esc_html__( 'Accordion', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Accordion widget for Page Builder.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-accordion'; }
-
-		// Allowed HTML in content field
-		private $allowed_html_in_content_field;
 
 		public function __construct() {
 			parent::__construct();
 
+			// Allowed HTML in content field
 			$this->allowed_html_in_content_field = apply_filters(
-				'pw/accordion_allowed_html_in_content_field',
+				'pw/allowed_html_in_content_field',
 				array(
 					'strong' => array(),
 					'b'      => array(),
@@ -122,39 +122,39 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 		?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _ex( 'Title', 'backend', 'structurepress-pt' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _ex( 'Title', 'backend', 'proteuswidgets' ); ?></label>
 				<input class="widefat" type="text" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_link' ) ); ?>"><?php _ex( 'Read more URL', 'backend','structurepress-pt' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_link' ) ); ?>"><?php _ex( 'Read more URL', 'backend','proteuswidgets' ); ?></label>
 				<input class="widefat" type="text" id="<?php echo esc_attr( $this->get_field_id( 'read_more_link' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'read_more_link' ) ); ?>" value="<?php echo esc_attr( $read_more_link ); ?>" />
 				<br>
-				<small><?php _ex( 'If you leave this field empty the read more link will not be displayed in the widget.', 'backend', 'structurepress-pt' ); ?></small>
+				<small><?php _ex( 'If you leave this field empty the read more link will not be displayed in the widget.', 'backend', 'proteuswidgets' ); ?></small>
 			</p>
 
 			<hr>
 
-			<h4><?php _ex( 'Accordion items:', 'backend', 'structurepress-pt' ); ?></h4>
+			<h4><?php _ex( 'Accordion items:', 'backend', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-accordion-item-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title"><?php _ex( 'Title', 'backend','structurepress-pt' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title"><?php _ex( 'Title', 'backend','proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][title]" type="text" value="{{title}}" />
 				</p>
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content"><?php _ex( 'Content', 'backend', 'structurepress-pt' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content"><?php _ex( 'Content', 'backend', 'proteuswidgets' ); ?></label>
 					<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][content]">{{content}}</textarea>
 				</p>
 				<p>
 					<input name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
-					<a href="#" class="pt-remove-accordion-item  js-pt-remove-accordion-item"><span class="dashicons dashicons-dismiss"></span> <?php _ex( 'Remove accordion item', 'backend', 'structurepress-pt' ); ?></a>
+					<a href="#" class="pt-remove-accordion-item  js-pt-remove-accordion-item"><span class="dashicons dashicons-dismiss"></span> <?php _ex( 'Remove accordion item', 'backend', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
 			<div class="pt-widget-accordion-items" id="accordion-items-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<div class="accordion-items"></div>
 				<p>
-					<a href="#" class="button  js-pt-add-accordion-item"><?php _ex( 'Add New Item', 'backend','structurepress-pt' ); ?></a>
+					<a href="#" class="button  js-pt-add-accordion-item"><?php _ex( 'Add New Item', 'backend','proteuswidgets' ); ?></a>
 				</p>
 			</div>
 			<script type="text/javascript">

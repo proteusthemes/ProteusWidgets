@@ -8,7 +8,8 @@
 .pt-widget-single-person,
 .pt-widget-single-social-icon,
 .pt-widget-single-counter,
-.pt-widget-single-accordion-item {
+.pt-widget-single-accordion-item,
+.pt-widget-single-step {
 	padding: 0 10px;
 	border: 1px solid rgba(0,0,0,0.1);
 	background-color: rgba(0,0,0,0.03);
@@ -20,7 +21,8 @@
 .pt-remove-person,
 .pt-remove-social-icon,
 .pt-remove-counter,
-.pt-remove-accordion-item {
+.pt-remove-accordion-item,
+.pt-remove-step-item {
 	text-decoration: none;
 }
 
