@@ -1,6 +1,6 @@
 <?php
 /**
- * Testimonials Widget
+ * About Us Widget
  *
  * @package ProteusWidgets
  * @since 1.0.0

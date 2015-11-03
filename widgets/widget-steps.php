@@ -11,6 +11,7 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 
 		private $allowed_html_in_content_field;
 		private $font_awesome_icons_list;
+		private $current_widget_id;
 
 		// Basic widget settings
 		function widget_id_base() { return 'steps'; }

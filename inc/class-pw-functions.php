@@ -137,5 +137,18 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 			return implode( ', ' , $srcset );
 		}
 
+		/**
+		 * Returns string of zeros
+		 *
+		 * @param int $length, the length of the string
+		 */
+		public static function leading_zeros( $length ) {
+			$s = '';
+			while ( strlen( $s ) < $length ){
+				$s = '0' . $s;
+			}
+			return $s;
+		}
+
 	}
 }
