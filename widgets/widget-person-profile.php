@@ -72,6 +72,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 
 			$text = array(
 				'picture_of' => esc_html__( 'Picture of', 'proteuswidgets' ),
+				'meet_me_on' => esc_html__( 'Meet me on:', 'proteuswidgets' ),
 			);
 
 			// Mustache widget-person-profile template rendering
