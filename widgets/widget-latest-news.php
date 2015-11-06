@@ -193,7 +193,5 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 
 			<?php
 		}
-
 	}
-	register_widget( 'PW_Latest_News' );
 }

@@ -173,7 +173,5 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 
 			<?php
 		}
-
 	}
-	register_widget( 'PW_Accordion' );
 }
