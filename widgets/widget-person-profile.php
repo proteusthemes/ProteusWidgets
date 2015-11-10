@@ -66,7 +66,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 			$instance['image']                = esc_url( $instance['image'] );
 			$instance['tag']                  = esc_html( $instance['tag'] );
 			$instance['name']                 = esc_html( $instance['name'] );
-			$instance['social_icons']         = isset( $instance['social_icons'] ) ? $instance['social_icons'] : array();
+			$instance['social_icons']         = isset( $instance['social_icons'] ) ? array_values( $instance['social_icons'] ) : array();
 			$instance['social_icons_are_set'] = ! empty( $instance['social_icons'] );
 			$instance['tag_is_set']           = ! empty( $instance['tag'] );
 
