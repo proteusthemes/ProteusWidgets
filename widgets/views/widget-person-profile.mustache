@@ -1,7 +1,9 @@
 {{{ args.before_widget }}}
 
 	<div class="card  person-profile">
+		{{# instance.image_is_set }}
 		<img class="person-profile__image  wp-post-image" src="{{ instance.image }}" alt="{{ text.picture_of }} {{ instance.name }}">
+		{{/ instance.image_is_set }}
 		<div class="card-block  person-profile__container">
 			{{# instance.social_icons_are_set }}
 				<div class="person-profile__social-icons">

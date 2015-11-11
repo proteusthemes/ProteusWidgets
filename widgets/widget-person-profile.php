@@ -62,7 +62,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
-			$instance['new_tab']              = ! empty ( $instance['new_tab'] ) ? '_blank' : '_self';
+			$instance['new_tab']              = ! empty( $instance['new_tab'] ) ? '_blank' : '_self';
+			$instance['image_is_set']         = ! empty( $instance['image'] );
 			$instance['image']                = esc_url( $instance['image'] );
 			$instance['tag']                  = esc_html( $instance['tag'] );
 			$instance['name']                 = esc_html( $instance['name'] );
