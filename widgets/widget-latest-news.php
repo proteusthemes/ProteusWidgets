@@ -36,6 +36,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			// prepare data for mustache template
 			$instance['more_news_on']      = ! empty( $instance['more_news'] ) ? true : false;
 			$instance['link_to_more_news'] = get_permalink( get_option( 'page_for_posts' ) );
+			$instance['read_more_text']    = empty( $instance['read_more_text'] ) ? esc_html__( 'More news', 'proteuswidgets' ) : esc_html__( $instance['read_more_text'] );
 
 			// Get/set cache data just once for multiple widgets
 			$recent_posts_data = PW_Functions::get_cached_data( 'pw_recent_posts', $this->max_post_number );
@@ -59,7 +60,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 
 			$text = array(
 				'by'        => esc_html__( 'By', 'proteuswidgets' ),
-				'more_news' => esc_html__( 'More news', 'proteuswidgets' ),
+				'more_news' => $instance['read_more_text'],
 			);
 
 			// Mustache widget-latest-news template rendering
@@ -100,6 +101,8 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 				$instance['to'] = $instance['from'];
 			}
 
+			$instance['read_more_text'] = sanitize_text_field( $new_instance['read_more_text'] );
+
 			return $instance;
 		}
 
@@ -109,10 +112,11 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 		 * @param array $instance The widget options
 		 */
 		public function form( $instance ) {
-			$type      = ! empty( $instance['type'] ) ? $instance['type'] : '';
-			$from      = ! empty( $instance['from'] ) ? $instance['from'] : '';
-			$to        = ! empty( $instance['to'] ) ? $instance['to'] : '';
-			$more_news = ! empty( $instance['more_news'] ) ? $instance['more_news'] : '';
+			$type           = ! empty( $instance['type'] ) ? $instance['type'] : '';
+			$from           = ! empty( $instance['from'] ) ? $instance['from'] : '';
+			$to             = ! empty( $instance['to'] ) ? $instance['to'] : '';
+			$more_news      = ! empty( $instance['more_news'] ) ? $instance['more_news'] : '';
+			$read_more_text = empty( $instance['read_more_text'] ) ? esc_html__( 'More news', 'proteuswidgets' ) : $instance['read_more_text'];
 
 			// Page Builder fix for widget id used in Backbone and in the surrounding div below
 			if ( 'temp' === $this->id ) {
@@ -144,7 +148,12 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'more_news' ) ); ?>"><?php _ex( 'More news link:', 'backend', 'proteuswidgets' ); ?></label>
-					<input id="<?php echo esc_attr( $this->get_field_id( 'more_news' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'more_news' ) ); ?>" type="checkbox" <?php checked( $more_news, 'on' ); ?> />
+					<input id="<?php echo esc_attr( $this->get_field_id( 'more_news' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'more_news' ) ); ?>" type="checkbox" class="js-show-more-news-link" <?php checked( $more_news, 'on' ); ?> />
+				</p>
+
+				<p class="js-read-more-text-setting">
+					<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>"><?php _ex( 'Read more text:', 'backend', 'proteuswidgets' ); ?></label>
+					<input id="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'read_more_text' ) ); ?>" type="text" value="<?php echo esc_attr( $read_more_text ); ?>" />
 				</p>
 			</div>
 
@@ -162,6 +171,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 					var LatestNewsView = Backbone.View.extend({
 						events: {
 							'change .latest-news-select-type': 'toggle',
+							'change .js-show-more-news-link': 'toggleMoreText',
 						},
 
 						initialize: function( params ){
@@ -171,6 +181,13 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 							if ( 'block' == $(this.selectedType).val() ) {
 								$(this.toFieldsGroup).hide();
 								$(this.toFieldsGroup).siblings('label').html("<?php _ex( 'Post order number:', 'backend', 'proteuswidgets' ); ?>");
+							}
+
+							if ( $(this.el).find('.js-show-more-news-link').prop('checked') ) {
+								$( this.el ).find('.js-read-more-text-setting').show();
+							}
+							else {
+								$( this.el ).find('.js-read-more-text-setting').hide();
 							}
 						},
 
@@ -183,6 +200,10 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 								$(this.toFieldsGroup).siblings('label').html("<?php _ex( 'Post order number from:', 'backend', 'proteuswidgets' ); ?>");
 								$(this.toFieldsGroup).show();
 							}
+						},
+
+						toggleMoreText: function(event){
+							$( this.el ).find('.js-read-more-text-setting').toggle();
 						},
 					});
 
