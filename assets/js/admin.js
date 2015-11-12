@@ -112,6 +112,7 @@ _.extend( ProteusWidgets.Models, {
 		defaults: {
 			'title': '',
 			'number': '',
+			'icon': '',
 		},
 	} ),
 

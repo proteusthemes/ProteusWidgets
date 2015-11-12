@@ -10,6 +10,8 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 	class PW_Number_Counter extends PW_Widget {
 
 		private $current_widget_id;
+		private $font_awesome_icons_list;
+		private $fields;
 
 		// Basic widget settings
 		function widget_id_base() { return 'number-counter'; }
@@ -19,6 +21,37 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 
 		public function __construct() {
 			parent::__construct();
+
+			// Get the settings for the number counter widgets
+			$this->fields = apply_filters( 'pw/number_counter_widget', array(
+				'icon' => false,
+			) );
+
+			// A list of icons to choose from in the widget backend
+			$this->font_awesome_icons_list = apply_filters(
+				'pw/number_counter_fa_icons_list',
+				array(
+					'fa-building-o',
+					'fa-users',
+					'fa-globe',
+					'fa-suitcase',
+					'fa-car',
+					'fa-road',
+					'fa-home',
+					'fa-phone',
+					'fa-clock-o',
+					'fa-money',
+					'fa-cog',
+					'fa-archive',
+					'fa-compass',
+					'fa-comments-o',
+					'fa-dashboard',
+					'fa-exclamation-circle',
+					'fa-female',
+					'fa-male',
+					'fa-heart',
+				)
+			);
 		}
 
 		/**
@@ -37,6 +70,9 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 				$counters[ $key ]['title']         = esc_html( $counter['title'] );
 				$counters[ $key ]['number']        = absint( $counter['number'] );
 				$counters[ $key ]['leading_zeros'] = esc_html( PW_Functions::leading_zeros( strlen( $counter['number'] ) ) );
+				if ( $this->fields['icon'] ) {
+					$counters[ $key ]['icon'] = esc_attr( $counter['icon'] );
+				}
 			}
 
 			// Mustache widget-number-counter template rendering
@@ -63,6 +99,10 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 				$instance['counters'][ $key ]['id']     = sanitize_key( $counter['id'] );
 				$instance['counters'][ $key ]['title']  = sanitize_text_field( $counter['title'] );
 				$instance['counters'][ $key ]['number'] = absint( $counter['number'] );
+
+				if ( $this->fields['icon'] ) {
+					$instance['counters'][ $key ]['icon'] = sanitize_html_class( $counter['icon'] );
+				}
 			}
 
 			return $instance;
@@ -86,6 +126,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 						'id'     => 1,
 						'title'  => '',
 						'number' => '',
+						'icon'   => '',
 					),
 				);
 			}
@@ -119,6 +160,17 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 					<label for="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-number"><?php _ex( 'Number:', 'backend', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-number" name="<?php echo esc_attr( $this->get_field_name( 'counters' ) ); ?>[{{id}}][number]" type="text" value="{{number}}" />
 				</p>
+
+			<?php if ( $this->fields['icon'] ) : ?>
+				<p>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-icon"><?php _ex( 'Select icon:', 'backend', 'proteuswidgets' ); ?></label> <br />
+					<small><?php printf( esc_html__( 'Click on the icon below or manually select from the %s website', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?>.</small>
+					<input id="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-icon" name="<?php echo esc_attr( $this->get_field_name( 'counters' ) ); ?>[{{id}}][icon]" type="text" value="{{icon}}" class="widefat  js-icon-input" /> <br><br>
+					<?php foreach ( $this->font_awesome_icons_list as $icon ) : ?>
+						<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo esc_attr( $icon ); ?>"><i class="fa fa-lg <?php echo esc_attr( $icon ); ?>"></i></a>
+					<?php endforeach; ?>
+				</p>
+			<?php endif;?>
 
 				<p>
 					<input name="<?php echo esc_attr( $this->get_field_name( 'counters' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
