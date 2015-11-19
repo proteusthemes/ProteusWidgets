@@ -1,6 +1,9 @@
 {{{ args.before_widget }}}
 
-	<h3 class="widget-title  steps__title">{{ instance.preped_title }}</h3>
+	{{# instance.title_is_set }}
+		<h3 class="widget-title  steps__title">{{ instance.preped_title }}</h3>
+	{{/ instance.title_is_set }}
+
 	<div class="steps">
 		{{# items }}
 			<div class="step">

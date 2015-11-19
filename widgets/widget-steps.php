@@ -71,7 +71,8 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
 			$items = isset( $instance['items'] ) ? array_values( $instance['items'] ) : array();
-			$isntance['preped_title'] = apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base );
+			$instance['title_is_set'] = ! empty( $instance['title'] );
+			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base );
 
 			foreach ( $items as $key => $item ) {
 				$items[ $key ]['title']   = esc_html( $item['title'] );
