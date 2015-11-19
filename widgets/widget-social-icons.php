@@ -110,7 +110,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 				$instance['social_icons'][ $key ]['icon'] = sanitize_html_class( $social_icon['icon'] );
 			}
 
-			$instance['new_tab'] = sanitize_key( $new_instance['new_tab'] );
+			$instance['new_tab'] = ! empty ( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
 
 			return $instance;
 		}

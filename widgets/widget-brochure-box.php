@@ -33,7 +33,7 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
-			$instance['title']         = $args['before_title'] . apply_filters( 'widget_title', $instance['title'], $instance ) . $args['after_title'];
+			$instance['title']         = empty( $instance['title'] ) ? '' : $args['before_title'] . apply_filters( 'widget_title', $instance['title'], $instance ) . $args['after_title'];
 			$instance['brochure_url']  = esc_url( $instance['brochure_url'] );
 			$instance['brochure_icon'] = sanitize_html_class( $instance['brochure_icon'] );
 
@@ -60,7 +60,7 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 
 			$instance['title']         = wp_kses_post( $new_instance['title'] );
 			$instance['brochure_url']  = esc_url_raw( $new_instance['brochure_url'] );
-			$instance['new_tab']       = sanitize_key( $new_instance['new_tab'] );
+			$instance['new_tab']       = ! empty ( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
 			$instance['brochure_text'] = wp_kses_post( $new_instance['brochure_text'] );
 			$instance['brochure_icon'] = sanitize_key( $new_instance['brochure_icon'] );
 
