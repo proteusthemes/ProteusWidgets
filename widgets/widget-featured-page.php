@@ -16,9 +16,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		/**
 		 * Length of the line excerpt.
 		 */
-		const INLINE_EXCERPT = 60;
-		const BLOCK_EXCERPT = 240;
-
+		private $excerpt_lengths;
 		private $fields;
 
 		// Basic widget settings
@@ -36,6 +34,11 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			// Get the settings for the this widget
 			$this->fields = apply_filters( 'pw/featured_page_fields', array(
 				'read_more_text' => true,
+			) );
+
+			$this->excerpt_lengths = apply_filters( 'pw/featured_page_excerpt_lengths', array(
+				'inline_excerpt' => 60,
+				'block_excerpt'  => 240,
 			) );
 		}
 
@@ -72,11 +75,11 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			// Prepare the excerpt text
 			$excerpt = ! empty( $page['post_excerpt'] ) ? $page['post_excerpt'] : $page['post_content'];
 
-			if ( 'inline' === $instance['layout'] && strlen( $excerpt ) > self::INLINE_EXCERPT ) {
-				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', self::INLINE_EXCERPT ) ) . ' &hellip;';
+			if ( 'inline' === $instance['layout'] && strlen( $excerpt ) > $this->excerpt_lengths['inline_excerpt'] ) {
+				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', $this->excerpt_lengths['inline_excerpt'] ) ) . ' &hellip;';
 			}
-			elseif ( strlen( $excerpt ) > self::BLOCK_EXCERPT ) {
-				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', self::BLOCK_EXCERPT ) ) . ' &hellip;';
+			elseif ( strlen( $excerpt ) > $this->excerpt_lengths['block_excerpt'] ) {
+				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', $this->excerpt_lengths['block_excerpt'] ) ) . ' &hellip;';
 			}
 
 			$page['post_excerpt'] = sanitize_text_field( $excerpt );
