@@ -98,10 +98,10 @@ define( ['jquery', 'underscore'], function( $, _ ){
 		 * Function for detecting if the element is visible on screen
 		 */
 		widgetScrolledIntoView: function() {
-			var docViewTop    = $( window ).scrollTop(),
+			var docViewTop  = $( window ).scrollTop(),
 				docViewBottom = docViewTop + $( window ).height(),
-				elemTop       = this.$widgetElement.offset().top,
-				elemBottom    = elemTop + this.$widgetElement.height();
+				elemTop       = this.$widgetElement.children( '.number-counter' ).first().offset().top,
+				elemBottom    = elemTop + this.$widgetElement.children( '.number-counter' ).first().height();
 
 			return ( ( elemBottom <= docViewBottom ) && ( elemTop >= docViewTop ) );
 		},
