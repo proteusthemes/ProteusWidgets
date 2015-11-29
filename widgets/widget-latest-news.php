@@ -36,7 +36,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			// prepare data for mustache template
 			$instance['more_news_on']      = ! empty( $instance['more_news'] ) ? true : false;
 			$instance['link_to_more_news'] = get_permalink( get_option( 'page_for_posts' ) );
-			$instance['read_more_text']    = empty( $instance['read_more_text'] ) ? esc_html__( 'More news', 'proteuswidgets' ) : esc_html__( $instance['read_more_text'] );
+			$instance['read_more_text']    = empty( $instance['read_more_text'] ) ? esc_html__( 'More news', 'proteuswidgets' ) : esc_html( $instance['read_more_text'] );
 
 			// Get/set cache data just once for multiple widgets
 			$recent_posts_data = PW_Functions::get_cached_data( 'pw_recent_posts', $this->max_post_number );
