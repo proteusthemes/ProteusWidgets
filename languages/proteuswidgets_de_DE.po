@@ -1,0 +1,463 @@
+# Copyright (C) 2015 ProteusThemes 
+# This file is distributed under the GPL 2.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: ProteusWidgets 1.0.6\n"
+"Report-Msgid-Bugs-To: http://support.proteusthemes.com/\n"
+"POT-Creation-Date: 2015-11-29 17:19+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-11-29 17:35+0100\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
+"esc_html_x:1,2c\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Textdomain-Support: yes\n"
+"Last-Translator: \n"
+"Language: de\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: widgets/widget-about-us.php:16
+msgid "About Us"
+msgstr "Über uns"
+
+#: widgets/widget-about-us.php:17
+msgid "About Us widget used in sidebar."
+msgstr "Über uns Widget für die Sidebar."
+
+#: widgets/widget-about-us.php:64
+msgid "About us image"
+msgstr "Über uns Bild"
+
+#: widgets/widget-about-us.php:65 widgets/widget-featured-page.php:76
+msgid "Read more"
+msgstr "Weiterlesen"
+
+#: widgets/widget-about-us.php:66 widgets/widget-testimonials.php:91
+msgid "Previous"
+msgstr "Vorheriger Beitrag"
+
+#: widgets/widget-about-us.php:67 widgets/widget-testimonials.php:92
+msgid "Next"
+msgstr "Nächster Beitrag"
+
+#: widgets/widget-about-us.php:142
+msgid "People:"
+msgstr "Personen:"
+
+#: widgets/widget-about-us.php:146
+msgid "Tag:"
+msgstr "Tag:"
+
+#: widgets/widget-about-us.php:151
+msgid "Image URL:"
+msgstr "Bild URL:"
+
+#: widgets/widget-about-us.php:156
+msgid "Name:"
+msgstr "Name:"
+
+#: widgets/widget-about-us.php:161
+msgid "Description:"
+msgstr "Beschreibung:"
+
+#: widgets/widget-about-us.php:166 widgets/widget-banner.php:86
+#: widgets/widget-icon-box.php:95 widgets/widget-social-icons.php:127
+msgid "Link:"
+msgstr "Link:"
+
+#: widgets/widget-about-us.php:173
+msgid "Remove Person"
+msgstr "Person entfernen"
+
+#: widgets/widget-about-us.php:179
+msgid "Add New Person"
+msgstr "Neue Person hinzufügen"
+
+#: widgets/widget-about-us.php:199 widgets/widget-testimonials.php:179
+msgid "Automatically cycle the carousel?"
+msgstr "Automatischer Durchlauf des Karussell?"
+
+#: widgets/widget-about-us.php:201 widgets/widget-testimonials.php:181
+msgid "Yes"
+msgstr "Ja"
+
+#: widgets/widget-about-us.php:202 widgets/widget-testimonials.php:182
+msgid "No"
+msgstr "Nein"
+
+#: widgets/widget-about-us.php:207 widgets/widget-testimonials.php:187
+msgid "Interval (in miliseconds):"
+msgstr "Intervall (in Millisekunden):"
+
+#: widgets/widget-author.php:15
+msgid "Author"
+msgstr "Autor"
+
+#: widgets/widget-author.php:16
+msgid "Author widget used in sidebar."
+msgstr "Autor Widget für die Sidebar."
+
+#: widgets/widget-author.php:76
+msgid "Display author:"
+msgstr "Autor anzeigen:"
+
+#: widgets/widget-author.php:86
+msgid ""
+"To add the social icons to this widget, please install the %sExtra User "
+"Details%s plugin and fill in the details in the &quot;Users&quot; section."
+msgstr ""
+"Um Social Icons zu diesem Widget hinzuzufügen, installieren Sie bitte die "
+"%sExtra User Details%s Plugin und befüllen Sie die Details in der &quot;"
+"Benutzer&quot; Sektion."
+
+#: widgets/widget-banner.php:14
+msgid "Banner"
+msgstr "Banner"
+
+#: widgets/widget-banner.php:15
+msgid "Banner widget for the Sidebar and Page Builder.."
+msgstr "Banner Widget für die Sidebar und den Page Builder.."
+
+#: widgets/widget-banner.php:76 widgets/widget-brochure-box.php:86
+#: widgets/widget-facebook.php:111 widgets/widget-icon-box.php:85
+#: widgets/widget-opening-time.php:205 widgets/widget-skype.php:71
+#: widgets/widget-testimonials.php:174
+msgid "Title:"
+msgstr "Titel:"
+
+#: widgets/widget-banner.php:81
+msgid "Content:"
+msgstr "Inhalt:"
+
+#: widgets/widget-banner.php:89
+msgid "Open link in a new window/tab"
+msgstr "Link in neuem Fenster/Tab öffnen"
+
+#: widgets/widget-brochure-box.php:14
+msgid "Brochure Box"
+msgstr "Broschüren-Box"
+
+#: widgets/widget-brochure-box.php:15
+msgid "Brochure Box widget for the Sidebar and Page Builder."
+msgstr "Broschüren-Box Widget für die Sidebar und den Page Builder."
+
+#: widgets/widget-brochure-box.php:91
+msgid "Brochure URL:"
+msgstr "Broschüren-URL:"
+
+#: widgets/widget-brochure-box.php:97 widgets/widget-icon-box.php:102
+msgid "Open link in new tab"
+msgstr "Link in neuem Tab öffnen"
+
+#: widgets/widget-brochure-box.php:101
+msgid "Brochure Text:"
+msgstr "Broschüren-Text:"
+
+#: widgets/widget-brochure-box.php:106
+msgid "Brochure Icon:"
+msgstr "Broschüren-Icon:"
+
+#: widgets/widget-brochure-box.php:107 widgets/widget-icon-box.php:107
+msgid "Click on the icon below or manually select from the %s website"
+msgstr ""
+"Klicken Sie auf ein Icon oder wählen Sie manuell eines von der %s Webseite"
+
+#: widgets/widget-facebook.php:15
+msgid "Facebook"
+msgstr "Facebook"
+
+#: widgets/widget-facebook.php:16
+msgid "Facebook like box with some customization settings"
+msgstr "Facebook Like Box mit einigen Anpassungsoptionen"
+
+#: widgets/widget-facebook.php:116
+msgid "FB Page to like (the whole URL):"
+msgstr "FB Seite zu liken (die ganze URL):"
+
+#: widgets/widget-facebook.php:121
+msgid "Height (in pixels):"
+msgstr "Höhe (in Pixeln):"
+
+#: widgets/widget-facebook.php:126
+msgid "Color scheme:"
+msgstr "Farbschema:"
+
+#: widgets/widget-facebook.php:128
+msgid "Light"
+msgstr "Hell"
+
+#: widgets/widget-facebook.php:129
+msgid "Dark"
+msgstr "Dunkel"
+
+#: widgets/widget-facebook.php:134
+msgid "Background color:"
+msgstr "Hintergrundfarbe:"
+
+#: widgets/widget-featured-page.php:20
+msgid "Featured Page"
+msgstr "Angezeigte Seite"
+
+#: widgets/widget-featured-page.php:21
+msgid "Featured Page widget for the Sidebar and Page Builder."
+msgstr "„Angezeigte Seite“ Widget für die Sidebar und den Page Builder."
+
+#: widgets/widget-featured-page.php:108
+msgid "Page:"
+msgstr "Seite:"
+
+#: widgets/widget-featured-page.php:119
+msgid "Layout:"
+msgstr "Layout:"
+
+#: widgets/widget-featured-page.php:121
+msgid "With big picture"
+msgstr "mit großem Bild"
+
+#: widgets/widget-featured-page.php:122
+msgid "With small picture, inline"
+msgstr "mit kleinem Bild, inline"
+
+#: widgets/widget-google-map.php:24
+msgid "Google Map"
+msgstr "Google Karte"
+
+#: widgets/widget-google-map.php:25
+msgid "Google Map widget for Page Builder."
+msgstr "Google Map Widget für den Page Builder."
+
+#: widgets/widget-google-map.php:131
+msgid "Latitude and longitude of the map center:"
+msgstr "Breiten- und Längengrad der Kartenmitte:"
+
+#: widgets/widget-google-map.php:132
+msgid ""
+"Get this from %s (right click on map and select What's here?) or %s. "
+"Latitude and longitude separated by comma."
+msgstr ""
+"Holen Sie diese Informationen von %s (Rechtsklick auf die Karte und „Was "
+"ist hier?“ auswählen) oder %s. Breitengrad und Längengrad durch ein Komma "
+"getrennt."
+
+#: widgets/widget-google-map.php:137
+msgid "Zoom (more is closer view):"
+msgstr "Zoom (höherer Wert bedeutet eine nähere Ansicht):"
+
+#: widgets/widget-google-map.php:146
+msgid "Type:"
+msgstr "Typ:"
+
+#: widgets/widget-google-map.php:155
+msgid "Style:"
+msgstr "Style:"
+
+#: widgets/widget-google-map.php:164
+msgid "Height of map (in pixels):"
+msgstr "Höhe der Karte (in Pixeln):"
+
+#: widgets/widget-google-map.php:169
+msgid "Locations:"
+msgstr "Standorte:"
+
+#: widgets/widget-google-map.php:173
+msgid "Title of location:"
+msgstr "Titel des Standortes:"
+
+#: widgets/widget-google-map.php:174
+msgid "This is shown on pin mouse hover."
+msgstr "Dies wird bei Maus-Hover angezeigt."
+
+#: widgets/widget-google-map.php:179
+msgid "Latitude and longitude of this location:"
+msgstr "Breiten- und Längengrad dieses Standortes:"
+
+#: widgets/widget-google-map.php:180
+msgid "The same format as above for the map center."
+msgstr "Das selbe Format wie oben für die Kartenmitte."
+
+#: widgets/widget-google-map.php:185
+msgid "Custom pin icon URL:"
+msgstr "Benutzerdefiniertes Pin Icon URL:"
+
+#: widgets/widget-google-map.php:191
+msgid "Remove Location"
+msgstr "Standort löschen"
+
+#: widgets/widget-icon-box.php:14
+msgid "Icon Box"
+msgstr "Icon Box"
+
+#: widgets/widget-icon-box.php:15
+msgid "Icon Box widget for the Header of the page."
+msgstr "Icon Box Widget für den Header der Seite."
+
+#: widgets/widget-icon-box.php:90
+msgid "Text:"
+msgstr "Text:"
+
+#: widgets/widget-icon-box.php:96
+msgid "URL to any page, optional."
+msgstr "URL zu einer Seite, optional."
+
+#: widgets/widget-icon-box.php:106
+msgid "Icon:"
+msgstr "Icon:"
+
+#: widgets/widget-opening-time.php:25 widgets/widget-opening-time.php:154
+msgid "Opening Time"
+msgstr "Öffnungszeiten"
+
+#: widgets/widget-opening-time.php:26
+msgid "Opening Time widget shows opening times per day with optional text."
+msgstr ""
+"Öffnungszeiten Widget zeigt die Öffnungszeiten pro Tag mit optionalem Text."
+
+#: widgets/widget-opening-time.php:38
+msgid "Sunday"
+msgstr "Sonntag"
+
+#: widgets/widget-opening-time.php:39
+msgid "Monday"
+msgstr "Montag"
+
+#: widgets/widget-opening-time.php:40
+msgid "Tuesday"
+msgstr "Dienstag"
+
+#: widgets/widget-opening-time.php:41
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+#: widgets/widget-opening-time.php:42
+msgid "Thursday"
+msgstr "Donnerstag"
+
+#: widgets/widget-opening-time.php:43
+msgid "Friday"
+msgstr "Freitag"
+
+#: widgets/widget-opening-time.php:44
+msgid "Saturday"
+msgstr "Samstag"
+
+#: widgets/widget-opening-time.php:186
+msgid "-"
+msgstr "-"
+
+#: widgets/widget-opening-time.php:193
+msgid "CLOSED"
+msgstr "GESCHLOSSEN"
+
+#: widgets/widget-opening-time.php:212
+msgid "opened"
+msgstr "geöffnet"
+
+#: widgets/widget-opening-time.php:214
+msgid "to"
+msgstr "bis"
+
+#: widgets/widget-opening-time.php:220
+msgid "Separator between hours:"
+msgstr "Trennzeichen zwischen den Stunden:"
+
+#: widgets/widget-opening-time.php:225
+msgid "Text used for closed days:"
+msgstr "Text für die geschlossenen Tage:"
+
+#: widgets/widget-opening-time.php:230
+msgid "Text below the timetable for additional info (for example lunch time):"
+msgstr "Text unter dem Plan für weitere Infos (bspw. Mittagspause):"
+
+#: widgets/widget-skype.php:14
+msgid "Skype"
+msgstr "Skype"
+
+#: widgets/widget-skype.php:15
+msgid "Skype button for sidebar."
+msgstr "Skype Button für die Sidebar."
+
+#: widgets/widget-skype.php:76
+msgid "Skype username:"
+msgstr "Skype Benutzername:"
+
+#: widgets/widget-social-icons.php:17
+msgid "Social Icons"
+msgstr "Social Icons"
+
+#: widgets/widget-social-icons.php:18
+msgid "Social Icons widget for Header of the page."
+msgstr "Social Icons Widget für den Header der Seite."
+
+#: widgets/widget-social-icons.php:118
+msgid "Open Links in New Tab"
+msgstr "Links in neuem Tab öffnen"
+
+#: widgets/widget-social-icons.php:123
+msgid "Social icons:"
+msgstr "Social Icons:"
+
+#: widgets/widget-social-icons.php:132
+msgid "Select social network:"
+msgstr "Soziales Netzwerk auswählen:"
+
+#: widgets/widget-social-icons.php:154
+msgid "Remove social icon"
+msgstr "Social Icon entfernen:"
+
+#: widgets/widget-social-icons.php:160
+msgid "Add New Social Icon"
+msgstr "Neuen Social Icon hinzufügen"
+
+#: widgets/widget-testimonials.php:17
+msgid "Testimonials"
+msgstr "Kundenstimmen"
+
+#: widgets/widget-testimonials.php:18
+msgid "Testimonials widget for Page Builder."
+msgstr "Kundenstimmen Widget für den Page Builder."
+
+#: widgets/widget-testimonials.php:193
+msgid "Testimonials:"
+msgstr "Kundenstimmen:"
+
+#: widgets/widget-testimonials.php:197
+msgid "Quote:"
+msgstr "Zitat:"
+
+#: widgets/widget-testimonials.php:202
+msgid "Author:"
+msgstr "Autor:"
+
+#: widgets/widget-testimonials.php:208
+msgid "Author Description:"
+msgstr "Beschreibung des Autors:"
+
+#: widgets/widget-testimonials.php:215
+msgid "Rating:"
+msgstr "Bewertung:"
+
+#: widgets/widget-testimonials.php:229
+msgid "Remove Testimonial"
+msgstr "Kundenstimme entfernen"
+
+#. Plugin Name of the plugin/theme
+msgid "ProteusWidgets"
+msgstr "ProteusWidgets"
+
+#. Author URI of the plugin/theme
+msgid "http://www.proteusthemes.com"
+msgstr "http://www.proteusthemes.com"
+
+#. Description of the plugin/theme
+msgid "WP widgets for retail businesses by ProteusThemes"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "ProteusThemes"
+msgstr ""
