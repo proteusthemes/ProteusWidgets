@@ -139,41 +139,41 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"><?php _ex( 'Name:', 'backend', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"><?php _e( 'Name:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'name' ) ); ?>" type="text" value="<?php echo esc_attr( $name ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'tag' ) ); ?>"><?php _ex( 'Title:', 'backend', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'tag' ) ); ?>"><?php _e( 'Title:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'tag' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'tag' ) ); ?>" type="text" value="<?php echo esc_attr( $tag ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'image' ) ); ?>"><?php _ex( 'Picture URL:', 'backend', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'image' ) ); ?>"><?php _e( 'Picture URL:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" style="margin-bottom: 6px;" id="<?php echo esc_attr( $this->get_field_id( 'image' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'image' ) ); ?>" type="text" value="<?php echo esc_attr( $image ); ?>" />
 				<input type="button" onclick="ProteusWidgetsUploader.imageUploader.openFileFrame('<?php echo esc_attr( $this->get_field_id( 'image' ) ); ?>');" class="button button-secondary" value="Upload Image" />
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'description' ) ); ?>"><?php _ex( 'Introduction:', 'backend', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'description' ) ); ?>"><?php _e( 'Introduction:', 'proteuswidgets' ); ?></label>
 				<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'description' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'description' ) ); ?>"><?php echo esc_attr( $description ); ?></textarea>
 			</p>
 
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $new_tab, 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'new_tab' ) ); ?>" value="on" />
-				<label for="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>"><?php _ex( 'Open Links in New Tab', 'backend', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>"><?php _e( 'Open Links in New Tab', 'proteuswidgets' ); ?></label>
 			</p>
 
 			<hr>
 
 			<script type="text/template" id="js-pt-social-icon-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-link"><?php _ex( 'Link:', 'backend', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-link"><?php _e( 'Link:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-link" name="<?php echo esc_attr( $this->get_field_name( 'social_icons' ) ); ?>[{{id}}][link]" type="text" value="{{link}}" />
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-icon"><?php _ex( 'Select social icon:', 'backend', 'proteuswidgets' ); ?></label> <br />
+					<label for="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-icon"><?php _e( 'Select social icon:', 'proteuswidgets' ); ?></label> <br />
 					<small><?php printf( esc_html__( 'Click on the icon below or manually select from the %s website', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?>.</small>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-icon" name="<?php echo esc_attr( $this->get_field_name( 'social_icons' ) ); ?>[{{id}}][icon]" type="text" value="{{icon}}" class="widefat  js-icon-input" /> <br><br>
 					<?php foreach ( $this->font_awesome_icons_list as $icon ) : ?>
@@ -183,13 +183,13 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 
 				<p>
 					<input name="<?php echo esc_attr( $this->get_field_name( 'social_icons' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
-					<a href="#" class="pt-remove-social-icon  js-pt-remove-social-icon"><span class="dashicons dashicons-dismiss"></span> <?php _ex( 'Remove social icon', 'backend', 'proteuswidgets' ); ?></a>
+					<a href="#" class="pt-remove-social-icon  js-pt-remove-social-icon"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove social icon', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
 			<div class="pt-widget-social-icons" id="social-icons-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<div class="social-icons"></div>
 				<p>
-					<a href="#" class="button  js-pt-add-social-icon"><?php _ex( 'Add New Social Icon', 'backend', 'proteuswidgets' ); ?></a>
+					<a href="#" class="button  js-pt-add-social-icon"><?php _e( 'Add New Social Icon', 'proteuswidgets' ); ?></a>
 				</p>
 			</div>
 			<script type="text/javascript">

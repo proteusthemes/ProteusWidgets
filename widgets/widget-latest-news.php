@@ -130,29 +130,29 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 
 			<div id="<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'type' ) ); ?>"><?php _ex( 'Display type:', 'backend', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'type' ) ); ?>"><?php _e( 'Display type:', 'proteuswidgets' ); ?></label>
 					<select id="<?php echo esc_attr( $this->get_field_id( 'type' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'type' ) ); ?>" class="latest-news-select-type">
-						<option value="block" <?php selected( $type, 'block' ); ?>><?php _ex( 'Box (one post)', 'backend', 'proteuswidgets' ); ?></option>
-						<option value="inline" <?php selected( $type, 'inline' ); ?>><?php _ex( 'Inline (multiple posts)', 'backend', 'proteuswidgets' ); ?></option>
+						<option value="block" <?php selected( $type, 'block' ); ?>><?php _e( 'Box (one post)', 'proteuswidgets' ); ?></option>
+						<option value="inline" <?php selected( $type, 'inline' ); ?>><?php _e( 'Inline (multiple posts)', 'proteuswidgets' ); ?></option>
 					</select>
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>"><?php _ex( 'Post order number from:', 'backend', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>"><?php _e( 'Post order number from:', 'proteuswidgets' ); ?></label>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'from' ) ); ?>" type="number" min="1" max="<?php echo $this->max_post_number; ?>" value="<?php echo esc_attr( $from ); ?>" />
 					<span class="latest-news-to-fields-group" id="<?php echo esc_attr( $this->get_field_id( 'to' ) ); ?>-fields-group">
-					<label for="<?php echo esc_attr( $this->get_field_id( 'to' ) ); ?>"><?php _ex( 'To:', 'backend', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'to' ) ); ?>"><?php _e( 'To:', 'proteuswidgets' ); ?></label>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'to' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'to' ) ); ?>" type="number" min="1" max="<?php echo esc_attr( $this->max_post_number ); ?>" value="<?php echo esc_attr( $to ); ?>" />
 				</span>
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'more_news' ) ); ?>"><?php _ex( 'More news link:', 'backend', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'more_news' ) ); ?>"><?php _e( 'More news link:', 'proteuswidgets' ); ?></label>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'more_news' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'more_news' ) ); ?>" type="checkbox" class="js-show-more-news-link" <?php checked( $more_news, 'on' ); ?> />
 				</p>
 
 				<p class="js-read-more-text-setting">
-					<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>"><?php _ex( 'Read more text:', 'backend', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>"><?php _e( 'Read more text:', 'proteuswidgets' ); ?></label>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'read_more_text' ) ); ?>" type="text" value="<?php echo esc_attr( $read_more_text ); ?>" />
 				</p>
 			</div>
@@ -180,7 +180,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 
 							if ( 'block' == $(this.selectedType).val() ) {
 								$(this.toFieldsGroup).hide();
-								$(this.toFieldsGroup).siblings('label').html("<?php _ex( 'Post order number:', 'backend', 'proteuswidgets' ); ?>");
+								$(this.toFieldsGroup).siblings('label').html("<?php _e( 'Post order number:', 'proteuswidgets' ); ?>");
 							}
 
 							if ( $(this.el).find('.js-show-more-news-link').prop('checked') ) {
@@ -193,11 +193,11 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 
 						toggle: function(event){
 							if ( 'block' == event.target.value ) {
-								$(this.toFieldsGroup).siblings('label').html("<?php _ex( 'Post order number:', 'backend', 'proteuswidgets' ); ?>");
+								$(this.toFieldsGroup).siblings('label').html("<?php _e( 'Post order number:', 'proteuswidgets' ); ?>");
 								$(this.toFieldsGroup).hide();
 							}
 							else {
-								$(this.toFieldsGroup).siblings('label').html("<?php _ex( 'Post order number from:', 'backend', 'proteuswidgets' ); ?>");
+								$(this.toFieldsGroup).siblings('label').html("<?php _e( 'Post order number from:', 'proteuswidgets' ); ?>");
 								$(this.toFieldsGroup).show();
 							}
 						},

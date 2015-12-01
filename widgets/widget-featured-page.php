@@ -134,7 +134,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>"><?php _ex( 'Page:', 'backend', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>"><?php _e( 'Page:', 'proteuswidgets' ); ?></label> <br>
 				<?php
 					wp_dropdown_pages( array(
 						'selected' => $page_id,
@@ -145,16 +145,16 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>"><?php _ex( 'Layout:', 'backend', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>"><?php _e( 'Layout:', 'proteuswidgets' ); ?></label> <br>
 				<select id="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'layout' ) ); ?>">
-					<option value="block" <?php selected( $layout, 'block' ); ?>><?php _ex( 'With big picture', 'backend', 'proteuswidgets' ); ?></option>
-					<option value="inline" <?php selected( $layout, 'inline' ); ?>><?php _ex( 'With small picture, inline', 'backend', 'proteuswidgets' ); ?></option>
+					<option value="block" <?php selected( $layout, 'block' ); ?>><?php _e( 'With big picture', 'proteuswidgets' ); ?></option>
+					<option value="inline" <?php selected( $layout, 'inline' ); ?>><?php _e( 'With small picture, inline', 'proteuswidgets' ); ?></option>
 				</select>
 			</p>
 
 			<?php if ( $this->fields['read_more_text'] ) : ?>
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>"><?php _ex( 'Read more text:', 'backend', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>"><?php _e( 'Read more text:', 'proteuswidgets' ); ?></label> <br>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'read_more_text' ) ); ?>" type="text" value="<?php echo esc_attr( $read_more_text ); ?>" />
 			</p>
 			<?php endif; ?>

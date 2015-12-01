@@ -142,28 +142,28 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'speed' ) ); ?>"><?php _ex( 'Counting Speed (in miliseconds):', 'backend', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'speed' ) ); ?>"><?php _e( 'Counting Speed (in miliseconds):', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'speed' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'speed' ) ); ?>" type="number" min="0" step="500" value="<?php echo esc_attr( $speed ); ?>" />
 			</p>
 
 			<hr>
 
-			<h4><?php _ex( 'Counters:', 'backend', 'proteuswidgets' ); ?></h4>
+			<h4><?php _e( 'Counters:', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-counter-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-title"><?php _ex( 'Title:', 'backend','proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-title"><?php _e( 'Title:','proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'counters' ) ); ?>[{{id}}][title]" type="text" value="{{title}}" />
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-number"><?php _ex( 'Number:', 'backend', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-number"><?php _e( 'Number:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-number" name="<?php echo esc_attr( $this->get_field_name( 'counters' ) ); ?>[{{id}}][number]" type="text" value="{{number}}" />
 				</p>
 
 			<?php if ( $this->fields['icon'] ) : ?>
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-icon"><?php _ex( 'Select icon:', 'backend', 'proteuswidgets' ); ?></label> <br />
+					<label for="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-icon"><?php _e( 'Select icon:', 'proteuswidgets' ); ?></label> <br />
 					<small><?php printf( esc_html__( 'Click on the icon below or manually select from the %s website', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?>.</small>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-icon" name="<?php echo esc_attr( $this->get_field_name( 'counters' ) ); ?>[{{id}}][icon]" type="text" value="{{icon}}" class="widefat  js-icon-input" /> <br><br>
 					<?php foreach ( $this->font_awesome_icons_list as $icon ) : ?>
@@ -174,13 +174,13 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 
 				<p>
 					<input name="<?php echo esc_attr( $this->get_field_name( 'counters' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
-					<a href="#" class="pt-remove-counter  js-pt-remove-counter"><span class="dashicons dashicons-dismiss"></span> <?php _ex( 'Remove Counter', 'backend', 'proteuswidgets' ); ?></a>
+					<a href="#" class="pt-remove-counter  js-pt-remove-counter"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Counter', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
 			<div class="pt-widget-about-us" id="counters-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<div class="counters"></div>
 				<p>
-					<a href="#" class="button  js-pt-add-counter"><?php _ex( 'Add New Counter', 'backend', 'proteuswidgets' ); ?></a>
+					<a href="#" class="button  js-pt-add-counter"><?php _e( 'Add New Counter', 'proteuswidgets' ); ?></a>
 				</p>
 			</div>
 			<script type="text/javascript">
