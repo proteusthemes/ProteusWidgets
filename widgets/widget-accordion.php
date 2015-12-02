@@ -14,7 +14,7 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 		// Basic widget settings
 		function widget_id_base() { return 'accordion'; }
 		function widget_name() { return esc_html__( 'Accordion', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Accordion widget for Page Builder.', 'proteuswidgets' ); }
+		function widget_description() { return ''; }
 		function widget_class() { return 'widget-accordion'; }
 
 		public function __construct() {
@@ -122,12 +122,12 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 		?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" type="text" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_link' ) ); ?>"><?php _e( 'Read more URL','proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_link' ) ); ?>"><?php _e( 'Read more URL:','proteuswidgets' ); ?></label>
 				<input class="widefat" type="text" id="<?php echo esc_attr( $this->get_field_id( 'read_more_link' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'read_more_link' ) ); ?>" value="<?php echo esc_attr( $read_more_link ); ?>" />
 				<br>
 				<small><?php _e( 'If you leave this field empty the read more link will not be displayed in the widget.', 'proteuswidgets' ); ?></small>
@@ -139,16 +139,16 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 
 			<script type="text/template" id="js-pt-accordion-item-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title"><?php _e( 'Title','proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title"><?php _e( 'Title:','proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][title]" type="text" value="{{title}}" />
 				</p>
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content"><?php _e( 'Content', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content"><?php _e( 'Content:', 'proteuswidgets' ); ?></label>
 					<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][content]">{{content}}</textarea>
 				</p>
 				<p>
 					<input name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
-					<a href="#" class="pt-remove-accordion-item  js-pt-remove-accordion-item"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove accordion item', 'proteuswidgets' ); ?></a>
+					<a href="#" class="pt-remove-accordion-item  js-pt-remove-accordion-item"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Item', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
 			<div class="pt-widget-accordion-items" id="accordion-items-<?php echo esc_attr( $this->current_widget_id ); ?>">

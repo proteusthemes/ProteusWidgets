@@ -16,7 +16,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		// Basic widget settings
 		function widget_id_base() { return 'testimonials'; }
 		function widget_name() { return esc_html__( 'Testimonials', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Testimonials widget for Page Builder.', 'proteuswidgets' ); }
+		function widget_description() { return ''; }
 		function widget_class() { return 'widget-testimonials'; }
 
 		/**
@@ -194,7 +194,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>"><?php esc_html_e( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>"><?php esc_html_e( 'Automatically cycle the carousel:', 'proteuswidgets' ); ?></label>
 				<select class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'autocycle' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>">
 					<option value="yes"<?php selected( $autocycle, 'yes' ) ?>><?php esc_html_e( 'Yes', 'proteuswidgets' ); ?></option>
 					<option value="no"<?php selected( $autocycle, 'no' ) ?>><?php esc_html_e( 'No', 'proteuswidgets' ); ?></option>
@@ -223,14 +223,14 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 				<?php if ( $this->fields['author_description'] ) : ?>
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_description"><?php esc_html_e( 'Author Description:', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_description"><?php esc_html_e( 'Author description:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_description" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][author_description]" type="text" value="{{author_description}}" />
 				</p>
 				<?php endif; ?>
 
 				<?php if ( $this->fields['author_avatar'] ) : ?>
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_avatar"><?php esc_html_e( 'Author Avatar:', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_avatar"><?php esc_html_e( 'Author avatar:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_avatar" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][author_avatar]" type="text" value="{{author_avatar}}" />
 					<input type="button" style="margin-top: 5px;" onclick="ProteusWidgetsUploader.imageUploader.openFileFrame('<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_avatar');" class="button button-secondary button-upload-image" value="Upload Image" />
 				</p>
@@ -258,7 +258,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			<div class="pt-widget-testimonials" id="testimonials-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<div class="testimonials"></div>
 				<p>
-					<a href="#" class="button  js-pt-add-testimonial">Add New Testimonial</a>
+					<a href="#" class="button  js-pt-add-testimonial"><?php _e( 'Add New Testimonial', 'proteuswidgets' ); ?></a>
 				</p>
 			</div>
 			<script type="text/javascript">

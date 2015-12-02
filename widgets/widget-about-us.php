@@ -15,7 +15,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		// Basic widget settings
 		function widget_id_base() { return 'about_us'; }
 		function widget_name() { return esc_html__( 'About Us', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'About Us widget used in sidebar.', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Displaying person profiles in a carousel.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-about-us'; }
 
 		/**
@@ -147,7 +147,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-image"><?php esc_html_e( 'Image URL:', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-image"><?php esc_html_e( 'Picture URL:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-image" name="<?php echo esc_attr( $this->get_field_name( 'people' ) ); ?>[{{id}}][image]" type="text" value="{{image}}" />
 					<input type="button" onclick="ProteusWidgetsUploader.imageUploader.openFileFrame('<?php echo esc_attr( $this->get_field_id( 'people' ) ); ?>-{{id}}-image');" class="upload-brochure-file button button-secondary pull-right" value="Upload file" />
 				</p>
@@ -196,7 +196,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			<hr>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>"><?php esc_html_e( 'Automatically cycle the carousel?', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>"><?php esc_html_e( 'Automatically cycle the carousel:', 'proteuswidgets' ); ?></label>
 				<select class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'autocycle' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'autocycle' ) ); ?>">
 					<option value="yes"<?php selected( $autocycle, 'yes' ) ?>><?php esc_html_e( 'Yes', 'proteuswidgets' ); ?></option>
 					<option value="no"<?php selected( $autocycle, 'no' ) ?>><?php esc_html_e( 'No', 'proteuswidgets' ); ?></option>

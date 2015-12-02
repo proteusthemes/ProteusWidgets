@@ -13,7 +13,7 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		// Basic widget settings
 		function widget_id_base() { return 'skype'; }
 		function widget_name() { return esc_html__( 'Skype', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Skype button for sidebar.', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Linkable block with Skype or telephone icon.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-skype'; }
 
 		/**
@@ -76,7 +76,7 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 			<p>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'skype_username' ) ); ?>"><?php esc_html_e( 'Skype username:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'skype_username' ) ); ?>" placeholder="skype:your_skype_username" name="<?php echo esc_attr( $this->get_field_name( 'skype_username' ) ); ?>" type="text" value="<?php echo esc_attr( $skype_username ); ?>" />
-				<small class="skype-widget-small-text">Examples of use: <br><code>skype:your_skype_username</code> or <code>tel:your_phone_number</code></small>
+				<small class="skype-widget-small-text"><?php printf( esc_html__( 'Examples of use: %1$sskype:your_skype_username%2$s or %1$stel:your_phone_number%2$s.', 'proteuswidgets' ), '<code>', '</code>' ); ?></small>
 			</p>
 
 			<?php

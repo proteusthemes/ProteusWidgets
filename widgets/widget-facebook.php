@@ -13,7 +13,7 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		// Basic widget settings
 		function widget_id_base() { return 'facebook'; }
 		function widget_name() { return esc_html__( 'Facebook', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Facebook like box with some customization settings', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Facebook like box with some customization settings.', 'proteuswidgets' ); }
 		function widget_class() { return null; }
 
 		/**
@@ -108,7 +108,7 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'like_link' ) ); ?>"><?php esc_html_e( 'FB Page to like (the whole URL):', 'proteuswidgets' ); ?></label> <br />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'like_link' ) ); ?>"><?php esc_html_e( 'FB page to like (the whole URL):', 'proteuswidgets' ); ?></label> <br />
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'like_link' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'like_link' ) ); ?>" type="text" value="<?php echo esc_url( $like_link ); ?>" />
 			</p>
 
@@ -124,16 +124,16 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $hide_cover, 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id( 'hide_cover' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'hide_cover' ) ); ?>" value="on" />
-				<label for="<?php echo esc_attr( $this->get_field_id( 'hide_cover' ) ); ?>"><?php esc_html_e( 'Hide Cover Photo', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'hide_cover' ) ); ?>"><?php esc_html_e( 'Hide cover photo', 'proteuswidgets' ); ?></label>
 
 				<input class="checkbox" type="checkbox" <?php checked( $show_facepile, 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id( 'show_facepile' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'show_facepile' ) ); ?>" value="on" />
-				<label for="<?php echo esc_attr( $this->get_field_id( 'show_facepile' ) ); ?>"><?php esc_html_e( 'Hide Friend\'s Faces', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'show_facepile' ) ); ?>"><?php esc_html_e( 'Hide friend\'s faces', 'proteuswidgets' ); ?></label>
 
 				<input class="checkbox" type="checkbox" <?php checked( $show_posts, 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id( 'show_posts' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'show_posts' ) ); ?>" value="on" />
-				<label for="<?php echo esc_attr( $this->get_field_id( 'show_posts' ) ); ?>"><?php esc_html_e( 'Show Page Posts', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'show_posts' ) ); ?>"><?php esc_html_e( 'Show page posts', 'proteuswidgets' ); ?></label>
 
 				<input class="checkbox" type="checkbox" <?php checked( $small_header, 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id( 'small_header' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'small_header' ) ); ?>" value="on" />
-				<label for="<?php echo esc_attr( $this->get_field_id( 'small_header' ) ); ?>"><?php esc_html_e( 'Use Small Header', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'small_header' ) ); ?>"><?php esc_html_e( 'Use small header', 'proteuswidgets' ); ?></label>
 			</p>
 
 			<?php

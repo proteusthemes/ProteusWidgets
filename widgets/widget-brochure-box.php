@@ -13,7 +13,7 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		// Basic widget settings
 		function widget_id_base() { return 'brochure_box'; }
 		function widget_name() { return esc_html__( 'Brochure Box', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Brochure Box widget for the Sidebar and Page Builder.', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Widget for displaying downloadable files.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-brochure-box'; }
 
 		/**
@@ -89,9 +89,9 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'brochure_url' ) ); ?>"><?php esc_html_e( 'Brochure URL:', 'proteuswidgets' ); ?></label> <br />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'brochure_url' ) ); ?>"><?php esc_html_e( 'File URL:', 'proteuswidgets' ); ?></label> <br />
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'brochure_url' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'brochure_url' ) ); ?>" type="text" value="<?php echo esc_url( $brochure_url ); ?>" />
-				<input type="button" onclick="ProteusWidgetsUploader.fileUploader.openFileFrame('<?php echo esc_attr( $this->get_field_id( 'brochure_url' ) ); ?>');" class="upload-brochure-file button button-secondary pull-right" value="Upload file" /> <!-- Media uploader button -->
+				<input type="button" onclick="ProteusWidgetsUploader.fileUploader.openFileFrame('<?php echo esc_attr( $this->get_field_id( 'brochure_url' ) ); ?>');" class="upload-brochure-file button button-secondary pull-right" value="<?php esc_html_e( 'Upload file', 'proteuswidgets' ); ?>" /> <!-- Media uploader button -->
 			</p>
 
 			<p>
@@ -100,13 +100,13 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'brochure_text' ) ); ?>"><?php esc_html_e( 'Brochure Text:', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'brochure_text' ) ); ?>"><?php esc_html_e( 'Brochure text:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'brochure_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'brochure_text' ) ); ?>" type="text" value="<?php echo esc_attr( $brochure_text ); ?>" />
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'brochure_icon' ) ); ?>"><?php esc_html_e( 'Brochure Icon:', 'proteuswidgets' ); ?></label> <br />
-				<small><?php printf( esc_html__( 'Click on the icon below or manually select from the %s website', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?>.</small>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'brochure_icon' ) ); ?>"><?php esc_html_e( 'Brochure icon:', 'proteuswidgets' ); ?></label> <br />
+				<small><?php printf( esc_html__( 'Click on the icon below or manually select from the %s website.', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?></small>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'brochure_icon' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'brochure_icon' ) ); ?>" type="text" value="<?php echo esc_attr( $brochure_icon ); ?>" class="widefat  js-icon-input" /> <br><br>
 				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-o"><i class="fa fa-lg fa-file-o"></i></a>
 				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-pdf-o"><i class="fa fa-lg fa-file-pdf-o"></i></a>

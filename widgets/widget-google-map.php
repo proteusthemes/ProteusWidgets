@@ -23,7 +23,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		// Basic widget settings
 		function widget_id_base() { return 'google_map'; }
 		function widget_name() { return esc_html__( 'Google Map', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Google Map widget for Page Builder.', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Generates Google map with given coordinates (select map skin and other settings).', 'proteuswidgets' ); }
 		function widget_class() { return null; }
 
 		/**
@@ -193,7 +193,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			<div class="pt-widget-locations" id="locations-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<div class="locations"></div>
 				<p>
-					<a href="#" class="button  js-pt-add-location">Add New Location</a>
+					<a href="#" class="button  js-pt-add-location"><?php esc_html_e( 'Add New Location', 'proteuswidgets' ); ?></a>
 				</p>
 			</div>
 			<script type="text/javascript">

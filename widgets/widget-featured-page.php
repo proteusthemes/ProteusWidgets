@@ -22,7 +22,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		// Basic widget settings
 		function widget_id_base() { return 'featured_page'; }
 		function widget_name() { return esc_html__( 'Featured Page', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Featured Page widget for the Sidebar and Page Builder.', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Displays featured image, title and short excerpt of the selected page.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-featured-page'; }
 
 		/**

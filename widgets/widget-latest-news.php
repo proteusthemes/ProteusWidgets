@@ -12,7 +12,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 		// Basic widget settings
 		function widget_id_base() { return 'latest_news'; }
 		function widget_name() { return esc_html__( 'Latest News', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Latest news widget for Page Builder.', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Displays one or more latest posts.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-latest-news'; }
 
 		public function __construct() {

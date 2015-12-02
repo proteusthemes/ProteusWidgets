@@ -16,7 +16,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 		// Basic widget settings
 		function widget_id_base() { return 'number-counter'; }
 		function widget_name() { return esc_html__( 'Number Counter', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Number Counter widget used in Page Builder editor.', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Widget with multiple animated counters.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-number-counter'; }
 
 		public function __construct() {
@@ -163,8 +163,8 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 
 			<?php if ( $this->fields['icon'] ) : ?>
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-icon"><?php _e( 'Select icon:', 'proteuswidgets' ); ?></label> <br />
-					<small><?php printf( esc_html__( 'Click on the icon below or manually select from the %s website', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?>.</small>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-icon"><?php _e( 'Icon:', 'proteuswidgets' ); ?></label> <br />
+					<small><?php printf( esc_html__( 'Click on the icon below or manually select from the %s website.', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?></small>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-icon" name="<?php echo esc_attr( $this->get_field_name( 'counters' ) ); ?>[{{id}}][icon]" type="text" value="{{icon}}" class="widefat  js-icon-input" /> <br><br>
 					<?php foreach ( $this->font_awesome_icons_list as $icon ) : ?>
 						<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo esc_attr( $icon ); ?>"><i class="fa fa-lg <?php echo esc_attr( $icon ); ?>"></i></a>

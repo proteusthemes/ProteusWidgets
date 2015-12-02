@@ -13,7 +13,7 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 		// Basic widget settings
 		function widget_id_base() { return 'banner'; }
 		function widget_name() { return esc_html__( 'Banner', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Banner widget for the Sidebar and Page Builder..', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Linkable block with title and content.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-banner'; }
 
 		/**
@@ -87,7 +87,7 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'link' ) ); ?>"><?php esc_html_e( 'Link:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'link' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'link' ) ); ?>" type="text" value="<?php echo esc_url( $link ); ?>" />
 				<input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'open_new' ) ); ?>" value="1" <?php checked( $open_new, 1 ); ?>>
-				<?php esc_html_e( 'Open link in a new window/tab', 'proteuswidgets' ); ?>
+				<?php esc_html_e( 'Open link in new tab', 'proteuswidgets' ); ?>
 			</p>
 
 			<?php

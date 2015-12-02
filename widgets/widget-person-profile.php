@@ -16,7 +16,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 		// Basic widget settings
 		function widget_id_base() { return 'person_profile'; }
 		function widget_name() { return esc_html__( 'Person Profile', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Widget that displays the person\'s profile.', 'proteuswidgets' ); }
+		function widget_description() { return esc_html__( 'Widget displaying person\'s profile with a photo.', 'proteuswidgets' ); }
 		function widget_class() { return 'widget-person-profile'; }
 
 		/**
@@ -161,7 +161,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $new_tab, 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'new_tab' ) ); ?>" value="on" />
-				<label for="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>"><?php _e( 'Open Links in New Tab', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>"><?php _e( 'Open link in new tab', 'proteuswidgets' ); ?></label>
 			</p>
 
 			<hr>
@@ -174,7 +174,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-icon"><?php _e( 'Select social icon:', 'proteuswidgets' ); ?></label> <br />
-					<small><?php printf( esc_html__( 'Click on the icon below or manually select from the %s website', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?>.</small>
+					<small><?php printf( esc_html__( 'Click on the icon below or manually select from the %s website.', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?></small>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-icon" name="<?php echo esc_attr( $this->get_field_name( 'social_icons' ) ); ?>[{{id}}][icon]" type="text" value="{{icon}}" class="widefat  js-icon-input" /> <br><br>
 					<?php foreach ( $this->font_awesome_icons_list as $icon ) : ?>
 						<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo esc_attr( $icon ); ?>"><i class="fa fa-lg <?php echo esc_attr( $icon ); ?>"></i></a>
@@ -183,7 +183,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 
 				<p>
 					<input name="<?php echo esc_attr( $this->get_field_name( 'social_icons' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
-					<a href="#" class="pt-remove-social-icon  js-pt-remove-social-icon"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove social icon', 'proteuswidgets' ); ?></a>
+					<a href="#" class="pt-remove-social-icon  js-pt-remove-social-icon"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Social Icon', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
 			<div class="pt-widget-social-icons" id="social-icons-<?php echo esc_attr( $this->current_widget_id ); ?>">
