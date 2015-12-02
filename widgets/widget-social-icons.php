@@ -152,7 +152,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 			<hr>
 
 
-			<h4><?php esc_html_e( 'Social icons:', 'proteuswidgets' ); ?></h4>
+			<h4><?php esc_html_e( 'Social icons', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-social-icon-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>

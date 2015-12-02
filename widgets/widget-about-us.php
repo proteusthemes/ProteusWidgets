@@ -138,7 +138,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 
 			?>
 
-			<h4><?php esc_html_e( 'People:', 'proteuswidgets' ); ?></h4>
+			<h4><?php esc_html_e( 'People', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-person-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>

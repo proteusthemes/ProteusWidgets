@@ -148,7 +148,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 
 			<hr>
 
-			<h4><?php _e( 'Counters:', 'proteuswidgets' ); ?></h4>
+			<h4><?php _e( 'Counters', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-counter-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>

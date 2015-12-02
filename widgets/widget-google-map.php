@@ -165,7 +165,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			</p>
 
 
-			<h4><?php esc_html_e( 'Locations:', 'proteuswidgets' ); ?></h4>
+			<h4><?php esc_html_e( 'Locations', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-location-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>

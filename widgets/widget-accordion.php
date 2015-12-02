@@ -135,7 +135,7 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 
 			<hr>
 
-			<h4><?php _e( 'Accordion items:', 'proteuswidgets' ); ?></h4>
+			<h4><?php _e( 'Accordion items', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-accordion-item-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>
