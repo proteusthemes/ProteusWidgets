@@ -8,7 +8,7 @@
 
 		<div class="inner-bg">
 			<?php foreach ( $opening_times as $line ) : ?>
-				<dl class="week-day  <?php echo esc_html( $line['class'] ); ?>">
+				<dl class="week-day <?php echo esc_html( $line['class'] ); ?>">
 					<dt><?php echo esc_html( $line['day'] ); ?></dt>
 					<dd><?php echo esc_html( $line['day-time'] ); ?></dd>
 				</dl>
