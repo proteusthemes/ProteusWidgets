@@ -62,14 +62,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
-			$instance['new_tab']              = ! empty( $instance['new_tab'] ) ? '_blank' : '_self';
-			$instance['image_is_set']         = ! empty( $instance['image'] );
-			$instance['image']                = esc_url( $instance['image'] );
-			$instance['tag']                  = esc_html( $instance['tag'] );
-			$instance['name']                 = esc_html( $instance['name'] );
 			$instance['social_icons']         = isset( $instance['social_icons'] ) ? array_values( $instance['social_icons'] ) : array();
-			$instance['social_icons_are_set'] = ! empty( $instance['social_icons'] );
-			$instance['tag_is_set']           = ! empty( $instance['tag'] );
 
 			$text = array(
 				'picture_of' => esc_html__( 'Picture of', 'proteuswidgets' ),

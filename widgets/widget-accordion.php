@@ -45,18 +45,7 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
 			$items = isset( $instance['items'] ) ? array_values( $instance['items'] ) : array();
-			$instance['title_is_set'] = ! empty( $instance['title'] );
-			$instance['preped_title'] = esc_html( apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) );
-			$instance['read_more_link'] = esc_url( $instance['read_more_link'] );
-
-			foreach ( $items as $key => $item ) {
-				$items[ $key ]['key']     = esc_attr( $key );
-				$items[ $key ]['title']   = esc_html( $item['title'] );
-				$items[ $key ]['content'] = wp_kses( $item['content'], $this->allowed_html_in_content_field );
-			}
-
-			// Unique ID for this accordion
-			$instance['uniqid'] = sanitize_html_class( $args['widget_id'] );
+			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
 			$text = array(
 				'read_more' => esc_html__( 'Read more', 'proteuswidgets' ),

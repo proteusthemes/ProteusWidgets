@@ -57,8 +57,6 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				$people[0]['active'] = 'active';
 			}
 
-			$args['widget_id']           = esc_attr( $args['widget_id'] );
-			$instance['navigation']      = count( $people ) > 1;
 			$instance['slider_settings'] = 'yes' === $instance['autocycle'] ? esc_attr( empty( $instance['interval'] ) ? 5000 : absint( $instance['interval'] ) ) : 'false';
 
 			$text = array(

@@ -66,15 +66,6 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 			// Prepare the data for mustache template
 			$counters = isset( $instance['counters'] ) ? array_values( $instance['counters'] ) : array();
 
-			foreach ( $counters as $key => $counter ) {
-				$counters[ $key ]['title']         = esc_html( $counter['title'] );
-				$counters[ $key ]['number']        = absint( $counter['number'] );
-				$counters[ $key ]['leading_zeros'] = esc_html( PW_Functions::leading_zeros( strlen( $counter['number'] ) ) );
-				if ( $this->fields['icon'] ) {
-					$counters[ $key ]['icon'] = esc_attr( $counter['icon'] );
-				}
-			}
-
 			// Mustache widget-number-counter template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_number_counter_view', 'theme::widget-number-counter' ), array(
 				'args'     => $args,

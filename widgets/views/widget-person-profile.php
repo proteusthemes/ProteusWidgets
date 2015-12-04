@@ -1,25 +1,25 @@
-{{{ args.before_widget }}}
+<?php echo $args['before_widget']; ?>
 
 	<div class="card  person-profile">
-		{{# instance.image_is_set }}
-		<img class="person-profile__image  wp-post-image" src="{{ instance.image }}" alt="{{ text.picture_of }} {{ instance.name }}">
-		{{/ instance.image_is_set }}
+		<?php if ( ! empty( $instance['image'] ) ) : ?>
+		<img class="person-profile__image  wp-post-image" src="<?php echo esc_url( $instance['image'] ); ?>" alt="<?php echo esc_attr( $text['picture_of'] ) . ' ' . esc_attr( $instance['name'] ); ?>">
+		<?php endif; ?>
 		<div class="card-block  person-profile__container">
-			{{# instance.social_icons_are_set }}
+			<?php if ( ! empty( $instance['social_icons'] ) ) : ?>
 				<div class="person-profile__social-icons">
-					{{# instance.social_icons }}
-						<a class="person-profile__social-icon" href="{{ link }}" target="{{ instance.new_tab }}"><i class="fa  {{ icon }}"></i></a>
-					{{/ instance.social_icons }}
+					<?php foreach ( $instance['social_icons'] as $icon ) : ?>
+						<a class="person-profile__social-icon" href="<?php echo esc_url( $icon['link'] ); ?>" target="<?php echo ( ! empty( $instance['new_tab'] ) ) ? '_blank' : '_self' ?>"><i class="fa  <?php echo esc_attr( $icon['icon'] ); ?>"></i></a>
+					<?php endforeach; ?>
 				</div>
-			{{/ instance.social_icons_are_set }}
+			<?php endif; ?>
 			<div class="person-profile__content">
-				{{# instance.tag_is_set }}
-					<span class="person-profile__tag"> {{ instance.tag }} </span>
-				{{/ instance.tag_is_set }}
-				<h4 class="card-title  person-profile__name">{{ instance.name }}</h4>
-				<p class="card-text  person-profile__description">{{ instance.description }}</p>
+				<?php if ( ! empty( $instance['tag'] ) ) : ?>
+					<span class="person-profile__tag"><?php echo esc_html( $instance['tag'] ); ?></span>
+				<?php endif; ?>
+				<h4 class="card-title  person-profile__name"><?php echo esc_html( $instance['name'] ); ?></h4>
+				<p class="card-text  person-profile__description"><?php echo wp_kses_post( $instance['description'] ); ?></p>
 			</div>
 		</div>
 	</div>
 
-{{{ args.after_widget }}}
+<?php echo $args['after_widget']; ?>

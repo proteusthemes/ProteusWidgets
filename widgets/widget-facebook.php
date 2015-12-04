@@ -33,9 +33,7 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
-			$instance['title']  = $args['before_title'] . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $args['after_title'];
-			$instance['width']  = absint( $instance['width'] );
-			$instance['height'] = absint( $instance['height'] );
+			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
 			// params for the iframe
 			// @see https://developers.facebook.com/docs/plugins/like-box-for-pages (Out-dated)
@@ -55,7 +53,7 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 			echo $this->mustache->render( apply_filters( 'pw/widget_facebook_view', 'theme::widget-facebook' ), array(
 				'args'       => $args,
 				'instance'   => $instance,
-				'http-query' => http_build_query( $fb_params ),
+				'http_query' => http_build_query( $fb_params ),
 			));
 		}
 

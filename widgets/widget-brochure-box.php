@@ -33,15 +33,12 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
-			$instance['title']         = empty( $instance['title'] ) ? '' : $args['before_title'] . apply_filters( 'widget_title', $instance['title'], $instance ) . $args['after_title'];
-			$instance['brochure_url']  = esc_url( $instance['brochure_url'] );
-			$instance['brochure_icon'] = sanitize_html_class( $instance['brochure_icon'] );
+			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
 			// Mustache widget-brochure-box template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_brochure_box_view', 'theme::widget-brochure-box' ), array(
 				'args'        => $args,
 				'instance'    => $instance,
-				'link-target' => ( ! empty( $instance['new_tab'] ) ) ? '_blank' : '_self',
 			));
 		}
 
