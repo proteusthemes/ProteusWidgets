@@ -45,7 +45,7 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
 			$items = isset( $instance['items'] ) ? array_values( $instance['items'] ) : array();
-			$instance['preped_title'] = esc_html( apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) );
+			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
 			$text = array(
 				'read_more' => esc_html__( 'Read more', 'proteuswidgets' ),
