@@ -25,11 +25,15 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 			);
 
 			/*
-			 * Set the mustache engine
-			 * Learn more: https://github.com/bobthecow/mustache.php/wiki/Template-Loading
+			 * Set the Plates
+			 * Learn more: http://platesphp.com/
 			 */
-			// $this->mustache = new League\Plates\Engine( apply_filters( 'pw/widget_views_path', PW_PATH . '/widgets/views' ) );
-			$this->mustache = new League\Plates\Engine( trailingslashit( get_template_directory() ) . 'vendor/proteusthemes/proteuswidgets/widgets/views' );
+			$plates = new League\Plates\Engine( trailingslashit( get_template_directory() ) . 'vendor/proteusthemes/proteuswidgets/widgets/views' );
+
+			// http://platesphp.com/engine/folders/
+			$plates->addFolder( 'theme', trailingslashit( get_template_directory() ) . 'inc/widgets-views', true );
+
+			$this->mustache = $plates;
 		}
 
 	}

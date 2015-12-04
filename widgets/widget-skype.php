@@ -36,7 +36,7 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 			$instance['icon'] = 'skype' == substr( $instance['skype_username'], 0, 5 ) ? 'skype' : 'phone';
 
 			// Mustache widget-skype template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_skype_view', 'widget-skype' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_skype_view', 'theme::widget-skype' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 			));
