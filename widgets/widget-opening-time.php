@@ -94,7 +94,7 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 			$instance['title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
 			// Mustache widget-opening-time template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_opening_time_view', 'widget-opening-time' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_opening_time_view', 'theme::widget-opening-time' ), array(
 				'args' => $args,
 				'instance' => $instance,
 				'opening-times' => $opening_times,

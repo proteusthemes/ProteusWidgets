@@ -76,7 +76,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 			}
 
 			// Mustache widget-number-counter template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_number_counter_view', 'widget-number-counter' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_number_counter_view', 'theme::widget-number-counter' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 				'counters' => $counters,

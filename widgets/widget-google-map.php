@@ -54,7 +54,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			$instance['height']    = absint( $instance['height'] );
 
 			// Mustache widget-google-map template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_google_map_view', 'widget-google-map' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_google_map_view', 'theme::widget-google-map' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 			));

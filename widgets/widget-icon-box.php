@@ -38,7 +38,7 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 			$instance['icon']     = sanitize_html_class( $instance['icon'] );
 
 			// Mustache widget-icon-box template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_icon_box_view', 'widget-icon-box' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_icon_box_view', 'theme::widget-icon-box' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 			));

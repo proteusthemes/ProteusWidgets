@@ -82,7 +82,7 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 			}
 
 			// Mustache widget-steps template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_steps_view', 'widget-steps' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_steps_view', 'theme::widget-steps' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 				'items'    => $items,

@@ -69,7 +69,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			);
 
 			// Mustache widget-about-us template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_about_us_view', 'widget-about-us' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_about_us_view', 'theme::widget-about-us' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 				'people'   => $people,

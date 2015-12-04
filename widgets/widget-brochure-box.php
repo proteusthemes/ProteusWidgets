@@ -38,7 +38,7 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 			$instance['brochure_icon'] = sanitize_html_class( $instance['brochure_icon'] );
 
 			// Mustache widget-brochure-box template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_brochure_box_view', 'widget-brochure-box' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_brochure_box_view', 'theme::widget-brochure-box' ), array(
 				'args'        => $args,
 				'instance'    => $instance,
 				'link-target' => ( ! empty( $instance['new_tab'] ) ) ? '_blank' : '_self',

@@ -52,7 +52,7 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 			);
 
 			// Mustache widget-facebook template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_facebook_view', 'widget-facebook' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_facebook_view', 'theme::widget-facebook' ), array(
 				'args'       => $args,
 				'instance'   => $instance,
 				'http-query' => http_build_query( $fb_params ),

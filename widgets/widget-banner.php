@@ -36,7 +36,7 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 			$instance['link'] = esc_url( $instance['link'] );
 
 			// Mustache widget-banner template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_banner_view', 'widget-banner' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_banner_view', 'theme::widget-banner' ), array(
 				'args'        => $args,
 				'instance'    => $instance,
 				'link-target' => ( '1' == $instance['open_new'] ) ? '_blank' : '_self',

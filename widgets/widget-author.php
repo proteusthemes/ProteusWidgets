@@ -40,7 +40,7 @@ if ( ! class_exists( 'PW_Author' ) ) {
 			}
 
 			// Mustache author-widget template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_author_view', 'widget-author' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_author_view', 'theme::widget-author' ), array(
 				'args'                    => $args,
 				'author-avatar'           => get_avatar( $selected_user_id, 90 ),
 				'author-posts'            => get_author_posts_url( $selected_user_id ),

@@ -63,7 +63,7 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 			);
 
 			// Mustache widget-accordion template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_accordion_view', 'widget-accordion' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_accordion_view', 'theme::widget-accordion' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 				'items'    => $items,

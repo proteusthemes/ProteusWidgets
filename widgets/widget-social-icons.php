@@ -85,7 +85,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 			$instance['target'] = ! empty ( $instance['new_tab'] ) ? '_blank' : '_self';
 
 			// Mustache widget-social-icons template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_social_icons_view', 'widget-social-icons' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_social_icons_view', 'theme::widget-social-icons' ), array(
 				'args'         => $args,
 				'instance'     => $instance,
 			));

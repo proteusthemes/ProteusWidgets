@@ -64,7 +64,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			);
 
 			// Mustache widget-latest-news template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_latest_news_view', 'widget-latest-news' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_latest_news_view', 'theme::widget-latest-news' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 				'posts'    => array_values( (array) $recent_posts ),

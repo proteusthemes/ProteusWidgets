@@ -77,7 +77,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 			);
 
 			// Mustache widget-person-profile template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_person_profile_view', 'widget-person-profile' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_person_profile_view', 'theme::widget-person-profile' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 				'text'     => $text,

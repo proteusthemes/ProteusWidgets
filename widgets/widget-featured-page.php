@@ -95,7 +95,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			}
 
 			// Mustache widget-featured-page template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_featured_page_view', 'widget-featured-page' ), array(
+			echo $this->mustache->render( apply_filters( 'pw/widget_featured_page_view', 'theme::widget-featured-page' ), array(
 				'args'      => $args,
 				'page'      => $page,
 				'instance'  => $instance,
