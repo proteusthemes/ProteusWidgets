@@ -78,9 +78,6 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 			for ( $i = 0; $i < count( $instance['social_icons'] ); $i++ ) {
 				// Cast object to array for one click demo import
 				$instance['social_icons'][ $i ] = (array) $instance['social_icons'][ $i ];
-
-				$instance['social_icons'][ $i ]['link'] = esc_url( $instance['social_icons'][ $i ]['link'] );
-				$instance['social_icons'][ $i ]['icon'] = esc_attr( $instance['social_icons'][ $i ]['icon'] );
 			}
 			$instance['target'] = ! empty ( $instance['new_tab'] ) ? '_blank' : '_self';
 

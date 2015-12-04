@@ -33,7 +33,7 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
-			$instance['btn_link'] = esc_url( $instance['btn_link'] );
+			$instance['btn_link'] = $instance['btn_link'];
 			$instance['target']   = ! empty ( $instance['new_tab'] ) ? '_blank' : '_self';
 			$instance['icon']     = sanitize_html_class( $instance['icon'] );
 
