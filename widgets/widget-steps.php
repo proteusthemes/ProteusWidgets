@@ -74,13 +74,6 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 			$instance['title_is_set'] = ! empty( $instance['title'] );
 			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base );
 
-			foreach ( $items as $key => $item ) {
-				$items[ $key ]['title']   = esc_html( $item['title'] );
-				$items[ $key ]['content'] = wp_kses( $item['content'], $this->allowed_html_in_content_field );
-				$items[ $key ]['icon']    = esc_attr( $item['icon'] );
-				$items[ $key ]['step']    = esc_html( $item['step'] );
-			}
-
 			// Mustache widget-steps template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_steps_view', 'theme::widget-steps' ), array(
 				'args'     => $args,

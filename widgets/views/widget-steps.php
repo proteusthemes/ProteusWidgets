@@ -1,23 +1,23 @@
-{{{ args.before_widget }}}
+<?php echo $args['before_widget']; ?>
 
-	{{# instance.title_is_set }}
-		<h3 class="widget-title  steps__title">{{ instance.preped_title }}</h3>
-	{{/ instance.title_is_set }}
+	<?php if ( $instance['title_is_set'] ) : ?>
+		<h3 class="widget-title  steps__title"><?php echo wp_kses_post( $instance['preped_title'] ); ?></h3>
+	<?php endif; ?>
 
 	<div class="steps">
-		{{# items }}
+		<?php foreach ( $items as $step ): ?>
 			<div class="step">
 				<div class="step__title">
-					<i class="fa  {{ icon }}"></i> {{ title }}
+					<i class="fa  <?php echo esc_attr( $step['icon'] ); ?>"></i> <?php echo esc_html( $step['title'] ); ?>
 				</div>
 				<p class="step__content">
-					{{{ content }}}
+				<?php echo wp_kses_post( $step['content'] ); ?>
 				</p>
 				<div class="step__number">
-					{{ step }}
+					<?php echo esc_html( $step['step'] ); ?>
 				</div>
 			</div>
-		{{/ items }}
+		<?php endforeach; ?>
 	</div>
 
-{{{ args.after_widget }}}
+<?php echo $args['after_widget']; ?>
