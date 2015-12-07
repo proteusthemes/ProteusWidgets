@@ -73,7 +73,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			}
 
 			// Prepare the excerpt text
-			$excerpt = ! empty( $page['post_excerpt'] ) ? $page['post_excerpt'] : $page['post_content'];
+			$excerpt = wp_strip_all_tags( ! empty( $page['post_excerpt'] ) ? $page['post_excerpt'] : $page['post_content'] );
 
 			if ( 'inline' === $instance['layout'] && strlen( $excerpt ) > $this->excerpt_lengths['inline_excerpt'] ) {
 				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', $this->excerpt_lengths['inline_excerpt'] ) ) . ' &hellip;';
@@ -82,7 +82,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', $this->excerpt_lengths['block_excerpt'] ) ) . ' &hellip;';
 			}
 
-			$page['post_excerpt'] = wp_strip_all_tags( $excerpt );
+			$page['post_excerpt'] = $excerpt;
 			$page['link']         = get_permalink( $page_id );
 			$page['thumbnail']    = get_the_post_thumbnail( $page_id, $thumbnail_size );
 			if ( 'block' === $instance['layout'] ) {

@@ -4,8 +4,6 @@
  * Abstract class that extends WP_Widget and will be extended by individual widget
  */
 
-require_once 'class-pw-templating.php';
-
 if ( ! class_exists( 'PW_Widget' ) ) {
 	abstract class PW_Widget extends WP_Widget {
 
@@ -26,7 +24,8 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 				)
 			);
 
-			$this->mustache = PW_Templating::init();
+			$templating_engine = new PW_Templating;
+			$this->mustache = $templating_engine->setup();
 		}
 
 	}
