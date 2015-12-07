@@ -4,6 +4,8 @@
  * Abstract class that extends WP_Widget and will be extended by individual widget
  */
 
+require_once 'class-pw-templating.php';
+
 if ( ! class_exists( 'PW_Widget' ) ) {
 	abstract class PW_Widget extends WP_Widget {
 
