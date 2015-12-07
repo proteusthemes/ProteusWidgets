@@ -34,7 +34,6 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			$more_news = ! empty( $instance['more_news'] ) ? $instance['more_news'] : '';
 
 			// prepare data for mustache template
-			$instance['more_news_on']      = ! empty( $instance['more_news'] ) ? true : false;
 			$instance['link_to_more_news'] = get_permalink( get_option( 'page_for_posts' ) );
 			$instance['read_more_text']    = empty( $instance['read_more_text'] ) ? esc_html__( 'More news', 'proteuswidgets' ) : $instance['read_more_text'];
 
