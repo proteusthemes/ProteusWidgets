@@ -1,24 +1,22 @@
-{{{ args.before_widget }}}
+<?php echo $args['before_widget']; ?>
 
-	{{# instance.link }}
-		<a class="banner" href="{{ instance.link }}" target="{{ link-target }}">
-	{{/ instance.link }}
-	{{^ instance.link }}
+	<?php if ( ! empty( $instance['link'] ) ) : ?>
+		<a class="banner" href="<?php echo esc_url( $instance['link'] ); ?>" target="<?php echo ( '1' == $instance['open_new'] ) ? '_blank' : '_self' ?>">
+	<?php else : ?>
 		<div class="banner">
-	{{/ instance.link }}
+	<?php endif; ?>
 
 		<div class="banner__title">
-			{{ instance.title }}
+			<?php echo esc_html( $instance['title'] ); ?>
 		</div>
 		<div class="banner__content">
-			{{ instance.content }}
+			<?php echo esc_html( $instance['content'] ); ?>
 		</div>
 
-	{{# instance.link }}
+	<?php if ( ! empty( $instance['link'] ) ) : ?>
 		</a>
-	{{/ instance.link }}
-	{{^ instance.link }}
+	<?php else : ?>
 		</div>
-	{{/ instance.link }}
+	<?php endif; ?>
 
-{{{ args.after_widget }}}
+<?php echo $args['after_widget']; ?>
