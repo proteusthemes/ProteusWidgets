@@ -24,7 +24,7 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 				)
 			);
 
-			$this->mustache = new PW_Templating;
+			$this->mustache = PW_Templating::init();
 		}
 
 	}
