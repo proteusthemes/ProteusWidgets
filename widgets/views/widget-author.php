@@ -1,37 +1,34 @@
-{{{ args.before_widget }}}
+<?php echo $args['before_widget']; ?>
 
 	<div class="widget-author__image-container">
 		<div class="widget-author__avatar--blurred">
-			{{{ author-avatar }}}
+			<?php echo wp_kses_post( $author_avatar ); ?>
 		</div>
-		<a href="{{ author-posts }}" class="widget-author__avatar">
-			{{{ author-avatar }}}
+		<a href="<?php echo esc_url( $author_posts ); ?>" class="widget-author__avatar">
+			<?php echo wp_kses_post( $author_avatar ); ?>
 		</a>
 	</div>
 	<div class="row widget-author__content">
 		<div class="col-xs-10  col-xs-offset-1">
-			{{{ author-meta-name }}}
-			{{{ author-meta-description }}}
+			<?php echo wp_kses_post( $author_meta_name ); ?>
+			<?php echo esc_html( $author_meta_description ); ?>
 
-			{{# author-meta-user-url }}
+			<?php if ( ! empty( $author_meta_user_url ) ) : ?>
 				<p>
-					<a href="{{ author-meta-user-url }}">{{ author-meta-user-url }}</a>
+					<a href="<?php echo esc_url( $author_meta_user_url ); ?>"><?php echo wp_strip_all_tags( $author_meta_user_url ); ?></a>
 				</p>
-			{{/ author-meta-user-url }}
+			<?php endif; ?>
 
-			{{# social-icons }}
+			<?php if ( ! empty( $social_icons ) ) : ?>
 				<p class="social-icons__author">
-					{{# social-icons-list }}
-						<a href="{{ url }}" class="social-icons__container">
-							<i class="fa fa-{{icon}}"></i>
+					<?php foreach ( $social_icons as $item ) : ?>
+						<a href="<?php echo esc_url( $item['url'] ); ?>" class="social-icons__container">
+							<i class="fa fa-<?php echo esc_attr( $item['icon'] ); ?>"></i>
 						</a>
-					{{/ social-icons-list }}
+					<?php endforeach; ?>
 				</p>
-			{{/ social-icons }}
-			<?php
-
-			?>
+			<?php endif; ?>
 		</div>
 	</div>
 
-{{{ args.after_widget }}}
+<?php echo $args['after_widget']; ?>
