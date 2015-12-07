@@ -46,12 +46,8 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
-			$instance['locations'] = esc_attr( json_encode( array_values( $instance['locations'] ) ) );
-			$instance['latLng']    = esc_attr( $instance['latLng'] );
-			$instance['zoom']      = absint( $instance['zoom'] );
-			$instance['type']      = esc_attr( $instance['type'] );
-			$instance['style']     = esc_attr( $this->map_styles[ $instance['style'] ] );
-			$instance['height']    = absint( $instance['height'] );
+			$instance['locations'] = json_encode( array_values( $instance['locations'] ) );
+			$instance['style']     = $this->map_styles[ $instance['style'] ];
 
 			// Mustache widget-google-map template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_google_map_view', 'theme::widget-google-map' ), array(
