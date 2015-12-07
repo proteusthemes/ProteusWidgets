@@ -1,58 +1,46 @@
-{{{ args.before_widget }}}
+<?php echo $args['before_widget']; ?>
 
-	<div class="testimonial">
-		{{# instance.navigation }}
-			<a class="testimonial__carousel  testimonial__carousel--left" href="#carousel-testimonials-{{ args.widget_id }}" data-slide="prev"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button">{{ text.next }}</span></a>
-		{{/ instance.navigation }}
+	<?php echo $args['before_title'] . wp_kses_post( $instance['title'] ) . $args['after_title']; ?>
 
-		{{{ args.before_title }}}{{ instance.title }}{{{ args.after_title }}}
-
-		{{# instance.navigation }}
-			<a class="testimonial__carousel  testimonial__carousel--right" href="#carousel-testimonials-{{ args.widget_id }}" data-slide="next"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button">{{ text.previous }}</span></a>
-		{{/ instance.navigation }}
-
-		<div id="carousel-testimonials-{{ args.widget_id }}" class="carousel slide" data-ride="carousel" data-interval="{{ instance.slider_settings }}">
+	<div class="testimonial__container">
+		<div id="carousel-testimonials-<?php echo esc_attr( $args['widget_id'] ); ?>" class="carousel  slide  testimonial" data-ride="carousel" data-interval="<?php echo esc_attr( $instance['slider_settings'] ); ?>">
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox">
-				<div class="item active">
+				<div class="carousel-item active">
 					<div class="row">
-						{{# testimonials }}
-							{{{ more-at-once }}}
-							<div class="col-xs-12  col-sm-{{ instance.spans }}">
+						<?php foreach ( $testimonials as $testimonial ) : ?>
+							<?php echo wp_kses_post( $testimonial['more-at-once'] ); ?>
+							<div class="col-xs-12  col-sm-<?php echo esc_attr( $instance['spans'] ); ?>">
 								<blockquote>
-									<p class="testimonial__quote">
-										{{ quote }}
-									</p>
-									<cite class="testimonial__author">
-										{{ author }}
-									</cite>
-
-									{{# author_description }}
-										<div class="testimonial__author-description">
-											{{ author_description }}
-										</div>
-									{{/ author_description }}
-
-									{{# display-ratings }}
-										<div class="testimonial__rating">
-											{{# rating }}
-												<i class="fa  fa-star"></i>
-											{{/ rating }}
-										</div>
-									{{/ display-ratings }}
-
-									{{# author_avatar }}
+									<?php if ( isset( $testimonial['author_avatar'] ) && $testimonial['author_avatar'] ) : ?>
 										<div class="testimonial__author-avatar">
-											<img src="{{ author_avatar }}" alt="Author avatar">
+											<img src="<?php echo esc_url( $testimonial['author_avatar'] ); ?>" alt="">
 										</div>
-									{{/ author_avatar }}
+									<?php endif; ?>
+									<div class="testimonial__author">
+										<cite class="testimonial__author-name">
+										<?php echo esc_html( $testimonial['author'] ); ?>
+										</cite>
+										<?php if ( isset( $testimonial['author_description'] ) && $testimonial['author_description'] ) : ?>
+											<div class="testimonial__author-description">
+												<?php echo wp_kses_post( $testimonial['author_description'] ); ?>
+											</div>
+										<?php endif; ?>
+									</div>
+									<p class="testimonial__quote">
+										<?php echo wp_kses_post( $testimonial['quote'] ); ?>
+									</p>
 								</blockquote>
 							</div>
-						{{/ testimonials }}
+						<?php endforeach; ?>
 					</div>
 				</div>
 			</div>
 		</div>
+		<?php if ( isset( $instance['navigation'] ) && $instance['navigation'] ) : ?>
+			<a class="testimonial__carousel  testimonial__carousel--left" href="#carousel-testimonials-<?php echo esc_attr( $args['widget_id'] ); ?>" data-slide="prev"><i class="fa  fa-caret-left" aria-hidden="true"></i><span class="sr-only" role="button"><?php echo esc_html( $text['next'] ); ?></span></a>
+			<a class="testimonial__carousel  testimonial__carousel--right" href="#carousel-testimonials-<?php echo esc_attr( $args['widget_id'] ); ?>" data-slide="next"><i class="fa  fa-caret-right" aria-hidden="true"></i><span class="sr-only" role="button"><?php echo esc_html( $text['previous'] ); ?></span></a>
+		<?php endif; ?>
 	</div>
 
-{{{ args.after_widget }}}
+<?php echo $args['after_widget']; ?>

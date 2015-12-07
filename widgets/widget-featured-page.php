@@ -64,7 +64,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			}
 
 			$instance['layout']         = sanitize_key( $instance['layout'] );
-			$instance['read_more_text'] = empty( $instance['read_more_text'] ) ? esc_html__( 'Read more', 'proteuswidgets' ) : sanitize_text_field( $instance['read_more_text'] );
+			$instance['read_more_text'] = empty( $instance['read_more_text'] ) ? esc_html__( 'Read more', 'proteuswidgets' ) : $instance['read_more_text'];
 			$thumbnail_size             = 'inline' === $instance['layout'] ? 'pw-inline' : 'pw-page-box';
 
 			// Get basic page info
@@ -82,7 +82,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', $this->excerpt_lengths['block_excerpt'] ) ) . ' &hellip;';
 			}
 
-			$page['post_excerpt'] = sanitize_text_field( $excerpt );
+			$page['post_excerpt'] = $excerpt;
 			$page['link']         = get_permalink( $page_id );
 			$page['thumbnail']    = get_the_post_thumbnail( $page_id, $thumbnail_size );
 			if ( 'block' === $instance['layout'] ) {
@@ -99,7 +99,6 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				'args'      => $args,
 				'page'      => $page,
 				'instance'  => $instance,
-				'block'     => 'block' === $instance['layout'],
 			));
 		}
 

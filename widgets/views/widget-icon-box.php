@@ -1,23 +1,21 @@
-{{{ args.before_widget }}}
+<?php echo $args['before_widget']; ?>
 
-	{{# instance.btn_link }}
-		<a class="icon-box" href="{{ instance.btn_link }}" target="{{ instance.target }}">
-	{{/ instance.btn_link }}
-	{{^ instance.btn_link }}
+	<?php if ( $instance['btn_link'] ) : ?>
+		<a class="icon-box" href="<?php echo esc_url( $instance['btn_link'] ); ?>" target="<?php echo esc_attr( $instance['target'] ); ?>">
+	<?php else : ?>
 		<div class="icon-box">
-	{{/ instance.btn_link }}
+	<?php endif; ?>
 
-		<i class="fa  {{ instance.icon }}  fa-3x"></i>
+		<i class="fa  <?php echo esc_attr( $instance['icon'] ); ?>"></i>
 		<div class="icon-box__text">
-			<h4 class="icon-box__title">{{ instance.title }}</h4>
-			<span class="icon-box__subtitle">{{ instance.text }}</span>
+			<h4 class="icon-box__title"><?php echo wp_kses_post( $instance['title'] ); ?></h4>
+			<span class="icon-box__subtitle"><?php echo wp_kses_post( $instance['text'] ); ?></span>
 		</div>
 
-	{{# instance.btn_link }}
+	<?php if ( $instance['btn_link'] ) : ?>
 		</a>
-	{{/ instance.btn_link }}
-	{{^ instance.btn_link }}
+	<?php else : ?>
 		</div>
-	{{/ instance.btn_link }}
+	<?php endif; ?>
 
-{{{ args.after_widget }}}
+<?php echo $args['after_widget']; ?>

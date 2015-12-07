@@ -94,7 +94,6 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			}
 
 			$instance['title']           = apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base );
-			$args['widget_id']           = esc_attr( $args['widget_id'] );
 			$instance['navigation']      = count( $testimonials ) > $this->fields['number_of_testimonial_per_slide'];
 			$instance['slider_settings'] = 'yes' === $instance['autocycle'] ? esc_attr( empty( $instance['interval'] ) ? 5000 : absint( $instance['interval'] ) ) : 'false';
 
