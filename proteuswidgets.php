@@ -36,7 +36,7 @@ class ProteusWidgets {
 		wp_localize_script( 'pw-admin-script', 'ProteusWidgetsAdminVars', array(
 			'urlToPlugin'              => PW_URL,
 			'ptTextReplacementEnabled' => apply_filters( 'pw/proteus_themes_text_replacement_enabled', true ),
-			'defaultSocialIcon' => apply_filters( 'pw/default_social_icon', 'fa-facebook' ),
+			'defaultSocialIcon'        => apply_filters( 'pw/default_social_icon', 'fa-facebook' ),
 		) );
 
 		// Enqueue admin dashboard CSS
