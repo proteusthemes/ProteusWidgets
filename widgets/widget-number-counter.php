@@ -9,17 +9,16 @@
 if ( ! class_exists( 'PW_Number_Counter' ) ) {
 	class PW_Number_Counter extends PW_Widget {
 
-		private $current_widget_id;
-		private $font_awesome_icons_list;
-		private $fields;
-
-		// Basic widget settings
-		function widget_id_base() { return 'number-counter'; }
-		function widget_name() { return esc_html__( 'Number Counter', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Widget with multiple animated counters.', 'proteuswidgets' ); }
-		function widget_class() { return 'widget-number-counter'; }
+		private $current_widget_id, $font_awesome_icons_list, $fields;
 
 		public function __construct() {
+
+			// Overwrite the widget variables of the parent class
+			$this->widget_id_base     = 'number-counter';
+			$this->widget_name        = esc_html__( 'Number Counter', 'proteuswidgets' );
+			$this->widget_description = esc_html__( 'Widget with multiple animated counters.', 'proteuswidgets' );
+			$this->widget_class       = 'widget-number-counter';
+
 			parent::__construct();
 
 			// Get the settings for the number counter widgets

@@ -12,20 +12,20 @@
 if ( ! class_exists( 'PW_Opening_Time' ) ) {
 	class PW_Opening_Time extends PW_Widget {
 
-
 		// Days of the week, needed for display and $instance variable
 		private $days;
-
-		// Basic widget settings
-		function widget_id_base() { return 'opening_time'; }
-		function widget_name() { return esc_html__( 'Opening Time', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Widget shows opening times per day with optional text.', 'proteuswidgets' ); }
-		function widget_class() { return 'opening-time'; }
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
+
+			// Overwrite the widget variables of the parent class
+			$this->widget_id_base     = 'opening_time';
+			$this->widget_name        = esc_html__( 'Opening Time', 'proteuswidgets' );
+			$this->widget_description = esc_html__( 'Widget shows opening times per day with optional text.', 'proteuswidgets' );
+			$this->widget_class       = 'opening-time';
+
 			parent::__construct();
 
 			// Set the right order of the days

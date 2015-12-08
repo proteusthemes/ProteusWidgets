@@ -10,16 +10,17 @@
 if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 	class PW_Brochure_Box extends PW_Widget {
 
-		// Basic widget settings
-		function widget_id_base() { return 'brochure_box'; }
-		function widget_name() { return esc_html__( 'Brochure Box', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Widget for displaying downloadable files.', 'proteuswidgets' ); }
-		function widget_class() { return 'widget-brochure-box'; }
-
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
+
+			// Overwrite the widget variables of the parent class
+			$this->widget_id_base     = 'brochure_box';
+			$this->widget_name        = esc_html__( 'Brochure Box', 'proteuswidgets' );
+			$this->widget_description = esc_html__( 'Widget for displaying downloadable files.', 'proteuswidgets' );
+			$this->widget_class       = 'widget-brochure-box';
+
 			parent::__construct();
 		}
 

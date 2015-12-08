@@ -16,19 +16,19 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		/**
 		 * Length of the line excerpt.
 		 */
-		private $excerpt_lengths;
-		private $fields;
-
-		// Basic widget settings
-		function widget_id_base() { return 'featured_page'; }
-		function widget_name() { return esc_html__( 'Featured Page', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Displays featured image, title and short excerpt of the selected page.', 'proteuswidgets' ); }
-		function widget_class() { return 'widget-featured-page'; }
+		private $excerpt_lengths, $fields;
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
+
+			// Overwrite the widget variables of the parent class
+			$this->widget_id_base     = 'featured_page';
+			$this->widget_name        = esc_html__( 'Featured Page', 'proteuswidgets' );
+			$this->widget_description = esc_html__( 'Displays featured image, title and short excerpt of the selected page.', 'proteuswidgets' );
+			$this->widget_class       = 'widget-featured-page';
+
 			parent::__construct();
 
 			// Get the settings for the this widget

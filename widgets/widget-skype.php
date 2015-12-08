@@ -10,16 +10,16 @@
 if ( ! class_exists( 'PW_Skype' ) ) {
 	class PW_Skype extends PW_Widget {
 
-		// Basic widget settings
-		function widget_id_base() { return 'skype'; }
-		function widget_name() { return esc_html__( 'Skype', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Linkable block with Skype or telephone icon.', 'proteuswidgets' ); }
-		function widget_class() { return 'widget-skype'; }
-
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
+
+			$this->widget_id_base     = 'skype';
+			$this->widget_name        = esc_html__( 'Skype', 'proteuswidgets' );
+			$this->widget_description = esc_html__( 'Linkable block with Skype or telephone icon.', 'proteuswidgets' );
+			$this->widget_class       = 'widget-skype';
+
 			parent::__construct();
 		}
 

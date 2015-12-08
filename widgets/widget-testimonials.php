@@ -10,19 +10,18 @@
 if ( ! class_exists( 'PW_Testimonials' ) ) {
 	class PW_Testimonials extends PW_Widget {
 
-		private $fields;
-		private $current_widget_id;
-
-		// Basic widget settings
-		function widget_id_base() { return 'testimonials'; }
-		function widget_name() { return esc_html__( 'Testimonials', 'proteuswidgets' ); }
-		function widget_description() { return ''; }
-		function widget_class() { return 'widget-testimonials'; }
+		private $fields, $current_widget_id;
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
+
+			// Overwrite the widget variables of the parent class
+			$this->widget_id_base     = 'testimonials';
+			$this->widget_name        = esc_html__( 'Testimonials', 'proteuswidgets' );
+			$this->widget_description = '';
+			$this->widget_class       = 'widget-testimonials';
 
 			parent::__construct();
 

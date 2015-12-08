@@ -10,16 +10,17 @@
 if ( ! class_exists( 'PW_Banner' ) ) {
 	class PW_Banner extends PW_Widget {
 
-		// Basic widget settings
-		function widget_id_base() { return 'banner'; }
-		function widget_name() { return esc_html__( 'Banner', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Linkable block with title and content.', 'proteuswidgets' ); }
-		function widget_class() { return 'widget-banner'; }
-
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
+
+			// Overwrite the widget variables of the parent class
+			$this->widget_id_base     = 'banner';
+			$this->widget_name        = esc_html__( 'Banner', 'proteuswidgets' );
+			$this->widget_description = esc_html__( 'Linkable block with title and content.', 'proteuswidgets' );
+			$this->widget_class       = 'widget-banner';
+
 			parent::__construct();
 		}
 

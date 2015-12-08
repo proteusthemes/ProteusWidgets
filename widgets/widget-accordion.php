@@ -11,13 +11,14 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 
 		private $allowed_html_in_content_field;
 
-		// Basic widget settings
-		function widget_id_base() { return 'accordion'; }
-		function widget_name() { return esc_html__( 'Accordion', 'proteuswidgets' ); }
-		function widget_description() { return ''; }
-		function widget_class() { return 'widget-accordion'; }
-
 		public function __construct() {
+
+			// Overwrite the widget variables of the parent class
+			$this->widget_id_base     = 'accordion';
+			$this->widget_name        = esc_html__( 'Accordion', 'proteuswidgets' );
+			$this->widget_description = '';
+			$this->widget_class       = 'widget-accordion';
+
 			parent::__construct();
 
 			// Allowed HTML in content field

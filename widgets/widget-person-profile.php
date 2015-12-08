@@ -10,19 +10,19 @@
 if ( ! class_exists( 'PW_Person_Profile' ) ) {
 	class PW_Person_Profile extends PW_Widget {
 
-		private $current_widget_id;
-		private $font_awesome_icons_list;
-
-		// Basic widget settings
-		function widget_id_base() { return 'person_profile'; }
-		function widget_name() { return esc_html__( 'Person Profile', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Widget displaying person\'s profile with a photo.', 'proteuswidgets' ); }
-		function widget_class() { return 'widget-person-profile'; }
+		private $current_widget_id, $font_awesome_icons_list;
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
+
+			// Overwrite the widget variables of the parent class
+			$this->widget_id_base     = 'person_profile';
+			$this->widget_name        = esc_html__( 'Person Profile', 'proteuswidgets' );
+			$this->widget_description = esc_html__( 'Widget displaying person\'s profile with a photo.', 'proteuswidgets' );
+			$this->widget_class       = 'widget-person-profile';
+
 			parent::__construct();
 
 			// A list of icons to choose from in the widget backend

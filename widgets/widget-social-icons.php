@@ -11,20 +11,19 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 	class PW_Social_Icons extends PW_Widget {
 
 		private $num_social_icons = 8;
-		private $current_widget_id;
-
-		private $font_awesome_icons_list;
-
-		// Basic widget settings
-		function widget_id_base() { return 'social_icons'; }
-		function widget_name() { return esc_html__( 'Social Icons', 'proteuswidgets' ); }
-		function widget_description() { ''; }
-		function widget_class() { return 'widget-social-icons'; }
+		private $current_widget_id, $font_awesome_icons_list;
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
+
+			// Overwrite the widget variables of the parent class
+			$this->widget_id_base     = 'social_icons';
+			$this->widget_name        = esc_html__( 'Social Icons', 'proteuswidgets' );
+			$this->widget_description = '';
+			$this->widget_class       = 'widget-social-icons';
+
 			parent::__construct();
 
 			// A list of icons to choose from in the widget backend

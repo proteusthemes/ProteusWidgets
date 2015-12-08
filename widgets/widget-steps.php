@@ -9,17 +9,16 @@
 if ( ! class_exists( 'PW_Steps' ) ) {
 	class PW_Steps extends PW_Widget {
 
-		private $allowed_html_in_content_field;
-		private $font_awesome_icons_list;
-		private $current_widget_id;
-
-		// Basic widget settings
-		function widget_id_base() { return 'steps'; }
-		function widget_name() { return esc_html__( 'Steps', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Displays multiple steps for your process.', 'proteuswidgets' ); }
-		function widget_class() { return 'widget-steps'; }
+		private $allowed_html_in_content_field, $font_awesome_icons_list, $current_widget_id;
 
 		public function __construct() {
+
+			// Overwrite the widget variables of the parent class
+			$this->widget_id_base     = 'steps';
+			$this->widget_name        = esc_html__( 'Steps', 'proteuswidgets' );
+			$this->widget_description = esc_html__( 'Displays multiple steps for your process.', 'proteuswidgets' );
+			$this->widget_class       = 'widget-steps';
+
 			parent::__construct();
 
 			// Allowed HTML in content field

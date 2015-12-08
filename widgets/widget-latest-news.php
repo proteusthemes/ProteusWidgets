@@ -9,13 +9,14 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 		private $max_post_number = 10;
 		private $current_widget_id;
 
-		// Basic widget settings
-		function widget_id_base() { return 'latest_news'; }
-		function widget_name() { return esc_html__( 'Latest News', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Displays one or more latest posts.', 'proteuswidgets' ); }
-		function widget_class() { return 'widget-latest-news'; }
-
 		public function __construct() {
+
+			// Overwrite the widget variables of the parent class
+			$this->widget_id_base     = 'latest_news';
+			$this->widget_name        = esc_html__( 'Latest News', 'proteuswidgets' );
+			$this->widget_description = esc_html__( 'Displays one or more latest posts.', 'proteuswidgets' );
+			$this->widget_class       = 'widget-latest-news';
+
 			parent::__construct();
 		}
 

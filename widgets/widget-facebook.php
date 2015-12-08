@@ -10,16 +10,17 @@
 if ( ! class_exists( 'PW_Facebook' ) ) {
 	class PW_Facebook extends PW_Widget {
 
-		// Basic widget settings
-		function widget_id_base() { return 'facebook'; }
-		function widget_name() { return esc_html__( 'Facebook', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Facebook like box with some customization settings.', 'proteuswidgets' ); }
-		function widget_class() { return null; }
-
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
+
+			// Overwrite the widget variables of the parent class
+			$this->widget_id_base     = 'facebook';
+			$this->widget_name        = esc_html__( 'Facebook', 'proteuswidgets' );
+			$this->widget_description = esc_html__( 'Facebook like box with some customization settings.', 'proteuswidgets' );
+			$this->widget_class       = '';
+
 			parent::__construct();
 		}
 

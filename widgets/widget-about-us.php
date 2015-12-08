@@ -12,16 +12,17 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 
 		private $current_widget_id;
 
-		// Basic widget settings
-		function widget_id_base() { return 'about_us'; }
-		function widget_name() { return esc_html__( 'About Us', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Displaying person profiles in a carousel.', 'proteuswidgets' ); }
-		function widget_class() { return 'widget-about-us'; }
-
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
+
+			// Overwrite the widget variables of the parent class
+			$this->widget_id_base     = 'about_us';
+			$this->widget_name        = esc_html__( 'About Us', 'proteuswidgets' );
+			$this->widget_description = esc_html__( 'Displaying person profiles in a carousel.', 'proteuswidgets' );
+			$this->widget_class       = 'widget-about-us';
+
 			parent::__construct();
 		}
 

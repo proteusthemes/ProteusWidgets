@@ -20,16 +20,17 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		);
 		private $current_widget_id;
 
-		// Basic widget settings
-		function widget_id_base() { return 'google_map'; }
-		function widget_name() { return esc_html__( 'Google Map', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Generates Google map with given coordinates (select map skin and other settings).', 'proteuswidgets' ); }
-		function widget_class() { return null; }
-
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
+
+			// Overwrite the widget variables of the parent class
+			$this->widget_id_base     = 'google_map';
+			$this->widget_name        = esc_html__( 'Google Map', 'proteuswidgets' );
+			$this->widget_description = esc_html__( 'Generates Google map with given coordinates (select map skin and other settings).', 'proteuswidgets' );
+			$this->widget_class       = '';
+
 			parent::__construct();
 
 			// Add other google map skins through this fiter

@@ -10,16 +10,17 @@
 if ( ! class_exists( 'PW_Icon_Box' ) ) {
 	class PW_Icon_Box extends PW_Widget {
 
-		// Basic widget settings
-		function widget_id_base() { return 'icon_box'; }
-		function widget_name() { return esc_html__( 'Icon Box', 'proteuswidgets' ); }
-		function widget_description() { return esc_html__( 'Linkable block with title, text and font awesome icon.', 'proteuswidgets' ); }
-		function widget_class() { return 'widget-icon-box'; }
-
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
+
+			// Overwrite the widget variables of the parent class
+			$this->widget_id_base     = 'icon_box';
+			$this->widget_name        = esc_html__( 'Icon Box', 'proteuswidgets' );
+			$this->widget_description = esc_html__( 'Linkable block with title, text and font awesome icon.', 'proteuswidgets' );
+			$this->widget_class       = 'widget-icon-box';
+
 			parent::__construct();
 		}
 
