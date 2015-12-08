@@ -1,28 +1,71 @@
 <?php
 
 /*
- * Class for declaring the PHP templating
+ * SINGLETON
+ * Class for declaring the PHP templating engine
  */
 
 if ( ! class_exists( 'PW_Templating' ) ) {
 	class PW_Templating {
 
-		private $template_engine;
+		private static $instance;
+		private $template_engine, $template_folder;
 
-		function __construct() {
-			/*
-			 * Set the Plates as the PHP templating engine
-			 * Learn more: http://platesphp.com/
-			 */
+		/**
+		 * Private constructor to prevent creating a new instance of the *Singleton* via the `new` operator from outside of this class.
+		 */
+		private function __construct() {
+
+			// Set the Plates as the PHP templating engine. Learn more: http://platesphp.com/
 			$this->template_engine = new League\Plates\Engine( trailingslashit( get_template_directory() ) . 'vendor/proteusthemes/proteuswidgets/widgets/views' );
+
+			if ( file_exists( trailingslashit( get_template_directory() ) . 'inc/widgets-views' ) ) {
+				// Set the template folder name
+				$this->template_folder = 'theme';
+
+				// Set folder, where overwriting templates can be stored: http://platesphp.com/engine/folders/
+				$this->template_engine->addFolder( $this->template_folder, trailingslashit( get_template_directory() ) . 'inc/widgets-views', true );
+			}
+
 		}
 
-		public function setup() {
-			// http://platesphp.com/engine/folders/
-			$this->template_engine->addFolder( 'theme', trailingslashit( get_template_directory() ) . 'inc/widgets-views', true );
+		/*
+		 * Static function for retrieving or instantiation of this class - Singleton
+		 */
+		public static function get_instance() {
+			if ( null === static::$instance ) {
+				static::$instance = new static();
+			}
 
-			return $this->template_engine;
+			return static::$instance;
 		}
+
+		/**
+		 * Renders a template
+		 * @param string template_name, name of the template file
+		 * @param array template_data, data used in the template
+		 * @return string, rendered template
+		 */
+		public function render_template( $template_name, $template_data ) {
+			if ( ! empty( $this->template_folder ) ) {
+				return $this->template_engine->render( $this->template_folder . '::' . $template_name, $template_data );
+			}
+			else {
+				return $this->template_engine->render( $template_name, $template_data );
+			}
+		}
+
+		/**
+		 * Private clone method to prevent cloning of the instance of the *Singleton* instance.
+		 * @return void
+		 */
+		private function __clone() {}
+
+		/**
+		 * Private unserialize method to prevent unserializing of the *Singleton* instance.
+		 * @return void
+		 */
+		private function __wakeup() {}
 
 	}
 }

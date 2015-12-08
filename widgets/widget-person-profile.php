@@ -61,7 +61,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for mustache template
+			// Prepare data for template
 			$instance['social_icons']         = isset( $instance['social_icons'] ) ? array_values( $instance['social_icons'] ) : array();
 
 			$text = array(
@@ -69,8 +69,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 				'meet_me_on' => esc_html__( 'Meet me on:', 'proteuswidgets' ),
 			);
 
-			// Mustache widget-person-profile template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_person_profile_view', 'theme::widget-person-profile' ), array(
+			// widget-person-profile template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_person_profile_view', 'widget-person-profile' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 				'text'     => $text,

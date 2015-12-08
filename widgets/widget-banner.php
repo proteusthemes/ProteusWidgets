@@ -32,8 +32,8 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-			// Mustache widget-banner template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_banner_view', 'theme::widget-banner' ), array(
+			// widget-banner template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_banner_view', 'widget-banner' ), array(
 				'args'        => $args,
 				'instance'    => $instance,
 			));

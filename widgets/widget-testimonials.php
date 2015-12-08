@@ -51,7 +51,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for mustache template
+			// Prepare data for template
 			if ( isset( $instance['quote'] ) ) {
 				$testimonials = array(
 					array(
@@ -102,8 +102,8 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				'next'       => esc_html__( 'Next', 'proteuswidgets' ),
 			);
 
-			// Mustache widget-testimonials template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_testimonials_view', 'theme::widget-testimonials' ), array(
+			// widget-testimonials template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_testimonials_view', 'widget-testimonials' ), array(
 				'args'         => $args,
 				'instance'     => $instance,
 				'testimonials' => $testimonials,

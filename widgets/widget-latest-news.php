@@ -33,7 +33,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			$to        = ! empty( $instance['to'] ) ? $instance['to'] : '';
 			$more_news = ! empty( $instance['more_news'] ) ? $instance['more_news'] : '';
 
-			// prepare data for mustache template
+			// prepare data for template
 			$instance['link_to_more_news'] = get_permalink( get_option( 'page_for_posts' ) );
 			$instance['read_more_text']    = empty( $instance['read_more_text'] ) ? esc_html__( 'More news', 'proteuswidgets' ) : $instance['read_more_text'];
 
@@ -62,8 +62,8 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 				'more_news' => $instance['read_more_text'],
 			);
 
-			// Mustache widget-latest-news template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_latest_news_view', 'theme::widget-latest-news' ), array(
+			// widget-latest-news template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_latest_news_view', 'widget-latest-news' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 				'posts'    => array_values( (array) $recent_posts ),

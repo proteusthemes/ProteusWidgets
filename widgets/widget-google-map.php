@@ -45,12 +45,12 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for mustache template
+			// Prepare data for template
 			$instance['locations'] = json_encode( array_values( $instance['locations'] ) );
 			$instance['style']     = $this->map_styles[ $instance['style'] ];
 
-			// Mustache widget-google-map template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_google_map_view', 'theme::widget-google-map' ), array(
+			// widget-google-map template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_google_map_view', 'widget-google-map' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 			));

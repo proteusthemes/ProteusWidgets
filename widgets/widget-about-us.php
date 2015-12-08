@@ -34,7 +34,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for mustache template
+			// Prepare data for template
 			if ( isset( $instance['people'] ) ) {
 				$people = $instance['people'];
 			}
@@ -66,8 +66,8 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				'next'       => esc_html__( 'Next', 'proteuswidgets' ),
 			);
 
-			// Mustache widget-about-us template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_about_us_view', 'theme::widget-about-us' ), array(
+			// widget-about-us template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_about_us_view', 'widget-about-us' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 				'people'   => $people,

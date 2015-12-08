@@ -51,7 +51,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for mustache template
+			// Prepare data for template
 			$page_id = absint( $instance['page_id'] );
 
 			/**
@@ -94,8 +94,8 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				$page['srcset']        = PW_Functions::get_attachment_image_srcs( $attachment_image_id, array( 'pw-page-box', 'full' ) );
 			}
 
-			// Mustache widget-featured-page template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_featured_page_view', 'theme::widget-featured-page' ), array(
+			// widget-featured-page template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_featured_page_view', 'widget-featured-page' ), array(
 				'args'      => $args,
 				'page'      => $page,
 				'instance'  => $instance,

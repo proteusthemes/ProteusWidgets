@@ -32,7 +32,7 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for mustache template
+			// Prepare data for template
 			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
 			// params for the iframe
@@ -49,8 +49,8 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 				'small_header'  => ! empty( $instance['small_header'] ),
 			);
 
-			// Mustache widget-facebook template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_facebook_view', 'theme::widget-facebook' ), array(
+			// widget-facebook template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_facebook_view', 'widget-facebook' ), array(
 				'args'       => $args,
 				'instance'   => $instance,
 				'http_query' => http_build_query( $fb_params ),

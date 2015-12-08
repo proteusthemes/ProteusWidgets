@@ -27,7 +27,7 @@ if ( ! class_exists( 'PW_Author' ) ) {
 		 * Front-end display of widget.
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for mustache template
+			// Prepare data for template
 			$selected_user_id = intval( $instance['selected_user_id'] );
 			$social_icons     = array();
 
@@ -39,8 +39,8 @@ if ( ! class_exists( 'PW_Author' ) ) {
 				}
 			}
 
-			// Mustache author-widget template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_author_view', 'theme::widget-author' ), array(
+			// author-widget template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_author_view', 'widget-author' ), array(
 				'args'                    => $args,
 				'author_avatar'           => get_avatar( $selected_user_id, 90 ),
 				'author_posts'            => get_author_posts_url( $selected_user_id ),

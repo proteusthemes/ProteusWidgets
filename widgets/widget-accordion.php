@@ -43,7 +43,7 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for mustache template
+			// Prepare data for template
 			$items = isset( $instance['items'] ) ? array_values( $instance['items'] ) : array();
 			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
@@ -51,8 +51,8 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 				'read_more' => esc_html__( 'Read more', 'proteuswidgets' ),
 			);
 
-			// Mustache widget-accordion template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_accordion_view', 'theme::widget-accordion' ), array(
+			// widget-accordion template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_accordion_view', 'widget-accordion' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 				'items'    => $items,

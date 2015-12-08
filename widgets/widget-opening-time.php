@@ -66,7 +66,7 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for mustache template
+			// Prepare data for template
 			$current_time = intval( time() + ( (double) get_option( 'gmt_offset' ) * 3600 ) );
 			$opening_times = array();
 
@@ -93,8 +93,8 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 
 			$instance['title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
-			// Mustache widget-opening-time template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_opening_time_view', 'theme::widget-opening-time' ), array(
+			// widget-opening-time template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_opening_time_view', 'widget-opening-time' ), array(
 				'args' => $args,
 				'instance' => $instance,
 				'opening_times' => $opening_times,

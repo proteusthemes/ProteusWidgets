@@ -32,11 +32,11 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for mustache template
+			// Prepare data for template
 			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
-			// Mustache widget-brochure-box template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_brochure_box_view', 'theme::widget-brochure-box' ), array(
+			// widget-brochure-box template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_brochure_box_view', 'widget-brochure-box' ), array(
 				'args'        => $args,
 				'instance'    => $instance,
 			));

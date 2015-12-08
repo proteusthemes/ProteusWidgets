@@ -32,11 +32,11 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for mustache template
+			// Prepare data for template
 			$instance['icon'] = 'skype' == substr( $instance['skype_username'], 0, 5 ) ? 'skype' : 'phone';
 
-			// Mustache widget-skype template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_skype_view', 'theme::widget-skype' ), array(
+			// widget-skype template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_skype_view', 'widget-skype' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 			));

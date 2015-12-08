@@ -63,11 +63,11 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare the data for mustache template
+			// Prepare the data for template
 			$counters = isset( $instance['counters'] ) ? array_values( $instance['counters'] ) : array();
 
-			// Mustache widget-number-counter template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_number_counter_view', 'theme::widget-number-counter' ), array(
+			// widget-number-counter template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_number_counter_view', 'widget-number-counter' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 				'counters' => $counters,

@@ -69,13 +69,13 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for mustache template
+			// Prepare data for template
 			$items = isset( $instance['items'] ) ? array_values( $instance['items'] ) : array();
 			$instance['title_is_set'] = ! empty( $instance['title'] );
 			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base );
 
-			// Mustache widget-steps template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_steps_view', 'theme::widget-steps' ), array(
+			// widget-steps template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_steps_view', 'widget-steps' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 				'items'    => $items,

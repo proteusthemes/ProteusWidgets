@@ -32,11 +32,11 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for mustache template
+			// Prepare data for template
 			$instance['target']   = ! empty ( $instance['new_tab'] ) ? '_blank' : '_self';
 
-			// Mustache widget-icon-box template rendering
-			echo $this->mustache->render( apply_filters( 'pw/widget_icon_box_view', 'theme::widget-icon-box' ), array(
+			// widget-icon-box template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_icon_box_view', 'widget-icon-box' ), array(
 				'args'     => $args,
 				'instance' => $instance,
 			));

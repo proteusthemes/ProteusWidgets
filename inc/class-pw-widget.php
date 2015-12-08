@@ -7,7 +7,7 @@
 if ( ! class_exists( 'PW_Widget' ) ) {
 	abstract class PW_Widget extends WP_Widget {
 
-		protected $mustache;
+		protected $template_engine;
 
 		abstract function widget_id_base();
 		abstract function widget_class();
@@ -17,15 +17,15 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 		public function __construct() {
 			parent::__construct(
 				'pw_' . $this->widget_id_base(),
-				sprintf( 'ProteusThemes: %s', $this->widget_name() ), // Name
+				sprintf( 'ProteusThemes: %s', $this->widget_name() ),
 				array(
 					'description' => $this->widget_description(),
 					'classname'   => $this->widget_class(),
 				)
 			);
 
-			$templating_engine = new PW_Templating;
-			$this->mustache = $templating_engine->setup();
+			// Define the ProteusWidgets PHP templating engine *Singleton*
+			$this->template_engine = PW_Templating::get_instance();
 		}
 
 	}
