@@ -120,9 +120,9 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 
 			// days
 			foreach ( $this->days as $day_label => $day ) {
-				$instance[ $day_label . '_opened' ] = strip_tags( $new_instance[ $day_label . '_opened' ] );
-				$instance[ $day_label . '_from' ] = strip_tags( $new_instance[ $day_label . '_from' ] );
-				$instance[ $day_label . '_to' ] = strip_tags( $new_instance[ $day_label . '_to' ] );
+				$instance[ $day_label . '_opened' ] = ! empty( $new_instance[ $day_label . '_opened' ] ) ? strip_tags( $new_instance[ $day_label . '_opened' ] ) : '';
+				$instance[ $day_label . '_from' ]   = strip_tags( $new_instance[ $day_label . '_from' ] );
+				$instance[ $day_label . '_to' ]     = strip_tags( $new_instance[ $day_label . '_to' ] );
 			}
 
 			// separator
