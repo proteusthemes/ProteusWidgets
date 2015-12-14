@@ -132,7 +132,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'speed' ) ); ?>"><?php _e( 'Counting Speed (in miliseconds):', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'speed' ) ); ?>"><?php _e( 'Counting Speed (in milliseconds):', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'speed' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'speed' ) ); ?>" type="number" min="0" step="500" value="<?php echo esc_attr( $speed ); ?>" />
 			</p>
 

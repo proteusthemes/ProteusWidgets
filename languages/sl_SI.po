@@ -1,0 +1,654 @@
+# Copyright (C) 2015 ProteusThemes 
+# This file is distributed under the GPL 2.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: CargoPress\n"
+"Report-Msgid-Bugs-To: http://support.proteusthemes.com/\n"
+"POT-Creation-Date: 2015-07-06 08:11:28+00:00\n"
+"PO-Revision-Date: 2015-12-16 13:32+0100\n"
+"Last-Translator: Primoz Cigler <primoz@proteusnet.com>\n"
+"Language-Team: ProteusThemes <info@proteusthemes.com>\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
+"esc_html_x:1,2c\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: widgets/views/widget-testimonials.php:46
+#, fuzzy
+msgid "Testimonial author avatar"
+msgstr "Avtorjev avatar"
+
+#: widgets/widget-about-us.php:22
+msgid "About Us"
+msgstr "O nas"
+
+#: widgets/widget-about-us.php:23
+msgid "Displaying person profiles in a carousel."
+msgstr "Prikaz osebnega profila na drsniku."
+
+#: widgets/widget-about-us.php:64
+msgid "About us image"
+msgstr "\"O nas\" slika"
+
+#: widgets/widget-about-us.php:65 widgets/widget-accordion.php:52
+#: widgets/widget-featured-page.php:67 widgets/widget-featured-page.php:131
+msgid "Read more"
+msgstr "Preberi več"
+
+#: widgets/widget-about-us.php:66 widgets/widget-testimonials.php:100
+msgid "Previous"
+msgstr "Prejšnji"
+
+#: widgets/widget-about-us.php:67 widgets/widget-testimonials.php:101
+msgid "Next"
+msgstr "Naslednji"
+
+#: widgets/widget-about-us.php:140
+msgid "People"
+msgstr "Ljudje"
+
+#: widgets/widget-about-us.php:144
+msgid "Tag:"
+msgstr "Oznaka:"
+
+#: widgets/widget-about-us.php:149 widgets/widget-person-profile.php:145
+msgid "Picture URL:"
+msgstr "URL slike:"
+
+#: widgets/widget-about-us.php:155 widgets/widget-person-profile.php:135
+msgid "Name:"
+msgstr "Ime:"
+
+#: widgets/widget-about-us.php:160
+msgid "Description:"
+msgstr "Opis:"
+
+#: widgets/widget-about-us.php:165 widgets/widget-banner.php:84
+#: widgets/widget-icon-box.php:95 widgets/widget-person-profile.php:164
+#: widgets/widget-social-icons.php:155
+msgid "Link:"
+msgstr "Povezava:"
+
+#: widgets/widget-about-us.php:172
+msgid "Remove Person"
+msgstr "Odstrani osebo"
+
+#: widgets/widget-about-us.php:178
+msgid "Add New Person"
+msgstr "Dodaj novo osebo"
+
+#: widgets/widget-about-us.php:198 widgets/widget-testimonials.php:195
+msgid "Automatically cycle the carousel:"
+msgstr "Avtomatsko kroženje slikovnega drsnika:"
+
+#: widgets/widget-about-us.php:200 widgets/widget-testimonials.php:197
+msgid "Yes"
+msgstr "Da"
+
+#: widgets/widget-about-us.php:201 widgets/widget-testimonials.php:198
+msgid "No"
+msgstr "Ne"
+
+#: widgets/widget-about-us.php:206 widgets/widget-testimonials.php:203
+#, fuzzy
+msgid "Interval (in milliseconds):"
+msgstr "Interval (v milisekundah)"
+
+#: widgets/widget-accordion.php:18
+msgid "Accordion"
+msgstr "Zložljiv meni"
+
+#: widgets/widget-accordion.php:115 widgets/widget-accordion.php:132
+#: widgets/widget-banner.php:74 widgets/widget-brochure-box.php:85
+#: widgets/widget-facebook.php:105 widgets/widget-icon-box.php:85
+#: widgets/widget-number-counter.php:145 widgets/widget-opening-time.php:201
+#: widgets/widget-person-profile.php:140 widgets/widget-skype.php:72
+#: widgets/widget-steps.php:147 widgets/widget-testimonials.php:190
+msgid "Title:"
+msgstr "Naslov:"
+
+#: widgets/widget-accordion.php:120
+msgid "Read more URL:"
+msgstr "Preberi več URL:"
+
+#: widgets/widget-accordion.php:123
+msgid ""
+"If you leave this field empty the read more link will not be displayed in "
+"the widget."
+msgstr ""
+"Če pustiš to polje prazno, se povezava \"Preberi več\" ne bo prikazala v "
+"gradniku."
+
+#: widgets/widget-accordion.php:128
+msgid "Accordion items"
+msgstr "Elementi zložljivega menija"
+
+#: widgets/widget-accordion.php:136 widgets/widget-banner.php:79
+#: widgets/widget-steps.php:159
+msgid "Content:"
+msgstr "Vsebina:"
+
+#: widgets/widget-accordion.php:141
+msgid "Remove Item"
+msgstr "Odstrani element"
+
+#: widgets/widget-accordion.php:147
+msgid "Add New Item"
+msgstr "Dodaj nov element"
+
+#: widgets/widget-author.php:20
+msgid "Author"
+msgstr "Avtor"
+
+#: widgets/widget-author.php:21
+msgid "Displays author details with a gravatar photo."
+msgstr "Prikaži podrobnosti avtorja z gravatarejm."
+
+#: widgets/widget-author.php:76
+msgid "Display author:"
+msgstr "Prikaži avtorja:"
+
+#: widgets/widget-author.php:86
+msgid ""
+"To add the social icons to this widget, please install the %sExtra User "
+"Details%s plugin and fill in the details in the &quot;Users&quot; section."
+msgstr ""
+"Če želiš v ta gradnik dodati ikone za družabna omrežja, namesti %sExtra User "
+"Details%s vtičnik in izpolni podatke  &quot;Users&quot; "
+
+#: widgets/widget-banner.php:20
+msgid "Banner"
+msgstr "Banner"
+
+#: widgets/widget-banner.php:21
+msgid "Linkable block with title and content."
+msgstr "Element z naslovom in vsebino, ki lahko vodi do spletne povezave"
+
+#: widgets/widget-banner.php:87 widgets/widget-brochure-box.php:97
+#: widgets/widget-icon-box.php:102 widgets/widget-person-profile.php:157
+#: widgets/widget-social-icons.php:146
+msgid "Open link in new tab"
+msgstr "Odpri povezavo v novem zavihku"
+
+#: widgets/widget-brochure-box.php:20
+msgid "Brochure Box"
+msgstr "Brošura"
+
+#: widgets/widget-brochure-box.php:21
+msgid "Widget for displaying downloadable files."
+msgstr "Gradnik za prikaz download datotek."
+
+#: widgets/widget-brochure-box.php:90
+msgid "File URL:"
+msgstr "URL datoteke:"
+
+#: widgets/widget-brochure-box.php:92
+msgid "Upload file"
+msgstr "Naloži datoteko"
+
+#: widgets/widget-brochure-box.php:101
+msgid "Brochure text:"
+msgstr "Besedilo brošure:"
+
+#: widgets/widget-brochure-box.php:106
+msgid "Brochure icon:"
+msgstr "Ikona za brošuro:"
+
+#: widgets/widget-brochure-box.php:107 widgets/widget-icon-box.php:107
+#: widgets/widget-number-counter.php:157 widgets/widget-person-profile.php:170
+#: widgets/widget-social-icons.php:161
+msgid "Click on the icon below or manually select from the %s website."
+msgstr "Klikni na spodnjo ikono ali izberi ročno iz %s spletne strani."
+
+#: widgets/widget-facebook.php:20
+msgid "Facebook"
+msgstr "Facebook"
+
+#: widgets/widget-facebook.php:21
+msgid "Facebook like box with some customization settings."
+msgstr "Nastavitve za \"Facebook like box\"."
+
+#: widgets/widget-facebook.php:110
+msgid "FB page to like (the whole URL):"
+msgstr "Celoten URL FB strani za \"všečkanje\":"
+
+#: widgets/widget-facebook.php:115
+msgid "Width (in pixels, Min: 180, Max: 500):"
+msgstr "Širina (v pikslih, min: 180, max: 500):"
+
+#: widgets/widget-facebook.php:120
+msgid "Height (in pixels, Min: 70):"
+msgstr "Višina (v pikslih, min: 70):"
+
+#: widgets/widget-facebook.php:126
+msgid "Hide cover photo"
+msgstr "Skrij naslovno fotografijo"
+
+#: widgets/widget-facebook.php:129
+msgid "Hide friend's faces"
+msgstr "Skrij obraze prijateljev"
+
+#: widgets/widget-facebook.php:132
+msgid "Show page posts"
+msgstr "Prikaže slike prispevkov"
+
+#: widgets/widget-facebook.php:135
+msgid "Use small header"
+msgstr "Uporabi manjšo obliko glave spletne strani"
+
+#: widgets/widget-featured-page.php:28
+msgid "Featured Page"
+msgstr "Izpostavljena stran"
+
+#: widgets/widget-featured-page.php:29
+msgid "Displays featured image, title and short excerpt of the selected page."
+msgstr "Prkaže naslovno sliko, naslov in kratek povzetek izbrane strani."
+
+#: widgets/widget-featured-page.php:136
+msgid "Page:"
+msgstr "Stran:"
+
+#: widgets/widget-featured-page.php:147
+msgid "Layout:"
+msgstr "Oblika:"
+
+#: widgets/widget-featured-page.php:149
+msgid "With big picture"
+msgstr "Z veliko sliko"
+
+#: widgets/widget-featured-page.php:150
+msgid "With small picture, inline"
+msgstr "Z manjšo sliko, vrstični"
+
+#: widgets/widget-featured-page.php:156 widgets/widget-latest-news.php:155
+msgid "Read more text:"
+msgstr "Besedilo za \"Preberi več\":"
+
+#: widgets/widget-google-map.php:30
+msgid "Google Map"
+msgstr "Google Zemljevid"
+
+#: widgets/widget-google-map.php:31
+msgid ""
+"Generates Google map with given coordinates (select map skin and other "
+"settings)."
+msgstr ""
+"Zgenerira Google zemljevid z danimi koordinatami (izberi videz zemljevida in "
+"druge nastavitve)."
+
+#: widgets/widget-google-map.php:127
+msgid "Latitude and longitude of the map center:"
+msgstr " Geografska širina in dolžina središča zemljevida."
+
+#: widgets/widget-google-map.php:128
+msgid ""
+"Get this from %s (right click on map and select What's here?) or %s. "
+"Latitude and longitude separated by comma."
+msgstr ""
+"To dobiš na %s (desni klik na zemljevid in izberi What's here?) ali %s. "
+"Geografska širina in dolžina naj bosta ločeni z vejico."
+
+#: widgets/widget-google-map.php:133
+msgid "Zoom (more is closer view):"
+msgstr "Povečaj (za bolj natančen ogled)"
+
+#: widgets/widget-google-map.php:142
+msgid "Type:"
+msgstr "Tip:"
+
+#: widgets/widget-google-map.php:151
+msgid "Style:"
+msgstr "Stil:"
+
+#: widgets/widget-google-map.php:160
+msgid "Height of map (in pixels):"
+msgstr "Višina zemljevida (v pikslih):"
+
+#: widgets/widget-google-map.php:165
+msgid "Locations"
+msgstr "Lokacije"
+
+#: widgets/widget-google-map.php:169
+msgid "Title of location:"
+msgstr "Naslov lokacije:"
+
+#: widgets/widget-google-map.php:170
+msgid "This is shown on pin mouse hover."
+msgstr "To se bo prikazalo, ko bo uporabink šel z miško čez ikono."
+
+#: widgets/widget-google-map.php:175
+msgid "Latitude and longitude of this location:"
+msgstr " Geografska širina in dolžina te lokacije:"
+
+#: widgets/widget-google-map.php:176
+msgid "The same format as above for the map center."
+msgstr "Ista oblika zapisa za središče zemljevida kot zgoraj. "
+
+#: widgets/widget-google-map.php:181
+msgid "Custom pin icon URL:"
+msgstr "URL za ikono po meri:"
+
+#: widgets/widget-google-map.php:187
+msgid "Remove Location"
+msgstr "Odstrani lokacijo"
+
+#: widgets/widget-google-map.php:193
+msgid "Add New Location"
+msgstr "Dodaj novo lokacijo"
+
+#: widgets/widget-icon-box.php:20
+msgid "Icon Box"
+msgstr "Ikona"
+
+#: widgets/widget-icon-box.php:21
+msgid "Linkable block with title, text and font awesome icon."
+msgstr "Element z naslovom, vsebino in font awesome ikono."
+
+#: widgets/widget-icon-box.php:90
+msgid "Text:"
+msgstr "Besedilo:"
+
+#: widgets/widget-icon-box.php:96
+msgid "URL to any page, optional."
+msgstr "Opcijsko: URL do katerekoli strani."
+
+#: widgets/widget-icon-box.php:106 widgets/widget-number-counter.php:156
+#: widgets/widget-steps.php:151
+msgid "Icon:"
+msgstr "Ikona:"
+
+#: widgets/widget-latest-news.php:16
+msgid "Latest News"
+msgstr "Zadnje novice"
+
+#: widgets/widget-latest-news.php:17
+msgid "Displays one or more latest posts."
+msgstr "Prikaže enega ali več zadnjih prispevkov."
+
+#: widgets/widget-latest-news.php:39 widgets/widget-latest-news.php:119
+msgid "More news"
+msgstr "Več novic"
+
+#: widgets/widget-latest-news.php:62
+msgid "By"
+msgstr "Od"
+
+#: widgets/widget-latest-news.php:133
+msgid "Display type:"
+msgstr "Prikaži tip:"
+
+#: widgets/widget-latest-news.php:135
+msgid "Box (one post)"
+msgstr "Box (ena objava)"
+
+#: widgets/widget-latest-news.php:136
+msgid "Inline (multiple posts)"
+msgstr "Vrstično (več prispevkov)"
+
+#: widgets/widget-latest-news.php:141 widgets/widget-latest-news.php:200
+msgid "Post order number from:"
+msgstr "Vrstni red prispevka od:"
+
+#: widgets/widget-latest-news.php:144
+msgid "To:"
+msgstr "Za:"
+
+#: widgets/widget-latest-news.php:150
+msgid "More news link:"
+msgstr "Povezava za \"Več novic\":"
+
+#: widgets/widget-latest-news.php:183 widgets/widget-latest-news.php:196
+msgid "Post order number:"
+msgstr "Vrstni red prispevka:"
+
+#: widgets/widget-number-counter.php:18
+msgid "Number Counter"
+msgstr "Števec"
+
+#: widgets/widget-number-counter.php:19
+msgid "Widget with multiple animated counters."
+msgstr "Gradnik z več animiranimi števci."
+
+#: widgets/widget-number-counter.php:135
+#, fuzzy
+msgid "Counting Speed (in milliseconds):"
+msgstr "Hitrost (v milisekundah):"
+
+#: widgets/widget-number-counter.php:141
+msgid "Counters"
+msgstr "Števci"
+
+#: widgets/widget-number-counter.php:150
+msgid "Number:"
+msgstr "Številka:"
+
+#: widgets/widget-number-counter.php:167
+msgid "Remove Counter"
+msgstr "Odstrani števec"
+
+#: widgets/widget-number-counter.php:173
+msgid "Add New Counter"
+msgstr "Dodaj nov števec"
+
+#: widgets/widget-opening-time.php:25 widgets/widget-opening-time.php:150
+msgid "Opening Time"
+msgstr "Odpiralni čas"
+
+#: widgets/widget-opening-time.php:26
+msgid "Widget shows opening times per day with optional text."
+msgstr "Gradnik prikazuje dnevni odpiralni čas s poljubnim besedilom."
+
+#: widgets/widget-opening-time.php:34
+msgid "Sunday"
+msgstr "Nedelja"
+
+#: widgets/widget-opening-time.php:35
+msgid "Monday"
+msgstr "Ponedeljek"
+
+#: widgets/widget-opening-time.php:36
+msgid "Tuesday"
+msgstr "Torek"
+
+#: widgets/widget-opening-time.php:37
+msgid "Wednesday"
+msgstr "Sreda"
+
+#: widgets/widget-opening-time.php:38
+msgid "Thursday"
+msgstr "Četrtek"
+
+#: widgets/widget-opening-time.php:39
+msgid "Friday"
+msgstr "Petek"
+
+#: widgets/widget-opening-time.php:40
+msgid "Saturday"
+msgstr "Sobota"
+
+#: widgets/widget-opening-time.php:182
+msgid "-"
+msgstr "-"
+
+#: widgets/widget-opening-time.php:189
+msgid "CLOSED"
+msgstr "ZAPRTO"
+
+#: widgets/widget-opening-time.php:208
+msgid "opened"
+msgstr "odprto"
+
+#: widgets/widget-opening-time.php:210
+msgid "to"
+msgstr "do"
+
+#: widgets/widget-opening-time.php:216
+msgid "Separator between hours:"
+msgstr "Separator med urami"
+
+#: widgets/widget-opening-time.php:221
+msgid "Text used for closed days:"
+msgstr "Besedilo za dni, ko ne obratujete:"
+
+#: widgets/widget-opening-time.php:226
+msgid "Text below the timetable for additional info (for example lunch time):"
+msgstr ""
+"Besedilo z dodatnimi informacijami, prikazan pod urnikom (recimo malica):"
+
+#: widgets/widget-person-profile.php:22
+msgid "Person Profile"
+msgstr "Profil osebe"
+
+#: widgets/widget-person-profile.php:23
+msgid "Widget displaying person's profile with a photo."
+msgstr "Gradnik, ki prikazuje profil osebe s fotografijo."
+
+#: widgets/widget-person-profile.php:68
+msgid "Picture of"
+msgstr "Slika od"
+
+#: widgets/widget-person-profile.php:69
+msgid "Meet me on:"
+msgstr "Dobiva se na:"
+
+#: widgets/widget-person-profile.php:151
+msgid "Introduction:"
+msgstr "Predstavitev:"
+
+#: widgets/widget-person-profile.php:169 widgets/widget-social-icons.php:160
+msgid "Select social icon:"
+msgstr "Izberi ikono za družabno omrežje:"
+
+#: widgets/widget-person-profile.php:179 widgets/widget-social-icons.php:170
+msgid "Remove Social Icon"
+msgstr "Odstrani ikono za družabna omrežja"
+
+#: widgets/widget-person-profile.php:185 widgets/widget-social-icons.php:176
+msgid "Add New Social Icon"
+msgstr "Dodaj novo ikono za družabna omrežja"
+
+#: widgets/widget-skype.php:19
+msgid "Skype"
+msgstr "Skype"
+
+#: widgets/widget-skype.php:20
+msgid "Linkable block with Skype or telephone icon."
+msgstr "Gumb s Skype ali telefonsko ikono."
+
+#: widgets/widget-skype.php:77
+msgid "Skype username:"
+msgstr "Skype uporabniško ime:"
+
+#: widgets/widget-skype.php:79
+msgid ""
+"Examples of use: %1$sskype:your_skype_username%2$s or %1$stel:"
+"your_phone_number%2$s."
+msgstr ""
+"Primer uporabe: %1$sskype:your_skype_username%2$s ali %1$stel:"
+"your_phone_number%2$s."
+
+#: widgets/widget-social-icons.php:23
+msgid "Social Icons"
+msgstr "Ikone za družabna omrežja"
+
+#: widgets/widget-social-icons.php:151
+msgid "Social icons"
+msgstr "Ikone za družabna omrežja"
+
+#: widgets/widget-steps.php:18
+msgid "Steps"
+msgstr "Koraki"
+
+#: widgets/widget-steps.php:19
+msgid "Displays multiple steps for your process."
+msgstr "Prikaz različnih korakov projekta."
+
+#: widgets/widget-steps.php:137
+msgid "Widget title:"
+msgstr "Naslov gradnika:"
+
+#: widgets/widget-steps.php:143
+msgid "Steps:"
+msgstr "Koraki:"
+
+#: widgets/widget-steps.php:152
+msgid ""
+"Click on the icon below or manually input icon class from the %s website."
+msgstr ""
+"Klikni na spodnjo ikono ali ročno dodaj \"class\" s  %s spletne strani."
+
+#: widgets/widget-steps.php:163
+msgid "Step:"
+msgstr "Korak:"
+
+#: widgets/widget-steps.php:168
+msgid "Remove Step"
+msgstr "Odstrani korak"
+
+#: widgets/widget-steps.php:174
+msgid "Add New Step"
+msgstr "Dodaj nov korak"
+
+#: widgets/widget-testimonials.php:22 widgets/widget-testimonials.php:209
+msgid "Testimonials"
+msgstr "Mnenje strank"
+
+#: widgets/widget-testimonials.php:213
+msgid "Quote:"
+msgstr "Citat:"
+
+#: widgets/widget-testimonials.php:218
+msgid "Author:"
+msgstr "Avtor:"
+
+#: widgets/widget-testimonials.php:224
+msgid "Author description:"
+msgstr "Opis avtorja:"
+
+#: widgets/widget-testimonials.php:231
+msgid "Author avatar:"
+msgstr "Avtorjev avatar"
+
+#: widgets/widget-testimonials.php:239
+msgid "Rating:"
+msgstr "Ocena:"
+
+#: widgets/widget-testimonials.php:253
+msgid "Remove Testimonial"
+msgstr "Odstrani mnenje stranke"
+
+#: widgets/widget-testimonials.php:259
+msgid "Add New Testimonial"
+msgstr "Dodaj novo mnenje stranke"
+
+#, fuzzy
+#~ msgid "Title"
+#~ msgstr "Naslov:"
+
+#, fuzzy
+#~ msgid "Content"
+#~ msgstr "Vsebina:"
+
+#, fuzzy
+#~ msgid "Select icon:"
+#~ msgstr "Socialne ikone"
+
+#, fuzzy
+#~ msgctxt "backend"
+#~ msgid "Title:"
+#~ msgstr "Naslov:"
+
+#, fuzzy
+#~ msgctxt "backend"
+#~ msgid "Name:"
+#~ msgstr "Ime:"

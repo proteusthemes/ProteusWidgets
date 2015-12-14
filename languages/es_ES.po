@@ -1,0 +1,636 @@
+# Copyright (C) 2015 ProteusThemes
+# This file is distributed under the GPL 2.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://support.proteusthemes.com/\n"
+"POT-Creation-Date: 2015-07-06 08:11:28+00:00\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: grunt-wp-i18n 0.5.1\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+
+#: widgets/views/widget-testimonials.php:46
+#, fuzzy
+msgid "Testimonial author avatar"
+msgstr "Avatar del autor:"
+
+#: widgets/widget-about-us.php:22
+msgid "About Us"
+msgstr "Quiénes somos"
+
+#: widgets/widget-about-us.php:23
+msgid "Displaying person profiles in a carousel."
+msgstr "Mostrando perfiles de personas en carrusel."
+
+#: widgets/widget-about-us.php:64
+msgid "About us image"
+msgstr "Imagen de quiénes somos"
+
+#: widgets/widget-about-us.php:65 widgets/widget-accordion.php:52
+#: widgets/widget-featured-page.php:67 widgets/widget-featured-page.php:131
+msgid "Read more"
+msgstr "Leer más"
+
+#: widgets/widget-about-us.php:66 widgets/widget-testimonials.php:100
+msgid "Previous"
+msgstr "Anterior"
+
+#: widgets/widget-about-us.php:67 widgets/widget-testimonials.php:101
+msgid "Next"
+msgstr "Siguiente"
+
+#: widgets/widget-about-us.php:140
+msgid "People"
+msgstr "Gente"
+
+#: widgets/widget-about-us.php:144
+msgid "Tag:"
+msgstr "Etiqueta:"
+
+#: widgets/widget-about-us.php:149 widgets/widget-person-profile.php:145
+msgid "Picture URL:"
+msgstr "Imagen URL:"
+
+#: widgets/widget-about-us.php:155 widgets/widget-person-profile.php:135
+msgid "Name:"
+msgstr "Nombre:"
+
+#: widgets/widget-about-us.php:160
+msgid "Description:"
+msgstr "Descripción:"
+
+#: widgets/widget-about-us.php:165 widgets/widget-banner.php:84
+#: widgets/widget-icon-box.php:95 widgets/widget-person-profile.php:164
+#: widgets/widget-social-icons.php:155
+msgid "Link:"
+msgstr "Enlace:"
+
+#: widgets/widget-about-us.php:172
+msgid "Remove Person"
+msgstr "Eliminar persona"
+
+#: widgets/widget-about-us.php:178
+msgid "Add New Person"
+msgstr "Añadir nueva persona"
+
+#: widgets/widget-about-us.php:198 widgets/widget-testimonials.php:195
+msgid "Automatically cycle the carousel:"
+msgstr "Girar el carrusel automáticamente:"
+
+#: widgets/widget-about-us.php:200 widgets/widget-testimonials.php:197
+msgid "Yes"
+msgstr "Sí"
+
+#: widgets/widget-about-us.php:201 widgets/widget-testimonials.php:198
+msgid "No"
+msgstr "No"
+
+#: widgets/widget-about-us.php:206 widgets/widget-testimonials.php:203
+#, fuzzy
+msgid "Interval (in milliseconds):"
+msgstr "Intervalo (en milisegundos):"
+
+#: widgets/widget-accordion.php:18
+msgid "Accordion"
+msgstr "Acordeón"
+
+#: widgets/widget-accordion.php:115 widgets/widget-accordion.php:132
+#: widgets/widget-banner.php:74 widgets/widget-brochure-box.php:85
+#: widgets/widget-facebook.php:105 widgets/widget-icon-box.php:85
+#: widgets/widget-number-counter.php:145 widgets/widget-opening-time.php:201
+#: widgets/widget-person-profile.php:140 widgets/widget-skype.php:72
+#: widgets/widget-steps.php:147 widgets/widget-testimonials.php:190
+msgid "Title:"
+msgstr "Título:"
+
+#: widgets/widget-accordion.php:120
+msgid "Read more URL:"
+msgstr "URL Leer más:"
+
+#: widgets/widget-accordion.php:123
+msgid ""
+"If you leave this field empty the read more link will not be displayed in "
+"the widget."
+msgstr ""
+"Si deja este campo vacío el enlace 'leer más' no se mostrará en el widget."
+
+#: widgets/widget-accordion.php:128
+msgid "Accordion items"
+msgstr "Artículos de acordeón"
+
+#: widgets/widget-accordion.php:136 widgets/widget-banner.php:79
+#: widgets/widget-steps.php:159
+msgid "Content:"
+msgstr "Contenido:"
+
+#: widgets/widget-accordion.php:141
+msgid "Remove Item"
+msgstr "Eliminar artículo"
+
+#: widgets/widget-accordion.php:147
+msgid "Add New Item"
+msgstr "Añadir artículo nuevo"
+
+#: widgets/widget-author.php:20
+msgid "Author"
+msgstr "Autor"
+
+#: widgets/widget-author.php:21
+msgid "Displays author details with a gravatar photo."
+msgstr "Muestra información del autor con foto gravatar."
+
+#: widgets/widget-author.php:76
+msgid "Display author:"
+msgstr "Mostrar autor:"
+
+#: widgets/widget-author.php:86
+msgid ""
+"To add the social icons to this widget, please install the %sExtra User "
+"Details%s plugin and fill in the details in the &quot;Users&quot; section."
+msgstr ""
+"Para añadir los iconos sociales a este widget instale el plugin %sExtra User "
+"Details%s y rellene la información de la sección &quot;Users&quot;."
+
+#: widgets/widget-banner.php:20
+msgid "Banner"
+msgstr "Banner"
+
+#: widgets/widget-banner.php:21
+msgid "Linkable block with title and content."
+msgstr "Bloque enlazable con título y contenido."
+
+#: widgets/widget-banner.php:87 widgets/widget-brochure-box.php:97
+#: widgets/widget-icon-box.php:102 widgets/widget-person-profile.php:157
+#: widgets/widget-social-icons.php:146
+msgid "Open link in new tab"
+msgstr "Abrir enlace en una pestaña nueva"
+
+#: widgets/widget-brochure-box.php:20
+msgid "Brochure Box"
+msgstr "Recuadro de folleto"
+
+#: widgets/widget-brochure-box.php:21
+msgid "Widget for displaying downloadable files."
+msgstr "Widget para mostrar los archivos descargables."
+
+#: widgets/widget-brochure-box.php:90
+msgid "File URL:"
+msgstr "Archivo URL:"
+
+#: widgets/widget-brochure-box.php:92
+msgid "Upload file"
+msgstr "Cargar archivo"
+
+#: widgets/widget-brochure-box.php:101
+msgid "Brochure text:"
+msgstr "Texto del folleto:"
+
+#: widgets/widget-brochure-box.php:106
+msgid "Brochure icon:"
+msgstr "Icono del folleto:"
+
+#: widgets/widget-brochure-box.php:107 widgets/widget-icon-box.php:107
+#: widgets/widget-number-counter.php:157 widgets/widget-person-profile.php:170
+#: widgets/widget-social-icons.php:161
+msgid "Click on the icon below or manually select from the %s website."
+msgstr ""
+"Clique en el icono de abajo o seleccione manualmente de la página web %s."
+
+#: widgets/widget-facebook.php:20
+msgid "Facebook"
+msgstr "Facebook"
+
+#: widgets/widget-facebook.php:21
+msgid "Facebook like box with some customization settings."
+msgstr "Casilla 'me gusta' de Facebook con ajustes de personalización."
+
+#: widgets/widget-facebook.php:110
+msgid "FB page to like (the whole URL):"
+msgstr "Página FB para 'me gusta' (toda el URL):"
+
+#: widgets/widget-facebook.php:115
+msgid "Width (in pixels, Min: 180, Max: 500):"
+msgstr "Ancho (en píxeles, mín: 180, máx: 500):"
+
+#: widgets/widget-facebook.php:120
+msgid "Height (in pixels, Min: 70):"
+msgstr "Alto (en píxeles, mín: 70):"
+
+#: widgets/widget-facebook.php:126
+msgid "Hide cover photo"
+msgstr "Ocultar foto de cubierta"
+
+#: widgets/widget-facebook.php:129
+msgid "Hide friend's faces"
+msgstr "Ocultar caras de amistades"
+
+#: widgets/widget-facebook.php:132
+msgid "Show page posts"
+msgstr "Mostrar comentarios de la página"
+
+#: widgets/widget-facebook.php:135
+msgid "Use small header"
+msgstr "Utilizar encabezado pequeño"
+
+#: widgets/widget-featured-page.php:28
+msgid "Featured Page"
+msgstr "Página exhibida"
+
+#: widgets/widget-featured-page.php:29
+msgid "Displays featured image, title and short excerpt of the selected page."
+msgstr ""
+"Muestra la imagen, el título y un breve extracto de la página seleccionada."
+
+#: widgets/widget-featured-page.php:136
+msgid "Page:"
+msgstr "Página:"
+
+#: widgets/widget-featured-page.php:147
+msgid "Layout:"
+msgstr "Estructura:"
+
+#: widgets/widget-featured-page.php:149
+msgid "With big picture"
+msgstr "Con imagen grande"
+
+#: widgets/widget-featured-page.php:150
+msgid "With small picture, inline"
+msgstr "Con imagen pequeña, inline"
+
+#: widgets/widget-featured-page.php:156 widgets/widget-latest-news.php:155
+msgid "Read more text:"
+msgstr "Leer más texto:"
+
+#: widgets/widget-google-map.php:30
+msgid "Google Map"
+msgstr "Google Map"
+
+#: widgets/widget-google-map.php:31
+msgid ""
+"Generates Google map with given coordinates (select map skin and other "
+"settings)."
+msgstr ""
+"Genera un Google map con las coordenadas facilitadas (seleccionar aspecto "
+"del mapa y otros ajustes)."
+
+#: widgets/widget-google-map.php:127
+msgid "Latitude and longitude of the map center:"
+msgstr "Latitud y longitud en el centro del mapa:"
+
+#: widgets/widget-google-map.php:128
+msgid ""
+"Get this from %s (right click on map and select What's here?) or %s. "
+"Latitude and longitude separated by comma."
+msgstr ""
+"Obtenga esto de %s (clique con el botón derecho sobre el mapa y seleccione "
+"'¿Qué hay aquí?') o %s. Latitud y longitud separadas por una coma."
+
+#: widgets/widget-google-map.php:133
+msgid "Zoom (more is closer view):"
+msgstr "Zoom (más es vista más cercana):"
+
+#: widgets/widget-google-map.php:142
+msgid "Type:"
+msgstr "Tipo:"
+
+#: widgets/widget-google-map.php:151
+msgid "Style:"
+msgstr "Estilo:"
+
+#: widgets/widget-google-map.php:160
+msgid "Height of map (in pixels):"
+msgstr "Altura del mapa (en píxeles):"
+
+#: widgets/widget-google-map.php:165
+msgid "Locations"
+msgstr "Ubicaciones"
+
+#: widgets/widget-google-map.php:169
+msgid "Title of location:"
+msgstr "Título de la ubicación:"
+
+#: widgets/widget-google-map.php:170
+msgid "This is shown on pin mouse hover."
+msgstr "Esto se muestra en la flecha del ratón."
+
+#: widgets/widget-google-map.php:175
+msgid "Latitude and longitude of this location:"
+msgstr "Latitud y longitud de esta ubicación:"
+
+#: widgets/widget-google-map.php:176
+msgid "The same format as above for the map center."
+msgstr "El mismo formato de arriba para el centro del mapa."
+
+#: widgets/widget-google-map.php:181
+msgid "Custom pin icon URL:"
+msgstr "URL para personalizar el icono del pin:"
+
+#: widgets/widget-google-map.php:187
+msgid "Remove Location"
+msgstr "Eliminar ubicación"
+
+#: widgets/widget-google-map.php:193
+msgid "Add New Location"
+msgstr "Añadir nueva ubicación"
+
+#: widgets/widget-icon-box.php:20
+msgid "Icon Box"
+msgstr "Recuadro de iconos"
+
+#: widgets/widget-icon-box.php:21
+msgid "Linkable block with title, text and font awesome icon."
+msgstr "Bloque enlazable con icono impresionante de título, texto y fuente."
+
+#: widgets/widget-icon-box.php:90
+msgid "Text:"
+msgstr "Texto:"
+
+#: widgets/widget-icon-box.php:96
+msgid "URL to any page, optional."
+msgstr "URL a cualquier página, opcional."
+
+#: widgets/widget-icon-box.php:106 widgets/widget-number-counter.php:156
+#: widgets/widget-steps.php:151
+msgid "Icon:"
+msgstr "Icono:"
+
+#: widgets/widget-latest-news.php:16
+msgid "Latest News"
+msgstr "Novedades"
+
+#: widgets/widget-latest-news.php:17
+msgid "Displays one or more latest posts."
+msgstr "Muestra una o más de las últimas publicaciones."
+
+#: widgets/widget-latest-news.php:39 widgets/widget-latest-news.php:119
+msgid "More news"
+msgstr "Más noticias"
+
+#: widgets/widget-latest-news.php:62
+msgid "By"
+msgstr "Por"
+
+#: widgets/widget-latest-news.php:133
+msgid "Display type:"
+msgstr "Modo de muestra:"
+
+#: widgets/widget-latest-news.php:135
+msgid "Box (one post)"
+msgstr "Recuadro (una publicación)"
+
+#: widgets/widget-latest-news.php:136
+msgid "Inline (multiple posts)"
+msgstr "Inline (varias publicaciones)"
+
+#: widgets/widget-latest-news.php:141 widgets/widget-latest-news.php:200
+msgid "Post order number from:"
+msgstr "Número de orden de la publicación desde:"
+
+#: widgets/widget-latest-news.php:144
+msgid "To:"
+msgstr "A:"
+
+#: widgets/widget-latest-news.php:150
+msgid "More news link:"
+msgstr "Enlace a más noticias:"
+
+#: widgets/widget-latest-news.php:183 widgets/widget-latest-news.php:196
+msgid "Post order number:"
+msgstr "Número de orden de la publicación:"
+
+#: widgets/widget-number-counter.php:18
+msgid "Number Counter"
+msgstr "Contador de números"
+
+#: widgets/widget-number-counter.php:19
+msgid "Widget with multiple animated counters."
+msgstr "Widget con contadores animados múltiples."
+
+#: widgets/widget-number-counter.php:135
+#, fuzzy
+msgid "Counting Speed (in milliseconds):"
+msgstr "Velocidad al contar (en milisegundos):"
+
+#: widgets/widget-number-counter.php:141
+msgid "Counters"
+msgstr "Contadores"
+
+#: widgets/widget-number-counter.php:150
+msgid "Number:"
+msgstr "Número:"
+
+#: widgets/widget-number-counter.php:167
+msgid "Remove Counter"
+msgstr "Eliminar contador"
+
+#: widgets/widget-number-counter.php:173
+msgid "Add New Counter"
+msgstr "Añadir contador nuevo"
+
+#: widgets/widget-opening-time.php:25 widgets/widget-opening-time.php:150
+msgid "Opening Time"
+msgstr "Horario de apertura"
+
+#: widgets/widget-opening-time.php:26
+msgid "Widget shows opening times per day with optional text."
+msgstr "El widget muestra los horarios de apertura por día con texto opcional."
+
+#: widgets/widget-opening-time.php:34
+msgid "Sunday"
+msgstr "Domingo"
+
+#: widgets/widget-opening-time.php:35
+msgid "Monday"
+msgstr "Lunes"
+
+#: widgets/widget-opening-time.php:36
+msgid "Tuesday"
+msgstr "Martes"
+
+#: widgets/widget-opening-time.php:37
+msgid "Wednesday"
+msgstr "Miércoles"
+
+#: widgets/widget-opening-time.php:38
+msgid "Thursday"
+msgstr "Jueves"
+
+#: widgets/widget-opening-time.php:39
+msgid "Friday"
+msgstr "Viernes"
+
+#: widgets/widget-opening-time.php:40
+msgid "Saturday"
+msgstr "Sábado"
+
+#: widgets/widget-opening-time.php:182
+msgid "-"
+msgstr "-"
+
+#: widgets/widget-opening-time.php:189
+msgid "CLOSED"
+msgstr "CERRADO"
+
+#: widgets/widget-opening-time.php:208
+msgid "opened"
+msgstr "abierto"
+
+#: widgets/widget-opening-time.php:210
+msgid "to"
+msgstr "a"
+
+#: widgets/widget-opening-time.php:216
+msgid "Separator between hours:"
+msgstr "Separador entre horas:"
+
+#: widgets/widget-opening-time.php:221
+msgid "Text used for closed days:"
+msgstr "Texto para días cerrados:"
+
+#: widgets/widget-opening-time.php:226
+msgid "Text below the timetable for additional info (for example lunch time):"
+msgstr ""
+"Texto bajo el horario para información adicional (por ejemplo tiempo para "
+"comer):"
+
+#: widgets/widget-person-profile.php:22
+msgid "Person Profile"
+msgstr "Perfil personal"
+
+#: widgets/widget-person-profile.php:23
+msgid "Widget displaying person's profile with a photo."
+msgstr "Widget mostrando el perfil de una persona con foto."
+
+#: widgets/widget-person-profile.php:68
+msgid "Picture of"
+msgstr "Imagen de"
+
+#: widgets/widget-person-profile.php:69
+msgid "Meet me on:"
+msgstr "Nos vemos en:"
+
+#: widgets/widget-person-profile.php:151
+msgid "Introduction:"
+msgstr "Introducción:"
+
+#: widgets/widget-person-profile.php:169 widgets/widget-social-icons.php:160
+msgid "Select social icon:"
+msgstr "Seleccionar icono social:"
+
+#: widgets/widget-person-profile.php:179 widgets/widget-social-icons.php:170
+msgid "Remove Social Icon"
+msgstr "Eliminar icono social"
+
+#: widgets/widget-person-profile.php:185 widgets/widget-social-icons.php:176
+msgid "Add New Social Icon"
+msgstr "Añadir icono social nuevo"
+
+#: widgets/widget-skype.php:19
+msgid "Skype"
+msgstr "Skype"
+
+#: widgets/widget-skype.php:20
+msgid "Linkable block with Skype or telephone icon."
+msgstr "Bloque enlazable con Skype o icono de teléfono."
+
+#: widgets/widget-skype.php:77
+msgid "Skype username:"
+msgstr "Nombre de usuario de Skype:"
+
+#: widgets/widget-skype.php:79
+msgid ""
+"Examples of use: %1$sskype:your_skype_username%2$s or %1$stel:"
+"your_phone_number%2$s."
+msgstr ""
+"Ejemplos: %1$sskype:tu_nombreusuario_skype%2$s o %1$stel:tu_número_teléfono"
+"%2$s."
+
+#: widgets/widget-social-icons.php:23
+msgid "Social Icons"
+msgstr "Iconos sociales"
+
+#: widgets/widget-social-icons.php:151
+msgid "Social icons"
+msgstr "Iconos sociales"
+
+#: widgets/widget-steps.php:18
+msgid "Steps"
+msgstr "Pasos"
+
+#: widgets/widget-steps.php:19
+msgid "Displays multiple steps for your process."
+msgstr "Muestra múltiples pasos del proceso."
+
+#: widgets/widget-steps.php:137
+msgid "Widget title:"
+msgstr "Título del widget:"
+
+#: widgets/widget-steps.php:143
+msgid "Steps:"
+msgstr "Pasos:"
+
+#: widgets/widget-steps.php:152
+msgid ""
+"Click on the icon below or manually input icon class from the %s website."
+msgstr ""
+"Clique en el icono de más abajo o introduzca manualmente la clase de icono "
+"de la web %s."
+
+#: widgets/widget-steps.php:163
+msgid "Step:"
+msgstr "Paso:"
+
+#: widgets/widget-steps.php:168
+msgid "Remove Step"
+msgstr "Eliminar paso"
+
+#: widgets/widget-steps.php:174
+msgid "Add New Step"
+msgstr "Añadir paso nuevo"
+
+#: widgets/widget-testimonials.php:22 widgets/widget-testimonials.php:209
+msgid "Testimonials"
+msgstr "Testimoniales"
+
+#: widgets/widget-testimonials.php:213
+msgid "Quote:"
+msgstr "Cuota:"
+
+#: widgets/widget-testimonials.php:218
+msgid "Author:"
+msgstr "Autor:"
+
+#: widgets/widget-testimonials.php:224
+msgid "Author description:"
+msgstr "Descripción del autor:"
+
+#: widgets/widget-testimonials.php:231
+msgid "Author avatar:"
+msgstr "Avatar del autor:"
+
+#: widgets/widget-testimonials.php:239
+msgid "Rating:"
+msgstr "Puntuación:"
+
+#: widgets/widget-testimonials.php:253
+msgid "Remove Testimonial"
+msgstr "Eliminar testimonial"
+
+#: widgets/widget-testimonials.php:259
+msgid "Add New Testimonial"
+msgstr "Añadir testimonial nuevo"
