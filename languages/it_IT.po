@@ -1,0 +1,615 @@
+# Copyright (C) 2015 ProteusThemes
+# This file is distributed under the GPL 2.0.
+msgid ""
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: http://support.proteusthemes.com/\nPOT-Creation-Date: 2015-07-06 08:11:28+00:00\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\nPO-Revision-Date: 2015-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nX-Generator: grunt-wp-i18n 0.5.1\nX-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\nLanguage: en\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Poedit-Country: United States\nX-Poedit-SourceCharset: UTF-8\nX-Poedit-Basepath: ../\nX-Poedit-SearchPath-0: .\nX-Poedit-Bookmarks: \nX-Textdomain-Support: yes\n"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:17
+msgid "About Us"
+msgstr "Chi siamo"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:18
+msgid "Displaying person profiles in a carousel."
+msgstr "Mostriamo i profili personali in un carosello."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:65
+msgid "About us image"
+msgstr "Chi siamo: immagine"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:66
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:62
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:67
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:132
+msgid "Read more"
+msgstr "Leggi di più"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:67
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:102
+msgid "Previous"
+msgstr "Precedente"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:68
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:103
+msgid "Next"
+msgstr "Successivo"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:141
+msgid "People"
+msgstr "Persone"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:145
+msgid "Tag:"
+msgstr "Etichetta:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:150
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:152
+msgid "Picture URL:"
+msgstr "URL immagine:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:156
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:142
+msgid "Name:"
+msgstr "Nome:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:161
+msgid "Description:"
+msgstr "Descrizione:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:166
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:87
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:96
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:171
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:159
+msgid "Link:"
+msgstr "Collegamento:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:173
+msgid "Remove Person"
+msgstr "Rimuovi persona"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:179
+msgid "Add New Person"
+msgstr "Aggiungi nuova persona"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:199
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:197
+msgid "Automatically cycle the carousel:"
+msgstr "Fai girare il carosello automaticamente:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:201
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:199
+msgid "Yes"
+msgstr "Sì"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:202
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:200
+msgid "No"
+msgstr "No"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:207
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:205
+msgid "Interval (in miliseconds):"
+msgstr "Intervallo (in millisecondi):"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:16
+msgid "Accordion"
+msgstr "Fisarmonica"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:125
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:142
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:77
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:87
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:106
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:86
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:155
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:201
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:147
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-skype.php:72
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:155
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:192
+msgid "Title:"
+msgstr "Titolo:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:130
+msgid "Read more URL:"
+msgstr "URL leggi di più:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:133
+msgid "If you leave this field empty the read more link will not be displayed in the widget."
+msgstr "Se lasci questo spazio bianco il collegamento leggi di più non verrà mostrato nel widget."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:138
+msgid "Accordion items"
+msgstr "Elementi fisarmonica"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:146
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:82
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:167
+msgid "Content:"
+msgstr "Contenuto:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:151
+msgid "Remove Item"
+msgstr "Rimuovi elemento"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:157
+msgid "Add New Item"
+msgstr "Aggiungi nuovo elemento"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-author.php:15
+msgid "Author"
+msgstr "Autore"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-author.php:16
+msgid "Displays author details with a gravatar photo."
+msgstr "Mostra i dati dell'autore con una foto gravatar."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-author.php:76
+msgid "Display author:"
+msgstr "Mostra autore:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-author.php:86
+msgid "To add the social icons to this widget, please install the %sExtra User Details%s plugin and fill in the details in the &quot;Users&quot; section."
+msgstr "Per aggiungere le icone social a questo widget, installa il plug in %sDati extra utente%s e completa i dati nella sezione &quot;Utente&quot;."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:15
+msgid "Banner"
+msgstr "Banner"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:16
+msgid "Linkable block with title and content."
+msgstr "Blocco collegabile con titolo e contenuto."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:90
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:99
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:103
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:164
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:150
+msgid "Open link in new tab"
+msgstr "Apri collegamento in una nuova scheda"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:15
+msgid "Brochure Box"
+msgstr "Casella brochure"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:16
+msgid "Widget for displaying downloadable files."
+msgstr "Widget per mostrare file scaricabili."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:92
+msgid "File URL:"
+msgstr "URL file:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:94
+msgid "Upload file"
+msgstr "Carica file"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:103
+msgid "Brochure text:"
+msgstr "Testo brochure:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:108
+msgid "Brochure icon:"
+msgstr "Icona brochure:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:109
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:108
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:167
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:177
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:165
+msgid "Click on the icon below or manually select from the %s website."
+msgstr "Clicca sull'icona sottostante o seleziona manualmente dal sito web %s."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:15
+msgid "Facebook"
+msgstr "Facebook"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:16
+msgid "Facebook like box with some customization settings."
+msgstr "Casella Mi piace di Facebook con alcune impostazioni di personalizzazione."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:111
+msgid "FB page to like (the whole URL):"
+msgstr "Pagina FB su cui mettere Mi piace (l'URL intero):"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:116
+msgid "Width (in pixels, Min: 180, Max: 500):"
+msgstr "Larghezza (in pixel, min. 180, max. 500):"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:121
+msgid "Height (in pixels, Min: 70):"
+msgstr "Altezza (in pixel, min. 70):"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:127
+msgid "Hide cover photo"
+msgstr "Nascondi foto di copertina"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:130
+msgid "Hide friend's faces"
+msgstr "Nascondi volti degli amici"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:133
+msgid "Show page posts"
+msgstr "Mostra post della pagina"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:136
+msgid "Use small header"
+msgstr "Usa intestazione piccola"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:24
+msgid "Featured Page"
+msgstr "Pagina in evidenza"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:25
+msgid "Displays featured image, title and short excerpt of the selected page."
+msgstr "Mostra pagina in evidenza, titolo e breve estratto della pagina selezionata."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:137
+msgid "Page:"
+msgstr "Pagina:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:148
+msgid "Layout:"
+msgstr "Struttura:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:150
+msgid "With big picture"
+msgstr "Con immagine grande"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:151
+msgid "With small picture, inline"
+msgstr "Con immagine piccola, incorporata"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:157
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:155
+msgid "Read more text:"
+msgstr "Leggi più testo:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:25
+msgid "Google Map"
+msgstr "Mappa di Google"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:26
+msgid "Generates Google map with given coordinates (select map skin and other settings)."
+msgstr "Genera una mappa di Google con coordinate date (seleziona interfaccia mappa e altre impostazioni)."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:130
+msgid "Latitude and longitude of the map center:"
+msgstr "Latitudine e longitudine del centro della mappa:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:131
+msgid "Get this from %s (right click on map and select What's here?) or %s. Latitude and longitude separated by comma."
+msgstr "Ottienilo da %s (clicca col destro sulla mappa e seleziona Cosa c'è qui?) o %s. Latitudine e longitudine separate da virgola."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:136
+msgid "Zoom (more is closer view):"
+msgstr "Zoom (più è vista ravvicinata):"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:145
+msgid "Type:"
+msgstr "Tipo:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:154
+msgid "Style:"
+msgstr "Stile:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:163
+msgid "Height of map (in pixels):"
+msgstr "Altezza della mappa (in pixel):"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:168
+msgid "Locations"
+msgstr "Posizioni"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:172
+msgid "Title of location:"
+msgstr "Titolo della posizione:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:173
+msgid "This is shown on pin mouse hover."
+msgstr "Questo viene mostrato al passaggio del mouse sul segnaposto."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:178
+msgid "Latitude and longitude of this location:"
+msgstr "Latitudine e longitudine di questa posizione:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:179
+msgid "The same format as above for the map center."
+msgstr "Lo stesso formato di cui sopra per il centro della mappa."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:184
+msgid "Custom pin icon URL:"
+msgstr "URL icona segnaposto personalizzato:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:190
+msgid "Remove Location"
+msgstr "Rimuovi posizione"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:196
+msgid "Add New Location"
+msgstr "Aggiungi nuova posizione"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:15
+msgid "Icon Box"
+msgstr "Casella icona"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:16
+msgid "Linkable block with title, text and font awesome icon."
+msgstr "Blocco collegabile con titolo, testo e icona font awesome."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:91
+msgid "Text:"
+msgstr "Testo:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:97
+msgid "URL to any page, optional."
+msgstr "URL per qualsiasi pagina, opzionale."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:107
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:166
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:159
+msgid "Icon:"
+msgstr "Icona:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:14
+msgid "Latest News"
+msgstr "Ultime notizie"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:15
+msgid "Displays one or more latest posts."
+msgstr "Mostra uno o più degli ultimi post."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:39
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:119
+msgid "More news"
+msgstr "Altre notizie"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:62
+msgid "By"
+msgstr "Di"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:133
+msgid "Display type:"
+msgstr "Mostra tipo:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:135
+msgid "Box (one post)"
+msgstr "Casella (un post)"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:136
+msgid "Inline (multiple posts)"
+msgstr "Incorporato (post multipli)"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:141
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:200
+msgid "Post order number from:"
+msgstr "Numero ordine post da:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:144
+msgid "To:"
+msgstr "A:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:150
+msgid "More news link:"
+msgstr "Collegamento a Altre notizie:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:183
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:196
+msgid "Post order number:"
+msgstr "Numero ordine post:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:18
+msgid "Number Counter"
+msgstr "Contatore numerico"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:19
+msgid "Widget with multiple animated counters."
+msgstr "Widget con contatori animati multipli."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:145
+msgid "Counting Speed (in miliseconds):"
+msgstr "Velocità conteggio (in millisecondi):"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:151
+msgid "Counters"
+msgstr "Contatori"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:160
+msgid "Number:"
+msgstr "Numero:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:177
+msgid "Remove Counter"
+msgstr "Rimuovi contatore"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:183
+msgid "Add New Counter"
+msgstr "Aggiungi nuovo contatore"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:21
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:150
+msgid "Opening Time"
+msgstr "Orario d'apertura"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:22
+msgid "Widget shows opening times per day with optional text."
+msgstr "Il widget mostra gli orari d'apertura giornalieri con testo opzionale."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:34
+msgid "Sunday"
+msgstr "Domenica"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:35
+msgid "Monday"
+msgstr "Lunedì"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:36
+msgid "Tuesday"
+msgstr "Martedì"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:37
+msgid "Wednesday"
+msgstr "Mercoledì"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:38
+msgid "Thursday"
+msgstr "Giovedì"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:39
+msgid "Friday"
+msgstr "Venerdì"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:40
+msgid "Saturday"
+msgstr "Sabato"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:182
+msgid "-"
+msgstr "-"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:189
+msgid "CLOSED"
+msgstr "CHIUSO"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:208
+msgid "opened"
+msgstr "aperto"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:210
+msgid "to"
+msgstr "a"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:216
+msgid "Separator between hours:"
+msgstr "Separatore tra le ore:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:221
+msgid "Text used for closed days:"
+msgstr "Testo usato per i giorni di chiusura:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:226
+msgid "Text below the timetable for additional info (for example lunch time):"
+msgstr "Testo sotto l'orario per informazioni aggiuntive (ad esempio l'ora del pranzo):"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:18
+msgid "Person Profile"
+msgstr "Profilo personale"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:19
+msgid "Widget displaying person's profile with a photo."
+msgstr "Widget che mostra il profilo personale con foto."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:75
+msgid "Picture of"
+msgstr "Immagine di"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:76
+msgid "Meet me on:"
+msgstr "Incontriamoci:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:158
+msgid "Introduction:"
+msgstr "Introduzione:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:176
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:164
+msgid "Select social icon:"
+msgstr "Seleziona icona social:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:186
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:174
+msgid "Remove Social Icon"
+msgstr "Rimuovi icona social"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:192
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:180
+msgid "Add New Social Icon"
+msgstr "Aggiungi nuova icona social"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-skype.php:15
+msgid "Skype"
+msgstr "Skype"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-skype.php:16
+msgid "Linkable block with Skype or telephone icon."
+msgstr "Blocco collegabile con icona Skype o telefono"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-skype.php:77
+msgid "Skype username:"
+msgstr "Nome utente Skype:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-skype.php:79
+msgid "Examples of use: %1$sskype:your_skype_username%2$s or %1$stel:your_phone_number%2$s."
+msgstr "Esempi d'uso: %1$sskype:il_tuo_nome_utente_skype%2$s o %1$stel:il_tuo_numero_telefonico%2$s."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:20
+msgid "Social Icons"
+msgstr "Icone social"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:155
+msgid "Social icons"
+msgstr "Icone social"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:18
+msgid "Steps"
+msgstr "Passaggi"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:19
+msgid "Displays multiple steps for your process."
+msgstr "Mostra passaggi multipli per il tuo processo."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:145
+msgid "Widget title:"
+msgstr "Titolo widget:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:151
+msgid "Steps:"
+msgstr "Passaggi:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:160
+msgid "Click on the icon below or manually input icon class from the %s website."
+msgstr "Clicca sull'icona sottostante o inserisci manualmente la classe icona dal sito web %s."
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:171
+msgid "Step:"
+msgstr "Passaggio:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:176
+msgid "Remove Step"
+msgstr "Rimuovi passaggio"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:182
+msgid "Add New Step"
+msgstr "Aggiungi nuovo passaggio"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:18
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:211
+msgid "Testimonials"
+msgstr "Referenze"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:215
+msgid "Quote:"
+msgstr "Citazione:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:220
+msgid "Author:"
+msgstr "Autore:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:226
+msgid "Author description:"
+msgstr "Descrizione autore:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:233
+msgid "Author avatar:"
+msgstr "Avatar autore:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:241
+msgid "Rating:"
+msgstr "Valutazione:"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:255
+msgid "Remove Testimonial"
+msgstr "Rimuovi referenza"
+
+#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:261
+msgid "Add New Testimonial"
+msgstr "Aggiungi nuova referenza"
