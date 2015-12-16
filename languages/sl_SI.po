@@ -5,10 +5,10 @@ msgstr ""
 "Project-Id-Version: CargoPress\n"
 "Report-Msgid-Bugs-To: http://support.proteusthemes.com/\n"
 "POT-Creation-Date: 2015-07-06 08:11:28+00:00\n"
-"PO-Revision-Date: 2015-07-06 10:32+0100\n"
+"PO-Revision-Date: 2015-12-16 13:32+0100\n"
 "Last-Translator: Primoz Cigler <primoz@proteusnet.com>\n"
 "Language-Team: ProteusThemes <info@proteusthemes.com>\n"
-"Language: Slovenian\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../\n"
+"X-Poedit-Basepath: ..\n"
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -29,18 +29,18 @@ msgstr "O nas"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:18
 msgid "Displaying person profiles in a carousel."
-msgstr ""
+msgstr "Prikaz osebnega profila na drsniku."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:65
 msgid "About us image"
-msgstr ""
+msgstr "\"O nas\" slika"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:66
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:62
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:67
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:132
 msgid "Read more"
-msgstr "Več"
+msgstr "Preberi več"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:67
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:102
@@ -53,9 +53,8 @@ msgid "Next"
 msgstr "Naslednji"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:141
-#, fuzzy
 msgid "People"
-msgstr "Ljudje:"
+msgstr "Ljudje"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:145
 msgid "Tag:"
@@ -64,7 +63,7 @@ msgstr "Oznaka:"
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:150
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:152
 msgid "Picture URL:"
-msgstr ""
+msgstr "URL slike:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:156
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:142
@@ -81,20 +80,20 @@ msgstr "Opis:"
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:171
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:159
 msgid "Link:"
-msgstr ""
+msgstr "Povezava:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:173
 msgid "Remove Person"
-msgstr ""
+msgstr "Odstrani osebo"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:179
 msgid "Add New Person"
-msgstr ""
+msgstr "Dodaj novo osebo"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:199
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:197
 msgid "Automatically cycle the carousel:"
-msgstr ""
+msgstr "Avtomatsko kroženje slikovnega drsnika:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:201
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:199
@@ -109,11 +108,11 @@ msgstr "Ne"
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:207
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:205
 msgid "Interval (in miliseconds):"
-msgstr ""
+msgstr "Interval (v milisekundah)"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:16
 msgid "Accordion"
-msgstr ""
+msgstr "Zložljiv meni"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:125
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:142
@@ -131,19 +130,20 @@ msgid "Title:"
 msgstr "Naslov:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:130
-#, fuzzy
 msgid "Read more URL:"
-msgstr "Več"
+msgstr "Preberi več URL:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:133
 msgid ""
 "If you leave this field empty the read more link will not be displayed in "
 "the widget."
 msgstr ""
+"Če pustiš to polje prazno, se povezava \"Preberi več\" ne bo prikazala v "
+"gradniku."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:138
 msgid "Accordion items"
-msgstr ""
+msgstr "Elementi zložljivega menija"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:146
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:82
@@ -153,11 +153,11 @@ msgstr "Vsebina:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:151
 msgid "Remove Item"
-msgstr ""
+msgstr "Odstrani element"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:157
 msgid "Add New Item"
-msgstr ""
+msgstr "Dodaj nov element"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-author.php:15
 msgid "Author"
@@ -165,17 +165,19 @@ msgstr "Avtor"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-author.php:16
 msgid "Displays author details with a gravatar photo."
-msgstr ""
+msgstr "Prikaži podrobnosti avtorja z gravatarejm."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-author.php:76
 msgid "Display author:"
-msgstr ""
+msgstr "Prikaži avtorja:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-author.php:86
 msgid ""
 "To add the social icons to this widget, please install the %sExtra User "
 "Details%s plugin and fill in the details in the &quot;Users&quot; section."
 msgstr ""
+"Če želiš v ta gradnik dodati ikone za družabna omrežja, namesti %sExtra User "
+"Details%s vtičnik in izpolni podatke  &quot;Users&quot; "
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:15
 msgid "Banner"
@@ -183,7 +185,7 @@ msgstr "Banner"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:16
 msgid "Linkable block with title and content."
-msgstr ""
+msgstr "Element z naslovom in vsebino, ki lahko vodi do spletne povezave"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:90
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:99
@@ -191,7 +193,7 @@ msgstr ""
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:164
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:150
 msgid "Open link in new tab"
-msgstr ""
+msgstr "Odpri povezavo v novem zavihku"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:15
 msgid "Brochure Box"
@@ -199,26 +201,23 @@ msgstr "Brošura"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:16
 msgid "Widget for displaying downloadable files."
-msgstr ""
+msgstr "Gradnik za prikaz download datotek."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:92
-#, fuzzy
 msgid "File URL:"
-msgstr "URL do slike:"
+msgstr "URL datoteke:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:94
 msgid "Upload file"
-msgstr ""
+msgstr "Naloži datoteko"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:103
-#, fuzzy
 msgid "Brochure text:"
-msgstr "Brošura"
+msgstr "Besedilo brošure:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:108
-#, fuzzy
 msgid "Brochure icon:"
-msgstr "Brošura"
+msgstr "Ikona za brošuro:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:109
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:108
@@ -226,7 +225,7 @@ msgstr "Brošura"
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:177
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:165
 msgid "Click on the icon below or manually select from the %s website."
-msgstr ""
+msgstr "Klikni na spodnjo ikono ali izberi ročno iz %s spletne strani."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:15
 msgid "Facebook"
@@ -234,35 +233,35 @@ msgstr "Facebook"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:16
 msgid "Facebook like box with some customization settings."
-msgstr ""
+msgstr "Nastavitve za \"Facebook like box\"."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:111
 msgid "FB page to like (the whole URL):"
-msgstr ""
+msgstr "Celoten URL FB strani za \"všečkanje\":"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:116
 msgid "Width (in pixels, Min: 180, Max: 500):"
-msgstr ""
+msgstr "Širina (v pikslih, min: 180, max: 500):"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:121
 msgid "Height (in pixels, Min: 70):"
-msgstr ""
+msgstr "Višina (v pikslih, min: 70):"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:127
 msgid "Hide cover photo"
-msgstr ""
+msgstr "Skrij naslovno fotografijo"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:130
 msgid "Hide friend's faces"
-msgstr ""
+msgstr "Skrij obraze prijateljev"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:133
 msgid "Show page posts"
-msgstr ""
+msgstr "Prikaže slike prispevkov"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:136
 msgid "Use small header"
-msgstr ""
+msgstr "Uporabi manjšo obliko glave spletne strani"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:24
 msgid "Featured Page"
@@ -270,30 +269,28 @@ msgstr "Izpostavljena stran"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:25
 msgid "Displays featured image, title and short excerpt of the selected page."
-msgstr ""
+msgstr "Prkaže naslovno sliko, naslov in kratek povzetek izbrane strani."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:137
-#, fuzzy
 msgid "Page:"
 msgstr "Stran:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:148
 msgid "Layout:"
-msgstr ""
+msgstr "Oblika:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:150
 msgid "With big picture"
-msgstr ""
+msgstr "Z veliko sliko"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:151
 msgid "With small picture, inline"
-msgstr ""
+msgstr "Z manjšo sliko, vrstični"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:157
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:155
-#, fuzzy
 msgid "Read more text:"
-msgstr "Več"
+msgstr "Besedilo za \"Preberi več\":"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:25
 msgid "Google Map"
@@ -304,65 +301,68 @@ msgid ""
 "Generates Google map with given coordinates (select map skin and other "
 "settings)."
 msgstr ""
+"Zgenerira Google zemljevid z danimi koordinatami (izberi videz zemljevida in "
+"druge nastavitve)."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:130
 msgid "Latitude and longitude of the map center:"
-msgstr ""
+msgstr " Geografska širina in dolžina središča zemljevida."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:131
 msgid ""
 "Get this from %s (right click on map and select What's here?) or %s. "
 "Latitude and longitude separated by comma."
 msgstr ""
+"To dobiš na %s (desni klik na zemljevid in izberi What's here?) ali %s. "
+"Geografska širina in dolžina naj bosta ločeni z vejico."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:136
 msgid "Zoom (more is closer view):"
-msgstr ""
+msgstr "Povečaj (za bolj natančen ogled)"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:145
 msgid "Type:"
-msgstr ""
+msgstr "Tip:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:154
 msgid "Style:"
-msgstr ""
+msgstr "Stil:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:163
 msgid "Height of map (in pixels):"
-msgstr ""
+msgstr "Višina zemljevida (v pikslih):"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:168
 msgid "Locations"
-msgstr ""
+msgstr "Lokacije"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:172
 msgid "Title of location:"
-msgstr ""
+msgstr "Naslov lokacije:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:173
 msgid "This is shown on pin mouse hover."
-msgstr ""
+msgstr "To se bo prikazalo, ko bo uporabink šel z miško čez ikono."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:178
 msgid "Latitude and longitude of this location:"
-msgstr ""
+msgstr " Geografska širina in dolžina te lokacije:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:179
 msgid "The same format as above for the map center."
-msgstr ""
+msgstr "Ista oblika zapisa za središče zemljevida kot zgoraj. "
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:184
 msgid "Custom pin icon URL:"
-msgstr ""
+msgstr "URL za ikono po meri:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:190
 msgid "Remove Location"
-msgstr ""
+msgstr "Odstrani lokacijo"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:196
-#, fuzzy
 msgid "Add New Location"
-msgstr "Socialne ikone"
+msgstr "Dodaj novo lokacijo"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:15
 msgid "Icon Box"
@@ -370,96 +370,96 @@ msgstr "Ikona"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:16
 msgid "Linkable block with title, text and font awesome icon."
-msgstr ""
+msgstr "Element z naslovom, vsebino in font awesome ikono."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:91
 msgid "Text:"
-msgstr ""
+msgstr "Besedilo:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:97
 msgid "URL to any page, optional."
-msgstr ""
+msgstr "Opcijsko: URL do katerekoli strani."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:107
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:166
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:159
 msgid "Icon:"
-msgstr ""
+msgstr "Ikona:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:14
 msgid "Latest News"
-msgstr ""
+msgstr "Zadnje novice"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:15
 msgid "Displays one or more latest posts."
-msgstr ""
+msgstr "Prikaže enega ali več zadnjih prispevkov."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:39
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:119
 msgid "More news"
-msgstr ""
+msgstr "Več novic"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:62
 msgid "By"
-msgstr ""
+msgstr "Od"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:133
 msgid "Display type:"
-msgstr ""
+msgstr "Prikaži tip:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:135
 msgid "Box (one post)"
-msgstr ""
+msgstr "Box (ena objava)"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:136
 msgid "Inline (multiple posts)"
-msgstr ""
+msgstr "Vrstično (več prispevkov)"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:141
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:200
 msgid "Post order number from:"
-msgstr ""
+msgstr "Vrstni red prispevka od:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:144
 msgid "To:"
-msgstr ""
+msgstr "Za:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:150
 msgid "More news link:"
-msgstr ""
+msgstr "Povezava za \"Več novic\":"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:183
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:196
 msgid "Post order number:"
-msgstr ""
+msgstr "Vrstni red prispevka:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:18
 msgid "Number Counter"
-msgstr ""
+msgstr "Števec"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:19
 msgid "Widget with multiple animated counters."
-msgstr ""
+msgstr "Gradnik z več animiranimi števci."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:145
 msgid "Counting Speed (in miliseconds):"
-msgstr ""
+msgstr "Hitrost (v milisekundah):"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:151
 msgid "Counters"
-msgstr ""
+msgstr "Števci"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:160
 msgid "Number:"
-msgstr ""
+msgstr "Številka:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:177
 msgid "Remove Counter"
-msgstr ""
+msgstr "Odstrani števec"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:183
 msgid "Add New Counter"
-msgstr ""
+msgstr "Dodaj nov števec"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:21
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:150
@@ -468,7 +468,7 @@ msgstr "Odpiralni čas"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:22
 msgid "Widget shows opening times per day with optional text."
-msgstr ""
+msgstr "Gradnik prikazuje dnevni odpiralni čas s poljubnim besedilom."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:34
 msgid "Sunday"
@@ -520,47 +520,47 @@ msgstr "Separator med urami"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:221
 msgid "Text used for closed days:"
-msgstr ""
+msgstr "Besedilo za dni, ko ne obratujete:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:226
 msgid "Text below the timetable for additional info (for example lunch time):"
 msgstr ""
+"Besedilo z dodatnimi informacijami, prikazan pod urnikom (recimo malica):"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:18
 msgid "Person Profile"
-msgstr ""
+msgstr "Profil osebe"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:19
 msgid "Widget displaying person's profile with a photo."
-msgstr ""
+msgstr "Gradnik, ki prikazuje profil osebe s fotografijo."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:75
 msgid "Picture of"
-msgstr ""
+msgstr "Slika od"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:76
 msgid "Meet me on:"
-msgstr ""
+msgstr "Dobiva se na:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:158
 msgid "Introduction:"
-msgstr ""
+msgstr "Predstavitev:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:176
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:164
 msgid "Select social icon:"
-msgstr ""
+msgstr "Izberi ikono za družabno omrežje:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:186
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:174
-#, fuzzy
 msgid "Remove Social Icon"
-msgstr "Socialne ikone"
+msgstr "Odstrani ikono za družabna omrežja"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:192
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:180
 msgid "Add New Social Icon"
-msgstr ""
+msgstr "Dodaj novo ikono za družabna omrežja"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-skype.php:15
 msgid "Skype"
@@ -568,95 +568,94 @@ msgstr "Skype"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-skype.php:16
 msgid "Linkable block with Skype or telephone icon."
-msgstr ""
+msgstr "Gumb s Skype ali telefonsko ikono."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-skype.php:77
 msgid "Skype username:"
-msgstr ""
+msgstr "Skype uporabniško ime:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-skype.php:79
 msgid ""
 "Examples of use: %1$sskype:your_skype_username%2$s or %1$stel:"
 "your_phone_number%2$s."
 msgstr ""
+"Primer uporabe: %1$sskype:your_skype_username%2$s ali %1$stel:"
+"your_phone_number%2$s."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:20
 msgid "Social Icons"
-msgstr "Socialne ikone"
+msgstr "Ikone za družabna omrežja"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:155
-#, fuzzy
 msgid "Social icons"
-msgstr "Socialne ikone"
+msgstr "Ikone za družabna omrežja"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:18
 msgid "Steps"
-msgstr ""
+msgstr "Koraki"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:19
 msgid "Displays multiple steps for your process."
-msgstr ""
+msgstr "Prikaz različnih korakov projekta."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:145
 msgid "Widget title:"
-msgstr ""
+msgstr "Naslov gradnika:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:151
 msgid "Steps:"
-msgstr ""
+msgstr "Koraki:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:160
 msgid ""
 "Click on the icon below or manually input icon class from the %s website."
 msgstr ""
+"Klikni na spodnjo ikono ali ročno dodaj \"class\" s  %s spletne strani."
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:171
 msgid "Step:"
-msgstr ""
+msgstr "Korak:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:176
 msgid "Remove Step"
-msgstr ""
+msgstr "Odstrani korak"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:182
 msgid "Add New Step"
-msgstr ""
+msgstr "Dodaj nov korak"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:18
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:211
 msgid "Testimonials"
-msgstr "Testimoniali"
+msgstr "Mnenje strank"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:215
 msgid "Quote:"
-msgstr ""
+msgstr "Citat:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:220
 msgid "Author:"
-msgstr ""
+msgstr "Avtor:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:226
-#, fuzzy
 msgid "Author description:"
-msgstr "Opis:"
+msgstr "Opis avtorja:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:233
-#, fuzzy
 msgid "Author avatar:"
-msgstr "Avtor"
+msgstr "Avtorjev avatar"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:241
 msgid "Rating:"
-msgstr ""
+msgstr "Ocena:"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:255
 msgid "Remove Testimonial"
-msgstr ""
+msgstr "Odstrani mnenje stranke"
 
 #: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:261
-#, fuzzy
 msgid "Add New Testimonial"
-msgstr "Testimoniali"
+msgstr "Dodaj novo mnenje stranke"
 
 #, fuzzy
 #~ msgid "Title"
