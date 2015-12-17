@@ -11,7 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"X-Generator: grunt-wp-i18n 0.5.1\n"
+"X-Generator: grunt-wp-i18n 0.5.3\n"
 "X-Poedit-KeywordsList: "
 "__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
 "attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
@@ -24,623 +24,590 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:17
+#: widgets/widget-about-us.php:17
 msgid "About Us"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:18
+#: widgets/widget-about-us.php:18
 msgid "Displaying person profiles in a carousel."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:65
+#: widgets/widget-about-us.php:65
 msgid "About us image"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:66
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:62
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:67
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:132
+#: widgets/widget-about-us.php:66 widgets/widget-accordion.php:62
+#: widgets/widget-featured-page.php:67 widgets/widget-featured-page.php:132
 msgid "Read more"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:67
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:102
+#: widgets/widget-about-us.php:67 widgets/widget-testimonials.php:102
 msgid "Previous"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:68
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:103
+#: widgets/widget-about-us.php:68 widgets/widget-testimonials.php:103
 msgid "Next"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:141
+#: widgets/widget-about-us.php:141
 msgid "People"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:145
+#: widgets/widget-about-us.php:145
 msgid "Tag:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:150
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:152
+#: widgets/widget-about-us.php:150 widgets/widget-person-profile.php:152
 msgid "Picture URL:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:156
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:142
+#: widgets/widget-about-us.php:156 widgets/widget-person-profile.php:142
 msgid "Name:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:161
+#: widgets/widget-about-us.php:161
 msgid "Description:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:166
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:87
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:96
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:171
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:159
+#: widgets/widget-about-us.php:166 widgets/widget-banner.php:87
+#: widgets/widget-icon-box.php:96 widgets/widget-person-profile.php:171
+#: widgets/widget-social-icons.php:159
 msgid "Link:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:173
+#: widgets/widget-about-us.php:173
 msgid "Remove Person"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:179
+#: widgets/widget-about-us.php:179
 msgid "Add New Person"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:199
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:197
+#: widgets/widget-about-us.php:199 widgets/widget-testimonials.php:197
 msgid "Automatically cycle the carousel:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:201
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:199
+#: widgets/widget-about-us.php:201 widgets/widget-testimonials.php:199
 msgid "Yes"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:202
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:200
+#: widgets/widget-about-us.php:202 widgets/widget-testimonials.php:200
 msgid "No"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-about-us.php:207
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:205
-msgid "Interval (in miliseconds):"
+#: widgets/widget-about-us.php:207 widgets/widget-testimonials.php:205
+msgid "Interval (in milliseconds):"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:16
+#: widgets/widget-accordion.php:16
 msgid "Accordion"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:125
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:142
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:77
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:87
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:106
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:86
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:155
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:201
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:147
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-skype.php:72
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:155
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:192
+#: widgets/widget-accordion.php:125 widgets/widget-accordion.php:142
+#: widgets/widget-banner.php:77 widgets/widget-brochure-box.php:87
+#: widgets/widget-facebook.php:106 widgets/widget-icon-box.php:86
+#: widgets/widget-number-counter.php:155 widgets/widget-opening-time.php:201
+#: widgets/widget-person-profile.php:147 widgets/widget-skype.php:72
+#: widgets/widget-steps.php:155 widgets/widget-testimonials.php:192
 msgid "Title:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:130
+#: widgets/widget-accordion.php:130
 msgid "Read more URL:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:133
+#: widgets/widget-accordion.php:133
 msgid ""
 "If you leave this field empty the read more link will not be displayed in "
 "the widget."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:138
+#: widgets/widget-accordion.php:138
 msgid "Accordion items"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:146
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:82
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:167
+#: widgets/widget-accordion.php:146 widgets/widget-banner.php:82
+#: widgets/widget-steps.php:167
 msgid "Content:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:151
+#: widgets/widget-accordion.php:151
 msgid "Remove Item"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-accordion.php:157
+#: widgets/widget-accordion.php:157
 msgid "Add New Item"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-author.php:15
+#: widgets/widget-author.php:15
 msgid "Author"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-author.php:16
+#: widgets/widget-author.php:16
 msgid "Displays author details with a gravatar photo."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-author.php:76
+#: widgets/widget-author.php:76
 msgid "Display author:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-author.php:86
+#: widgets/widget-author.php:86
 msgid ""
 "To add the social icons to this widget, please install the %sExtra User "
 "Details%s plugin and fill in the details in the &quot;Users&quot; section."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:15
+#: widgets/widget-banner.php:15
 msgid "Banner"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:16
+#: widgets/widget-banner.php:16
 msgid "Linkable block with title and content."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-banner.php:90
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:99
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:103
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:164
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:150
+#: widgets/widget-banner.php:90 widgets/widget-brochure-box.php:99
+#: widgets/widget-icon-box.php:103 widgets/widget-person-profile.php:164
+#: widgets/widget-social-icons.php:150
 msgid "Open link in new tab"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:15
+#: widgets/widget-brochure-box.php:15
 msgid "Brochure Box"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:16
+#: widgets/widget-brochure-box.php:16
 msgid "Widget for displaying downloadable files."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:92
+#: widgets/widget-brochure-box.php:92
 msgid "File URL:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:94
+#: widgets/widget-brochure-box.php:94
 msgid "Upload file"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:103
+#: widgets/widget-brochure-box.php:103
 msgid "Brochure text:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:108
+#: widgets/widget-brochure-box.php:108
 msgid "Brochure icon:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-brochure-box.php:109
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:108
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:167
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:177
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:165
+#: widgets/widget-brochure-box.php:109 widgets/widget-icon-box.php:108
+#: widgets/widget-number-counter.php:167 widgets/widget-person-profile.php:177
+#: widgets/widget-social-icons.php:165
 msgid "Click on the icon below or manually select from the %s website."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:15
+#: widgets/widget-facebook.php:15
 msgid "Facebook"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:16
+#: widgets/widget-facebook.php:16
 msgid "Facebook like box with some customization settings."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:111
+#: widgets/widget-facebook.php:111
 msgid "FB page to like (the whole URL):"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:116
+#: widgets/widget-facebook.php:116
 msgid "Width (in pixels, Min: 180, Max: 500):"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:121
+#: widgets/widget-facebook.php:121
 msgid "Height (in pixels, Min: 70):"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:127
+#: widgets/widget-facebook.php:127
 msgid "Hide cover photo"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:130
+#: widgets/widget-facebook.php:130
 msgid "Hide friend's faces"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:133
+#: widgets/widget-facebook.php:133
 msgid "Show page posts"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-facebook.php:136
+#: widgets/widget-facebook.php:136
 msgid "Use small header"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:24
+#: widgets/widget-featured-page.php:24
 msgid "Featured Page"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:25
+#: widgets/widget-featured-page.php:25
 msgid "Displays featured image, title and short excerpt of the selected page."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:137
+#: widgets/widget-featured-page.php:137
 msgid "Page:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:148
+#: widgets/widget-featured-page.php:148
 msgid "Layout:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:150
+#: widgets/widget-featured-page.php:150
 msgid "With big picture"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:151
+#: widgets/widget-featured-page.php:151
 msgid "With small picture, inline"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-featured-page.php:157
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:155
+#: widgets/widget-featured-page.php:157 widgets/widget-latest-news.php:155
 msgid "Read more text:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:25
+#: widgets/widget-google-map.php:25
 msgid "Google Map"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:26
+#: widgets/widget-google-map.php:26
 msgid ""
 "Generates Google map with given coordinates (select map skin and other "
 "settings)."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:130
+#: widgets/widget-google-map.php:130
 msgid "Latitude and longitude of the map center:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:131
+#: widgets/widget-google-map.php:131
 msgid ""
 "Get this from %s (right click on map and select What's here?) or %s. "
 "Latitude and longitude separated by comma."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:136
+#: widgets/widget-google-map.php:136
 msgid "Zoom (more is closer view):"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:145
+#: widgets/widget-google-map.php:145
 msgid "Type:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:154
+#: widgets/widget-google-map.php:154
 msgid "Style:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:163
+#: widgets/widget-google-map.php:163
 msgid "Height of map (in pixels):"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:168
+#: widgets/widget-google-map.php:168
 msgid "Locations"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:172
+#: widgets/widget-google-map.php:172
 msgid "Title of location:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:173
+#: widgets/widget-google-map.php:173
 msgid "This is shown on pin mouse hover."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:178
+#: widgets/widget-google-map.php:178
 msgid "Latitude and longitude of this location:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:179
+#: widgets/widget-google-map.php:179
 msgid "The same format as above for the map center."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:184
+#: widgets/widget-google-map.php:184
 msgid "Custom pin icon URL:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:190
+#: widgets/widget-google-map.php:190
 msgid "Remove Location"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-google-map.php:196
+#: widgets/widget-google-map.php:196
 msgid "Add New Location"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:15
+#: widgets/widget-icon-box.php:15
 msgid "Icon Box"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:16
+#: widgets/widget-icon-box.php:16
 msgid "Linkable block with title, text and font awesome icon."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:91
+#: widgets/widget-icon-box.php:91
 msgid "Text:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:97
+#: widgets/widget-icon-box.php:97
 msgid "URL to any page, optional."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-icon-box.php:107
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:166
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:159
+#: widgets/widget-icon-box.php:107 widgets/widget-number-counter.php:166
+#: widgets/widget-steps.php:159
 msgid "Icon:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:14
+#: widgets/widget-latest-news.php:14
 msgid "Latest News"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:15
+#: widgets/widget-latest-news.php:15
 msgid "Displays one or more latest posts."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:39
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:119
+#: widgets/widget-latest-news.php:39 widgets/widget-latest-news.php:119
 msgid "More news"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:62
+#: widgets/widget-latest-news.php:62
 msgid "By"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:133
+#: widgets/widget-latest-news.php:133
 msgid "Display type:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:135
+#: widgets/widget-latest-news.php:135
 msgid "Box (one post)"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:136
+#: widgets/widget-latest-news.php:136
 msgid "Inline (multiple posts)"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:141
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:200
+#: widgets/widget-latest-news.php:141 widgets/widget-latest-news.php:200
 msgid "Post order number from:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:144
+#: widgets/widget-latest-news.php:144
 msgid "To:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:150
+#: widgets/widget-latest-news.php:150
 msgid "More news link:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:183
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-latest-news.php:196
+#: widgets/widget-latest-news.php:183 widgets/widget-latest-news.php:196
 msgid "Post order number:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:18
+#: widgets/widget-number-counter.php:18
 msgid "Number Counter"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:19
+#: widgets/widget-number-counter.php:19
 msgid "Widget with multiple animated counters."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:145
-msgid "Counting Speed (in miliseconds):"
+#: widgets/widget-number-counter.php:145
+msgid "Counting Speed (in milliseconds):"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:151
+#: widgets/widget-number-counter.php:151
 msgid "Counters"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:160
+#: widgets/widget-number-counter.php:160
 msgid "Number:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:177
+#: widgets/widget-number-counter.php:177
 msgid "Remove Counter"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-number-counter.php:183
+#: widgets/widget-number-counter.php:183
 msgid "Add New Counter"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:21
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:150
+#: widgets/widget-opening-time.php:21 widgets/widget-opening-time.php:150
 msgid "Opening Time"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:22
+#: widgets/widget-opening-time.php:22
 msgid "Widget shows opening times per day with optional text."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:34
+#: widgets/widget-opening-time.php:34
 msgid "Sunday"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:35
+#: widgets/widget-opening-time.php:35
 msgid "Monday"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:36
+#: widgets/widget-opening-time.php:36
 msgid "Tuesday"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:37
+#: widgets/widget-opening-time.php:37
 msgid "Wednesday"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:38
+#: widgets/widget-opening-time.php:38
 msgid "Thursday"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:39
+#: widgets/widget-opening-time.php:39
 msgid "Friday"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:40
+#: widgets/widget-opening-time.php:40
 msgid "Saturday"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:182
+#: widgets/widget-opening-time.php:182
 msgid "-"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:189
+#: widgets/widget-opening-time.php:189
 msgid "CLOSED"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:208
+#: widgets/widget-opening-time.php:208
 msgid "opened"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:210
+#: widgets/widget-opening-time.php:210
 msgid "to"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:216
+#: widgets/widget-opening-time.php:216
 msgid "Separator between hours:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:221
+#: widgets/widget-opening-time.php:221
 msgid "Text used for closed days:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-opening-time.php:226
+#: widgets/widget-opening-time.php:226
 msgid "Text below the timetable for additional info (for example lunch time):"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:18
+#: widgets/widget-person-profile.php:18
 msgid "Person Profile"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:19
+#: widgets/widget-person-profile.php:19
 msgid "Widget displaying person's profile with a photo."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:75
+#: widgets/widget-person-profile.php:75
 msgid "Picture of"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:76
+#: widgets/widget-person-profile.php:76
 msgid "Meet me on:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:158
+#: widgets/widget-person-profile.php:158
 msgid "Introduction:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:176
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:164
+#: widgets/widget-person-profile.php:176 widgets/widget-social-icons.php:164
 msgid "Select social icon:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:186
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:174
+#: widgets/widget-person-profile.php:186 widgets/widget-social-icons.php:174
 msgid "Remove Social Icon"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-person-profile.php:192
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:180
+#: widgets/widget-person-profile.php:192 widgets/widget-social-icons.php:180
 msgid "Add New Social Icon"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-skype.php:15
+#: widgets/widget-skype.php:15
 msgid "Skype"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-skype.php:16
+#: widgets/widget-skype.php:16
 msgid "Linkable block with Skype or telephone icon."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-skype.php:77
+#: widgets/widget-skype.php:77
 msgid "Skype username:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-skype.php:79
+#: widgets/widget-skype.php:79
 msgid ""
 "Examples of use: %1$sskype:your_skype_username%2$s or "
 "%1$stel:your_phone_number%2$s."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:20
+#: widgets/widget-social-icons.php:20
 msgid "Social Icons"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-social-icons.php:155
+#: widgets/widget-social-icons.php:155
 msgid "Social icons"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:18
+#: widgets/widget-steps.php:18
 msgid "Steps"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:19
+#: widgets/widget-steps.php:19
 msgid "Displays multiple steps for your process."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:145
+#: widgets/widget-steps.php:145
 msgid "Widget title:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:151
+#: widgets/widget-steps.php:151
 msgid "Steps:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:160
+#: widgets/widget-steps.php:160
 msgid "Click on the icon below or manually input icon class from the %s website."
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:171
+#: widgets/widget-steps.php:171
 msgid "Step:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:176
+#: widgets/widget-steps.php:176
 msgid "Remove Step"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-steps.php:182
+#: widgets/widget-steps.php:182
 msgid "Add New Step"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:18
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:211
+#: widgets/widget-testimonials.php:18 widgets/widget-testimonials.php:211
 msgid "Testimonials"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:215
+#: widgets/widget-testimonials.php:215
 msgid "Quote:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:220
+#: widgets/widget-testimonials.php:220
 msgid "Author:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:226
+#: widgets/widget-testimonials.php:226
 msgid "Author description:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:233
+#: widgets/widget-testimonials.php:233
 msgid "Author avatar:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:241
+#: widgets/widget-testimonials.php:241
 msgid "Rating:"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:255
+#: widgets/widget-testimonials.php:255
 msgid "Remove Testimonial"
 msgstr ""
 
-#: vendor/proteusthemes/proteuswidgets/widgets/widget-testimonials.php:261
+#: widgets/widget-testimonials.php:261
 msgid "Add New Testimonial"
 msgstr ""
