@@ -69,7 +69,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 
 			// Get basic page info
 			if ( $page_id ) {
-				$page = (array) get_post( $page_id );
+				$page = get_post( $page_id, ARRAY_A );
 			}
 
 			// Prepare the excerpt text
