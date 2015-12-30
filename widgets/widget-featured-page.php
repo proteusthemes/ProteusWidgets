@@ -68,9 +68,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			$thumbnail_size             = 'inline' === $instance['layout'] ? 'pw-inline' : 'pw-page-box';
 
 			// Get basic page info
-			if ( $page_id ) {
-				$page = get_post( $page_id, ARRAY_A );
-			}
+			$page = get_post( $page_id, ARRAY_A );
 
 			// Prepare the excerpt text
 			$excerpt = wp_strip_all_tags( ! empty( $page['post_excerpt'] ) ? $page['post_excerpt'] : $page['post_content'] );
