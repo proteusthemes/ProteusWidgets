@@ -11,7 +11,7 @@
 add_action( 'after_setup_theme', array( 'ProteusWidgets', 'after_theme_setup' ), 11 );
 
 if ( ! class_exists( 'PW_Featured_Page' ) ) {
-	class PW_Featured_Page extends Pw_Widget {
+	class PW_Featured_Page extends PW_Widget {
 
 		/**
 		 * Length of the line excerpt.
