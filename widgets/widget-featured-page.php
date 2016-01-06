@@ -40,11 +40,6 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				'inline_excerpt' => 60,
 				'block_excerpt'  => 240,
 			) );
-
-			// remove srcset and sizes attributes for the pw-inline size
-			if ( apply_filters( 'pw/remove_srcset_inline_img', true ) ) {
-				add_filter( 'wp_get_attachment_image_attributes', array( $this, 'wp_get_attachment_image_attributes' ), 10, 3 );
-			}
 		}
 
 		/**
@@ -57,13 +52,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for template
-			$page_id                    = absint( $instance['page_id'] );
-			$instance['layout']         = 'inline' === $instance['layout'] ? 'inline' : 'block';
-			$is_block                   = 'block' === $instance['layout'];
-			$is_inline                  = ! $is_block;
-			$excerpt_length             = $this->excerpt_lengths[sprintf('%s_excerpt', $instance['layout'])];
-			$instance['read_more_text'] = empty( $instance['read_more_text'] ) ? esc_html__( 'Read more', 'proteuswidgets' ) : $instance['read_more_text'];
-			$thumbnail_size             = $is_inline ? 'pw-inline' : 'pw-page-box';
+			$page_id = absint( $instance['page_id'] );
 
 			/**
 			 * Support for the Polylang plugin.
@@ -74,46 +63,42 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				$page_id = pll_get_post( $page_id );
 			}
 
-			$page_query = new WP_Query( array( 'page_id' => $page_id ) );
+			$instance['layout']         = sanitize_key( $instance['layout'] );
+			$instance['read_more_text'] = empty( $instance['read_more_text'] ) ? esc_html__( 'Read more', 'proteuswidgets' ) : $instance['read_more_text'];
+			$thumbnail_size             = 'inline' === $instance['layout'] ? 'pw-inline' : 'pw-page-box';
 
-			if ( $page_query->have_posts() ) {
-				$page_query->the_post();
+			// Get basic page info
+			$page = get_post( $page_id, ARRAY_A );
 
-				// prepare the excerpt
-				$excerpt = get_the_excerpt();
+			// Prepare the excerpt text
+			$excerpt = wp_strip_all_tags( ! empty( $page['post_excerpt'] ) ? $page['post_excerpt'] : $page['post_content'] );
 
-				if ( strlen( $excerpt ) > $excerpt_length ) {
-					$excerpt = substr( $excerpt, 0, strpos( $excerpt, ' ', $excerpt_length ) ) . ' &hellip;';
-				}
-
-				// widget-featured-page template rendering
-				echo $this->template_engine->render_template( apply_filters( 'pw/widget_featured_page_view', 'widget-featured-page' ), array(
-					'args'           => $args,
-					'instance'       => $instance,
-					'excerpt'        => $excerpt,
-					'thumbnail_size' => $thumbnail_size,
-					'is_block'       => $is_block,
-				));
+			if ( 'inline' === $instance['layout'] && strlen( $excerpt ) > $this->excerpt_lengths['inline_excerpt'] ) {
+				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', $this->excerpt_lengths['inline_excerpt'] ) ) . ' &hellip;';
+			}
+			elseif ( strlen( $excerpt ) > $this->excerpt_lengths['block_excerpt'] ) {
+				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', $this->excerpt_lengths['block_excerpt'] ) ) . ' &hellip;';
 			}
 
-			wp_reset_postdata();
-		}
+			$page['post_excerpt'] = $excerpt;
+			$page['link']         = get_permalink( $page_id );
+			if ( 'block' === $instance['layout'] ) {
+				$attachment_image_id   = get_post_thumbnail_id( $page_id );
+				$attachment_image_data = wp_get_attachment_image_src( $attachment_image_id, 'pw-page-box' );
 
-		/**
-		 * Remove srcset and sizes for pw-inline.
-		 *
-		 * @link https://developer.wordpress.org/reference/hooks/wp_get_attachment_image_attributes/
-		 * @link https://developer.wordpress.org/reference/functions/wp_get_attachment_image/
-		 *
-		 * @return array
-		 */
-		public function wp_get_attachment_image_attributes( $attr, $attachment, $size ) {
-			if ( 'pw-inline' === $size && isset( $attr['sizes'] ) ) {
-				unset( $attr['srcset'] );
-				unset( $attr['sizes'] );
+				$page['image_url']     = $attachment_image_data[0];
+				$page['image_width']   = $attachment_image_data[1];
+				$page['image_height']  = $attachment_image_data[2];
+				$page['srcset']        = PW_Functions::get_attachment_image_srcs( $attachment_image_id, array( 'pw-page-box', 'full' ) );
 			}
 
-			return $attr;
+			// widget-featured-page template rendering
+			echo $this->template_engine->render_template( apply_filters( 'pw/widget_featured_page_view', 'widget-featured-page' ), array(
+				'args'           => $args,
+				'page'           => $page,
+				'instance'       => $instance,
+				'thumbnail_size' => $thumbnail_size,
+			));
 		}
 
 		/**
