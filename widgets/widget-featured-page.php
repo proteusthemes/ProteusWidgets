@@ -82,6 +82,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 
 			$page['post_excerpt'] = $excerpt;
 			$page['link']         = get_permalink( $page_id );
+			$page['thumbnail']    = get_the_post_thumbnail( $page_id, $thumbnail_size );
 			if ( 'block' === $instance['layout'] ) {
 				$attachment_image_id   = get_post_thumbnail_id( $page_id );
 				$attachment_image_data = wp_get_attachment_image_src( $attachment_image_id, 'pw-page-box' );
