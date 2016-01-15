@@ -75,7 +75,7 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base );
 
 			foreach ( $items as $key => $item ) {
-				$items[ $key ]['title']   = esc_html( $item['title'] );
+				$items[ $key ]['title']   = wp_kses( $item['title'], array() );
 				$items[ $key ]['content'] = wp_kses( $item['content'], $this->allowed_html_in_content_field );
 				$items[ $key ]['icon']    = esc_attr( $item['icon'] );
 				$items[ $key ]['step']    = esc_html( $item['step'] );

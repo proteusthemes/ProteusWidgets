@@ -51,7 +51,7 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 
 			foreach ( $items as $key => $item ) {
 				$items[ $key ]['key']     = esc_attr( $key );
-				$items[ $key ]['title']   = esc_html( $item['title'] );
+				$items[ $key ]['title']   = wp_kses( $item['title'], array() );
 				$items[ $key ]['content'] = wp_kses( $item['content'], $this->allowed_html_in_content_field );
 			}
 
