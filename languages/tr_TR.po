@@ -1,21 +1,21 @@
-# Copyright (C) 2016 ProteusThemes 
+# Copyright (C) 2015 ProteusThemes
 # This file is distributed under the GPL 2.0.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://support.proteusthemes.com/\n"
 "POT-Creation-Date: 2015-07-06 08:11:28+00:00\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"X-Generator: grunt-wp-i18n 0.5.3\n"
-"X-Poedit-KeywordsList: "
-"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
-"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
 "Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: grunt-wp-i18n 0.5.1\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Country: United States\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -25,87 +25,89 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 
 #: widgets/views/widget-testimonials.php:46
+#, fuzzy
 msgid "Testimonial author avatar"
-msgstr ""
+msgstr "Yazar avatarı:"
 
 #: widgets/widget-about-us.php:22
 msgid "About Us"
-msgstr ""
+msgstr "Hakkımızda"
 
 #: widgets/widget-about-us.php:23
 msgid "Displaying person profiles in a carousel."
-msgstr ""
+msgstr "Kişi profillerinin karuselde görüntülenmesi."
 
 #: widgets/widget-about-us.php:64
 msgid "About us image"
-msgstr ""
+msgstr "Hakkımızda görüntüsü"
 
 #: widgets/widget-about-us.php:65 widgets/widget-accordion.php:52
 #: widgets/widget-featured-page.php:67 widgets/widget-featured-page.php:131
 msgid "Read more"
-msgstr ""
+msgstr "Daha fazla oku"
 
 #: widgets/widget-about-us.php:66 widgets/widget-testimonials.php:100
 msgid "Previous"
-msgstr ""
+msgstr "Önceki"
 
 #: widgets/widget-about-us.php:67 widgets/widget-testimonials.php:101
 msgid "Next"
-msgstr ""
+msgstr "Sonraki"
 
 #: widgets/widget-about-us.php:140
 msgid "People"
-msgstr ""
+msgstr "Kişiler"
 
 #: widgets/widget-about-us.php:144
 msgid "Tag:"
-msgstr ""
+msgstr "Etiket:"
 
 #: widgets/widget-about-us.php:149 widgets/widget-person-profile.php:145
 msgid "Picture URL:"
-msgstr ""
+msgstr "Resim URL'u:"
 
 #: widgets/widget-about-us.php:155 widgets/widget-person-profile.php:135
 msgid "Name:"
-msgstr ""
+msgstr "Ad:"
 
 #: widgets/widget-about-us.php:160
 msgid "Description:"
-msgstr ""
+msgstr "Tanım:"
 
 #: widgets/widget-about-us.php:165 widgets/widget-banner.php:84
 #: widgets/widget-icon-box.php:95 widgets/widget-person-profile.php:164
 #: widgets/widget-social-icons.php:155
 msgid "Link:"
-msgstr ""
+msgstr "Bağlantı:"
 
 #: widgets/widget-about-us.php:172
 msgid "Remove Person"
-msgstr ""
+msgstr "Kişi Kaldır"
 
 #: widgets/widget-about-us.php:178
 msgid "Add New Person"
-msgstr ""
+msgstr "Yeni Kişi Ekle"
 
 #: widgets/widget-about-us.php:198 widgets/widget-testimonials.php:195
 msgid "Automatically cycle the carousel:"
-msgstr ""
+msgstr "Karuseli otomatik olarak döndür:"
 
 #: widgets/widget-about-us.php:200 widgets/widget-testimonials.php:197
 msgid "Yes"
-msgstr ""
+msgstr "Evet"
 
 #: widgets/widget-about-us.php:201 widgets/widget-testimonials.php:198
 msgid "No"
-msgstr ""
+msgstr "Hayır"
 
 #: widgets/widget-about-us.php:206 widgets/widget-testimonials.php:203
+#, fuzzy
 msgid "Interval (in milliseconds):"
-msgstr ""
+msgstr "İnterval (mili saniye):"
 
 #: widgets/widget-accordion.php:18
 msgid "Accordion"
-msgstr ""
+msgstr "Akordeon"
 
 #: widgets/widget-accordion.php:115 widgets/widget-accordion.php:132
 #: widgets/widget-banner.php:74 widgets/widget-brochure-box.php:85
@@ -114,504 +116,520 @@ msgstr ""
 #: widgets/widget-person-profile.php:140 widgets/widget-skype.php:72
 #: widgets/widget-steps.php:147 widgets/widget-testimonials.php:190
 msgid "Title:"
-msgstr ""
+msgstr "Başlık:"
 
 #: widgets/widget-accordion.php:120
 msgid "Read more URL:"
-msgstr ""
+msgstr "Daha fazla oku URL:"
 
 #: widgets/widget-accordion.php:123
 msgid ""
 "If you leave this field empty the read more link will not be displayed in "
 "the widget."
 msgstr ""
+"Bu alanı boş bırakırsanız, görsel öğede daha fazla oku bağlantısı "
+"görüntülenmeyecek."
 
 #: widgets/widget-accordion.php:128
 msgid "Accordion items"
-msgstr ""
+msgstr "Akordeon öğeleri"
 
 #: widgets/widget-accordion.php:136 widgets/widget-banner.php:79
 #: widgets/widget-steps.php:159
 msgid "Content:"
-msgstr ""
+msgstr "İçerik:"
 
 #: widgets/widget-accordion.php:141
 msgid "Remove Item"
-msgstr ""
+msgstr "Öğe Kaldır"
 
 #: widgets/widget-accordion.php:147
 msgid "Add New Item"
-msgstr ""
+msgstr "Yeni Öğe Ekle"
 
 #: widgets/widget-author.php:20
 msgid "Author"
-msgstr ""
+msgstr "Yazar"
 
 #: widgets/widget-author.php:21
 msgid "Displays author details with a gravatar photo."
-msgstr ""
+msgstr "Yazar bilgilerini bir gravatar fotoğrafı ile görüntüler."
 
 #: widgets/widget-author.php:76
 msgid "Display author:"
-msgstr ""
+msgstr "Yazarı görüntüle:"
 
 #: widgets/widget-author.php:86
 msgid ""
 "To add the social icons to this widget, please install the %sExtra User "
 "Details%s plugin and fill in the details in the &quot;Users&quot; section."
 msgstr ""
+"Bu görsel öğeye sosyal simgeler eklemek için lütfen %sEk Kullanıcı Bilgileri"
+"%s eklentisini yükleyin ve &quot;Kullanıcılar&quot; bölümüne bilgileri girin."
 
 #: widgets/widget-banner.php:20
 msgid "Banner"
-msgstr ""
+msgstr "Büyük Başlık"
 
 #: widgets/widget-banner.php:21
 msgid "Linkable block with title and content."
-msgstr ""
+msgstr "Başlık ve içerik ile bağlanabilir blok."
 
 #: widgets/widget-banner.php:87 widgets/widget-brochure-box.php:97
 #: widgets/widget-icon-box.php:102 widgets/widget-person-profile.php:157
 #: widgets/widget-social-icons.php:146
 msgid "Open link in new tab"
-msgstr ""
+msgstr "Bağlantıyı yeni sekmede aç"
 
 #: widgets/widget-brochure-box.php:20
 msgid "Brochure Box"
-msgstr ""
+msgstr "Broşür Kutusu"
 
 #: widgets/widget-brochure-box.php:21
 msgid "Widget for displaying downloadable files."
-msgstr ""
+msgstr "İndirilebilir dosyaların görüntülenmesi için görsel öğe."
 
 #: widgets/widget-brochure-box.php:90
 msgid "File URL:"
-msgstr ""
+msgstr "Dosya URL'u:"
 
 #: widgets/widget-brochure-box.php:92
 msgid "Upload file"
-msgstr ""
+msgstr "Dosya yükle"
 
 #: widgets/widget-brochure-box.php:101
 msgid "Brochure text:"
-msgstr ""
+msgstr "Broşür metni:"
 
 #: widgets/widget-brochure-box.php:106
 msgid "Brochure icon:"
-msgstr ""
+msgstr "Broşür simgesi:"
 
 #: widgets/widget-brochure-box.php:107 widgets/widget-icon-box.php:107
 #: widgets/widget-number-counter.php:157 widgets/widget-person-profile.php:170
 #: widgets/widget-social-icons.php:161
 msgid "Click on the icon below or manually select from the %s website."
-msgstr ""
+msgstr "Aşağıdaki simgeyi tıklayın veya %s web sitesinden manuel olarak seçin."
 
 #: widgets/widget-facebook.php:20
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: widgets/widget-facebook.php:21
 msgid "Facebook like box with some customization settings."
-msgstr ""
+msgstr "Bazı özelleştirme ayarları ile Facebook beğeni kutusu."
 
 #: widgets/widget-facebook.php:110
 msgid "FB page to like (the whole URL):"
-msgstr ""
+msgstr "Beğenilecek FB sayfası (URL'un tamamı):"
 
 #: widgets/widget-facebook.php:115
 msgid "Width (in pixels, Min: 180, Max: 500):"
-msgstr ""
+msgstr "Genişlik (piksel, Min: 180, Maks: 500):"
 
 #: widgets/widget-facebook.php:120
 msgid "Height (in pixels, Min: 70):"
-msgstr ""
+msgstr "Yükseklik (piksel, Min: 70):"
 
 #: widgets/widget-facebook.php:126
 msgid "Hide cover photo"
-msgstr ""
+msgstr "Kapak fotoğrafını gizle"
 
 #: widgets/widget-facebook.php:129
 msgid "Hide friend's faces"
-msgstr ""
+msgstr "Arkadaşların yüzlerini gizle"
 
 #: widgets/widget-facebook.php:132
 msgid "Show page posts"
-msgstr ""
+msgstr "Sayfa gönderilerini göster"
 
 #: widgets/widget-facebook.php:135
 msgid "Use small header"
-msgstr ""
+msgstr "Küçük başlık kullan"
 
 #: widgets/widget-featured-page.php:28
 msgid "Featured Page"
-msgstr ""
+msgstr "Öne Çıkan Sayfa"
 
 #: widgets/widget-featured-page.php:29
 msgid "Displays featured image, title and short excerpt of the selected page."
 msgstr ""
+"Öne çıkan görüntüyü, başlığı ve seçilen sayfadan kısa bir alıntı görüntüler."
 
 #: widgets/widget-featured-page.php:136
 msgid "Page:"
-msgstr ""
+msgstr "Sayfa:"
 
 #: widgets/widget-featured-page.php:147
 msgid "Layout:"
-msgstr ""
+msgstr "Düzen:"
 
 #: widgets/widget-featured-page.php:149
 msgid "With big picture"
-msgstr ""
+msgstr "Büyük resim içinde"
 
 #: widgets/widget-featured-page.php:150
 msgid "With small picture, inline"
-msgstr ""
+msgstr "Küçük resim içinde, satıriçi"
 
 #: widgets/widget-featured-page.php:156 widgets/widget-latest-news.php:155
 msgid "Read more text:"
-msgstr ""
+msgstr "Daha fazla oku metni:"
 
 #: widgets/widget-google-map.php:30
 msgid "Google Map"
-msgstr ""
+msgstr "Google Harita"
 
 #: widgets/widget-google-map.php:31
 msgid ""
 "Generates Google map with given coordinates (select map skin and other "
 "settings)."
 msgstr ""
+"Belirtilen koordinatlarla Google haritası oluşturur (harita görünümünü ve "
+"diğer ayarları seçin)."
 
 #: widgets/widget-google-map.php:127
 msgid "Latitude and longitude of the map center:"
-msgstr ""
+msgstr "Harita merkezinin enlemi ve boylamı:"
 
 #: widgets/widget-google-map.php:128
 msgid ""
 "Get this from %s (right click on map and select What's here?) or %s. "
 "Latitude and longitude separated by comma."
 msgstr ""
+"Bunu %s (haritada sağ tıklayın ve Burada ne var? başlığını seçin) veya %s "
+"ile alabilirsiniz. Enlem ve boylam virgül ile ayrılır."
 
 #: widgets/widget-google-map.php:133
 msgid "Zoom (more is closer view):"
-msgstr ""
+msgstr "Zumla (görüntüyü yakınlaştırın):"
 
 #: widgets/widget-google-map.php:142
 msgid "Type:"
-msgstr ""
+msgstr "Tip:"
 
 #: widgets/widget-google-map.php:151
 msgid "Style:"
-msgstr ""
+msgstr "Stil:"
 
 #: widgets/widget-google-map.php:160
 msgid "Height of map (in pixels):"
-msgstr ""
+msgstr "Harita yüksekliği (piksel):"
 
 #: widgets/widget-google-map.php:165
 msgid "Locations"
-msgstr ""
+msgstr "Konumlar"
 
 #: widgets/widget-google-map.php:169
 msgid "Title of location:"
-msgstr ""
+msgstr "Konum başlığı:"
 
 #: widgets/widget-google-map.php:170
 msgid "This is shown on pin mouse hover."
-msgstr ""
+msgstr "Fare iğnelenen yerin üzerine getirildiğinde görüntülenir."
 
 #: widgets/widget-google-map.php:175
 msgid "Latitude and longitude of this location:"
-msgstr ""
+msgstr "Bu konumun enlemi ve boylamı."
 
 #: widgets/widget-google-map.php:176
 msgid "The same format as above for the map center."
-msgstr ""
+msgstr "Harita merkezi için yukarıdaki ile aynı format."
 
 #: widgets/widget-google-map.php:181
 msgid "Custom pin icon URL:"
-msgstr ""
+msgstr "Özel iğne simgesi URL'u:"
 
 #: widgets/widget-google-map.php:187
 msgid "Remove Location"
-msgstr ""
+msgstr "Konum Kaldır"
 
 #: widgets/widget-google-map.php:193
 msgid "Add New Location"
-msgstr ""
+msgstr "Yeni Konum Ekle"
 
 #: widgets/widget-icon-box.php:20
 msgid "Icon Box"
-msgstr ""
+msgstr "Simge Kutusu"
 
 #: widgets/widget-icon-box.php:21
 msgid "Linkable block with title, text and font awesome icon."
-msgstr ""
+msgstr "Harika başlık, metin ve yazı tipi simgesi ile bağlanabilir blok."
 
 #: widgets/widget-icon-box.php:90
 msgid "Text:"
-msgstr ""
+msgstr "Metin:"
 
 #: widgets/widget-icon-box.php:96
 msgid "URL to any page, optional."
-msgstr ""
+msgstr "Herhangi bir sayfaya URL, opsiyonel."
 
 #: widgets/widget-icon-box.php:106 widgets/widget-number-counter.php:156
 #: widgets/widget-steps.php:151
 msgid "Icon:"
-msgstr ""
+msgstr "Simge:"
 
 #: widgets/widget-latest-news.php:16
 msgid "Latest News"
-msgstr ""
+msgstr "En Son Haberler"
 
 #: widgets/widget-latest-news.php:17
 msgid "Displays one or more latest posts."
-msgstr ""
+msgstr "En son gönderilerin bir veya birkaçını görüntüler."
 
 #: widgets/widget-latest-news.php:39 widgets/widget-latest-news.php:119
 msgid "More news"
-msgstr ""
+msgstr "Daha fazla haber"
 
 #: widgets/widget-latest-news.php:62
 msgid "By"
-msgstr ""
+msgstr "Yazar:"
 
 #: widgets/widget-latest-news.php:133
 msgid "Display type:"
-msgstr ""
+msgstr "Görüntüleme tipi:"
 
 #: widgets/widget-latest-news.php:135
 msgid "Box (one post)"
-msgstr ""
+msgstr "Kutu (bir gönderi)"
 
 #: widgets/widget-latest-news.php:136
 msgid "Inline (multiple posts)"
-msgstr ""
+msgstr "Satıriçi (çoklu gönderi)"
 
 #: widgets/widget-latest-news.php:141 widgets/widget-latest-news.php:200
 msgid "Post order number from:"
-msgstr ""
+msgstr "Gönderi düzeni sayısı başlangıcı:"
 
 #: widgets/widget-latest-news.php:144
 msgid "To:"
-msgstr ""
+msgstr "Kime:"
 
 #: widgets/widget-latest-news.php:150
 msgid "More news link:"
-msgstr ""
+msgstr "Daha fazla haber bağlantısı:"
 
 #: widgets/widget-latest-news.php:183 widgets/widget-latest-news.php:196
 msgid "Post order number:"
-msgstr ""
+msgstr "Gönderi düzeni sayısı:"
 
 #: widgets/widget-number-counter.php:18
 msgid "Number Counter"
-msgstr ""
+msgstr "Numara Sayacı"
 
 #: widgets/widget-number-counter.php:19
 msgid "Widget with multiple animated counters."
-msgstr ""
+msgstr "Çoklu animasyonlu sayaçlar ile görsel öğe."
 
 #: widgets/widget-number-counter.php:135
+#, fuzzy
 msgid "Counting Speed (in milliseconds):"
-msgstr ""
+msgstr "Sayaç Hızı (mili saniye):"
 
 #: widgets/widget-number-counter.php:141
 msgid "Counters"
-msgstr ""
+msgstr "Sayaçlar"
 
 #: widgets/widget-number-counter.php:150
 msgid "Number:"
-msgstr ""
+msgstr "Sayı:"
 
 #: widgets/widget-number-counter.php:167
 msgid "Remove Counter"
-msgstr ""
+msgstr "Sayaç Kaldır"
 
 #: widgets/widget-number-counter.php:173
 msgid "Add New Counter"
-msgstr ""
+msgstr "Yeni Sayaç Ekle"
 
 #: widgets/widget-opening-time.php:25 widgets/widget-opening-time.php:150
 msgid "Opening Time"
-msgstr ""
+msgstr "Açılış Saati"
 
 #: widgets/widget-opening-time.php:26
 msgid "Widget shows opening times per day with optional text."
-msgstr ""
+msgstr "Görsel öğe, opsiyonel bir metinle günlük açılış saatlerini gösterir."
 
 #: widgets/widget-opening-time.php:34
 msgid "Sunday"
-msgstr ""
+msgstr "Pazar"
 
 #: widgets/widget-opening-time.php:35
 msgid "Monday"
-msgstr ""
+msgstr "Pazartesi"
 
 #: widgets/widget-opening-time.php:36
 msgid "Tuesday"
-msgstr ""
+msgstr "Salı"
 
 #: widgets/widget-opening-time.php:37
 msgid "Wednesday"
-msgstr ""
+msgstr "Çarşamba"
 
 #: widgets/widget-opening-time.php:38
 msgid "Thursday"
-msgstr ""
+msgstr "Perşembe"
 
 #: widgets/widget-opening-time.php:39
 msgid "Friday"
-msgstr ""
+msgstr "Cuma"
 
 #: widgets/widget-opening-time.php:40
 msgid "Saturday"
-msgstr ""
+msgstr "Cumartesi"
 
 #: widgets/widget-opening-time.php:182
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: widgets/widget-opening-time.php:189
 msgid "CLOSED"
-msgstr ""
+msgstr "KAPALI"
 
 #: widgets/widget-opening-time.php:208
 msgid "opened"
-msgstr ""
+msgstr "açık"
 
 #: widgets/widget-opening-time.php:210
 msgid "to"
-msgstr ""
+msgstr "-"
 
 #: widgets/widget-opening-time.php:216
 msgid "Separator between hours:"
-msgstr ""
+msgstr "Saatler arasında ayırıcı:"
 
 #: widgets/widget-opening-time.php:221
 msgid "Text used for closed days:"
-msgstr ""
+msgstr "Kapalı günler için kullanılan metin:"
 
 #: widgets/widget-opening-time.php:226
 msgid "Text below the timetable for additional info (for example lunch time):"
 msgstr ""
+"Ek bilgi vermek için zaman çizelgesi altındaki metin (örneğin, öğlen yemeği):"
 
 #: widgets/widget-person-profile.php:22
 msgid "Person Profile"
-msgstr ""
+msgstr "Kişi Profili"
 
 #: widgets/widget-person-profile.php:23
 msgid "Widget displaying person's profile with a photo."
-msgstr ""
+msgstr "Bir fotoğraf ile birlikte kişi profilini görüntüleyen görsel öğe."
 
 #: widgets/widget-person-profile.php:68
 msgid "Picture of"
-msgstr ""
+msgstr "Şunun resmi:"
 
 #: widgets/widget-person-profile.php:69
 msgid "Meet me on:"
-msgstr ""
+msgstr "Benimle şu zaman buluş:"
 
 #: widgets/widget-person-profile.php:151
 msgid "Introduction:"
-msgstr ""
+msgstr "Giriş:"
 
 #: widgets/widget-person-profile.php:169 widgets/widget-social-icons.php:160
 msgid "Select social icon:"
-msgstr ""
+msgstr "Sosyal simge seç:"
 
 #: widgets/widget-person-profile.php:179 widgets/widget-social-icons.php:170
 msgid "Remove Social Icon"
-msgstr ""
+msgstr "Sosyal Simge Kaldır"
 
 #: widgets/widget-person-profile.php:185 widgets/widget-social-icons.php:176
 msgid "Add New Social Icon"
-msgstr ""
+msgstr "Yeni Sosyal Simge Ekle"
 
 #: widgets/widget-skype.php:19
 msgid "Skype"
-msgstr ""
+msgstr "Skype"
 
 #: widgets/widget-skype.php:20
 msgid "Linkable block with Skype or telephone icon."
-msgstr ""
+msgstr "Skype veya telefon simgesi ile bağlanabilir blok."
 
 #: widgets/widget-skype.php:77
 msgid "Skype username:"
-msgstr ""
+msgstr "Skype kullanıcı adı:"
 
 #: widgets/widget-skype.php:79
 msgid ""
-"Examples of use: %1$sskype:your_skype_username%2$s or "
-"%1$stel:your_phone_number%2$s."
+"Examples of use: %1$sskype:your_skype_username%2$s or %1$stel:"
+"your_phone_number%2$s."
 msgstr ""
+"Kullanım örnekleri: %1$sskype:your_skype_username%2$s veya %1$stel:"
+"your_phone_number%2$s."
 
 #: widgets/widget-social-icons.php:23
 msgid "Social Icons"
-msgstr ""
+msgstr "Sosyal Simgeler"
 
 #: widgets/widget-social-icons.php:151
 msgid "Social icons"
-msgstr ""
+msgstr "Sosyal simgeler"
 
 #: widgets/widget-steps.php:18
 msgid "Steps"
-msgstr ""
+msgstr "Adımlar"
 
 #: widgets/widget-steps.php:19
 msgid "Displays multiple steps for your process."
-msgstr ""
+msgstr "İşleminiz için çoklu adımları görüntüler."
 
 #: widgets/widget-steps.php:137
 msgid "Widget title:"
-msgstr ""
+msgstr "Görsel öğe başlığı:"
 
 #: widgets/widget-steps.php:143
 msgid "Steps:"
-msgstr ""
+msgstr "Adımlar:"
 
 #: widgets/widget-steps.php:152
-msgid "Click on the icon below or manually input icon class from the %s website."
+msgid ""
+"Click on the icon below or manually input icon class from the %s website."
 msgstr ""
+"Aşağıdaki simgeyi tıklayın veya %s web sitesinden simge sınıfını manuel "
+"olarak girin."
 
 #: widgets/widget-steps.php:163
 msgid "Step:"
-msgstr ""
+msgstr "Adım:"
 
 #: widgets/widget-steps.php:168
 msgid "Remove Step"
-msgstr ""
+msgstr "Adımı Kaldır"
 
 #: widgets/widget-steps.php:174
 msgid "Add New Step"
-msgstr ""
+msgstr "Yeni Adım Ekle"
 
 #: widgets/widget-testimonials.php:22 widgets/widget-testimonials.php:209
 msgid "Testimonials"
-msgstr ""
+msgstr "Görüşler"
 
 #: widgets/widget-testimonials.php:213
 msgid "Quote:"
-msgstr ""
+msgstr "Alıntı:"
 
 #: widgets/widget-testimonials.php:218
 msgid "Author:"
-msgstr ""
+msgstr "Yazar:"
 
 #: widgets/widget-testimonials.php:224
 msgid "Author description:"
-msgstr ""
+msgstr "Yazar tanımı:"
 
 #: widgets/widget-testimonials.php:231
 msgid "Author avatar:"
-msgstr ""
+msgstr "Yazar avatarı:"
 
 #: widgets/widget-testimonials.php:239
 msgid "Rating:"
-msgstr ""
+msgstr "Derecelendirme:"
 
 #: widgets/widget-testimonials.php:253
 msgid "Remove Testimonial"
-msgstr ""
+msgstr "Görüş Kaldır"
 
 #: widgets/widget-testimonials.php:259
 msgid "Add New Testimonial"
-msgstr ""
+msgstr "Yeni Görüş Ekle"

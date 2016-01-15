@@ -1,21 +1,21 @@
-# Copyright (C) 2016 ProteusThemes 
+# Copyright (C) 2015 ProteusThemes
 # This file is distributed under the GPL 2.0.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://support.proteusthemes.com/\n"
 "POT-Creation-Date: 2015-07-06 08:11:28+00:00\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"X-Generator: grunt-wp-i18n 0.5.3\n"
-"X-Poedit-KeywordsList: "
-"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
-"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
 "Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: grunt-wp-i18n 0.5.1\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Country: United States\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -25,87 +25,89 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 
 #: widgets/views/widget-testimonials.php:46
+#, fuzzy
 msgid "Testimonial author avatar"
-msgstr ""
+msgstr "Avatar för upphovsman:"
 
 #: widgets/widget-about-us.php:22
 msgid "About Us"
-msgstr ""
+msgstr "Om oss"
 
 #: widgets/widget-about-us.php:23
 msgid "Displaying person profiles in a carousel."
-msgstr ""
+msgstr "Visar personprofiler i en karusell."
 
 #: widgets/widget-about-us.php:64
 msgid "About us image"
-msgstr ""
+msgstr "Om oss-bild"
 
 #: widgets/widget-about-us.php:65 widgets/widget-accordion.php:52
 #: widgets/widget-featured-page.php:67 widgets/widget-featured-page.php:131
 msgid "Read more"
-msgstr ""
+msgstr "Läs mer"
 
 #: widgets/widget-about-us.php:66 widgets/widget-testimonials.php:100
 msgid "Previous"
-msgstr ""
+msgstr "Föregående"
 
 #: widgets/widget-about-us.php:67 widgets/widget-testimonials.php:101
 msgid "Next"
-msgstr ""
+msgstr "Nästa"
 
 #: widgets/widget-about-us.php:140
 msgid "People"
-msgstr ""
+msgstr "Människor"
 
 #: widgets/widget-about-us.php:144
 msgid "Tag:"
-msgstr ""
+msgstr "Tagg:"
 
 #: widgets/widget-about-us.php:149 widgets/widget-person-profile.php:145
 msgid "Picture URL:"
-msgstr ""
+msgstr "Bild-URL:"
 
 #: widgets/widget-about-us.php:155 widgets/widget-person-profile.php:135
 msgid "Name:"
-msgstr ""
+msgstr "Namn:"
 
 #: widgets/widget-about-us.php:160
 msgid "Description:"
-msgstr ""
+msgstr "Beskrivning:"
 
 #: widgets/widget-about-us.php:165 widgets/widget-banner.php:84
 #: widgets/widget-icon-box.php:95 widgets/widget-person-profile.php:164
 #: widgets/widget-social-icons.php:155
 msgid "Link:"
-msgstr ""
+msgstr "Länk:"
 
 #: widgets/widget-about-us.php:172
 msgid "Remove Person"
-msgstr ""
+msgstr "Ta bort person"
 
 #: widgets/widget-about-us.php:178
 msgid "Add New Person"
-msgstr ""
+msgstr "Lägg till ny person"
 
 #: widgets/widget-about-us.php:198 widgets/widget-testimonials.php:195
 msgid "Automatically cycle the carousel:"
-msgstr ""
+msgstr "Automatisk rullning av karusellen:"
 
 #: widgets/widget-about-us.php:200 widgets/widget-testimonials.php:197
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: widgets/widget-about-us.php:201 widgets/widget-testimonials.php:198
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #: widgets/widget-about-us.php:206 widgets/widget-testimonials.php:203
+#, fuzzy
 msgid "Interval (in milliseconds):"
-msgstr ""
+msgstr "Intervall (i millisekunder):"
 
 #: widgets/widget-accordion.php:18
 msgid "Accordion"
-msgstr ""
+msgstr "Dragspel"
 
 #: widgets/widget-accordion.php:115 widgets/widget-accordion.php:132
 #: widgets/widget-banner.php:74 widgets/widget-brochure-box.php:85
@@ -114,504 +116,518 @@ msgstr ""
 #: widgets/widget-person-profile.php:140 widgets/widget-skype.php:72
 #: widgets/widget-steps.php:147 widgets/widget-testimonials.php:190
 msgid "Title:"
-msgstr ""
+msgstr "Titel:"
 
 #: widgets/widget-accordion.php:120
 msgid "Read more URL:"
-msgstr ""
+msgstr "Läs mer-URL:"
 
 #: widgets/widget-accordion.php:123
 msgid ""
 "If you leave this field empty the read more link will not be displayed in "
 "the widget."
 msgstr ""
+"Om du lämnar detta fält tomt kommer 'läs mer'-länken inte att visas i "
+"widgeten."
 
 #: widgets/widget-accordion.php:128
 msgid "Accordion items"
-msgstr ""
+msgstr "Dragspelsobjekt"
 
 #: widgets/widget-accordion.php:136 widgets/widget-banner.php:79
 #: widgets/widget-steps.php:159
 msgid "Content:"
-msgstr ""
+msgstr "Innehåll:"
 
 #: widgets/widget-accordion.php:141
 msgid "Remove Item"
-msgstr ""
+msgstr "Ta bort objekt"
 
 #: widgets/widget-accordion.php:147
 msgid "Add New Item"
-msgstr ""
+msgstr "Lägg till nytt objekt"
 
 #: widgets/widget-author.php:20
 msgid "Author"
-msgstr ""
+msgstr "Skapad av"
 
 #: widgets/widget-author.php:21
 msgid "Displays author details with a gravatar photo."
-msgstr ""
+msgstr "Visar information om upphovsman med ett gravatarfoto."
 
 #: widgets/widget-author.php:76
 msgid "Display author:"
-msgstr ""
+msgstr "Visa upphovsman:"
 
 #: widgets/widget-author.php:86
 msgid ""
 "To add the social icons to this widget, please install the %sExtra User "
 "Details%s plugin and fill in the details in the &quot;Users&quot; section."
 msgstr ""
+"För att lägga till de sociala ikonerna i denna widget måste du installera "
+"%sExtra användaruppgifter%s-pluginprogrammet och ange uppgifterna i &quot;"
+"Användare&quot;-sektionen."
 
 #: widgets/widget-banner.php:20
 msgid "Banner"
-msgstr ""
+msgstr "Banderoll"
 
 #: widgets/widget-banner.php:21
 msgid "Linkable block with title and content."
-msgstr ""
+msgstr "Kopplingsbart block med titel och innehåll."
 
 #: widgets/widget-banner.php:87 widgets/widget-brochure-box.php:97
 #: widgets/widget-icon-box.php:102 widgets/widget-person-profile.php:157
 #: widgets/widget-social-icons.php:146
 msgid "Open link in new tab"
-msgstr ""
+msgstr "Öppna länk i ny flik"
 
 #: widgets/widget-brochure-box.php:20
 msgid "Brochure Box"
-msgstr ""
+msgstr "Broschyrruta"
 
 #: widgets/widget-brochure-box.php:21
 msgid "Widget for displaying downloadable files."
-msgstr ""
+msgstr "Widget för visning av nedladdningsbara filer."
 
 #: widgets/widget-brochure-box.php:90
 msgid "File URL:"
-msgstr ""
+msgstr "Fil-URL:"
 
 #: widgets/widget-brochure-box.php:92
 msgid "Upload file"
-msgstr ""
+msgstr "Ladda upp fil"
 
 #: widgets/widget-brochure-box.php:101
 msgid "Brochure text:"
-msgstr ""
+msgstr "Broschyrtext:"
 
 #: widgets/widget-brochure-box.php:106
 msgid "Brochure icon:"
-msgstr ""
+msgstr "Broschyrikon:"
 
 #: widgets/widget-brochure-box.php:107 widgets/widget-icon-box.php:107
 #: widgets/widget-number-counter.php:157 widgets/widget-person-profile.php:170
 #: widgets/widget-social-icons.php:161
 msgid "Click on the icon below or manually select from the %s website."
-msgstr ""
+msgstr "Klicka på ikonen nedan eller välj manuellt från %s-webbplatsen."
 
 #: widgets/widget-facebook.php:20
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: widgets/widget-facebook.php:21
 msgid "Facebook like box with some customization settings."
-msgstr ""
+msgstr "Facebook-gillaruta med vissa anpassningsinställningar."
 
 #: widgets/widget-facebook.php:110
 msgid "FB page to like (the whole URL):"
-msgstr ""
+msgstr "FB-sida att gilla (hela URL:en):"
 
 #: widgets/widget-facebook.php:115
 msgid "Width (in pixels, Min: 180, Max: 500):"
-msgstr ""
+msgstr "Bredd (i bildpunkter, Min: 180, Max: 500):"
 
 #: widgets/widget-facebook.php:120
 msgid "Height (in pixels, Min: 70):"
-msgstr ""
+msgstr "Höjd (i bildpunkter, Min: 70):"
 
 #: widgets/widget-facebook.php:126
 msgid "Hide cover photo"
-msgstr ""
+msgstr "Dölj omslagsbild"
 
 #: widgets/widget-facebook.php:129
 msgid "Hide friend's faces"
-msgstr ""
+msgstr "Dölj vänners ansikten"
 
 #: widgets/widget-facebook.php:132
 msgid "Show page posts"
-msgstr ""
+msgstr "Visa sidinlägg"
 
 #: widgets/widget-facebook.php:135
 msgid "Use small header"
-msgstr ""
+msgstr "Använd litet sidhuvud"
 
 #: widgets/widget-featured-page.php:28
 msgid "Featured Page"
-msgstr ""
+msgstr "Aktuellt-sida"
 
 #: widgets/widget-featured-page.php:29
 msgid "Displays featured image, title and short excerpt of the selected page."
-msgstr ""
+msgstr "Visar aktuell bild, titel och kort utdrag från den valda sidan."
 
 #: widgets/widget-featured-page.php:136
 msgid "Page:"
-msgstr ""
+msgstr "Sida:"
 
 #: widgets/widget-featured-page.php:147
 msgid "Layout:"
-msgstr ""
+msgstr "Layout:"
 
 #: widgets/widget-featured-page.php:149
 msgid "With big picture"
-msgstr ""
+msgstr "Med stor bild"
 
 #: widgets/widget-featured-page.php:150
 msgid "With small picture, inline"
-msgstr ""
+msgstr "Med liten bild, infogad"
 
 #: widgets/widget-featured-page.php:156 widgets/widget-latest-news.php:155
 msgid "Read more text:"
-msgstr ""
+msgstr "Läs mer text:"
 
 #: widgets/widget-google-map.php:30
 msgid "Google Map"
-msgstr ""
+msgstr "Google-karta"
 
 #: widgets/widget-google-map.php:31
 msgid ""
 "Generates Google map with given coordinates (select map skin and other "
 "settings)."
 msgstr ""
+"Genererar Google-karta med givna koordinater (ange kartskal och andra "
+"inställningar)."
 
 #: widgets/widget-google-map.php:127
 msgid "Latitude and longitude of the map center:"
-msgstr ""
+msgstr "Kartcentrets latitud och longitud:"
 
 #: widgets/widget-google-map.php:128
 msgid ""
 "Get this from %s (right click on map and select What's here?) or %s. "
 "Latitude and longitude separated by comma."
 msgstr ""
+"Skaffa denna från %s (högerklicka på kartan och tryck på Vad finns här?) "
+"eller %s. Latitud och longitud separerade med ett komma."
 
 #: widgets/widget-google-map.php:133
 msgid "Zoom (more is closer view):"
-msgstr ""
+msgstr "Zoom (högre nummer innebär närmare inzoomning):"
 
 #: widgets/widget-google-map.php:142
 msgid "Type:"
-msgstr ""
+msgstr "Typ:"
 
 #: widgets/widget-google-map.php:151
 msgid "Style:"
-msgstr ""
+msgstr "Stil:"
 
 #: widgets/widget-google-map.php:160
 msgid "Height of map (in pixels):"
-msgstr ""
+msgstr "Kartans höjd (i bildpunkter):"
 
 #: widgets/widget-google-map.php:165
 msgid "Locations"
-msgstr ""
+msgstr "Platser"
 
 #: widgets/widget-google-map.php:169
 msgid "Title of location:"
-msgstr ""
+msgstr "Titel för plats:"
 
 #: widgets/widget-google-map.php:170
 msgid "This is shown on pin mouse hover."
-msgstr ""
+msgstr "Detta visas när muspekaren hålls över en kartnål."
 
 #: widgets/widget-google-map.php:175
 msgid "Latitude and longitude of this location:"
-msgstr ""
+msgstr "Latitud och longitud för denna plats."
 
 #: widgets/widget-google-map.php:176
 msgid "The same format as above for the map center."
-msgstr ""
+msgstr "Samma format som ovan för kartcentret."
 
 #: widgets/widget-google-map.php:181
 msgid "Custom pin icon URL:"
-msgstr ""
+msgstr "URL för anpassad kartnålsikon:"
 
 #: widgets/widget-google-map.php:187
 msgid "Remove Location"
-msgstr ""
+msgstr "Ta bort plats"
 
 #: widgets/widget-google-map.php:193
 msgid "Add New Location"
-msgstr ""
+msgstr "Lägg till ny plats"
 
 #: widgets/widget-icon-box.php:20
 msgid "Icon Box"
-msgstr ""
+msgstr "Ikonruta"
 
 #: widgets/widget-icon-box.php:21
 msgid "Linkable block with title, text and font awesome icon."
-msgstr ""
+msgstr "Kopplingsbart block med titel, text och font awesome-ikon."
 
 #: widgets/widget-icon-box.php:90
 msgid "Text:"
-msgstr ""
+msgstr "Text:"
 
 #: widgets/widget-icon-box.php:96
 msgid "URL to any page, optional."
-msgstr ""
+msgstr "URL till önskad sida, valbart."
 
 #: widgets/widget-icon-box.php:106 widgets/widget-number-counter.php:156
 #: widgets/widget-steps.php:151
 msgid "Icon:"
-msgstr ""
+msgstr "Ikon:"
 
 #: widgets/widget-latest-news.php:16
 msgid "Latest News"
-msgstr ""
+msgstr "Senaste nyheterna"
 
 #: widgets/widget-latest-news.php:17
 msgid "Displays one or more latest posts."
-msgstr ""
+msgstr "Visar en eller flera av de senaste inläggen."
 
 #: widgets/widget-latest-news.php:39 widgets/widget-latest-news.php:119
 msgid "More news"
-msgstr ""
+msgstr "Fler nyheter"
 
 #: widgets/widget-latest-news.php:62
 msgid "By"
-msgstr ""
+msgstr "Av"
 
 #: widgets/widget-latest-news.php:133
 msgid "Display type:"
-msgstr ""
+msgstr "Visningstyp:"
 
 #: widgets/widget-latest-news.php:135
 msgid "Box (one post)"
-msgstr ""
+msgstr "Ruta (ett inlägg)"
 
 #: widgets/widget-latest-news.php:136
 msgid "Inline (multiple posts)"
-msgstr ""
+msgstr "Infogad (flera inlägg)"
 
 #: widgets/widget-latest-news.php:141 widgets/widget-latest-news.php:200
 msgid "Post order number from:"
-msgstr ""
+msgstr "Inläggsordningsnummer från:"
 
 #: widgets/widget-latest-news.php:144
 msgid "To:"
-msgstr ""
+msgstr "Till:"
 
 #: widgets/widget-latest-news.php:150
 msgid "More news link:"
-msgstr ""
+msgstr "Fler nyheter-länk:"
 
 #: widgets/widget-latest-news.php:183 widgets/widget-latest-news.php:196
 msgid "Post order number:"
-msgstr ""
+msgstr "Inläggsordningsnummer:"
 
 #: widgets/widget-number-counter.php:18
 msgid "Number Counter"
-msgstr ""
+msgstr "Nummerräknare"
 
 #: widgets/widget-number-counter.php:19
 msgid "Widget with multiple animated counters."
-msgstr ""
+msgstr "Widget med flera animerade räknare."
 
 #: widgets/widget-number-counter.php:135
+#, fuzzy
 msgid "Counting Speed (in milliseconds):"
-msgstr ""
+msgstr "Beräkningshastighet (i millisekunder):"
 
 #: widgets/widget-number-counter.php:141
 msgid "Counters"
-msgstr ""
+msgstr "Räknare"
 
 #: widgets/widget-number-counter.php:150
 msgid "Number:"
-msgstr ""
+msgstr "Nummer:"
 
 #: widgets/widget-number-counter.php:167
 msgid "Remove Counter"
-msgstr ""
+msgstr "Ta bort räknare"
 
 #: widgets/widget-number-counter.php:173
 msgid "Add New Counter"
-msgstr ""
+msgstr "Lägg till ny räknare"
 
 #: widgets/widget-opening-time.php:25 widgets/widget-opening-time.php:150
 msgid "Opening Time"
-msgstr ""
+msgstr "Öppningstid"
 
 #: widgets/widget-opening-time.php:26
 msgid "Widget shows opening times per day with optional text."
-msgstr ""
+msgstr "Widget visar öppningstider per dag med valbar text."
 
 #: widgets/widget-opening-time.php:34
 msgid "Sunday"
-msgstr ""
+msgstr "Söndag"
 
 #: widgets/widget-opening-time.php:35
 msgid "Monday"
-msgstr ""
+msgstr "Måndag"
 
 #: widgets/widget-opening-time.php:36
 msgid "Tuesday"
-msgstr ""
+msgstr "Tisdag"
 
 #: widgets/widget-opening-time.php:37
 msgid "Wednesday"
-msgstr ""
+msgstr "Onsdag"
 
 #: widgets/widget-opening-time.php:38
 msgid "Thursday"
-msgstr ""
+msgstr "Torsdag"
 
 #: widgets/widget-opening-time.php:39
 msgid "Friday"
-msgstr ""
+msgstr "Fredag"
 
 #: widgets/widget-opening-time.php:40
 msgid "Saturday"
-msgstr ""
+msgstr "Lördag"
 
 #: widgets/widget-opening-time.php:182
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: widgets/widget-opening-time.php:189
 msgid "CLOSED"
-msgstr ""
+msgstr "STÄNGT"
 
 #: widgets/widget-opening-time.php:208
 msgid "opened"
-msgstr ""
+msgstr "öppet"
 
 #: widgets/widget-opening-time.php:210
 msgid "to"
-msgstr ""
+msgstr "till"
 
 #: widgets/widget-opening-time.php:216
 msgid "Separator between hours:"
-msgstr ""
+msgstr "Avgränsare mellan timmar:"
 
 #: widgets/widget-opening-time.php:221
 msgid "Text used for closed days:"
-msgstr ""
+msgstr "Text för dagar då det är stängt:"
 
 #: widgets/widget-opening-time.php:226
 msgid "Text below the timetable for additional info (for example lunch time):"
-msgstr ""
+msgstr "Text under tidtabellen för ytterligare information (t.ex. lunchtider):"
 
 #: widgets/widget-person-profile.php:22
 msgid "Person Profile"
-msgstr ""
+msgstr "Personprofil"
 
 #: widgets/widget-person-profile.php:23
 msgid "Widget displaying person's profile with a photo."
-msgstr ""
+msgstr "Widget som visar en persons profil med ett foto."
 
 #: widgets/widget-person-profile.php:68
 msgid "Picture of"
-msgstr ""
+msgstr "Bild av"
 
 #: widgets/widget-person-profile.php:69
 msgid "Meet me on:"
-msgstr ""
+msgstr "Träffa mig på:"
 
 #: widgets/widget-person-profile.php:151
 msgid "Introduction:"
-msgstr ""
+msgstr "Introduktion:"
 
 #: widgets/widget-person-profile.php:169 widgets/widget-social-icons.php:160
 msgid "Select social icon:"
-msgstr ""
+msgstr "Välj social ikon:"
 
 #: widgets/widget-person-profile.php:179 widgets/widget-social-icons.php:170
 msgid "Remove Social Icon"
-msgstr ""
+msgstr "Ta bort social ikon"
 
 #: widgets/widget-person-profile.php:185 widgets/widget-social-icons.php:176
 msgid "Add New Social Icon"
-msgstr ""
+msgstr "Lägg till ny social ikon"
 
 #: widgets/widget-skype.php:19
 msgid "Skype"
-msgstr ""
+msgstr "Skype"
 
 #: widgets/widget-skype.php:20
 msgid "Linkable block with Skype or telephone icon."
-msgstr ""
+msgstr "Kopplingsbart block med Skype- eller telefonikon."
 
 #: widgets/widget-skype.php:77
 msgid "Skype username:"
-msgstr ""
+msgstr "Skype-användarnamn:"
 
 #: widgets/widget-skype.php:79
 msgid ""
-"Examples of use: %1$sskype:your_skype_username%2$s or "
-"%1$stel:your_phone_number%2$s."
+"Examples of use: %1$sskype:your_skype_username%2$s or %1$stel:"
+"your_phone_number%2$s."
 msgstr ""
+"Användningsexempel: %1$sskype:your_skype_username%2$s eller %1$stel:"
+"your_phone_number%2$s."
 
 #: widgets/widget-social-icons.php:23
 msgid "Social Icons"
-msgstr ""
+msgstr "Sociala ikoner"
 
 #: widgets/widget-social-icons.php:151
 msgid "Social icons"
-msgstr ""
+msgstr "Sociala ikoner"
 
 #: widgets/widget-steps.php:18
 msgid "Steps"
-msgstr ""
+msgstr "Steg"
 
 #: widgets/widget-steps.php:19
 msgid "Displays multiple steps for your process."
-msgstr ""
+msgstr "Visar flera steg för din process."
 
 #: widgets/widget-steps.php:137
 msgid "Widget title:"
-msgstr ""
+msgstr "Widget-titel:"
 
 #: widgets/widget-steps.php:143
 msgid "Steps:"
-msgstr ""
+msgstr "Steg:"
 
 #: widgets/widget-steps.php:152
-msgid "Click on the icon below or manually input icon class from the %s website."
+msgid ""
+"Click on the icon below or manually input icon class from the %s website."
 msgstr ""
+"Klicka på ikonen nedan eller ange ikonklass manuellt från %s-webbplatsen."
 
 #: widgets/widget-steps.php:163
 msgid "Step:"
-msgstr ""
+msgstr "Steg:"
 
 #: widgets/widget-steps.php:168
 msgid "Remove Step"
-msgstr ""
+msgstr "Ta bort steg"
 
 #: widgets/widget-steps.php:174
 msgid "Add New Step"
-msgstr ""
+msgstr "Lägg till nytt steg"
 
 #: widgets/widget-testimonials.php:22 widgets/widget-testimonials.php:209
 msgid "Testimonials"
-msgstr ""
+msgstr "Omdömen"
 
 #: widgets/widget-testimonials.php:213
 msgid "Quote:"
-msgstr ""
+msgstr "Citat:"
 
 #: widgets/widget-testimonials.php:218
 msgid "Author:"
-msgstr ""
+msgstr "Upphovsman:"
 
 #: widgets/widget-testimonials.php:224
 msgid "Author description:"
-msgstr ""
+msgstr "Beskrivning av upphovsman:"
 
 #: widgets/widget-testimonials.php:231
 msgid "Author avatar:"
-msgstr ""
+msgstr "Avatar för upphovsman:"
 
 #: widgets/widget-testimonials.php:239
 msgid "Rating:"
-msgstr ""
+msgstr "Betyg:"
 
 #: widgets/widget-testimonials.php:253
 msgid "Remove Testimonial"
-msgstr ""
+msgstr "Ta bort omdöme"
 
 #: widgets/widget-testimonials.php:259
 msgid "Add New Testimonial"
-msgstr ""
+msgstr "Lägg till nytt omdöme"
