@@ -26,82 +26,82 @@ msgstr ""
 
 #: widgets/widget-about-us.php:17
 msgid "About Us"
-msgstr "Quiénes somos"
+msgstr "Om os"
 
 #: widgets/widget-about-us.php:18
 msgid "Displaying person profiles in a carousel."
-msgstr "Mostrando perfiles de personas en carrusel."
+msgstr "Viser personlige profiler i en karussel."
 
 #: widgets/widget-about-us.php:65
 msgid "About us image"
-msgstr "Imagen de quiénes somos"
+msgstr "Om os-billede"
 
 #: widgets/widget-about-us.php:66 widgets/widget-accordion.php:62
 #: widgets/widget-featured-page.php:67 widgets/widget-featured-page.php:132
 msgid "Read more"
-msgstr "Leer más"
+msgstr "Læs mere"
 
 #: widgets/widget-about-us.php:67 widgets/widget-testimonials.php:102
 msgid "Previous"
-msgstr "Anterior"
+msgstr "Tidligere"
 
 #: widgets/widget-about-us.php:68 widgets/widget-testimonials.php:103
 msgid "Next"
-msgstr "Siguiente"
+msgstr "Næste"
 
 #: widgets/widget-about-us.php:141
 msgid "People"
-msgstr "Gente"
+msgstr "Folk"
 
 #: widgets/widget-about-us.php:145
 msgid "Tag:"
-msgstr "Etiqueta:"
+msgstr "Mærke:"
 
 #: widgets/widget-about-us.php:150 widgets/widget-person-profile.php:152
 msgid "Picture URL:"
-msgstr "Imagen URL:"
+msgstr "Billed-URL:"
 
 #: widgets/widget-about-us.php:156 widgets/widget-person-profile.php:142
 msgid "Name:"
-msgstr "Nombre:"
+msgstr "Navn:"
 
 #: widgets/widget-about-us.php:161
 msgid "Description:"
-msgstr "Descripción:"
+msgstr "Beskrivelse:"
 
 #: widgets/widget-about-us.php:166 widgets/widget-banner.php:87
 #: widgets/widget-icon-box.php:96 widgets/widget-person-profile.php:171
 #: widgets/widget-social-icons.php:159
 msgid "Link:"
-msgstr "Enlace:"
+msgstr "Link:"
 
 #: widgets/widget-about-us.php:173
 msgid "Remove Person"
-msgstr "Eliminar persona"
+msgstr "Fjern person"
 
 #: widgets/widget-about-us.php:179
 msgid "Add New Person"
-msgstr "Añadir nueva persona"
+msgstr "Tilføj ny person"
 
 #: widgets/widget-about-us.php:199 widgets/widget-testimonials.php:197
 msgid "Automatically cycle the carousel:"
-msgstr "Girar el carrusel automáticamente:"
+msgstr "Kør karusellen rundt automatisk:"
 
 #: widgets/widget-about-us.php:201 widgets/widget-testimonials.php:199
 msgid "Yes"
-msgstr "Sí"
+msgstr "Ja"
 
 #: widgets/widget-about-us.php:202 widgets/widget-testimonials.php:200
 msgid "No"
-msgstr "No"
+msgstr "Nej"
 
 #: widgets/widget-about-us.php:207 widgets/widget-testimonials.php:205
 msgid "Interval (in milliseconds):"
-msgstr "Intervalo (en milisegundos):"
+msgstr ""
 
 #: widgets/widget-accordion.php:16
 msgid "Accordion"
-msgstr "Acordeón"
+msgstr "Harmonika"
 
 #: widgets/widget-accordion.php:125 widgets/widget-accordion.php:142
 #: widgets/widget-banner.php:77 widgets/widget-brochure-box.php:87
@@ -110,55 +110,56 @@ msgstr "Acordeón"
 #: widgets/widget-person-profile.php:147 widgets/widget-skype.php:72
 #: widgets/widget-steps.php:155 widgets/widget-testimonials.php:192
 msgid "Title:"
-msgstr "Título:"
+msgstr "Titel:"
 
 #: widgets/widget-accordion.php:130
 msgid "Read more URL:"
-msgstr "URL Leer más:"
+msgstr "Læs flere URL:"
 
 #: widgets/widget-accordion.php:133
 msgid ""
 "If you leave this field empty the read more link will not be displayed in "
 "the widget."
 msgstr ""
-"Si deja este campo vacío el enlace 'leer más' no se mostrará en el widget."
+"Hvis man lader dette felt stå tomt, vil læs-flere-link ikke blive vist i "
+"widget.  "
 
 #: widgets/widget-accordion.php:138
 msgid "Accordion items"
-msgstr "Artículos de acordeón"
+msgstr "Harmonika-artikler"
 
 #: widgets/widget-accordion.php:146 widgets/widget-banner.php:82
 #: widgets/widget-steps.php:167
 msgid "Content:"
-msgstr "Contenido:"
+msgstr "Indhold:"
 
 #: widgets/widget-accordion.php:151
 msgid "Remove Item"
-msgstr "Eliminar artículo"
+msgstr "Fjern del"
 
 #: widgets/widget-accordion.php:157
 msgid "Add New Item"
-msgstr "Añadir artículo nuevo"
+msgstr "Tilføj ny del"
 
 #: widgets/widget-author.php:15
 msgid "Author"
-msgstr "Autor"
+msgstr "Forfatter"
 
 #: widgets/widget-author.php:16
 msgid "Displays author details with a gravatar photo."
-msgstr "Muestra información del autor con foto gravatar."
+msgstr "Vis forfatteroplysninger med et gravatar foto."
 
 #: widgets/widget-author.php:76
 msgid "Display author:"
-msgstr "Mostrar autor:"
+msgstr "Vis forfatter:"
 
 #: widgets/widget-author.php:86
 msgid ""
 "To add the social icons to this widget, please install the %sExtra User "
 "Details%s plugin and fill in the details in the &quot;Users&quot; section."
 msgstr ""
-"Para añadir los iconos sociales a este widget instale el plugin %sExtra User "
-"Details%s y rellene la información de la sección &quot;Users&quot;."
+"Installer %sExstra User Details%s plugin og udfyld oplysningerne i &quot;"
+"Users&quot; sektionen for at tilføje sociale ikoner til denne widget."
 
 #: widgets/widget-banner.php:15
 msgid "Banner"
@@ -166,44 +167,43 @@ msgstr "Banner"
 
 #: widgets/widget-banner.php:16
 msgid "Linkable block with title and content."
-msgstr "Bloque enlazable con título y contenido."
+msgstr "Forbindbar blok med titel og indhold."
 
 #: widgets/widget-banner.php:90 widgets/widget-brochure-box.php:99
 #: widgets/widget-icon-box.php:103 widgets/widget-person-profile.php:164
 #: widgets/widget-social-icons.php:150
 msgid "Open link in new tab"
-msgstr "Abrir enlace en una pestaña nueva"
+msgstr "Åbn link i en ny fane.  "
 
 #: widgets/widget-brochure-box.php:15
 msgid "Brochure Box"
-msgstr "Recuadro de folleto"
+msgstr "Brochure boks"
 
 #: widgets/widget-brochure-box.php:16
 msgid "Widget for displaying downloadable files."
-msgstr "Widget para mostrar los archivos descargables."
+msgstr "Widget til at vise filer, der kan downloades. "
 
 #: widgets/widget-brochure-box.php:92
 msgid "File URL:"
-msgstr "Archivo URL:"
+msgstr "Fil-URL:"
 
 #: widgets/widget-brochure-box.php:94
 msgid "Upload file"
-msgstr "Cargar archivo"
+msgstr "Upload fil"
 
 #: widgets/widget-brochure-box.php:103
 msgid "Brochure text:"
-msgstr "Texto del folleto:"
+msgstr "Brochurerekst:"
 
 #: widgets/widget-brochure-box.php:108
 msgid "Brochure icon:"
-msgstr "Icono del folleto:"
+msgstr "Brochureikon:"
 
 #: widgets/widget-brochure-box.php:109 widgets/widget-icon-box.php:108
 #: widgets/widget-number-counter.php:167 widgets/widget-person-profile.php:177
 #: widgets/widget-social-icons.php:165
 msgid "Click on the icon below or manually select from the %s website."
-msgstr ""
-"Clique en el icono de abajo o seleccione manualmente de la página web %s."
+msgstr "Klik på ikonet nedenfor eller vælg manuelt fra %s websiden.  "
 
 #: widgets/widget-facebook.php:15
 msgid "Facebook"
@@ -211,265 +211,264 @@ msgstr "Facebook"
 
 #: widgets/widget-facebook.php:16
 msgid "Facebook like box with some customization settings."
-msgstr "Casilla 'me gusta' de Facebook con ajustes de personalización."
+msgstr "Facebook ka'li'-boks med nogle tilpasningsindstillinger.   "
 
 #: widgets/widget-facebook.php:111
 msgid "FB page to like (the whole URL):"
-msgstr "Página FB para 'me gusta' (toda el URL):"
+msgstr "FB-side til at kunne li' (hele URL-en):"
 
 #: widgets/widget-facebook.php:116
 msgid "Width (in pixels, Min: 180, Max: 500):"
-msgstr "Ancho (en píxeles, mín: 180, máx: 500):"
+msgstr "Bredde (i pixel, Min: 180, Maks: 500):"
 
 #: widgets/widget-facebook.php:121
 msgid "Height (in pixels, Min: 70):"
-msgstr "Alto (en píxeles, mín: 70):"
+msgstr "Højde (i pixels, Min: 70):"
 
 #: widgets/widget-facebook.php:127
 msgid "Hide cover photo"
-msgstr "Ocultar foto de cubierta"
+msgstr "Gem omslagsbillide"
 
 #: widgets/widget-facebook.php:130
 msgid "Hide friend's faces"
-msgstr "Ocultar caras de amistades"
+msgstr "Gem vens ansigter"
 
 #: widgets/widget-facebook.php:133
 msgid "Show page posts"
-msgstr "Mostrar comentarios de la página"
+msgstr "Vis side posteringer"
 
 #: widgets/widget-facebook.php:136
 msgid "Use small header"
-msgstr "Utilizar encabezado pequeño"
+msgstr "Brug lille sidehoved"
 
 #: widgets/widget-featured-page.php:24
 msgid "Featured Page"
-msgstr "Página exhibida"
+msgstr "Vist side"
 
 #: widgets/widget-featured-page.php:25
 msgid "Displays featured image, title and short excerpt of the selected page."
-msgstr ""
-"Muestra la imagen, el título y un breve extracto de la página seleccionada."
+msgstr "Viser vist billede, titel og kort uddrag fra den valgte side.  "
 
 #: widgets/widget-featured-page.php:137
 msgid "Page:"
-msgstr "Página:"
+msgstr "Side:"
 
 #: widgets/widget-featured-page.php:148
 msgid "Layout:"
-msgstr "Estructura:"
+msgstr "Layout:"
 
 #: widgets/widget-featured-page.php:150
 msgid "With big picture"
-msgstr "Con imagen grande"
+msgstr "Med stort billede"
 
 #: widgets/widget-featured-page.php:151
 msgid "With small picture, inline"
-msgstr "Con imagen pequeña, inline"
+msgstr "Med lille billede,  inline"
 
 #: widgets/widget-featured-page.php:157 widgets/widget-latest-news.php:155
 msgid "Read more text:"
-msgstr "Leer más texto:"
+msgstr "Læs mere tekst:"
 
 #: widgets/widget-google-map.php:25
 msgid "Google Map"
-msgstr "Google Map"
+msgstr "Google kort"
 
 #: widgets/widget-google-map.php:26
 msgid ""
 "Generates Google map with given coordinates (select map skin and other "
 "settings)."
 msgstr ""
-"Genera un Google map con las coordenadas facilitadas (seleccionar aspecto "
-"del mapa y otros ajustes)."
+"Genererer Google kort med givne koordinater (vælg kort skin og andre "
+"indstillinger).    "
 
 #: widgets/widget-google-map.php:130
 msgid "Latitude and longitude of the map center:"
-msgstr "Latitud y longitud en el centro del mapa:"
+msgstr "Bredde- og længdegrader for kortets midte:  "
 
 #: widgets/widget-google-map.php:131
 msgid ""
 "Get this from %s (right click on map and select What's here?) or %s. "
 "Latitude and longitude separated by comma."
 msgstr ""
-"Obtenga esto de %s (clique con el botón derecho sobre el mapa y seleccione "
-"'¿Qué hay aquí?') o %s. Latitud y longitud separadas por una coma."
+"Få dette fra %s (højreklik på kort, og vælg Hvad er der her?) eller %s. "
+"Bredde og længde separeret med komma.   "
 
 #: widgets/widget-google-map.php:136
 msgid "Zoom (more is closer view):"
-msgstr "Zoom (más es vista más cercana):"
+msgstr "Zoom (mere betyder tættere kig): "
 
 #: widgets/widget-google-map.php:145
 msgid "Type:"
-msgstr "Tipo:"
+msgstr "Type:"
 
 #: widgets/widget-google-map.php:154
 msgid "Style:"
-msgstr "Estilo:"
+msgstr "Stil:"
 
 #: widgets/widget-google-map.php:163
 msgid "Height of map (in pixels):"
-msgstr "Altura del mapa (en píxeles):"
+msgstr "Kortets højde (i pixel):"
 
 #: widgets/widget-google-map.php:168
 msgid "Locations"
-msgstr "Ubicaciones"
+msgstr "Lokationer"
 
 #: widgets/widget-google-map.php:172
 msgid "Title of location:"
-msgstr "Título de la ubicación:"
+msgstr "Lokationens titel:"
 
 #: widgets/widget-google-map.php:173
 msgid "This is shown on pin mouse hover."
-msgstr "Esto se muestra en la flecha del ratón."
+msgstr "Dette vises på pin mus hover."
 
 #: widgets/widget-google-map.php:178
 msgid "Latitude and longitude of this location:"
-msgstr "Latitud y longitud de esta ubicación:"
+msgstr "Lokationens bredde- og længdegrad: "
 
 #: widgets/widget-google-map.php:179
 msgid "The same format as above for the map center."
-msgstr "El mismo formato de arriba para el centro del mapa."
+msgstr "Samme format som ovenfor for midten på kort.  "
 
 #: widgets/widget-google-map.php:184
 msgid "Custom pin icon URL:"
-msgstr "URL para personalizar el icono del pin:"
+msgstr "Tilpasset pin ikon URL:"
 
 #: widgets/widget-google-map.php:190
 msgid "Remove Location"
-msgstr "Eliminar ubicación"
+msgstr "Fjern lokation"
 
 #: widgets/widget-google-map.php:196
 msgid "Add New Location"
-msgstr "Añadir nueva ubicación"
+msgstr "Tilføj ny lokation"
 
 #: widgets/widget-icon-box.php:15
 msgid "Icon Box"
-msgstr "Recuadro de iconos"
+msgstr "Ikon-boks"
 
 #: widgets/widget-icon-box.php:16
 msgid "Linkable block with title, text and font awesome icon."
-msgstr "Bloque enlazable con icono impresionante de título, texto y fuente."
+msgstr "Forbindbar blok med titel, tekst og skifttype-utroligt ikon.   "
 
 #: widgets/widget-icon-box.php:91
 msgid "Text:"
-msgstr "Texto:"
+msgstr "Tekst:"
 
 #: widgets/widget-icon-box.php:97
 msgid "URL to any page, optional."
-msgstr "URL a cualquier página, opcional."
+msgstr "URL til en hvilken som helst side, valgfrit.   "
 
 #: widgets/widget-icon-box.php:107 widgets/widget-number-counter.php:166
 #: widgets/widget-steps.php:159
 msgid "Icon:"
-msgstr "Icono:"
+msgstr "Ikon:"
 
 #: widgets/widget-latest-news.php:14
 msgid "Latest News"
-msgstr "Novedades"
+msgstr "Seneste nyheder"
 
 #: widgets/widget-latest-news.php:15
 msgid "Displays one or more latest posts."
-msgstr "Muestra una o más de las últimas publicaciones."
+msgstr "Viser en eller flere af de seneste poster."
 
 #: widgets/widget-latest-news.php:39 widgets/widget-latest-news.php:119
 msgid "More news"
-msgstr "Más noticias"
+msgstr "Flere nyheder"
 
 #: widgets/widget-latest-news.php:62
 msgid "By"
-msgstr "Por"
+msgstr "Af"
 
 #: widgets/widget-latest-news.php:133
 msgid "Display type:"
-msgstr "Modo de muestra:"
+msgstr "Viser type:"
 
 #: widgets/widget-latest-news.php:135
 msgid "Box (one post)"
-msgstr "Recuadro (una publicación)"
+msgstr "Boks (en post)"
 
 #: widgets/widget-latest-news.php:136
 msgid "Inline (multiple posts)"
-msgstr "Inline (varias publicaciones)"
+msgstr "Inline (flere poster)"
 
 #: widgets/widget-latest-news.php:141 widgets/widget-latest-news.php:200
 msgid "Post order number from:"
-msgstr "Número de orden de la publicación desde:"
+msgstr "Send ordrenummer fra:  "
 
 #: widgets/widget-latest-news.php:144
 msgid "To:"
-msgstr "A:"
+msgstr "Til:"
 
 #: widgets/widget-latest-news.php:150
 msgid "More news link:"
-msgstr "Enlace a más noticias:"
+msgstr "Link med flere nyheder:"
 
 #: widgets/widget-latest-news.php:183 widgets/widget-latest-news.php:196
 msgid "Post order number:"
-msgstr "Número de orden de la publicación:"
+msgstr "Send ordre nummer:"
 
 #: widgets/widget-number-counter.php:18
 msgid "Number Counter"
-msgstr "Contador de números"
+msgstr "Nummer-tæller"
 
 #: widgets/widget-number-counter.php:19
 msgid "Widget with multiple animated counters."
-msgstr "Widget con contadores animados múltiples."
+msgstr "Widget med flere animerede tællere.  "
 
 #: widgets/widget-number-counter.php:145
 msgid "Counting Speed (in milliseconds):"
-msgstr "Velocidad al contar (en milisegundos):"
+msgstr "Tællehastighed (i milisekunder):"
 
 #: widgets/widget-number-counter.php:151
 msgid "Counters"
-msgstr "Contadores"
+msgstr "Tællere"
 
 #: widgets/widget-number-counter.php:160
 msgid "Number:"
-msgstr "Número:"
+msgstr "Nummer:"
 
 #: widgets/widget-number-counter.php:177
 msgid "Remove Counter"
-msgstr "Eliminar contador"
+msgstr "Fjern tæller"
 
 #: widgets/widget-number-counter.php:183
 msgid "Add New Counter"
-msgstr "Añadir contador nuevo"
+msgstr "Tilføj ny tæller"
 
 #: widgets/widget-opening-time.php:21 widgets/widget-opening-time.php:150
 msgid "Opening Time"
-msgstr "Horario de apertura"
+msgstr "Åbningstid"
 
 #: widgets/widget-opening-time.php:22
 msgid "Widget shows opening times per day with optional text."
-msgstr "El widget muestra los horarios de apertura por día con texto opcional."
+msgstr "Widget viser åbningstider per dag med valgfri tekst. "
 
 #: widgets/widget-opening-time.php:34
 msgid "Sunday"
-msgstr "Domingo"
+msgstr "Søndag"
 
 #: widgets/widget-opening-time.php:35
 msgid "Monday"
-msgstr "Lunes"
+msgstr "Mandag"
 
 #: widgets/widget-opening-time.php:36
 msgid "Tuesday"
-msgstr "Martes"
+msgstr "Tirsdag"
 
 #: widgets/widget-opening-time.php:37
 msgid "Wednesday"
-msgstr "Miércoles"
+msgstr "Onsdag"
 
 #: widgets/widget-opening-time.php:38
 msgid "Thursday"
-msgstr "Jueves"
+msgstr "Torsdag"
 
 #: widgets/widget-opening-time.php:39
 msgid "Friday"
-msgstr "Viernes"
+msgstr "Fredag"
 
 #: widgets/widget-opening-time.php:40
 msgid "Saturday"
-msgstr "Sábado"
+msgstr "Lørdag"
 
 #: widgets/widget-opening-time.php:182
 msgid "-"
@@ -477,61 +476,60 @@ msgstr "-"
 
 #: widgets/widget-opening-time.php:189
 msgid "CLOSED"
-msgstr "CERRADO"
+msgstr "LUKKET"
 
 #: widgets/widget-opening-time.php:208
 msgid "opened"
-msgstr "abierto"
+msgstr "åbnet"
 
 #: widgets/widget-opening-time.php:210
 msgid "to"
-msgstr "a"
+msgstr "til"
 
 #: widgets/widget-opening-time.php:216
 msgid "Separator between hours:"
-msgstr "Separador entre horas:"
+msgstr "Separator mellem timer:"
 
 #: widgets/widget-opening-time.php:221
 msgid "Text used for closed days:"
-msgstr "Texto para días cerrados:"
+msgstr "Tekst anvendt til lukkede dage:"
 
 #: widgets/widget-opening-time.php:226
 msgid "Text below the timetable for additional info (for example lunch time):"
 msgstr ""
-"Texto bajo el horario para información adicional (por ejemplo tiempo para "
-"comer):"
+"Tekst neden for timeplanen for yderligere info (for eksempel frokosttid):   "
 
 #: widgets/widget-person-profile.php:18
 msgid "Person Profile"
-msgstr "Perfil personal"
+msgstr "Persons profil"
 
 #: widgets/widget-person-profile.php:19
 msgid "Widget displaying person's profile with a photo."
-msgstr "Widget mostrando el perfil de una persona con foto."
+msgstr "Widget, der viser persons profil med et foto. "
 
 #: widgets/widget-person-profile.php:75
 msgid "Picture of"
-msgstr "Imagen de"
+msgstr "Billede af"
 
 #: widgets/widget-person-profile.php:76
 msgid "Meet me on:"
-msgstr "Nos vemos en:"
+msgstr "Mød mig på:"
 
 #: widgets/widget-person-profile.php:158
 msgid "Introduction:"
-msgstr "Introducción:"
+msgstr "Introduktion:"
 
 #: widgets/widget-person-profile.php:176 widgets/widget-social-icons.php:164
 msgid "Select social icon:"
-msgstr "Seleccionar icono social:"
+msgstr "Vælg socialt ikon:"
 
 #: widgets/widget-person-profile.php:186 widgets/widget-social-icons.php:174
 msgid "Remove Social Icon"
-msgstr "Eliminar icono social"
+msgstr "Fjern socialt ikon"
 
 #: widgets/widget-person-profile.php:192 widgets/widget-social-icons.php:180
 msgid "Add New Social Icon"
-msgstr "Añadir icono social nuevo"
+msgstr "Filføj nyt socialt ikon"
 
 #: widgets/widget-skype.php:15
 msgid "Skype"
@@ -539,91 +537,90 @@ msgstr "Skype"
 
 #: widgets/widget-skype.php:16
 msgid "Linkable block with Skype or telephone icon."
-msgstr "Bloque enlazable con Skype o icono de teléfono."
+msgstr "Forbindbar blok med Skype eller telefonikon."
 
 #: widgets/widget-skype.php:77
 msgid "Skype username:"
-msgstr "Nombre de usuario de Skype:"
+msgstr "Skype brugernavn:"
 
 #: widgets/widget-skype.php:79
 msgid ""
 "Examples of use: %1$sskype:your_skype_username%2$s or %1$stel:"
 "your_phone_number%2$s."
 msgstr ""
-"Ejemplos: %1$sskype:tu_nombreusuario_skype%2$s o %1$stel:tu_número_teléfono"
-"%2$s."
+"Eksempler på brug: %1$sskype:your_skype_username%2$s eller %1$stel:"
+"your_phone_number%2$s."
 
 #: widgets/widget-social-icons.php:20
 msgid "Social Icons"
-msgstr "Iconos sociales"
+msgstr "Sociale Ikoner"
 
 #: widgets/widget-social-icons.php:155
 msgid "Social icons"
-msgstr "Iconos sociales"
+msgstr "Sociale ikoner"
 
 #: widgets/widget-steps.php:18
 msgid "Steps"
-msgstr "Pasos"
+msgstr "Trin"
 
 #: widgets/widget-steps.php:19
 msgid "Displays multiple steps for your process."
-msgstr "Muestra múltiples pasos del proceso."
+msgstr "Viser flere trin til din proces. "
 
 #: widgets/widget-steps.php:145
 msgid "Widget title:"
-msgstr "Título del widget:"
+msgstr "Widget titel:"
 
 #: widgets/widget-steps.php:151
 msgid "Steps:"
-msgstr "Pasos:"
+msgstr "Trin:"
 
 #: widgets/widget-steps.php:160
 msgid ""
 "Click on the icon below or manually input icon class from the %s website."
 msgstr ""
-"Clique en el icono de más abajo o introduzca manualmente la clase de icono "
-"de la web %s."
+"Klik på ikonet nedenfor eller indsæt ikonklasse manuelt fra %s websiden. "
 
 #: widgets/widget-steps.php:171
 msgid "Step:"
-msgstr "Paso:"
+msgstr "Trin:"
 
 #: widgets/widget-steps.php:176
 msgid "Remove Step"
-msgstr "Eliminar paso"
+msgstr "Fjern trin"
 
 #: widgets/widget-steps.php:182
 msgid "Add New Step"
-msgstr "Añadir paso nuevo"
+msgstr "Tilføj nyt trin"
 
 #: widgets/widget-testimonials.php:18 widgets/widget-testimonials.php:211
 msgid "Testimonials"
-msgstr "Testimoniales"
+msgstr "Vidnesbyrd"
 
 #: widgets/widget-testimonials.php:215
 msgid "Quote:"
-msgstr "Cuota:"
+msgstr "Citat:"
 
 #: widgets/widget-testimonials.php:220
 msgid "Author:"
-msgstr "Autor:"
+msgstr "Forfatter:"
 
 #: widgets/widget-testimonials.php:226
 msgid "Author description:"
-msgstr "Descripción del autor:"
+msgstr "Beskrivelse af forfatter:"
 
 #: widgets/widget-testimonials.php:233
 msgid "Author avatar:"
-msgstr "Avatar del autor:"
+msgstr "Forfatter-avatar:"
 
 #: widgets/widget-testimonials.php:241
 msgid "Rating:"
-msgstr "Puntuación:"
+msgstr "Vurdering:"
 
 #: widgets/widget-testimonials.php:255
 msgid "Remove Testimonial"
-msgstr "Eliminar testimonial"
+msgstr "Fjern vidnesbyrd"
 
 #: widgets/widget-testimonials.php:261
 msgid "Add New Testimonial"
-msgstr "Añadir testimonial nuevo"
+msgstr "Tilføj nyt vidnesbyrd"
