@@ -27,6 +27,7 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 				array(
 					'strong' => array(),
 					'b'      => array(),
+					'br'     => array(),
 					'a'      => array(
 						'href'  => array(),
 						'class' => array(),
