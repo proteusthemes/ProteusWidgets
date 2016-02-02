@@ -10,6 +10,8 @@
 if ( ! class_exists( 'PW_Icon_Box' ) ) {
 	class PW_Icon_Box extends PW_Widget {
 
+		private $fields;
+
 		/**
 		 * Register widget with WordPress.
 		 */
@@ -22,6 +24,11 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 			$this->widget_class       = 'widget-icon-box';
 
 			parent::__construct();
+
+			// Get the settings for the icon box widgets
+			$this->fields = apply_filters( 'pw/icon_box_widget', array(
+				'featured_setting' => false,
+			) );
 		}
 
 		/**
@@ -62,6 +69,10 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 			$instance['icon']     = sanitize_key( $new_instance['icon'] );
 			$instance['new_tab']  = ! empty ( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
 
+			if ( $this->fields['featured_setting'] ) {
+				$instance['featured'] = ! empty ( $new_instance['featured'] ) ? sanitize_key( $new_instance['featured'] ) : '';
+			}
+
 			return $instance;
 		}
 
@@ -78,6 +89,10 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 			$btn_link = empty( $instance['btn_link'] ) ? '' : $instance['btn_link'];
 			$icon     = empty( $instance['icon'] ) ? '' : $instance['icon'];
 			$new_tab  = empty( $instance['new_tab'] ) ? '' : $instance['new_tab'];
+
+			if ( $this->fields['featured_setting'] ) {
+				$instance['featured'] = empty ( $instance['featured'] ) ? '' : $instance['featured'];
+			}
 
 			?>
 
@@ -151,6 +166,13 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-chevron-down"><i class="fa fa-lg fa-chevron-down"></i></a>
 				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-chevron-circle-down"><i class="fa fa-lg fa-chevron-circle-down"></i></a>
 			</p>
+
+			<?php if ( $this->fields['featured_setting'] ) : ?>
+				<p>
+					<input class="checkbox" type="checkbox" <?php checked( $instance['featured'], 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id( 'featured' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'featured' ) ); ?>" value="on" />
+					<label for="<?php echo esc_attr( $this->get_field_id( 'featured' ) ); ?>"><?php esc_html_e( 'Highlight this widget.', 'proteuswidgets' ); ?></label>
+				</p>
+			<?php endif; ?>
 
 			<?php
 		}
