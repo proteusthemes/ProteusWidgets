@@ -34,6 +34,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			// Get the settings for the this widget
 			$this->fields = apply_filters( 'pw/featured_page_fields', array(
 				'read_more_text' => true,
+				'tag'            => false,
 			) );
 
 			$this->excerpt_lengths = apply_filters( 'pw/featured_page_excerpt_lengths', array(
@@ -113,8 +114,13 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 
 			$instance['page_id']        = absint( $new_instance['page_id'] );
 			$instance['layout']         = sanitize_key( $new_instance['layout'] );
+
 			if ( $this->fields['read_more_text'] ) {
 				$instance['read_more_text'] = sanitize_text_field( $new_instance['read_more_text'] );
+			}
+
+			if ( $this->fields['tag'] ) {
+				$instance['tag'] = sanitize_text_field( $new_instance['tag'] );
 			}
 
 			return $instance;
@@ -129,6 +135,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			$page_id        = empty( $instance['page_id'] ) ? 0 : (int) $instance['page_id'];
 			$layout         = empty( $instance['layout'] ) ? '' : $instance['layout'];
 			$read_more_text = empty( $instance['read_more_text'] ) ? esc_html__( 'Read more', 'proteuswidgets' ) : $instance['read_more_text'];
+			$tag            = empty( $instance['tag'] ) ? '' : $instance['tag'];
 
 			?>
 
@@ -155,6 +162,13 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			<p>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>"><?php _e( 'Read more text:', 'proteuswidgets' ); ?></label> <br>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'read_more_text' ) ); ?>" type="text" value="<?php echo esc_attr( $read_more_text ); ?>" />
+			</p>
+			<?php endif; ?>
+
+			<?php if ( $this->fields['tag'] ) : ?>
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'tag' ) ); ?>"><?php _e( 'Tag:', 'proteuswidgets' ); ?></label> <br>
+				<input id="<?php echo esc_attr( $this->get_field_id( 'tag' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'tag' ) ); ?>" type="text" value="<?php echo esc_attr( $tag ); ?>" />
 			</p>
 			<?php endif; ?>
 
