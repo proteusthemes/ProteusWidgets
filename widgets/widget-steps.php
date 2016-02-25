@@ -9,7 +9,7 @@
 if ( ! class_exists( 'PW_Steps' ) ) {
 	class PW_Steps extends PW_Widget {
 
-		private $allowed_html_in_content_field, $font_awesome_icons_list, $current_widget_id;
+		private $allowed_html_in_content_field, $font_awesome_icons_list, $current_widget_id, $fields;
 
 		public function __construct() {
 
@@ -20,6 +20,14 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 			$this->widget_class       = 'widget-steps';
 
 			parent::__construct();
+
+			// Get the settings for this widget
+			$this->fields = apply_filters(
+				'pw/steps_widget_settings',
+				array(
+					'use_icons' => true,
+				)
+			);
 
 			// Allowed HTML in content field
 			$this->allowed_html_in_content_field = apply_filters(
@@ -96,7 +104,11 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 				$instance['items'][ $key ]['id']      = sanitize_key( $item['id'] );
 				$instance['items'][ $key ]['title']   = sanitize_text_field( $item['title'] );
 				$instance['items'][ $key ]['content'] = wp_kses( $item['content'], $this->allowed_html_in_content_field );
-				$instance['items'][ $key ]['icon']    = sanitize_html_class( $item['icon'] );
+
+				if ( $this->fields['use_icons'] ) {
+					$instance['items'][ $key ]['icon']  = sanitize_html_class( $item['icon'] );
+				}
+
 				$instance['items'][ $key ]['step']    = sanitize_text_field( $item['step'] );
 			}
 
@@ -147,6 +159,7 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title"><?php _e( 'Title:','proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][title]" type="text" value="{{title}}" />
 				</p>
+			<?php if ( $this->fields['use_icons'] ) : ?>
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-icon"><?php _e( 'Icon:', 'proteuswidgets' ); ?></label> <br />
 					<small><?php printf( esc_html__( 'Click on the icon below or manually input icon class from the %s website.', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?></small>
@@ -155,6 +168,7 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 						<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo esc_attr( $icon ); ?>"><i class="fa fa-lg <?php echo esc_attr( $icon ); ?>"></i></a>
 					<?php endforeach; ?>
 				</p>
+			<?php endif; ?>
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content"><?php _e( 'Content:', 'proteuswidgets' ); ?></label>
 					<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][content]">{{content}}</textarea>
