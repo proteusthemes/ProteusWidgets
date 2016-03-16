@@ -131,6 +131,15 @@ _.extend( ProteusWidgets.Models, {
 			'step': '',
 		}
 	} ),
+
+	PricingListItem: Backbone.Model.extend( {
+		defaults: {
+			'badge':       '',
+			'title':       '',
+			'price':       '',
+			'description': '',
+		}
+	} ),
 } );
 
 
@@ -260,6 +269,20 @@ _.extend( ProteusWidgets.Views, {
 		},
 	} ),
 
+	// View of a single pricing list item
+	PricingListItem: ProteusWidgets.Views.Abstract.extend( {
+		className: 'pt-widget-single-pricing-list-item',
+
+		events: {
+			'click .js-pt-remove-pricing-list-item': 'destroy',
+		},
+
+		render: function () {
+			this.$el.html( Mustache.render( this.templateHTML, this.model.attributes ) );
+			return this;
+		},
+	} ),
+
 } );
 
 
@@ -383,6 +406,13 @@ _.extend( ProteusWidgets.ListViews, {
 	Steps: ProteusWidgets.ListViews.Abstract.extend( {
 		events: {
 			'click .js-pt-add-step-item': 'addNew'
+		}
+	} ),
+
+	// Collection of all pricing list items, but associated with each individual widget
+	PricingListItems: ProteusWidgets.ListViews.Abstract.extend( {
+		events: {
+			'click .js-pt-add-pricing-list-item': 'addNew'
 		}
 	} ),
 } );
@@ -543,5 +573,24 @@ _.extend( ProteusWidgets.Utils, {
 		};
 
 		this.repopulateGeneric( ProteusWidgets.ListViews.Steps, parameters, stepItemsJSON, widgetId );
+	},
+
+	/**
+	 * Function which adds the existing pricing list items to the DOM
+	 * @param  {json} pricingListItemJSON
+	 * @param  {string} widgetId ID of widget from PHP $this->id
+	 * @return {void}
+	 */
+	repopulatePricingListItems: function ( pricingListItemJSON, widgetId ) {
+		var parameters = {
+			el:           '#pricing-list-items-' + widgetId,
+			widgetId:     widgetId,
+			itemsClass:   '.pricing-list-items',
+			itemTemplate: '#js-pt-pricing-list-item-',
+			itemsModel:   ProteusWidgets.Models.PricingListItem,
+			itemView:     ProteusWidgets.Views.PricingListItem,
+		};
+
+		this.repopulateGeneric( ProteusWidgets.ListViews.PricingListItems, parameters, pricingListItemJSON, widgetId );
 	},
 } );
