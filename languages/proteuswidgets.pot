@@ -40,8 +40,8 @@ msgstr ""
 msgid "About us image"
 msgstr ""
 
-#: widgets/widget-about-us.php:65 widgets/widget-accordion.php:52
-#: widgets/widget-featured-page.php:67 widgets/widget-featured-page.php:131
+#: widgets/widget-about-us.php:65 widgets/widget-accordion.php:53
+#: widgets/widget-featured-page.php:68 widgets/widget-featured-page.php:137
 msgid "Read more"
 msgstr ""
 
@@ -57,7 +57,7 @@ msgstr ""
 msgid "People"
 msgstr ""
 
-#: widgets/widget-about-us.php:144
+#: widgets/widget-about-us.php:144 widgets/widget-featured-page.php:170
 msgid "Tag:"
 msgstr ""
 
@@ -69,12 +69,12 @@ msgstr ""
 msgid "Name:"
 msgstr ""
 
-#: widgets/widget-about-us.php:160
+#: widgets/widget-about-us.php:160 widgets/widget-pricing-list.php:126
 msgid "Description:"
 msgstr ""
 
 #: widgets/widget-about-us.php:165 widgets/widget-banner.php:84
-#: widgets/widget-icon-box.php:95 widgets/widget-person-profile.php:164
+#: widgets/widget-icon-box.php:110 widgets/widget-person-profile.php:164
 #: widgets/widget-social-icons.php:155
 msgid "Link:"
 msgstr ""
@@ -107,39 +107,40 @@ msgstr ""
 msgid "Accordion"
 msgstr ""
 
-#: widgets/widget-accordion.php:115 widgets/widget-accordion.php:132
+#: widgets/widget-accordion.php:116 widgets/widget-accordion.php:133
 #: widgets/widget-banner.php:74 widgets/widget-brochure-box.php:85
-#: widgets/widget-facebook.php:105 widgets/widget-icon-box.php:85
+#: widgets/widget-facebook.php:105 widgets/widget-icon-box.php:100
 #: widgets/widget-number-counter.php:145 widgets/widget-opening-time.php:201
-#: widgets/widget-person-profile.php:140 widgets/widget-skype.php:72
-#: widgets/widget-steps.php:147 widgets/widget-testimonials.php:190
+#: widgets/widget-person-profile.php:140 widgets/widget-pricing-list.php:117
+#: widgets/widget-skype.php:72 widgets/widget-steps.php:159
+#: widgets/widget-testimonials.php:190
 msgid "Title:"
 msgstr ""
 
-#: widgets/widget-accordion.php:120
+#: widgets/widget-accordion.php:121
 msgid "Read more URL:"
 msgstr ""
 
-#: widgets/widget-accordion.php:123
+#: widgets/widget-accordion.php:124
 msgid ""
 "If you leave this field empty the read more link will not be displayed in "
 "the widget."
 msgstr ""
 
-#: widgets/widget-accordion.php:128
+#: widgets/widget-accordion.php:129
 msgid "Accordion items"
 msgstr ""
 
-#: widgets/widget-accordion.php:136 widgets/widget-banner.php:79
-#: widgets/widget-steps.php:159
+#: widgets/widget-accordion.php:137 widgets/widget-banner.php:79
+#: widgets/widget-steps.php:173
 msgid "Content:"
 msgstr ""
 
-#: widgets/widget-accordion.php:141
+#: widgets/widget-accordion.php:142
 msgid "Remove Item"
 msgstr ""
 
-#: widgets/widget-accordion.php:147
+#: widgets/widget-accordion.php:148 widgets/widget-pricing-list.php:138
 msgid "Add New Item"
 msgstr ""
 
@@ -170,7 +171,7 @@ msgid "Linkable block with title and content."
 msgstr ""
 
 #: widgets/widget-banner.php:87 widgets/widget-brochure-box.php:97
-#: widgets/widget-icon-box.php:102 widgets/widget-person-profile.php:157
+#: widgets/widget-icon-box.php:117 widgets/widget-person-profile.php:157
 #: widgets/widget-social-icons.php:146
 msgid "Open link in new tab"
 msgstr ""
@@ -199,7 +200,7 @@ msgstr ""
 msgid "Brochure icon:"
 msgstr ""
 
-#: widgets/widget-brochure-box.php:107 widgets/widget-icon-box.php:107
+#: widgets/widget-brochure-box.php:107 widgets/widget-icon-box.php:122
 #: widgets/widget-number-counter.php:157 widgets/widget-person-profile.php:170
 #: widgets/widget-social-icons.php:161
 msgid "Click on the icon below or manually select from the %s website."
@@ -249,23 +250,23 @@ msgstr ""
 msgid "Displays featured image, title and short excerpt of the selected page."
 msgstr ""
 
-#: widgets/widget-featured-page.php:136
+#: widgets/widget-featured-page.php:143
 msgid "Page:"
 msgstr ""
 
-#: widgets/widget-featured-page.php:147
+#: widgets/widget-featured-page.php:154
 msgid "Layout:"
 msgstr ""
 
-#: widgets/widget-featured-page.php:149
+#: widgets/widget-featured-page.php:156
 msgid "With big picture"
 msgstr ""
 
-#: widgets/widget-featured-page.php:150
+#: widgets/widget-featured-page.php:157
 msgid "With small picture, inline"
 msgstr ""
 
-#: widgets/widget-featured-page.php:156 widgets/widget-latest-news.php:155
+#: widgets/widget-featured-page.php:163 widgets/widget-latest-news.php:155
 msgid "Read more text:"
 msgstr ""
 
@@ -337,25 +338,29 @@ msgstr ""
 msgid "Add New Location"
 msgstr ""
 
-#: widgets/widget-icon-box.php:20
+#: widgets/widget-icon-box.php:22
 msgid "Icon Box"
 msgstr ""
 
-#: widgets/widget-icon-box.php:21
+#: widgets/widget-icon-box.php:23
 msgid "Linkable block with title, text and font awesome icon."
 msgstr ""
 
-#: widgets/widget-icon-box.php:90
+#: widgets/widget-icon-box.php:105
 msgid "Text:"
 msgstr ""
 
-#: widgets/widget-icon-box.php:96
+#: widgets/widget-icon-box.php:111
 msgid "URL to any page, optional."
 msgstr ""
 
-#: widgets/widget-icon-box.php:106 widgets/widget-number-counter.php:156
-#: widgets/widget-steps.php:151
+#: widgets/widget-icon-box.php:121 widgets/widget-number-counter.php:156
+#: widgets/widget-steps.php:164
 msgid "Icon:"
+msgstr ""
+
+#: widgets/widget-icon-box.php:173
+msgid "Highlight this widget."
 msgstr ""
 
 #: widgets/widget-latest-news.php:16
@@ -526,6 +531,34 @@ msgstr ""
 msgid "Add New Social Icon"
 msgstr ""
 
+#: widgets/widget-pricing-list.php:18
+msgid "Pricing List"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:19
+msgid "Displays a simple pricing list"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:103 widgets/widget-steps.php:149
+msgid "Widget title:"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:109
+msgid "Items:"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:113
+msgid "Badge:"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:121
+msgid "Price:"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:132
+msgid "Remove item"
+msgstr ""
+
 #: widgets/widget-skype.php:19
 msgid "Skype"
 msgstr ""
@@ -560,27 +593,23 @@ msgstr ""
 msgid "Displays multiple steps for your process."
 msgstr ""
 
-#: widgets/widget-steps.php:137
-msgid "Widget title:"
-msgstr ""
-
-#: widgets/widget-steps.php:143
+#: widgets/widget-steps.php:155
 msgid "Steps:"
 msgstr ""
 
-#: widgets/widget-steps.php:152
+#: widgets/widget-steps.php:165
 msgid "Click on the icon below or manually input icon class from the %s website."
 msgstr ""
 
-#: widgets/widget-steps.php:163
+#: widgets/widget-steps.php:177
 msgid "Step:"
 msgstr ""
 
-#: widgets/widget-steps.php:168
+#: widgets/widget-steps.php:182
 msgid "Remove Step"
 msgstr ""
 
-#: widgets/widget-steps.php:174
+#: widgets/widget-steps.php:188
 msgid "Add New Step"
 msgstr ""
 
