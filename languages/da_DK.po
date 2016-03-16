@@ -1,31 +1,9 @@
-# Copyright (C) 2015 ProteusThemes
+# Copyright (C) 2016 ProteusThemes
 # This file is distributed under the GPL 2.0.
 msgid ""
-msgstr ""
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: http://support.proteusthemes.com/\n"
-"POT-Creation-Date: 2015-07-06 08:11:28+00:00\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: en\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: grunt-wp-i18n 0.5.1\n"
-"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
-"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
-"esc_html_x:1,2c;\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Country: United States\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-Bookmarks: \n"
-"X-Textdomain-Support: yes\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: http://support.proteusthemes.com/\nPOT-Creation-Date: 2015-07-06 08:11:28+00:00\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\nPO-Revision-Date: 2016-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nX-Generator: grunt-wp-i18n 0.5.3\nX-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\nLanguage: en\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Poedit-Country: United States\nX-Poedit-SourceCharset: UTF-8\nX-Poedit-Basepath: ../\nX-Poedit-SearchPath-0: .\nX-Poedit-Bookmarks: \nX-Textdomain-Support: yes\n"
 
 #: widgets/views/widget-testimonials.php:46
-#, fuzzy
 msgid "Testimonial author avatar"
 msgstr "Forfatter-avatar:"
 
@@ -41,8 +19,8 @@ msgstr "Viser personlige profiler i en karussel."
 msgid "About us image"
 msgstr "Om os-billede"
 
-#: widgets/widget-about-us.php:65 widgets/widget-accordion.php:52
-#: widgets/widget-featured-page.php:67 widgets/widget-featured-page.php:131
+#: widgets/widget-about-us.php:65 widgets/widget-accordion.php:53
+#: widgets/widget-featured-page.php:68 widgets/widget-featured-page.php:137
 msgid "Read more"
 msgstr "Læs mere"
 
@@ -58,7 +36,7 @@ msgstr "Næste"
 msgid "People"
 msgstr "Folk"
 
-#: widgets/widget-about-us.php:144
+#: widgets/widget-about-us.php:144 widgets/widget-featured-page.php:170
 msgid "Tag:"
 msgstr "Mærke:"
 
@@ -70,12 +48,12 @@ msgstr "Billed-URL:"
 msgid "Name:"
 msgstr "Navn:"
 
-#: widgets/widget-about-us.php:160
+#: widgets/widget-about-us.php:160 widgets/widget-pricing-list.php:126
 msgid "Description:"
 msgstr "Beskrivelse:"
 
 #: widgets/widget-about-us.php:165 widgets/widget-banner.php:84
-#: widgets/widget-icon-box.php:95 widgets/widget-person-profile.php:164
+#: widgets/widget-icon-box.php:110 widgets/widget-person-profile.php:164
 #: widgets/widget-social-icons.php:155
 msgid "Link:"
 msgstr "Link:"
@@ -101,7 +79,6 @@ msgid "No"
 msgstr "Nej"
 
 #: widgets/widget-about-us.php:206 widgets/widget-testimonials.php:203
-#, fuzzy
 msgid "Interval (in milliseconds):"
 msgstr "Interval (i milisekunder):"
 
@@ -109,41 +86,38 @@ msgstr "Interval (i milisekunder):"
 msgid "Accordion"
 msgstr "Harmonika"
 
-#: widgets/widget-accordion.php:115 widgets/widget-accordion.php:132
+#: widgets/widget-accordion.php:116 widgets/widget-accordion.php:133
 #: widgets/widget-banner.php:74 widgets/widget-brochure-box.php:85
-#: widgets/widget-facebook.php:105 widgets/widget-icon-box.php:85
+#: widgets/widget-facebook.php:105 widgets/widget-icon-box.php:100
 #: widgets/widget-number-counter.php:145 widgets/widget-opening-time.php:201
-#: widgets/widget-person-profile.php:140 widgets/widget-skype.php:72
-#: widgets/widget-steps.php:147 widgets/widget-testimonials.php:190
+#: widgets/widget-person-profile.php:140 widgets/widget-pricing-list.php:117
+#: widgets/widget-skype.php:72 widgets/widget-steps.php:159
+#: widgets/widget-testimonials.php:190
 msgid "Title:"
 msgstr "Titel:"
 
-#: widgets/widget-accordion.php:120
+#: widgets/widget-accordion.php:121
 msgid "Read more URL:"
 msgstr "Læs flere URL:"
 
-#: widgets/widget-accordion.php:123
-msgid ""
-"If you leave this field empty the read more link will not be displayed in "
-"the widget."
-msgstr ""
-"Hvis man lader dette felt stå tomt, vil læs-flere-link ikke blive vist i "
-"widget.  "
+#: widgets/widget-accordion.php:124
+msgid "If you leave this field empty the read more link will not be displayed in the widget."
+msgstr "Hvis man lader dette felt stå tomt, vil læs-flere-link ikke blive vist i widget.  "
 
-#: widgets/widget-accordion.php:128
+#: widgets/widget-accordion.php:129
 msgid "Accordion items"
 msgstr "Harmonika-artikler"
 
-#: widgets/widget-accordion.php:136 widgets/widget-banner.php:79
-#: widgets/widget-steps.php:159
+#: widgets/widget-accordion.php:137 widgets/widget-banner.php:79
+#: widgets/widget-steps.php:173
 msgid "Content:"
 msgstr "Indhold:"
 
-#: widgets/widget-accordion.php:141
+#: widgets/widget-accordion.php:142
 msgid "Remove Item"
 msgstr "Fjern del"
 
-#: widgets/widget-accordion.php:147
+#: widgets/widget-accordion.php:148 widgets/widget-pricing-list.php:138
 msgid "Add New Item"
 msgstr "Tilføj ny del"
 
@@ -160,12 +134,8 @@ msgid "Display author:"
 msgstr "Vis forfatter:"
 
 #: widgets/widget-author.php:86
-msgid ""
-"To add the social icons to this widget, please install the %sExtra User "
-"Details%s plugin and fill in the details in the &quot;Users&quot; section."
-msgstr ""
-"Installer %sExstra User Details%s plugin og udfyld oplysningerne i &quot;"
-"Users&quot; sektionen for at tilføje sociale ikoner til denne widget."
+msgid "To add the social icons to this widget, please install the %sExtra User Details%s plugin and fill in the details in the &quot;Users&quot; section."
+msgstr "Installer %sExstra User Details%s plugin og udfyld oplysningerne i &quot;Users&quot; sektionen for at tilføje sociale ikoner til denne widget."
 
 #: widgets/widget-banner.php:20
 msgid "Banner"
@@ -176,7 +146,7 @@ msgid "Linkable block with title and content."
 msgstr "Forbindbar blok med titel og indhold."
 
 #: widgets/widget-banner.php:87 widgets/widget-brochure-box.php:97
-#: widgets/widget-icon-box.php:102 widgets/widget-person-profile.php:157
+#: widgets/widget-icon-box.php:117 widgets/widget-person-profile.php:157
 #: widgets/widget-social-icons.php:146
 msgid "Open link in new tab"
 msgstr "Åbn link i en ny fane.  "
@@ -205,7 +175,7 @@ msgstr "Brochurerekst:"
 msgid "Brochure icon:"
 msgstr "Brochureikon:"
 
-#: widgets/widget-brochure-box.php:107 widgets/widget-icon-box.php:107
+#: widgets/widget-brochure-box.php:107 widgets/widget-icon-box.php:122
 #: widgets/widget-number-counter.php:157 widgets/widget-person-profile.php:170
 #: widgets/widget-social-icons.php:161
 msgid "Click on the icon below or manually select from the %s website."
@@ -255,23 +225,23 @@ msgstr "Vist side"
 msgid "Displays featured image, title and short excerpt of the selected page."
 msgstr "Viser vist billede, titel og kort uddrag fra den valgte side.  "
 
-#: widgets/widget-featured-page.php:136
+#: widgets/widget-featured-page.php:143
 msgid "Page:"
 msgstr "Side:"
 
-#: widgets/widget-featured-page.php:147
+#: widgets/widget-featured-page.php:154
 msgid "Layout:"
 msgstr "Layout:"
 
-#: widgets/widget-featured-page.php:149
+#: widgets/widget-featured-page.php:156
 msgid "With big picture"
 msgstr "Med stort billede"
 
-#: widgets/widget-featured-page.php:150
+#: widgets/widget-featured-page.php:157
 msgid "With small picture, inline"
 msgstr "Med lille billede,  inline"
 
-#: widgets/widget-featured-page.php:156 widgets/widget-latest-news.php:155
+#: widgets/widget-featured-page.php:163 widgets/widget-latest-news.php:155
 msgid "Read more text:"
 msgstr "Læs mere tekst:"
 
@@ -280,24 +250,16 @@ msgid "Google Map"
 msgstr "Google kort"
 
 #: widgets/widget-google-map.php:31
-msgid ""
-"Generates Google map with given coordinates (select map skin and other "
-"settings)."
-msgstr ""
-"Genererer Google kort med givne koordinater (vælg kort skin og andre "
-"indstillinger).    "
+msgid "Generates Google map with given coordinates (select map skin and other settings)."
+msgstr "Genererer Google kort med givne koordinater (vælg kort skin og andre indstillinger).    "
 
 #: widgets/widget-google-map.php:127
 msgid "Latitude and longitude of the map center:"
 msgstr "Bredde- og længdegrader for kortets midte:  "
 
 #: widgets/widget-google-map.php:128
-msgid ""
-"Get this from %s (right click on map and select What's here?) or %s. "
-"Latitude and longitude separated by comma."
-msgstr ""
-"Få dette fra %s (højreklik på kort, og vælg Hvad er der her?) eller %s. "
-"Bredde og længde separeret med komma.   "
+msgid "Get this from %s (right click on map and select What's here?) or %s. Latitude and longitude separated by comma."
+msgstr "Få dette fra %s (højreklik på kort, og vælg Hvad er der her?) eller %s. Bredde og længde separeret med komma.   "
 
 #: widgets/widget-google-map.php:133
 msgid "Zoom (more is closer view):"
@@ -347,26 +309,30 @@ msgstr "Fjern lokation"
 msgid "Add New Location"
 msgstr "Tilføj ny lokation"
 
-#: widgets/widget-icon-box.php:20
+#: widgets/widget-icon-box.php:22
 msgid "Icon Box"
 msgstr "Ikon-boks"
 
-#: widgets/widget-icon-box.php:21
+#: widgets/widget-icon-box.php:23
 msgid "Linkable block with title, text and font awesome icon."
 msgstr "Forbindbar blok med titel, tekst og skifttype-utroligt ikon.   "
 
-#: widgets/widget-icon-box.php:90
+#: widgets/widget-icon-box.php:105
 msgid "Text:"
 msgstr "Tekst:"
 
-#: widgets/widget-icon-box.php:96
+#: widgets/widget-icon-box.php:111
 msgid "URL to any page, optional."
 msgstr "URL til en hvilken som helst side, valgfrit.   "
 
-#: widgets/widget-icon-box.php:106 widgets/widget-number-counter.php:156
-#: widgets/widget-steps.php:151
+#: widgets/widget-icon-box.php:121 widgets/widget-number-counter.php:156
+#: widgets/widget-steps.php:164
 msgid "Icon:"
 msgstr "Ikon:"
+
+#: widgets/widget-icon-box.php:173
+msgid "Highlight this widget."
+msgstr ""
 
 #: widgets/widget-latest-news.php:16
 msgid "Latest News"
@@ -421,7 +387,6 @@ msgid "Widget with multiple animated counters."
 msgstr "Widget med flere animerede tællere.  "
 
 #: widgets/widget-number-counter.php:135
-#, fuzzy
 msgid "Counting Speed (in milliseconds):"
 msgstr "Tællehastighed (i milisekunder):"
 
@@ -503,8 +468,7 @@ msgstr "Tekst anvendt til lukkede dage:"
 
 #: widgets/widget-opening-time.php:226
 msgid "Text below the timetable for additional info (for example lunch time):"
-msgstr ""
-"Tekst neden for timeplanen for yderligere info (for eksempel frokosttid):   "
+msgstr "Tekst neden for timeplanen for yderligere info (for eksempel frokosttid):   "
 
 #: widgets/widget-person-profile.php:22
 msgid "Person Profile"
@@ -538,6 +502,34 @@ msgstr "Fjern socialt ikon"
 msgid "Add New Social Icon"
 msgstr "Filføj nyt socialt ikon"
 
+#: widgets/widget-pricing-list.php:18
+msgid "Pricing List"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:19
+msgid "Displays a simple pricing list"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:103 widgets/widget-steps.php:149
+msgid "Widget title:"
+msgstr "Widget titel:"
+
+#: widgets/widget-pricing-list.php:109
+msgid "Items:"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:113
+msgid "Badge:"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:121
+msgid "Price:"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:132
+msgid "Remove item"
+msgstr "Fjern del"
+
 #: widgets/widget-skype.php:19
 msgid "Skype"
 msgstr "Skype"
@@ -551,12 +543,8 @@ msgid "Skype username:"
 msgstr "Skype brugernavn:"
 
 #: widgets/widget-skype.php:79
-msgid ""
-"Examples of use: %1$sskype:your_skype_username%2$s or %1$stel:"
-"your_phone_number%2$s."
-msgstr ""
-"Eksempler på brug: %1$sskype:your_skype_username%2$s eller %1$stel:"
-"your_phone_number%2$s."
+msgid "Examples of use: %1$sskype:your_skype_username%2$s or %1$stel:your_phone_number%2$s."
+msgstr "Eksempler på brug: %1$sskype:your_skype_username%2$s eller %1$stel:your_phone_number%2$s."
 
 #: widgets/widget-social-icons.php:23
 msgid "Social Icons"
@@ -574,29 +562,23 @@ msgstr "Trin"
 msgid "Displays multiple steps for your process."
 msgstr "Viser flere trin til din proces. "
 
-#: widgets/widget-steps.php:137
-msgid "Widget title:"
-msgstr "Widget titel:"
-
-#: widgets/widget-steps.php:143
+#: widgets/widget-steps.php:155
 msgid "Steps:"
 msgstr "Trin:"
 
-#: widgets/widget-steps.php:152
-msgid ""
-"Click on the icon below or manually input icon class from the %s website."
-msgstr ""
-"Klik på ikonet nedenfor eller indsæt ikonklasse manuelt fra %s websiden. "
+#: widgets/widget-steps.php:165
+msgid "Click on the icon below or manually input icon class from the %s website."
+msgstr "Klik på ikonet nedenfor eller indsæt ikonklasse manuelt fra %s websiden. "
 
-#: widgets/widget-steps.php:163
+#: widgets/widget-steps.php:177
 msgid "Step:"
 msgstr "Trin:"
 
-#: widgets/widget-steps.php:168
+#: widgets/widget-steps.php:182
 msgid "Remove Step"
 msgstr "Fjern trin"
 
-#: widgets/widget-steps.php:174
+#: widgets/widget-steps.php:188
 msgid "Add New Step"
 msgstr "Tilføj nyt trin"
 

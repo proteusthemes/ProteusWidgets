@@ -1,31 +1,9 @@
-# Copyright (C) 2015 ProteusThemes
+# Copyright (C) 2016 ProteusThemes
 # This file is distributed under the GPL 2.0.
 msgid ""
-msgstr ""
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: http://support.proteusthemes.com/\n"
-"POT-Creation-Date: 2015-07-06 08:11:28+00:00\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: en\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: grunt-wp-i18n 0.5.1\n"
-"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
-"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
-"esc_html_x:1,2c;\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Country: United States\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-Bookmarks: \n"
-"X-Textdomain-Support: yes\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: http://support.proteusthemes.com/\nPOT-Creation-Date: 2015-07-06 08:11:28+00:00\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\nPO-Revision-Date: 2016-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nX-Generator: grunt-wp-i18n 0.5.3\nX-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\nLanguage: en\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Poedit-Country: United States\nX-Poedit-SourceCharset: UTF-8\nX-Poedit-Basepath: ../\nX-Poedit-SearchPath-0: .\nX-Poedit-Bookmarks: \nX-Textdomain-Support: yes\n"
 
 #: widgets/views/widget-testimonials.php:46
-#, fuzzy
 msgid "Testimonial author avatar"
 msgstr "Аватар автора:"
 
@@ -41,8 +19,8 @@ msgstr "Отображение профилей людей в карусели."
 msgid "About us image"
 msgstr "Изображение О нас"
 
-#: widgets/widget-about-us.php:65 widgets/widget-accordion.php:52
-#: widgets/widget-featured-page.php:67 widgets/widget-featured-page.php:131
+#: widgets/widget-about-us.php:65 widgets/widget-accordion.php:53
+#: widgets/widget-featured-page.php:68 widgets/widget-featured-page.php:137
 msgid "Read more"
 msgstr "Читать дальше"
 
@@ -58,7 +36,7 @@ msgstr "Следующая"
 msgid "People"
 msgstr "Люди"
 
-#: widgets/widget-about-us.php:144
+#: widgets/widget-about-us.php:144 widgets/widget-featured-page.php:170
 msgid "Tag:"
 msgstr "Тэг:"
 
@@ -70,12 +48,12 @@ msgstr "Фото URL:"
 msgid "Name:"
 msgstr "Имя:"
 
-#: widgets/widget-about-us.php:160
+#: widgets/widget-about-us.php:160 widgets/widget-pricing-list.php:126
 msgid "Description:"
 msgstr "Описание:"
 
 #: widgets/widget-about-us.php:165 widgets/widget-banner.php:84
-#: widgets/widget-icon-box.php:95 widgets/widget-person-profile.php:164
+#: widgets/widget-icon-box.php:110 widgets/widget-person-profile.php:164
 #: widgets/widget-social-icons.php:155
 msgid "Link:"
 msgstr "Ссылка:"
@@ -101,7 +79,6 @@ msgid "No"
 msgstr "Нет"
 
 #: widgets/widget-about-us.php:206 widgets/widget-testimonials.php:203
-#, fuzzy
 msgid "Interval (in milliseconds):"
 msgstr "Интервал (в милисекундах):"
 
@@ -109,41 +86,38 @@ msgstr "Интервал (в милисекундах):"
 msgid "Accordion"
 msgstr "Соединитель"
 
-#: widgets/widget-accordion.php:115 widgets/widget-accordion.php:132
+#: widgets/widget-accordion.php:116 widgets/widget-accordion.php:133
 #: widgets/widget-banner.php:74 widgets/widget-brochure-box.php:85
-#: widgets/widget-facebook.php:105 widgets/widget-icon-box.php:85
+#: widgets/widget-facebook.php:105 widgets/widget-icon-box.php:100
 #: widgets/widget-number-counter.php:145 widgets/widget-opening-time.php:201
-#: widgets/widget-person-profile.php:140 widgets/widget-skype.php:72
-#: widgets/widget-steps.php:147 widgets/widget-testimonials.php:190
+#: widgets/widget-person-profile.php:140 widgets/widget-pricing-list.php:117
+#: widgets/widget-skype.php:72 widgets/widget-steps.php:159
+#: widgets/widget-testimonials.php:190
 msgid "Title:"
 msgstr "Заголовок:"
 
-#: widgets/widget-accordion.php:120
+#: widgets/widget-accordion.php:121
 msgid "Read more URL:"
 msgstr "Читать далее URL:"
 
-#: widgets/widget-accordion.php:123
-msgid ""
-"If you leave this field empty the read more link will not be displayed in "
-"the widget."
-msgstr ""
-"Если вы оставите это поле пустым, ссылка Читать далее не будет показана в "
-"этом виджете."
+#: widgets/widget-accordion.php:124
+msgid "If you leave this field empty the read more link will not be displayed in the widget."
+msgstr "Если вы оставите это поле пустым, ссылка Читать далее не будет показана в этом виджете."
 
-#: widgets/widget-accordion.php:128
+#: widgets/widget-accordion.php:129
 msgid "Accordion items"
 msgstr "Элементы соединителя"
 
-#: widgets/widget-accordion.php:136 widgets/widget-banner.php:79
-#: widgets/widget-steps.php:159
+#: widgets/widget-accordion.php:137 widgets/widget-banner.php:79
+#: widgets/widget-steps.php:173
 msgid "Content:"
 msgstr "Содержание:"
 
-#: widgets/widget-accordion.php:141
+#: widgets/widget-accordion.php:142
 msgid "Remove Item"
 msgstr "Удалить элемент"
 
-#: widgets/widget-accordion.php:147
+#: widgets/widget-accordion.php:148 widgets/widget-pricing-list.php:138
 msgid "Add New Item"
 msgstr "Добавить новый элемент"
 
@@ -160,13 +134,8 @@ msgid "Display author:"
 msgstr "Отобразить автора:"
 
 #: widgets/widget-author.php:86
-msgid ""
-"To add the social icons to this widget, please install the %sExtra User "
-"Details%s plugin and fill in the details in the &quot;Users&quot; section."
-msgstr ""
-"Чтобы добавить социальные значки к этому виджету, установите модуль "
-"%sДополнительные данные пользователя%s и заполните данные в секции &quot;"
-"Пользователи&quot;."
+msgid "To add the social icons to this widget, please install the %sExtra User Details%s plugin and fill in the details in the &quot;Users&quot; section."
+msgstr "Чтобы добавить социальные значки к этому виджету, установите модуль %sДополнительные данные пользователя%s и заполните данные в секции &quot;Пользователи&quot;."
 
 #: widgets/widget-banner.php:20
 msgid "Banner"
@@ -177,7 +146,7 @@ msgid "Linkable block with title and content."
 msgstr "Сцепляемый блок с заголовком и содержанием."
 
 #: widgets/widget-banner.php:87 widgets/widget-brochure-box.php:97
-#: widgets/widget-icon-box.php:102 widgets/widget-person-profile.php:157
+#: widgets/widget-icon-box.php:117 widgets/widget-person-profile.php:157
 #: widgets/widget-social-icons.php:146
 msgid "Open link in new tab"
 msgstr "Открыть ссылку в новой вкладке"
@@ -206,7 +175,7 @@ msgstr "Текст брошюры:"
 msgid "Brochure icon:"
 msgstr "Значок брошюры:"
 
-#: widgets/widget-brochure-box.php:107 widgets/widget-icon-box.php:107
+#: widgets/widget-brochure-box.php:107 widgets/widget-icon-box.php:122
 #: widgets/widget-number-counter.php:157 widgets/widget-person-profile.php:170
 #: widgets/widget-social-icons.php:161
 msgid "Click on the icon below or manually select from the %s website."
@@ -254,27 +223,25 @@ msgstr "Популярная страница"
 
 #: widgets/widget-featured-page.php:29
 msgid "Displays featured image, title and short excerpt of the selected page."
-msgstr ""
-"Отображает популярное изображение, заголовок и краткий отрывок выбранной "
-"страницы."
+msgstr "Отображает популярное изображение, заголовок и краткий отрывок выбранной страницы."
 
-#: widgets/widget-featured-page.php:136
+#: widgets/widget-featured-page.php:143
 msgid "Page:"
 msgstr "Страница:"
 
-#: widgets/widget-featured-page.php:147
+#: widgets/widget-featured-page.php:154
 msgid "Layout:"
 msgstr "Схема:"
 
-#: widgets/widget-featured-page.php:149
+#: widgets/widget-featured-page.php:156
 msgid "With big picture"
 msgstr "С большим фото"
 
-#: widgets/widget-featured-page.php:150
+#: widgets/widget-featured-page.php:157
 msgid "With small picture, inline"
 msgstr "С маленьким фото, инлайн"
 
-#: widgets/widget-featured-page.php:156 widgets/widget-latest-news.php:155
+#: widgets/widget-featured-page.php:163 widgets/widget-latest-news.php:155
 msgid "Read more text:"
 msgstr "Читать текст далее:"
 
@@ -283,24 +250,16 @@ msgid "Google Map"
 msgstr "Карта Google"
 
 #: widgets/widget-google-map.php:31
-msgid ""
-"Generates Google map with given coordinates (select map skin and other "
-"settings)."
-msgstr ""
-"Генерирует карту Google с заданными координатами (выбрать поверхность карты "
-"и другие настройки)."
+msgid "Generates Google map with given coordinates (select map skin and other settings)."
+msgstr "Генерирует карту Google с заданными координатами (выбрать поверхность карты и другие настройки)."
 
 #: widgets/widget-google-map.php:127
 msgid "Latitude and longitude of the map center:"
 msgstr "Широта и долгота центра карты:"
 
 #: widgets/widget-google-map.php:128
-msgid ""
-"Get this from %s (right click on map and select What's here?) or %s. "
-"Latitude and longitude separated by comma."
-msgstr ""
-"Приобретите из %s (щелкните справа на карте и выберите Что здесь?) или %s. "
-"Широта и долгота отделены запятой."
+msgid "Get this from %s (right click on map and select What's here?) or %s. Latitude and longitude separated by comma."
+msgstr "Приобретите из %s (щелкните справа на карте и выберите Что здесь?) или %s. Широта и долгота отделены запятой."
 
 #: widgets/widget-google-map.php:133
 msgid "Zoom (more is closer view):"
@@ -350,26 +309,30 @@ msgstr "Удалить расположение"
 msgid "Add New Location"
 msgstr "Добавить новое расположение"
 
-#: widgets/widget-icon-box.php:20
+#: widgets/widget-icon-box.php:22
 msgid "Icon Box"
 msgstr "Коробка значков"
 
-#: widgets/widget-icon-box.php:21
+#: widgets/widget-icon-box.php:23
 msgid "Linkable block with title, text and font awesome icon."
 msgstr "Значок сцепляемого блока с заголовком, текстом и шрифтом."
 
-#: widgets/widget-icon-box.php:90
+#: widgets/widget-icon-box.php:105
 msgid "Text:"
 msgstr "Текст:"
 
-#: widgets/widget-icon-box.php:96
+#: widgets/widget-icon-box.php:111
 msgid "URL to any page, optional."
 msgstr "URL на любую страницу, по желанию."
 
-#: widgets/widget-icon-box.php:106 widgets/widget-number-counter.php:156
-#: widgets/widget-steps.php:151
+#: widgets/widget-icon-box.php:121 widgets/widget-number-counter.php:156
+#: widgets/widget-steps.php:164
 msgid "Icon:"
 msgstr "Значок:"
+
+#: widgets/widget-icon-box.php:173
+msgid "Highlight this widget."
+msgstr ""
 
 #: widgets/widget-latest-news.php:16
 msgid "Latest News"
@@ -424,7 +387,6 @@ msgid "Widget with multiple animated counters."
 msgstr "Виджет с множеством анимированных счетчиков."
 
 #: widgets/widget-number-counter.php:135
-#, fuzzy
 msgid "Counting Speed (in milliseconds):"
 msgstr "Скорость подсчета (в милисекундах):"
 
@@ -450,8 +412,7 @@ msgstr "Количество посещений"
 
 #: widgets/widget-opening-time.php:26
 msgid "Widget shows opening times per day with optional text."
-msgstr ""
-"Виджет показывает количество посещений в день с дополнительным текстом."
+msgstr "Виджет показывает количество посещений в день с дополнительным текстом."
 
 #: widgets/widget-opening-time.php:34
 msgid "Sunday"
@@ -507,9 +468,7 @@ msgstr "Текст, использованный для закрытых дне�
 
 #: widgets/widget-opening-time.php:226
 msgid "Text below the timetable for additional info (for example lunch time):"
-msgstr ""
-"Текст ниже - расписание для дополнительной информации (например, время "
-"обеда):"
+msgstr "Текст ниже - расписание для дополнительной информации (например, время обеда):"
 
 #: widgets/widget-person-profile.php:22
 msgid "Person Profile"
@@ -543,6 +502,34 @@ msgstr "Удалить социальный значок"
 msgid "Add New Social Icon"
 msgstr "Добавить новый социальный значок"
 
+#: widgets/widget-pricing-list.php:18
+msgid "Pricing List"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:19
+msgid "Displays a simple pricing list"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:103 widgets/widget-steps.php:149
+msgid "Widget title:"
+msgstr "Заголовок виджета:"
+
+#: widgets/widget-pricing-list.php:109
+msgid "Items:"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:113
+msgid "Badge:"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:121
+msgid "Price:"
+msgstr ""
+
+#: widgets/widget-pricing-list.php:132
+msgid "Remove item"
+msgstr "Удалить элемент"
+
 #: widgets/widget-skype.php:19
 msgid "Skype"
 msgstr "Скайп"
@@ -556,12 +543,8 @@ msgid "Skype username:"
 msgstr "Имя пользователя на скайпе:"
 
 #: widgets/widget-skype.php:79
-msgid ""
-"Examples of use: %1$sskype:your_skype_username%2$s or %1$stel:"
-"your_phone_number%2$s."
-msgstr ""
-"Примеры использования: %1$sскайп:ваше_имя пользователя_скайп%2$s или %1$sтел:"
-"ваш_номер_телефона%2$s."
+msgid "Examples of use: %1$sskype:your_skype_username%2$s or %1$stel:your_phone_number%2$s."
+msgstr "Примеры использования: %1$sскайп:ваше_имя пользователя_скайп%2$s или %1$sтел:ваш_номер_телефона%2$s."
 
 #: widgets/widget-social-icons.php:23
 msgid "Social Icons"
@@ -579,28 +562,23 @@ msgstr "Шаги"
 msgid "Displays multiple steps for your process."
 msgstr "Отображает множество шагов для вашего процесса."
 
-#: widgets/widget-steps.php:137
-msgid "Widget title:"
-msgstr "Заголовок виджета:"
-
-#: widgets/widget-steps.php:143
+#: widgets/widget-steps.php:155
 msgid "Steps:"
 msgstr "Шаги:"
 
-#: widgets/widget-steps.php:152
-msgid ""
-"Click on the icon below or manually input icon class from the %s website."
+#: widgets/widget-steps.php:165
+msgid "Click on the icon below or manually input icon class from the %s website."
 msgstr "Щелкните на значок ниже или введите вручную класс значка с сайта %s."
 
-#: widgets/widget-steps.php:163
+#: widgets/widget-steps.php:177
 msgid "Step:"
 msgstr "Шаг:"
 
-#: widgets/widget-steps.php:168
+#: widgets/widget-steps.php:182
 msgid "Remove Step"
 msgstr "Удалить шаг"
 
-#: widgets/widget-steps.php:174
+#: widgets/widget-steps.php:188
 msgid "Add New Step"
 msgstr "Добавить новый шаг"
 
