@@ -33,8 +33,9 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 
 			// Get the settings for the this widget
 			$this->fields = apply_filters( 'pw/featured_page_fields', array(
-				'read_more_text' => true,
-				'tag'            => false,
+				'read_more_text'      => true,
+				'tag'                 => false,
+				'show_read_more_link' => false,
 			) );
 
 			$this->excerpt_lengths = apply_filters( 'pw/featured_page_excerpt_lengths', array(
@@ -123,6 +124,10 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				$instance['tag'] = sanitize_text_field( $new_instance['tag'] );
 			}
 
+			if ( $this->fields['show_read_more_link'] ) {
+				$instance['show_read_more_link'] = empty( $new_instance['show_read_more_link'] ) ? '' : sanitize_key( $new_instance['show_read_more_link'] );
+			}
+
 			return $instance;
 		}
 
@@ -132,10 +137,11 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		 * @param array $instance The widget options
 		 */
 		public function form( $instance ) {
-			$page_id        = empty( $instance['page_id'] ) ? 0 : (int) $instance['page_id'];
-			$layout         = empty( $instance['layout'] ) ? '' : $instance['layout'];
-			$read_more_text = empty( $instance['read_more_text'] ) ? esc_html__( 'Read more', 'proteuswidgets' ) : $instance['read_more_text'];
-			$tag            = empty( $instance['tag'] ) ? '' : $instance['tag'];
+			$page_id             = empty( $instance['page_id'] ) ? 0 : (int) $instance['page_id'];
+			$layout              = empty( $instance['layout'] ) ? '' : $instance['layout'];
+			$read_more_text      = empty( $instance['read_more_text'] ) ? esc_html__( 'Read more', 'proteuswidgets' ) : $instance['read_more_text'];
+			$tag                 = empty( $instance['tag'] ) ? '' : $instance['tag'];
+			$show_read_more_link = empty( $instance['show_read_more_link'] ) ? '' : $instance['show_read_more_link'];
 
 			?>
 
@@ -158,6 +164,13 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				</select>
 			</p>
 
+			<?php if ( $this->fields['show_read_more_link'] ) : ?>
+			<p>
+				<input class="checkbox" type="checkbox" <?php checked( $show_read_more_link, 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id( 'show_read_more_link' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'show_read_more_link' ) ); ?>" value="on" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'show_read_more_link' ) ); ?>"><?php esc_html_e( 'Show read more link?', 'proteuswidgets' ); ?></label>
+			</p>
+			<?php endif; ?>
+
 			<?php if ( $this->fields['read_more_text'] ) : ?>
 			<p>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>"><?php _e( 'Read more text:', 'proteuswidgets' ); ?></label> <br>
@@ -171,6 +184,8 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				<input id="<?php echo esc_attr( $this->get_field_id( 'tag' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'tag' ) ); ?>" type="text" value="<?php echo esc_attr( $tag ); ?>" />
 			</p>
 			<?php endif; ?>
+
+			<small><?php printf( __( 'If you want to edit the image and text of this widget, please %sread this article%s.', 'proteuswidgets' ), '<a href="https://support.proteusthemes.com/hc/en-us/articles/207428479-How-do-I-change-image-and-text-of-the-Featured-Page-widget-" target="_blank">', '</a>' ); ?></small>
 
 			<?php
 		}
