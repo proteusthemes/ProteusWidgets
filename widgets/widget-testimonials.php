@@ -256,7 +256,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			<div class="pt-widget-testimonials" id="testimonials-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<div class="testimonials"></div>
 				<p>
-					<a href="#" class="button  js-pt-add-testimonial"><?php _e( 'Add New Testimonial', 'proteuswidgets' ); ?></a>
+					<a href="#" class="button  js-pt-add-testimonial"><?php esc_html_e( 'Add New Testimonial', 'proteuswidgets' ); ?></a>
 				</p>
 			</div>
 			<script type="text/javascript">

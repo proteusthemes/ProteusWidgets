@@ -146,22 +146,22 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 		?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Widget title:', 'proteuswidgets' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Widget title:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
 			<hr>
 
-			<h4><?php _e( 'Steps:', 'proteuswidgets' ); ?></h4>
+			<h4><?php esc_html_e( 'Steps:', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-step-item-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title"><?php _e( 'Title:','proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title"><?php esc_html_e( 'Title:','proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][title]" type="text" value="{{title}}" />
 				</p>
 			<?php if ( $this->fields['use_icons'] ) : ?>
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-icon"><?php _e( 'Icon:', 'proteuswidgets' ); ?></label> <br />
+					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-icon"><?php esc_html_e( 'Icon:', 'proteuswidgets' ); ?></label> <br />
 					<small><?php printf( esc_html__( 'Click on the icon below or manually input icon class from the %s website.', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?></small>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-icon" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][icon]" type="text" value="{{icon}}" class="widefat  js-icon-input" /> <br><br>
 					<?php foreach ( $this->font_awesome_icons_list as $icon ) : ?>
@@ -170,22 +170,22 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 				</p>
 			<?php endif; ?>
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content"><?php _e( 'Content:', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content"><?php esc_html_e( 'Content:', 'proteuswidgets' ); ?></label>
 					<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][content]">{{content}}</textarea>
 				</p>
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-step"><?php _e( 'Step:', 'proteuswidgets' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-step"><?php esc_html_e( 'Step:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-step" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][step]" type="text" value="{{step}}" />
 				</p>
 				<p>
 					<input name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
-					<a href="#" class="pt-remove-step-item  js-pt-remove-step-item"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Step', 'proteuswidgets' ); ?></a>
+					<a href="#" class="pt-remove-step-item  js-pt-remove-step-item"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Step', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
 			<div class="pt-widget-step-items" id="step-items-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<div class="step-items"></div>
 				<p>
-					<a href="#" class="button  js-pt-add-step-item"><?php _e( 'Add New Step', 'proteuswidgets' ); ?></a>
+					<a href="#" class="button  js-pt-add-step-item"><?php esc_html_e( 'Add New Step', 'proteuswidgets' ); ?></a>
 				</p>
 			</div>
 			<script type="text/javascript">

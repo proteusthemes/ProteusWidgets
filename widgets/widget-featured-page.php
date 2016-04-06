@@ -146,7 +146,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>"><?php _e( 'Page:', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>"><?php esc_html_e( 'Page:', 'proteuswidgets' ); ?></label> <br>
 				<?php
 					wp_dropdown_pages( array(
 						'selected' => $page_id,
@@ -157,10 +157,10 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			</p>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>"><?php _e( 'Layout:', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>"><?php esc_html_e( 'Layout:', 'proteuswidgets' ); ?></label> <br>
 				<select id="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'layout' ) ); ?>">
-					<option value="block" <?php selected( $layout, 'block' ); ?>><?php _e( 'With big picture', 'proteuswidgets' ); ?></option>
-					<option value="inline" <?php selected( $layout, 'inline' ); ?>><?php _e( 'With small picture, inline', 'proteuswidgets' ); ?></option>
+					<option value="block" <?php selected( $layout, 'block' ); ?>><?php esc_html_e( 'With big picture', 'proteuswidgets' ); ?></option>
+					<option value="inline" <?php selected( $layout, 'inline' ); ?>><?php esc_html_e( 'With small picture, inline', 'proteuswidgets' ); ?></option>
 				</select>
 			</p>
 
@@ -173,19 +173,19 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 
 			<?php if ( $this->fields['read_more_text'] ) : ?>
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>"><?php _e( 'Read more text:', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>"><?php esc_html_e( 'Read more text:', 'proteuswidgets' ); ?></label> <br>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'read_more_text' ) ); ?>" type="text" value="<?php echo esc_attr( $read_more_text ); ?>" />
 			</p>
 			<?php endif; ?>
 
 			<?php if ( $this->fields['tag'] ) : ?>
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'tag' ) ); ?>"><?php _e( 'Tag:', 'proteuswidgets' ); ?></label> <br>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'tag' ) ); ?>"><?php esc_html_e( 'Tag:', 'proteuswidgets' ); ?></label> <br>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'tag' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'tag' ) ); ?>" type="text" value="<?php echo esc_attr( $tag ); ?>" />
 			</p>
 			<?php endif; ?>
 
-			<small><?php printf( __( 'If you want to edit the image and text of this widget, please %sread this article%s.', 'proteuswidgets' ), '<a href="https://support.proteusthemes.com/hc/en-us/articles/207428479-How-do-I-change-image-and-text-of-the-Featured-Page-widget-" target="_blank">', '</a>' ); ?></small>
+			<small><?php printf( esc_html__( 'If you want to edit the image and text of this widget, please %sread this article%s.', 'proteuswidgets' ), '<a href="https://support.proteusthemes.com/hc/en-us/articles/207428479-How-do-I-change-image-and-text-of-the-Featured-Page-widget-" target="_blank">', '</a>' ); ?></small>
 
 			<?php
 		}

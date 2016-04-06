@@ -43,7 +43,7 @@
 
 									<?php if ( isset( $testimonial['author_avatar'] ) && $testimonial['author_avatar'] ) : ?>
 										<div class="testimonial__author-avatar">
-											<img src="<?php echo esc_url( $testimonial['author_avatar'] ); ?>" alt="<?php _e( 'Testimonial author avatar', 'proteuswidgets' ) ?>">
+											<img src="<?php echo esc_url( $testimonial['author_avatar'] ); ?>" alt="<?php esc_html_e( 'Testimonial author avatar', 'proteuswidgets' ) ?>">
 										</div>
 									<?php endif; ?>
 								</blockquote>
