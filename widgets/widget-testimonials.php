@@ -138,6 +138,9 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				}
 			}
 
+			// Sort testimonials by ids, because order might have changed.
+			usort( $instance['testimonials'], array( $this, 'sort_by_id' ) );
+
 			return $instance;
 		}
 
@@ -209,58 +212,68 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			<h4><?php esc_html_e( 'Testimonials', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-testimonial-<?php echo esc_attr( $this->current_widget_id ); ?>">
-				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'quote' ) ); ?>-{{id}}-title"><?php esc_html_e( 'Quote:', 'proteuswidgets' ); ?></label>
-					<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'quote' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][quote]">{{quote}}</textarea>
-				</p>
+				<div class="pt-sortable-setting  ui-widget  ui-widget-content  ui-helper-clearfix  ui-corner-all">
+					<div class="pt-sortable-setting__header  ui-widget-header  ui-corner-all">
+						<span class="dashicons  dashicons-sort"></span>
+						<span><?php esc_html_e( 'Testimonial', 'proteuswidgets' ); ?> - </span>
+						<span class="pt-sortable-setting__header-title">{{author}}</span>
+						<span class="pt-sortable-setting__toggle  dashicons  dashicons-minus"></span>
+					</div>
+					<div class="pt-sortable-setting__content">
+						<p>
+							<label for="<?php echo esc_attr( $this->get_field_id( 'quote' ) ); ?>-{{id}}-title"><?php esc_html_e( 'Quote:', 'proteuswidgets' ); ?></label>
+							<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'quote' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][quote]">{{quote}}</textarea>
+						</p>
 
-				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author"><?php esc_html_e( 'Author:', 'proteuswidgets' ); ?></label> <br>
-					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][author]" type="text" value="{{author}}" />
-				</p>
+						<p>
+							<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author"><?php esc_html_e( 'Author:', 'proteuswidgets' ); ?></label> <br>
+							<input class="widefat  js-pt-sortable-setting-title" id="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][author]" type="text" value="{{author}}" />
+						</p>
 
-				<?php if ( $this->fields['author_description'] ) : ?>
-				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_description"><?php esc_html_e( 'Author description:', 'proteuswidgets' ); ?></label>
-					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_description" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][author_description]" type="text" value="{{author_description}}" />
-				</p>
-				<?php endif; ?>
+						<?php if ( $this->fields['author_description'] ) : ?>
+						<p>
+							<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_description"><?php esc_html_e( 'Author description:', 'proteuswidgets' ); ?></label>
+							<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_description" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][author_description]" type="text" value="{{author_description}}" />
+						</p>
+						<?php endif; ?>
 
-				<?php if ( $this->fields['author_avatar'] ) : ?>
-				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_avatar"><?php esc_html_e( 'Author avatar:', 'proteuswidgets' ); ?></label>
-					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_avatar" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][author_avatar]" type="text" value="{{author_avatar}}" />
-					<input type="button" style="margin-top: 5px;" onclick="ProteusWidgetsUploader.imageUploader.openFileFrame('<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_avatar');" class="button button-secondary button-upload-image" value="Upload Image" />
-				</p>
-				<?php endif; ?>
+						<?php if ( $this->fields['author_avatar'] ) : ?>
+						<p>
+							<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_avatar"><?php esc_html_e( 'Author avatar:', 'proteuswidgets' ); ?></label>
+							<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_avatar" name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][author_avatar]" type="text" value="{{author_avatar}}" />
+							<input type="button" style="margin-top: 5px;" onclick="ProteusWidgetsUploader.imageUploader.openFileFrame('<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-author_avatar');" class="button button-secondary button-upload-image" value="Upload Image" />
+						</p>
+						<?php endif; ?>
 
-				<?php if ( $this->fields['rating'] ) : ?>
-				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-rating"><?php esc_html_e( 'Rating:', 'proteuswidgets' ); ?></label>
-					<select name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][rating]" id="<?php echo esc_attr( $this->get_field_id( 'rating' ) ); ?>-{{id}}-rating" class="js-rating">
-						<option value="0">0</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
- 					</select>
-				</p>
-				<?php endif; ?>
+						<?php if ( $this->fields['rating'] ) : ?>
+						<p>
+							<label for="<?php echo esc_attr( $this->get_field_id( 'testimonials' ) ); ?>-{{id}}-rating"><?php esc_html_e( 'Rating:', 'proteuswidgets' ); ?></label>
+							<select name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][rating]" id="<?php echo esc_attr( $this->get_field_id( 'rating' ) ); ?>-{{id}}-rating" class="js-rating">
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+		 					</select>
+						</p>
+						<?php endif; ?>
 
-				<p>
-					<input name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
-					<a href="#" class="pt-remove-testimonial  js-pt-remove-testimonial"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Testimonial', 'proteuswidgets' ); ?></a>
-				</p>
+						<p>
+							<input name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][id]" class="js-pt-testimonial-id" type="hidden" value="{{id}}" />
+							<a href="#" class="pt-remove-testimonial  js-pt-remove-testimonial"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Testimonial', 'proteuswidgets' ); ?></a>
+						</p>
+					</div>
+				</div>
 			</script>
 			<div class="pt-widget-testimonials" id="testimonials-<?php echo esc_attr( $this->current_widget_id ); ?>">
-				<div class="testimonials"></div>
+				<div class="testimonials  js-pt-sortable-testimonials"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-testimonial"><?php esc_html_e( 'Add New Testimonial', 'proteuswidgets' ); ?></a>
 				</p>
 			</div>
 			<script type="text/javascript">
-				(function() {
+				(function( $ ) {
 					// repopulate the form
 					var testimonialsJSON = <?php echo wp_json_encode( $testimonials ) ?>;
 
@@ -270,11 +283,23 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 					if ( _.isFunction( ProteusWidgets.Utils.repopulateTestimonials ) ) {
 						ProteusWidgets.Utils.repopulateTestimonials( testimonialsJSON, widgetId );
 					}
-				})();
+
+					// Make testimonial settings sortable.
+					$( '.js-pt-sortable-testimonials' ).sortable({
+						items: '.pt-widget-single-testimonial',
+						handle: '.pt-sortable-setting__header',
+						cancel: '.pt-sortable-setting__toggle',
+						placeholder: 'pt-sortable-setting__placeholder',
+						stop: function( event, ui ) {
+							$( this ).find( '.js-pt-testimonial-id' ).each( function( index ) {
+								$( this ).val( index );
+							});
+						}
+					});
+				})( jQuery );
 			</script>
 
 			<?php
 		}
-
 	}
 }

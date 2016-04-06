@@ -30,7 +30,7 @@ class ProteusWidgets {
 		wp_enqueue_media();
 		wp_enqueue_script( 'pw-media-uploader', PW_URL . '/assets/js/BrochureAdmin.js', array( 'jquery' ), '1.0', true );
 
-		wp_enqueue_script( 'pw-admin-script', PW_URL . '/assets/js/admin.js' , array( 'jquery', 'underscore', 'backbone', apply_filters( 'pw/theme_prefix', '' ) . 'mustache.js' ) );
+		wp_enqueue_script( 'pw-admin-script', PW_URL . '/assets/js/admin.js' , array( 'jquery', 'underscore', 'backbone', 'jquery-ui-sortable' , apply_filters( 'pw/theme_prefix', '' ) . 'mustache.js' ) );
 
 		// Provide variables to the admin.js script
 		wp_localize_script( 'pw-admin-script', 'ProteusWidgetsAdminVars', array(

@@ -11,10 +11,18 @@
 .pt-widget-single-accordion-item,
 .pt-widget-single-step,
 .pt-widget-single-pricing-list-item {
-	padding: 0 10px;
 	border: 1px solid rgba(0,0,0,0.1);
 	background-color: rgba(0,0,0,0.03);
 	margin-bottom: 10px;
+}
+
+.pt-widget-single-location,
+.pt-widget-single-person,
+.pt-widget-single-social-icon,
+.pt-widget-single-counter,
+.pt-widget-single-step,
+.pt-sortable-setting__content {
+	padding: 0 10px;
 }
 
 .pt-remove-location,
@@ -50,4 +58,33 @@
 
 .skype-widget-small-text code{
 	font-size: 10px;
+}
+
+/* Sortable settings */
+.pt-sortable-setting__header {
+	position: relative;
+	padding: 10px;
+	background-color: #dddddd;
+	color: #777777;
+	cursor: move;
+}
+
+.pt-sortable-setting__header-title {
+	color: initial;
+	font-weight: bold;
+}
+
+.pt-sortable-setting__toggle {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	margin-top: -16px;
+	padding: 6px;
+	cursor: pointer;
+}
+
+.pt-sortable-setting__placeholder {
+	border: 1px dotted #777777;
+	height: 40px;
+	margin-bottom: 10px;
 }

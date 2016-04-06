@@ -19,9 +19,19 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 				)
 			);
 
-			// Define the ProteusWidgets PHP templating engine *Singleton*
+			// Define the ProteusWidgets PHP templating engine *Singleton*.
 			$this->template_engine = PW_Templating::get_instance();
 		}
 
+		/**
+		 * Helper function to order items by ids.
+		 * Used for sorting widget setting items.
+		 *
+		 * @param int $a first comparable parameter.
+		 * @param int $b second comparable parameter.
+		 */
+		function sort_by_id( $a, $b ) {
+			return $a['id'] - $b['id'];
+		}
 	}
 }

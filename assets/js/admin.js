@@ -52,6 +52,17 @@ jQuery( document ).ready( function( $ ) {
 		$this.siblings( '.js-icon-input' ).val( $this.data( 'iconname' ) ).change();
 	} );
 
+	// Make sortable settings foldable.
+	$(document).on( 'click', '.pt-sortable-setting__toggle', function() {
+		$( this ).toggleClass( 'dashicons-minus dashicons-plus' );
+		$( this ).closest( '.pt-sortable-setting' ).find( '.pt-sortable-setting__content' ).toggle();
+	});
+
+	// Update sortable setting header on tab title change.
+	$(document).on( 'change', '.js-pt-sortable-setting-title', function() {
+		$( this ).closest( '.pt-sortable-setting' ).find( '.pt-sortable-setting__header-title' ).text( $( this ).val() );
+	});
+
 } );
 
 

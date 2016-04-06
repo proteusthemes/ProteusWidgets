@@ -80,6 +80,9 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 			$instance['title']          = sanitize_text_field( $new_instance['title'] );
 			$instance['read_more_link'] = esc_url_raw( $new_instance['read_more_link'] );
 
+			// Sort items by ids, because order might have changed.
+			usort( $instance['items'], array( $this, 'sort_by_id' ) );
+
 			return $instance;
 		}
 
@@ -129,27 +132,37 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 			<h4><?php esc_html_e( 'Accordion items', 'proteuswidgets' ); ?></h4>
 
 			<script type="text/template" id="js-pt-accordion-item-<?php echo esc_attr( $this->current_widget_id ); ?>">
-				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title"><?php esc_html_e( 'Title:','proteuswidgets' ); ?></label>
-					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][title]" type="text" value="{{title}}" />
-				</p>
-				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content"><?php esc_html_e( 'Content:', 'proteuswidgets' ); ?></label>
-					<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][content]">{{content}}</textarea>
-				</p>
-				<p>
-					<input name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
-					<a href="#" class="pt-remove-accordion-item  js-pt-remove-accordion-item"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Item', 'proteuswidgets' ); ?></a>
-				</p>
+				<div class="pt-sortable-setting  ui-widget  ui-widget-content  ui-helper-clearfix  ui-corner-all">
+					<div class="pt-sortable-setting__header  ui-widget-header  ui-corner-all">
+						<span class="dashicons  dashicons-sort"></span>
+						<span><?php esc_html_e( 'Accordion', 'proteuswidgets' ); ?> - </span>
+						<span class="pt-sortable-setting__header-title">{{title}}</span>
+						<span class="pt-sortable-setting__toggle  dashicons  dashicons-minus"></span>
+					</div>
+					<div class="pt-sortable-setting__content">
+						<p>
+							<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title"><?php esc_html_e( 'Title:','proteuswidgets' ); ?></label>
+							<input class="widefat  js-pt-sortable-setting-title" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][title]" type="text" value="{{title}}" />
+						</p>
+						<p>
+							<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content"><?php esc_html_e( 'Content:', 'proteuswidgets' ); ?></label>
+							<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][content]">{{content}}</textarea>
+						</p>
+						<p>
+							<input name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][id]" class="js-pt-accordion-id" type="hidden" value="{{id}}" />
+							<a href="#" class="pt-remove-accordion-item  js-pt-remove-accordion-item"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Item', 'proteuswidgets' ); ?></a>
+						</p>
+					</div>
+				</div>
 			</script>
 			<div class="pt-widget-accordion-items" id="accordion-items-<?php echo esc_attr( $this->current_widget_id ); ?>">
-				<div class="accordion-items"></div>
+				<div class="accordion-items  js-pt-sortable-accordions"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-accordion-item"><?php esc_html_e( 'Add New Item','proteuswidgets' ); ?></a>
 				</p>
 			</div>
 			<script type="text/javascript">
-				(function() {
+				(function( $ ) {
 					// repopulate the form
 					var accordionItemsJSON = <?php echo wp_json_encode( $instance['items'] ) ?>;
 
@@ -159,7 +172,20 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 					if ( _.isFunction( ProteusWidgets.Utils.repopulateAccordionItems ) ) {
 						ProteusWidgets.Utils.repopulateAccordionItems( accordionItemsJSON, widgetId );
 					}
-				})();
+
+					// Make accordion settings sortable.
+					$( '.js-pt-sortable-accordions' ).sortable({
+						items: '.pt-widget-single-accordion-item',
+						handle: '.pt-sortable-setting__header',
+						cancel: '.pt-sortable-setting__toggle',
+						placeholder: 'pt-sortable-setting__placeholder',
+						stop: function( event, ui ) {
+							$( this ).find( '.js-pt-accordion-id' ).each( function( index ) {
+								$( this ).val( index );
+							});
+						}
+					});
+				})( jQuery );
 			</script>
 
 			<?php

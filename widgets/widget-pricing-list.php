@@ -76,6 +76,9 @@ if ( ! class_exists( 'PW_Pricing_List' ) ) {
 				}
 			}
 
+			// Sort items by ids, because order might have changed.
+			usort( $instance['items'], array( $this, 'sort_by_id' ) );
+
 			return $instance;
 		}
 
@@ -109,38 +112,48 @@ if ( ! class_exists( 'PW_Pricing_List' ) ) {
 			<h3><?php esc_html_e( 'Items:', 'proteuswidgets' ); ?></h3>
 
 			<script type="text/template" id="js-pt-pricing-list-item-<?php echo esc_attr( $this->current_widget_id ); ?>">
-				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-badge"><?php esc_html_e( 'Badge:', 'proteuswidgets' ); ?></label>
-					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-badge" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][badge]" type="text" value="{{badge}}" />
-				</p>
-				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title"><?php esc_html_e( 'Title:', 'proteuswidgets' ); ?></label>
-					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][title]" type="text" value="{{title}}" />
-				</p>
-				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-price"><?php esc_html_e( 'Price:', 'proteuswidgets' ); ?></label>
-					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-price" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][price]" type="text" value="{{price}}" />
-				</p>
+				<div class="pt-sortable-setting  ui-widget  ui-widget-content  ui-helper-clearfix  ui-corner-all">
+					<div class="pt-sortable-setting__header  ui-widget-header  ui-corner-all">
+						<span class="dashicons  dashicons-sort"></span>
+						<span><?php esc_html_e( 'Pricing list', 'proteuswidgets' ); ?> - </span>
+						<span class="pt-sortable-setting__header-title">{{title}}</span>
+						<span class="pt-sortable-setting__toggle  dashicons  dashicons-minus"></span>
+					</div>
+					<div class="pt-sortable-setting__content">
+						<p>
+							<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-badge"><?php esc_html_e( 'Badge:', 'proteuswidgets' ); ?></label>
+							<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-badge" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][badge]" type="text" value="{{badge}}" />
+						</p>
+						<p>
+							<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title"><?php esc_html_e( 'Title:', 'proteuswidgets' ); ?></label>
+							<input class="widefat  js-pt-sortable-setting-title" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-title" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][title]" type="text" value="{{title}}" />
+						</p>
+						<p>
+							<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-price"><?php esc_html_e( 'Price:', 'proteuswidgets' ); ?></label>
+							<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-price" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][price]" type="text" value="{{price}}" />
+						</p>
 
-				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-description"><?php esc_html_e( 'Description:', 'proteuswidgets' ); ?></label>
-					<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-description" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][description]">{{description}}</textarea>
-				</p>
+						<p>
+							<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-description"><?php esc_html_e( 'Description:', 'proteuswidgets' ); ?></label>
+							<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-description" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][description]">{{description}}</textarea>
+						</p>
 
-				<p>
-					<input name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
-					<a href="#" class="pt-remove-pricing-list-item  js-pt-remove-pricing-list-item"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove item', 'proteuswidgets' ); ?></a>
-				</p>
+						<p>
+							<input name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][id]" class="js-pt-pricing-list-id" type="hidden" value="{{id}}" />
+							<a href="#" class="pt-remove-pricing-list-item  js-pt-remove-pricing-list-item"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove item', 'proteuswidgets' ); ?></a>
+						</p>
+					</div>
+				</div>
 			</script>
 			<div class="pt-widget-pricing-list-items" id="pricing-list-items-<?php echo esc_attr( $this->current_widget_id ); ?>">
-				<div class="pricing-list-items"></div>
+				<div class="pricing-list-items  js-pt-sortable-pricing-lists"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-pricing-list-item"><?php esc_html_e( 'Add New Item', 'proteuswidgets' ); ?></a>
 				</p>
 			</div>
 
 			<script type="text/javascript">
-				(function() {
+				(function( $ ) {
 					var pricingListItemJSON = <?php echo wp_json_encode( $items ) ?>;
 
 					// Get the right widget id and remove the added < > characters at the start and at the end.
@@ -149,7 +162,20 @@ if ( ! class_exists( 'PW_Pricing_List' ) ) {
 					if ( _.isFunction( ProteusWidgets.Utils.repopulatePricingListItems ) ) {
 						ProteusWidgets.Utils.repopulatePricingListItems( pricingListItemJSON, widgetId );
 					}
-				})();
+
+					// Make pricing list settings sortable.
+					$( '.js-pt-sortable-pricing-lists' ).sortable({
+						items: '.pt-widget-single-pricing-list-item',
+						handle: '.pt-sortable-setting__header',
+						cancel: '.pt-sortable-setting__toggle',
+						placeholder: 'pt-sortable-setting__placeholder',
+						stop: function( event, ui ) {
+							$( this ).find( '.js-pt-pricing-list-id' ).each( function( index ) {
+								$( this ).val( index );
+							});
+						}
+					});
+				})( jQuery );
 			</script>
 
 			<?php
