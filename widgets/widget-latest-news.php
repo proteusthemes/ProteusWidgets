@@ -139,7 +139,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>"><?php esc_html_e( 'Post order number from:', 'proteuswidgets' ); ?></label>
-					<input id="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'from' ) ); ?>" type="number" min="1" max="<?php echo $this->max_post_number; ?>" value="<?php echo esc_attr( $from ); ?>" />
+					<input id="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'from' ) ); ?>" type="number" min="1" max="<?php echo esc_attr( $this->max_post_number ); ?>" value="<?php echo esc_attr( $from ); ?>" />
 					<span class="latest-news-to-fields-group" id="<?php echo esc_attr( $this->get_field_id( 'to' ) ); ?>-fields-group">
 					<label for="<?php echo esc_attr( $this->get_field_id( 'to' ) ); ?>"><?php esc_html_e( 'To:', 'proteuswidgets' ); ?></label>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'to' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'to' ) ); ?>" type="number" min="1" max="<?php echo esc_attr( $this->max_post_number ); ?>" value="<?php echo esc_attr( $to ); ?>" />
