@@ -95,7 +95,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 
 			$instance['name']        = sanitize_text_field( $new_instance['name'] );
 			$instance['tag']         = sanitize_text_field( $new_instance['tag'] );
-			$instance['description'] = sanitize_text_field( $new_instance['description'] );
+			$instance['description'] = wp_kses_post( $new_instance['description'] );
 			$instance['image']       = esc_url_raw( $new_instance['image'] );
 			$instance['new_tab']     = ! empty ( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
 
