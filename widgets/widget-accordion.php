@@ -9,8 +9,6 @@
 if ( ! class_exists( 'PW_Accordion' ) ) {
 	class PW_Accordion extends PW_Widget {
 
-		private $allowed_html_in_content_field;
-
 		public function __construct() {
 
 			// Overwrite the widget variables of the parent class
@@ -20,20 +18,6 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 			$this->widget_class       = 'widget-accordion';
 
 			parent::__construct();
-
-			// Allowed HTML in content field
-			$this->allowed_html_in_content_field = apply_filters(
-				'pw/allowed_html_in_content_field',
-				array(
-					'strong' => array(),
-					'b'      => array(),
-					'br'     => array(),
-					'a'      => array(
-						'href'  => array(),
-						'class' => array(),
-					),
-				)
-			);
 		}
 
 		/**
@@ -74,7 +58,7 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 			foreach ( $new_instance['items'] as $key => $item ) {
 				$instance['items'][ $key ]['id']      = sanitize_key( $item['id'] );
 				$instance['items'][ $key ]['title']   = sanitize_text_field( $item['title'] );
-				$instance['items'][ $key ]['content'] = wp_kses( $item['content'], $this->allowed_html_in_content_field );
+				$instance['items'][ $key ]['content'] = wp_kses_post( $item['content'] );
 			}
 
 			$instance['title']          = sanitize_text_field( $new_instance['title'] );
