@@ -63,6 +63,16 @@ jQuery( document ).ready( function( $ ) {
 		$( this ).closest( '.pt-sortable-setting' ).find( '.pt-sortable-setting__header-title' ).text( $( this ).val() );
 	});
 
+	// Featured Page widget backend settings.
+	$(document).on( 'change', '.js-featured-page-settings__select-layout', function(){
+		if ('block' === this.value ) {
+			$( this ).parent().siblings('.js-featured-page-settings__additional-block-settings').show();
+		}
+		else {
+			$( this ).parent().siblings('.js-featured-page-settings__additional-block-settings').hide();
+		}
+	});
+
 } );
 
 
