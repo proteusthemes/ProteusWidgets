@@ -7,17 +7,22 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 	class PW_Latest_News extends PW_Widget {
 
 		private $max_post_number = 10;
-		private $current_widget_id;
+		private $current_widget_id, $fields;
 
 		public function __construct() {
 
-			// Overwrite the widget variables of the parent class
+			// Overwrite the widget variables of the parent class.
 			$this->widget_id_base     = 'latest_news';
 			$this->widget_name        = esc_html__( 'Latest News', 'proteuswidgets' );
 			$this->widget_description = esc_html__( 'Displays one or more latest posts.', 'proteuswidgets' );
 			$this->widget_class       = 'widget-latest-news';
 
 			parent::__construct();
+
+			// Get the settings for the this widget.
+			$this->fields = apply_filters( 'pw/latest_news_fields', array(
+				'featured_type' => false,
+			) );
 		}
 
 		/**
@@ -34,19 +39,27 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			$to        = ! empty( $instance['to'] ) ? $instance['to'] : '';
 			$more_news = ! empty( $instance['more_news'] ) ? $instance['more_news'] : '';
 
-			// prepare data for template
+			// Prepare data for template.
 			$instance['link_to_more_news'] = get_permalink( get_option( 'page_for_posts' ) );
 			$instance['read_more_text']    = empty( $instance['read_more_text'] ) ? esc_html__( 'More news', 'proteuswidgets' ) : $instance['read_more_text'];
 
-			// Get/set cache data just once for multiple widgets
+			// Get/set cache data just once for multiple widgets.
 			$recent_posts_data = PW_Functions::get_cached_data( 'pw_recent_posts', $this->max_post_number );
 
-			// Array with posts to display
+			// Array with posts to display.
 			$recent_posts = array();
 
 			switch ( $type ) {
 				case 'block':
 					$instance['block'] = true;
+					if ( $from <= count( $recent_posts_data ) ) {
+						$recent_posts[] = $recent_posts_data[ $from - 1 ];
+					}
+					break;
+
+				case 'featured':
+					$instance['block']    = true;
+					$instance['featured'] = true;
 					if ( $from <= count( $recent_posts_data ) ) {
 						$recent_posts[] = $recent_posts_data[ $from - 1 ];
 					}
@@ -63,7 +76,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 				'more_news' => $instance['read_more_text'],
 			);
 
-			// widget-latest-news template rendering
+			// Template rendering widget-latest-news.
 			echo $this->template_engine->render_template( apply_filters( 'pw/widget_latest_news_view', 'widget-latest-news' ), array(
 				'args'     => $args,
 				'instance' => $instance,
@@ -92,11 +105,11 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 				$instance['more_news'] = '';
 			}
 
-			// Bound from and to between 1 and max_post_number
+			// Bound from and to between 1 and max_post_number.
 			$instance['from'] = PW_Functions::bound( $instance['from'], 1, $this->max_post_number );
 			$instance['to']   = PW_Functions::bound( $instance['to'], 1, $this->max_post_number );
 
-			// to can't be lower than from
+			// to can't be lower than from.
 			if ( $instance['from'] > $instance['to'] ) {
 				$instance['to'] = $instance['from'];
 			}
@@ -118,7 +131,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			$more_news      = ! empty( $instance['more_news'] ) ? $instance['more_news'] : '';
 			$read_more_text = empty( $instance['read_more_text'] ) ? esc_html__( 'More news', 'proteuswidgets' ) : $instance['read_more_text'];
 
-			// Page Builder fix for widget id used in Backbone and in the surrounding div below
+			// Page Builder fix for widget id used in Backbone and in the surrounding div below.
 			if ( 'temp' === $this->id ) {
 				$this->current_widget_id = $this->number;
 			}
@@ -133,6 +146,9 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'type' ) ); ?>"><?php esc_html_e( 'Display type:', 'proteuswidgets' ); ?></label>
 					<select id="<?php echo esc_attr( $this->get_field_id( 'type' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'type' ) ); ?>" class="latest-news-select-type">
 						<option value="block" <?php selected( $type, 'block' ); ?>><?php esc_html_e( 'Box (one post)', 'proteuswidgets' ); ?></option>
+						<?php if ( $this->fields['featured_type'] ) : ?>
+						<option value="featured" <?php selected( $type, 'featured' ); ?>><?php esc_html_e( 'Featured (one post)', 'proteuswidgets' ); ?></option>
+						<?php endif; ?>
 						<option value="inline" <?php selected( $type, 'inline' ); ?>><?php esc_html_e( 'Inline (multiple posts)', 'proteuswidgets' ); ?></option>
 					</select>
 				</p>
@@ -178,7 +194,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 							this.toFieldsGroup = params.toFieldsGroup;
 							this.selectedType  = params.selectedType;
 
-							if ( 'block' == $(this.selectedType).val() ) {
+							if ( 'block' == $(this.selectedType).val() || 'featured' == $(this.selectedType).val() ) {
 								$(this.toFieldsGroup).hide();
 								$(this.toFieldsGroup).siblings('label').html("<?php esc_html_e( 'Post order number:', 'proteuswidgets' ); ?>");
 							}
@@ -192,7 +208,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 						},
 
 						toggle: function(event){
-							if ( 'block' == event.target.value ) {
+							if ( 'block' == event.target.value || 'featured' == event.target.value  ) {
 								$(this.toFieldsGroup).siblings('label').html("<?php esc_html_e( 'Post order number:', 'proteuswidgets' ); ?>");
 								$(this.toFieldsGroup).hide();
 							}
