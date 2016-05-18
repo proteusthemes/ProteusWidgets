@@ -7,7 +7,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 	class PW_Latest_News extends PW_Widget {
 
 		private $max_post_number = 10;
-		private $current_widget_id, $fields;
+		private $current_widget_id, $fields, $texts;
 
 		public function __construct() {
 
@@ -22,6 +22,10 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			// Get the settings for the this widget.
 			$this->fields = apply_filters( 'pw/latest_news_fields', array(
 				'featured_type' => false,
+			) );
+
+			$this->texts = apply_filters( 'pw/latest_news_texts', array(
+				'read_more' => 'More news',
 			) );
 		}
 
@@ -41,7 +45,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 
 			// Prepare data for template.
 			$instance['link_to_more_news'] = get_permalink( get_option( 'page_for_posts' ) );
-			$instance['read_more_text']    = empty( $instance['read_more_text'] ) ? esc_html__( 'More news', 'proteuswidgets' ) : $instance['read_more_text'];
+			$instance['read_more_text']    = empty( $instance['read_more_text'] ) ? $this->texts['read_more'] : $instance['read_more_text'];
 
 			// Get/set cache data just once for multiple widgets.
 			$recent_posts_data = PW_Functions::get_cached_data( 'pw_recent_posts', $this->max_post_number );
@@ -129,7 +133,7 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			$from           = ! empty( $instance['from'] ) ? $instance['from'] : '';
 			$to             = ! empty( $instance['to'] ) ? $instance['to'] : '';
 			$more_news      = ! empty( $instance['more_news'] ) ? $instance['more_news'] : '';
-			$read_more_text = empty( $instance['read_more_text'] ) ? esc_html__( 'More news', 'proteuswidgets' ) : $instance['read_more_text'];
+			$read_more_text = empty( $instance['read_more_text'] ) ? $this->texts['read_more'] : $instance['read_more_text'];
 
 			// Page Builder fix for widget id used in Backbone and in the surrounding div below.
 			if ( 'temp' === $this->id ) {
