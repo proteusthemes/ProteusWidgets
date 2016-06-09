@@ -72,8 +72,14 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 					'order'               => 'DESC',
 					'post_type'           => 'post',
 					'post_status'         => 'publish',
-					// 'suppress_filters' => false // If some WPML problems occur, uncomment this line
 				);
+
+				// Check if WPML plugin is active and set the suppress_filter parameter to false,
+				// this solves the issue of multiple translations of the same blog post appear on single language page.
+				if ( self::is_wpml_plugin_activated() ) {
+					$recent_posts_original_args['suppress_filters'] = false;
+				}
+
 				$recent_posts_original = wp_get_recent_posts( $recent_posts_original_args );
 
 				// Prepare the data that we need for display
@@ -150,5 +156,13 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 			return $s;
 		}
 
+		/**
+		 * Checks if the WPML plugin is activated.
+		 *
+		 * Note: Used WPML_Config class, because it was the best I could find in the plugin (with a quick search).
+		 */
+		public static function is_wpml_plugin_activated() {
+			return class_exists( 'WPML_Config' );
+		}
 	}
 }
