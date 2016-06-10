@@ -161,6 +161,20 @@ _.extend( ProteusWidgets.Models, {
 			'description': '',
 		}
 	} ),
+
+	Skill: Backbone.Model.extend( {
+		defaults: {
+			'name':    '',
+			'rating': 5,
+		}
+	} ),
+
+	CarouselItem: Backbone.Model.extend( {
+		defaults: {
+			'type': 'image',
+			'url':  '',
+		}
+	} ),
 } );
 
 
@@ -304,6 +318,40 @@ _.extend( ProteusWidgets.Views, {
 		},
 	} ),
 
+	// View of a single skill
+	Skill: ProteusWidgets.Views.Abstract.extend( {
+		className: 'pt-widget-single-skill',
+
+		events: {
+			'click .js-pt-remove-skill': 'destroy',
+		},
+
+		render: function () {
+			this.$el.html( Mustache.render( this.templateHTML, this.model.attributes ) );
+
+			this.$( 'select.js-rating' ).val( this.model.get( 'rating' ) );
+
+			return this;
+		},
+	} ),
+
+	// View of a single carousel item
+	CarouselItem: ProteusWidgets.Views.Abstract.extend( {
+		className: 'pt-widget-single-carousel-item',
+
+		events: {
+			'click .js-pt-remove-carousel-item': 'destroy',
+		},
+
+		render: function () {
+			this.$el.html( Mustache.render( this.templateHTML, this.model.attributes ) );
+
+			this.$( 'select.js-media-type' ).val( this.model.get( 'type' ) );
+
+			return this;
+		},
+	} ),
+
 } );
 
 
@@ -434,6 +482,20 @@ _.extend( ProteusWidgets.ListViews, {
 	PricingListItems: ProteusWidgets.ListViews.Abstract.extend( {
 		events: {
 			'click .js-pt-add-pricing-list-item': 'addNew'
+		}
+	} ),
+
+	// Collection of all skills, but associated with each individual widget
+	Skills: ProteusWidgets.ListViews.Abstract.extend( {
+		events: {
+			'click .js-pt-add-skill': 'addNew'
+		}
+	} ),
+
+	// Collection of all carousel items, but associated with each individual widget
+	CarouselItems: ProteusWidgets.ListViews.Abstract.extend( {
+		events: {
+			'click .js-pt-add-carousel-item': 'addNew'
 		}
 	} ),
 } );
@@ -613,5 +675,43 @@ _.extend( ProteusWidgets.Utils, {
 		};
 
 		this.repopulateGeneric( ProteusWidgets.ListViews.PricingListItems, parameters, pricingListItemJSON, widgetId );
+	},
+
+	/**
+	 * Function which adds the existing skills to the DOM
+	 * @param  {json} skillsJSON
+	 * @param  {string} widgetId ID of widget from PHP $this->id
+	 * @return {void}
+	 */
+	repopulateSkills: function ( skillsJSON, widgetId ) {
+		var parameters = {
+			el:           '#skills-' + widgetId,
+			widgetId:     widgetId,
+			itemsClass:   '.skills',
+			itemTemplate: '#js-pt-skills-',
+			itemsModel:   ProteusWidgets.Models.Skill,
+			itemView:     ProteusWidgets.Views.Skill,
+		};
+
+		this.repopulateGeneric( ProteusWidgets.ListViews.Skills, parameters, skillsJSON, widgetId );
+	},
+
+	/**
+	 * Function which adds the existing carousel items to the DOM
+	 * @param  {json} carouselJSON
+	 * @param  {string} widgetId ID of widget from PHP $this->id
+	 * @return {void}
+	 */
+	repopulateCarousel: function ( carouselJSON, widgetId ) {
+		var parameters = {
+			el:           '#carousel-items-' + widgetId,
+			widgetId:     widgetId,
+			itemsClass:   '.carousel-items',
+			itemTemplate: '#js-pt-carousel-',
+			itemsModel:   ProteusWidgets.Models.CarouselItem,
+			itemView:     ProteusWidgets.Views.CarouselItem,
+		};
+
+		this.repopulateGeneric( ProteusWidgets.ListViews.CarouselItems, parameters, carouselJSON, widgetId );
 	},
 } );

@@ -10,7 +10,9 @@
 .pt-widget-single-counter,
 .pt-widget-single-accordion-item,
 .pt-widget-single-step,
-.pt-widget-single-pricing-list-item {
+.pt-widget-single-pricing-list-item,
+.pt-widget-single-skill,
+.pt-widget-single-carousel-item {
 	border: 1px solid rgba(0,0,0,0.1);
 	background-color: rgba(0,0,0,0.03);
 	margin-bottom: 10px;
@@ -21,6 +23,8 @@
 .pt-widget-single-social-icon,
 .pt-widget-single-counter,
 .pt-widget-single-step,
+.pt-widget-single-skill,
+.pt-widget-single-carousel-item,
 .pt-sortable-setting__content {
 	padding: 0 10px;
 }
@@ -32,6 +36,8 @@
 .pt-remove-counter,
 .pt-remove-accordion-item,
 .pt-remove-step-item,
+.pt-remove-skill,
+.pt-remove-carousel-item,
 .pt-remove-pricing-list-item {
 	text-decoration: none;
 }
