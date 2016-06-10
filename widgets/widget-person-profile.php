@@ -246,6 +246,10 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 
 				<h3><?php esc_html_e( 'Carousel items:', 'proteuswidgets' ); ?></h3>
 
+				<p>
+					<?php esc_html_e( 'Note: in order to have a smooth transition between your images, please use images with equal size. If you also have a video in the carousel, then use images with 16:9 ratio.', 'proteuswidgets' ); ?>
+				</p>
+
 				<script type="text/template" id="js-pt-carousel-<?php echo esc_attr( $this->current_widget_id ); ?>">
 					<p>
 						<label for="<?php echo esc_attr( $this->get_field_id( 'carousel' ) ); ?>-{{id}}-type"><?php esc_html_e( 'Media type:', 'proteuswidgets' ); ?></label>
