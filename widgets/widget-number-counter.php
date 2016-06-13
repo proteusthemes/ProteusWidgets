@@ -13,7 +13,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 
 		public function __construct() {
 
-			// Overwrite the widget variables of the parent class
+			// Overwrite the widget variables of the parent class.
 			$this->widget_id_base     = 'number-counter';
 			$this->widget_name        = esc_html__( 'Number Counter', 'proteuswidgets' );
 			$this->widget_description = esc_html__( 'Widget with multiple animated counters.', 'proteuswidgets' );
@@ -21,12 +21,12 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 
 			parent::__construct();
 
-			// Get the settings for the number counter widgets
+			// Get the settings for the number counter widgets.
 			$this->fields = apply_filters( 'pw/number_counter_widget', array(
 				'icon' => false,
 			) );
 
-			// A list of icons to choose from in the widget backend
+			// A list of icons to choose from in the widget backend.
 			$this->font_awesome_icons_list = apply_filters(
 				'pw/number_counter_fa_icons_list',
 				array(
@@ -62,10 +62,10 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare the data for template
+			// Prepare the data for template.
 			$counters = isset( $instance['counters'] ) ? array_values( $instance['counters'] ) : array();
 
-			// widget-number-counter template rendering
+			// The widget-number-counter template rendering.
 			echo $this->template_engine->render_template( apply_filters( 'pw/widget_number_counter_view', 'widget-number-counter' ), array(
 				'args'     => $args,
 				'instance' => $instance,
@@ -77,8 +77,8 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 		/**
 		 * Sanitize widget form values as they are saved.
 		 *
-		 * @param array $new_instance The new options
-		 * @param array $old_instance The previous options
+		 * @param array $new_instance The new options.
+		 * @param array $old_instance The previous options.
 		 */
 		public function update( $new_instance, $old_instance ) {
 			$instance = array();
@@ -101,7 +101,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 		/**
 		 * Back-end widget form.
 		 *
-		 * @param array $instance The widget options
+		 * @param array $instance The widget options.
 		 */
 		public function form( $instance ) {
 
@@ -121,7 +121,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 				);
 			}
 
-			// Page Builder fix when using repeating fields
+			// Page Builder fix when using repeating fields.
 			if ( 'temp' === $this->id ) {
 				$this->current_widget_id = $this->number;
 			}
@@ -175,7 +175,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 			</div>
 			<script type="text/javascript">
 				(function() {
-					// repopulate the form
+					// Repopulate the form.
 					var countersJSON = <?php echo wp_json_encode( $counters ) ?>;
 
 					// get the right widget id and remove the added < > characters at the start and at the end.
