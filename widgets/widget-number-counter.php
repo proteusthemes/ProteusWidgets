@@ -23,7 +23,8 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 
 			// Get the settings for the number counter widgets.
 			$this->fields = apply_filters( 'pw/number_counter_widget', array(
-				'icon' => false,
+				'icon'         => false,
+				'progress_bar' => false,
 			) );
 
 			// A list of icons to choose from in the widget backend.
@@ -93,6 +94,10 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 				if ( $this->fields['icon'] ) {
 					$instance['counters'][ $key ]['icon'] = sanitize_html_class( $counter['icon'] );
 				}
+
+				if ( $this->fields['progress_bar'] ) {
+					$instance['counters'][ $key ]['progress_bar_value'] = PW_Functions::bound( $counter['progress_bar_value'], 0, 100 );
+				}
 			}
 
 			return $instance;
@@ -150,6 +155,14 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 					<label for="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-number"><?php esc_html_e( 'Number:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-number" name="<?php echo esc_attr( $this->get_field_name( 'counters' ) ); ?>[{{id}}][number]" type="text" value="{{number}}" />
 				</p>
+
+			<?php if ( $this->fields['progress_bar'] ) : ?>
+				<p>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-progress_bar_value"><?php esc_html_e( 'Progress bar value:', 'proteuswidgets' ); ?></label> <br />
+					<input id="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-progress_bar_value" name="<?php echo esc_attr( $this->get_field_name( 'counters' ) ); ?>[{{id}}][progress_bar_value]" type="number" min="0" max="100" value="{{progress_bar_value}}" />
+					<small><?php esc_html_e( 'Input a number from 0 to 100, which corresponds to the percentage of the progress bar.', 'proteuswidgets' ); ?></small>
+				</p>
+			<?php endif;?>
 
 			<?php if ( $this->fields['icon'] ) : ?>
 				<p>

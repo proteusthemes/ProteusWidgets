@@ -134,6 +134,7 @@ _.extend( ProteusWidgets.Models, {
 			'title': '',
 			'number': '',
 			'icon': '',
+			'progress_bar_value': '',
 		},
 	} ),
 

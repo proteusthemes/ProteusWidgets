@@ -5,8 +5,9 @@ define( ['jquery', 'underscore'], function( $, _ ){
 	'use strict';
 
 	var config = {
-		eventNS:              'widgetCounter',
-		numberContainerClass: '.js-number',
+		eventNS:                   'widgetCounter',
+		numberContainerClass:      '.js-number',
+		progressBarContainerClass: '.js-nc-progress-bar',
 	};
 
 	var NumberCounter = function( $widgetElement ){
@@ -62,7 +63,32 @@ define( ['jquery', 'underscore'], function( $, _ ){
 				this.animateValue( $singleNumber, 0, $singleNumber.data( 'to' ), this.$widgetElement.data( 'speed' ) );
 			}, this );
 
+			// Since v3.6.3 of PW composer package (plates branch). This is used for the number counter progress bar.
+			var $progressBarsInThisWidget = this.getProgressBarsForThisWidget();
+
+			if ( $progressBarsInThisWidget.length ) {
+				_.each( $progressBarsInThisWidget, function ( $singleProgressBar ) {
+					$singleProgressBar.css( 'width', parseInt( $singleProgressBar.data( 'progress-bar-value' ), 10 ) + '%' );
+				}, this );
+			}
+
 			this.destroyListeners();
+		},
+
+		/**
+		 * Get all progress bars from this Number Counter Widget.
+		 *
+		 * @since v3.6.3 of PW composer package (plates branch). This is used for the number counter progress bar.
+		 * @return {array} array of cached jQuery elements
+		 */
+		getProgressBarsForThisWidget: function () {
+			var progressBars = [];
+
+			this.$widgetElement.find( config.progressBarContainerClass ).each( function() {
+				progressBars.push( $( this ) );
+			} );
+
+			return progressBars;
 		},
 
 		/**
