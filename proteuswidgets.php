@@ -3,7 +3,7 @@
 Plugin Name: ProteusWidgets
 Plugin URI: http://www.proteusthemes.com
 Description: WP widgets for retail businesses by ProteusThemes
-Version: 1.0.8
+Version: 1.0.9
 Author: ProteusThemes
 Author URI: http://www.proteusthemes.com
 License: GPL3
