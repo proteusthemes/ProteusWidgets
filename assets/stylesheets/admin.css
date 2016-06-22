@@ -95,6 +95,11 @@
 	margin-bottom: 10px;
 }
 
+/* Remove Custom Sidebar premium buttons */
+.csb-pro-layer {
+	display: none;
+}
+
 /* PT/PW icon for page builder widgets (add new widget section) */
 .widget-icon.pw-pb-widget-icon {
 	background-size: cover;
