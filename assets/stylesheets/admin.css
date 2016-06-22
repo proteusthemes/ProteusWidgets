@@ -49,3 +49,8 @@
 .skype-widget-small-text code{
 	font-size: 10px;
 }
+
+/* Remove Custom Sidebar premium buttons */
+.csb-pro-layer {
+	display: none;
+}
