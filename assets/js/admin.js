@@ -26,13 +26,20 @@ jQuery( document ).ready( function( $ ) {
 		};
 
 		// For appearance > widgets only
-		$( '.panel-type-wrapper > h3, .widget-title > h4' ).each( function() {
+		$( '.widget-title > h3' ).each( function() {
 			ptSearchReplace( $( this ) );
 		} );
 
-		// Same, but inside page builder and appearance > customize > widgets
-		$( document ).on( 'panels_setup panelsopen widget-added', function() {
-			$( this ).find( '#siteorigin-panels-metabox .title > h4, .so-title-bar .widget-name, .widget-title > h4' ).each( function () {
+		// Same, but inside page builder
+		$( document ).on( 'panels_setup panelsopen', function() {
+			$( this ).find( '#siteorigin-panels-metabox .title > h4, .so-title-bar .widget-name' ).each( function () {
+				ptSearchReplace( $( this ) );
+			} );
+		} );
+
+		// Same, but inside appearance > customize > widgets
+		$( document ).on( 'widget-added', function() {
+			$( this ).find( '.widget-title > h3' ).each( function () {
 				ptSearchReplace( $( this ) );
 			} );
 		} );
