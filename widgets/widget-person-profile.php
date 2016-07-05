@@ -294,7 +294,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 					<p>
 						<label for="<?php echo esc_attr( $this->get_field_id( 'skills' ) ); ?>-{{id}}-rating"><?php esc_html_e( 'Rating:', 'proteuswidgets' ); ?></label>
 						<select name="<?php echo esc_attr( $this->get_field_name( 'skills' ) ); ?>[{{id}}][rating]" id="<?php echo esc_attr( $this->get_field_id( 'skills' ) ); ?>-{{id}}-rating" class="js-rating">
-							<option value="nothing"><?php esc_html_e( 'Don\'t show' ); ?></option>
+							<option value="nothing"><?php esc_html_e( 'Don\'t show', 'proteuswidgets' ); ?></option>
 							<option value="0">0</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
