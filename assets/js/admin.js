@@ -261,7 +261,8 @@ _.extend( ProteusWidgets.Views, {
 		render: function () {
 			this.$el.html( Mustache.render( this.templateHTML, this.model.attributes ) );
 
-			this.$( 'select.js-icon' ).val( this.model.get( 'icon' ) );
+			var icon = ( this.model.has( 'icon' ) && ! _.isEmpty( this.model.get( 'icon' ) ) ) ? this.model.get( 'icon' ) : this.model.defaults.icon;
+			this.$( '.js-icon-input' ).val( icon );
 
 			return this;
 		},
@@ -306,7 +307,8 @@ _.extend( ProteusWidgets.Views, {
 		render: function () {
 			this.$el.html( Mustache.render( this.templateHTML, this.model.attributes ) );
 
-			this.$( 'input.js-icon-input' ).val( this.model.get( 'icon' ) );
+			var icon = ( this.model.has( 'icon' ) && ! _.isEmpty( this.model.get( 'icon' ) ) ) ? this.model.get( 'icon' ) : this.model.defaults.icon;
+			this.$( 'input.js-icon-input' ).val( icon );
 
 			return this;
 		},
