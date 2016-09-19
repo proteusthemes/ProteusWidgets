@@ -34,9 +34,9 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				'bootstrap_version'               => 3,
 			) );
 
-			// Set the max number of testimonials per slide to 2
-			if ( $this->fields['number_of_testimonial_per_slide'] > 2 ) {
-				$this->fields['number_of_testimonial_per_slide'] = 2;
+			// Set the max number of testimonials per slide to 3
+			if ( $this->fields['number_of_testimonial_per_slide'] > 3 ) {
+				$this->fields['number_of_testimonial_per_slide'] = 3;
 			}
 
 		}
@@ -66,11 +66,20 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				$testimonials = array_values( $instance['testimonials'] );
 			}
 
-			$instance['spans'] = count( $testimonials ) < 2 ? '12' : '6';
+			$instance['spans'] = '12';
 
-			// set the layout of the testimonials per slide
-			if ( $this->fields['number_of_testimonial_per_slide'] < 2 ) {
-				$instance['spans'] = '12';
+			if ( 2 === $this->fields['number_of_testimonial_per_slide'] && ! count( $testimonials ) < 2 ) {
+				$instance['spans'] = '6';
+			}
+			elseif ( 3 === $this->fields['number_of_testimonial_per_slide'] ) {
+				$instance['spans'] = '4';
+
+				if ( 1 === count( $testimonials ) ) {
+					$instance['spans'] = '12';
+				}
+				elseif ( 2 === count( $testimonials ) ) {
+					$instance['spans'] = '6';
+				}
 			}
 
 			$testimonials = array_values( $testimonials );
