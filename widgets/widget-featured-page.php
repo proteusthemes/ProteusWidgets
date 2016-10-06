@@ -76,10 +76,12 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			$excerpt = ! empty( $page['post_excerpt'] ) ? $page['post_excerpt'] : $page['post_content'];
 
 			if ( 'inline' === $instance['layout'] && strlen( $excerpt ) > $this->excerpt_lengths['inline_excerpt'] ) {
-				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', $this->excerpt_lengths['inline_excerpt'] ) ) . ' &hellip;';
+				$strpos  = strpos( $excerpt , ' ', $this->excerpt_lengths['inline_excerpt'] );
+				$excerpt = ( false !== $strpos ) ? substr( $excerpt, 0, $strpos ) . ' &hellip;' : $excerpt;
 			}
 			elseif ( strlen( $excerpt ) > $this->excerpt_lengths['block_excerpt'] ) {
-				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', $this->excerpt_lengths['block_excerpt'] ) ) . ' &hellip;';
+				$strpos  = strpos( $excerpt , ' ', $this->excerpt_lengths['block_excerpt'] );
+				$excerpt = ( false !== $strpos ) ? substr( $excerpt, 0, $strpos ) . ' &hellip;' : $excerpt;
 			}
 
 			$page['post_excerpt'] = sanitize_text_field( $excerpt );
