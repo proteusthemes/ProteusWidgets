@@ -111,13 +111,18 @@ define( ['jquery', 'underscore'], function( $, _ ){
 		 * Assumes integer values for start, end and speed and DOM element for the element parameter
 		 */
 		animateValue: function( $element, start, end, speed ) {
-			$({ Counter: start }).animate({ Counter: end }, {
+			var numLength = end.toString().length;
+
+			$( { num: start } ).animate( { num: end }, {
 				duration: speed,
 				easing: 'easeInOutQuad',
+				complete: function () {
+					$element.text( end.toString() );
+				},
 				step: function () {
-					$element.text( leadingZeros( Math.ceil( this.Counter ) , end.toString().length ) );
+					$element.text( leadingZeros( Math.ceil( this.num ) , numLength ) );
 				}
-			});
+			} );
 		},
 
 		/**
