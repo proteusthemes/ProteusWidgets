@@ -183,6 +183,16 @@ _.extend( ProteusWidgets.Models, {
 			'url':  '',
 		}
 	} ),
+
+	IconListItem: Backbone.Model.extend( {
+		defaults: {
+			'test': '',
+			'icon': '',
+			'link': '',
+			'is-featured': '',
+			'description': '',
+		}
+	} )
 } );
 
 
@@ -362,6 +372,25 @@ _.extend( ProteusWidgets.Views, {
 		},
 	} ),
 
+	// View of a single icon list item.
+	IconListItem: ProteusWidgets.Views.Abstract.extend( {
+		className: 'pt-widget-single-icon-list-item',
+
+		events: {
+			'click .js-pt-remove-icon-list-item': 'destroy',
+		},
+
+		render: function () {
+			this.$el.html( Mustache.render( this.templateHTML, this.model.attributes ) );
+
+			this.$( 'input.js-icon-input' ).val( this.model.get( 'icon' ) );
+			this.$( 'input.js-is-featured-checkbox' ).prop( 'checked', 'on' === this.model.get( 'is-featured' ) );
+			this.$( '.js-icon-list-description-container' ).toggle( 'on' === this.model.get( 'is-featured' ) );
+
+			return this;
+		},
+	} ),
+
 } );
 
 
@@ -506,6 +535,13 @@ _.extend( ProteusWidgets.ListViews, {
 	CarouselItems: ProteusWidgets.ListViews.Abstract.extend( {
 		events: {
 			'click .js-pt-add-carousel-item': 'addNew'
+		}
+	} ),
+
+	// Collection of all icon list items, but associated with each individual widget.
+	IconListItems: ProteusWidgets.ListViews.Abstract.extend( {
+		events: {
+			'click .js-pt-add-icon-list-item': 'addNew'
 		}
 	} ),
 } );
@@ -723,5 +759,24 @@ _.extend( ProteusWidgets.Utils, {
 		};
 
 		this.repopulateGeneric( ProteusWidgets.ListViews.CarouselItems, parameters, carouselJSON, widgetId );
+	},
+
+	/**
+	 * Function which adds the existing icon list items to the DOM
+	 * @param  {json} iconListItemJSON
+	 * @param  {string} widgetId ID of widget from PHP $this->id
+	 * @return {void}
+	 */
+	repopulateIconListItems: function ( iconListItemJSON, widgetId ) {
+		var parameters = {
+			el:           '#icon-list-items-' + widgetId,
+			widgetId:     widgetId,
+			itemsClass:   '.icon-list-items',
+			itemTemplate: '#js-pt-icon-list-item-',
+			itemsModel:   ProteusWidgets.Models.IconListItem,
+			itemView:     ProteusWidgets.Views.IconListItem,
+		};
+
+		this.repopulateGeneric( ProteusWidgets.ListViews.IconListItems, parameters, iconListItemJSON, widgetId );
 	},
 } );

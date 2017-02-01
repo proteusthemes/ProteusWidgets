@@ -12,7 +12,8 @@
 .pt-widget-single-step,
 .pt-widget-single-pricing-list-item,
 .pt-widget-single-skill,
-.pt-widget-single-carousel-item {
+.pt-widget-single-carousel-item,
+.pt-widget-single-icon-list-item {
 	border: 1px solid rgba(0,0,0,0.1);
 	background-color: rgba(0,0,0,0.03);
 	margin-bottom: 10px;
@@ -38,7 +39,8 @@
 .pt-remove-step-item,
 .pt-remove-skill,
 .pt-remove-carousel-item,
-.pt-remove-pricing-list-item {
+.pt-remove-pricing-list-item,
+.pt-remove-icon-list-item {
 	text-decoration: none;
 }
 
