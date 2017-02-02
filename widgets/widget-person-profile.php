@@ -133,8 +133,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 		public function update( $new_instance, $old_instance ) {
 			$instance = array();
 
-			$instance['name']        = sanitize_text_field( $new_instance['name'] );
-			$instance['new_tab']     = ! empty( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
+			$instance['name']    = sanitize_text_field( $new_instance['name'] );
+			$instance['new_tab'] = ! empty( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
 
 
 			if ( $this->fields['description'] ) {
@@ -201,7 +201,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 					$instance['icon_list_items'][ $key ]['text']        = sanitize_text_field( $item['text'] );
 					$instance['icon_list_items'][ $key ]['icon']        = sanitize_text_field( $item['icon'] );
 					$instance['icon_list_items'][ $key ]['link']        = esc_url_raw( $item['link'] );
-					$instance['icon_list_items'][ $key ]['is-featured'] = sanitize_text_field( $item['is-featured'] );
+					$instance['icon_list_items'][ $key ]['is-featured'] = ! empty( $item['is-featured'] ) ? sanitize_key( $item['is-featured'] ) : '';
 					$instance['icon_list_items'][ $key ]['description'] = wp_kses_post( $item['description'] );
 				}
 			}
