@@ -37,6 +37,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 				'specific_location'         => false,
 				'cta'                       => false,
 				'icon_list_items'           => false,
+				'carousel_custom_links'     => false,
 			) );
 
 			// A list of icons to choose from in the widget backend.
@@ -172,6 +173,10 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 						$instance['carousel'][ $key ]['id']   = sanitize_key( $carousel_item['id'] );
 						$instance['carousel'][ $key ]['type'] = sanitize_text_field( $carousel_item['type'] );
 						$instance['carousel'][ $key ]['url']  = esc_url_raw( $carousel_item['url'] );
+
+						if ( true === $this->fields['carousel_custom_links'] ) {
+							$instance['carousel'][ $key ]['link'] = esc_url_raw( $carousel_item['link'] );
+						}
 					}
 				}
 			}
@@ -436,6 +441,14 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 						<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'carousel' ) ); ?>-{{id}}-url" name="<?php echo esc_attr( $this->get_field_name( 'carousel' ) ); ?>[{{id}}][url]" type="text" value="{{url}}" />
 						<input type="button" onclick="ProteusWidgetsUploader.imageUploader.openFileFrame('<?php echo esc_attr( $this->get_field_id( 'carousel' ) ); ?>-{{id}}-url');" class="button button-secondary" value="Upload Image" />
 					</p>
+
+					<?php if ( true === $this->fields['carousel_custom_links'] ) : ?>
+						<p>
+							<label for="<?php echo esc_attr( $this->get_field_id( 'carousel' ) ); ?>-{{id}}-link"><?php esc_html_e( 'Link:', 'proteuswidgets' ); ?></label>
+							<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'carousel' ) ); ?>-{{id}}-link" name="<?php echo esc_attr( $this->get_field_name( 'carousel' ) ); ?>[{{id}}][link]" type="text" value="{{link}}" placeholder="<?php esc_attr_e( 'https://www.proteusthemes.com', 'proteuswidgets' ); ?>" />
+							<small><?php esc_html_e( 'Optional. Works only with Image media type. If set, the image will link to the specified URL.', 'proteuswidgets' ) ?></small>
+						</p>
+					<?php endif; ?>
 
 					<p>
 						<input name="<?php echo esc_attr( $this->get_field_name( 'carousel' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
