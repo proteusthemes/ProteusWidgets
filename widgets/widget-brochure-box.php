@@ -104,7 +104,7 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 
 			<p>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'brochure_icon' ) ); ?>"><?php esc_html_e( 'Brochure icon:', 'proteuswidgets' ); ?></label> <br />
-				<small><?php printf( esc_html__( 'Click on the icon below or manually select from the %s website.', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ); ?></small>
+				<small><?php echo wp_kses_post( apply_filters( 'pw/icons_input_field_notice', sprintf( esc_html__( 'Click on the icon below or manually select from the %s website.', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ) ) ); ?></small>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'brochure_icon' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'brochure_icon' ) ); ?>" type="text" value="<?php echo esc_attr( $brochure_icon ); ?>" class="widefat  js-icon-input" /> <br><br>
 				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-o"><i class="fa fa-lg fa-file-o"></i></a>
 				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-pdf-o"><i class="fa fa-lg fa-file-pdf-o"></i></a>
