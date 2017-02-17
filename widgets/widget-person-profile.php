@@ -187,7 +187,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 			if ( $this->fields['social_icons'] && ! empty( $new_instance['social_icons'] )  ) {
 				foreach ( $new_instance['social_icons'] as $key => $social_icon ) {
 					$instance['social_icons'][ $key ]['id']   = sanitize_key( $social_icon['id'] );
-					$instance['social_icons'][ $key ]['icon'] = sanitize_html_class( $social_icon['icon'] );
+					$instance['social_icons'][ $key ]['icon'] = sanitize_text_field( $social_icon['icon'] );
 					$instance['social_icons'][ $key ]['link'] = esc_url_raw( $social_icon['link'] );
 				}
 			}

@@ -106,7 +106,7 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 				$instance['items'][ $key ]['content'] = wp_kses( $item['content'], $this->allowed_html_in_content_field );
 
 				if ( $this->fields['use_icons'] ) {
-					$instance['items'][ $key ]['icon']  = sanitize_html_class( $item['icon'] );
+					$instance['items'][ $key ]['icon']  = sanitize_text_field( $item['icon'] );
 				}
 
 				$instance['items'][ $key ]['step']    = sanitize_text_field( $item['step'] );

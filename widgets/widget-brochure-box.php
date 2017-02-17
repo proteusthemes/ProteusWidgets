@@ -60,7 +60,7 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 			$instance['brochure_url']  = esc_url_raw( $new_instance['brochure_url'] );
 			$instance['new_tab']       = ! empty ( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
 			$instance['brochure_text'] = wp_kses_post( $new_instance['brochure_text'] );
-			$instance['brochure_icon'] = sanitize_key( $new_instance['brochure_icon'] );
+			$instance['brochure_icon'] = sanitize_text_field( $new_instance['brochure_icon'] );
 
 			return $instance;
 		}

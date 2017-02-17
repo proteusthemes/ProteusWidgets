@@ -92,7 +92,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 				$instance['counters'][ $key ]['number'] = absint( $counter['number'] );
 
 				if ( $this->fields['icon'] ) {
-					$instance['counters'][ $key ]['icon'] = sanitize_html_class( $counter['icon'] );
+					$instance['counters'][ $key ]['icon'] = sanitize_text_field( $counter['icon'] );
 				}
 
 				if ( $this->fields['progress_bar'] ) {
