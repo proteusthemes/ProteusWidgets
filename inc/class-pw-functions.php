@@ -62,7 +62,7 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 		 * @param string $cache_name
 		 * @param int $number_of_posts
 		 */
-		public static function get_cached_data( $cache_name, $number_of_posts ) {
+		public static function get_cached_data( $cache_name, $number_of_posts, $author = '', $category = '' ) {
 			// Get/set cache data just once for multiple widgets
 			$recent_posts_data = wp_cache_get( $cache_name );
 			if ( false === $recent_posts_data ) {
@@ -72,6 +72,8 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 					'order'               => 'DESC',
 					'post_type'           => 'post',
 					'post_status'         => 'publish',
+					'author'              => $author,
+					'category'            => $category,
 				);
 
 				// Check if WPML plugin is active and set the suppress_filter parameter to false,
@@ -111,6 +113,7 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 
 				wp_cache_set( $cache_name, $recent_posts_data );
 			}
+
 			return $recent_posts_data;
 		}
 

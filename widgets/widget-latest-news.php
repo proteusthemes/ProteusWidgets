@@ -22,6 +22,8 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			// Get the settings for the this widget.
 			$this->fields = apply_filters( 'pw/latest_news_fields', array(
 				'featured_type' => false,
+				'by_author'     => false,
+				'by_category'   => false,
 			) );
 
 			$this->texts = apply_filters( 'pw/latest_news_texts', array(
@@ -47,8 +49,20 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			$instance['link_to_more_news'] = get_permalink( get_option( 'page_for_posts' ) );
 			$instance['read_more_text']    = empty( $instance['read_more_text'] ) ? $this->texts['read_more'] : $instance['read_more_text'];
 
-			// Get/set cache data just once for multiple widgets.
-			$recent_posts_data = PW_Functions::get_cached_data( 'pw_recent_posts', $this->max_post_number );
+			if (
+				( empty( $this->fields['by_author'] ) && empty( $this->fields['by_category'] ) ) ||
+				( isset( $instance['author'] ) && 'none' === $instance['author'] && isset( $instance['category'] ) && 'none' === $instance['category'] )
+			) {
+				// Get/set cache data just once for multiple widgets.
+				$recent_posts_data = PW_Functions::get_cached_data( 'pw_recent_posts', $this->max_post_number );
+			}
+			else {
+				$author   = ! empty( $instance['author'] ) ? $instance['author'] : 0;
+				$category = ! empty( $instance['category'] ) ? $instance['category'] : 0;
+
+				// Get/set cache data with author or category parameter.
+				$recent_posts_data = PW_Functions::get_cached_data( 'pw_recent_posts_' . $author . '_' . $category, $this->max_post_number, $author, $category );
+			}
 
 			// Array with posts to display.
 			$recent_posts = array();
@@ -120,6 +134,14 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 
 			$instance['read_more_text'] = sanitize_text_field( $new_instance['read_more_text'] );
 
+			if ( $this->fields['by_author'] ) {
+				$instance['author'] = sanitize_key( $new_instance['author'] );
+			}
+
+			if ( $this->fields['by_category'] ) {
+				$instance['category'] = sanitize_key( $new_instance['category'] );
+			}
+
 			return $instance;
 		}
 
@@ -134,6 +156,18 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			$to             = ! empty( $instance['to'] ) ? $instance['to'] : '';
 			$more_news      = ! empty( $instance['more_news'] ) ? $instance['more_news'] : '';
 			$read_more_text = empty( $instance['read_more_text'] ) ? $this->texts['read_more'] : $instance['read_more_text'];
+
+			if ( $this->fields['by_author'] ) {
+				$author = ! empty( $instance['author'] ) ? $instance['author'] : '';
+
+				$users = get_users( array( 'order_by' => 'display_name' ) );
+			}
+
+			if ( $this->fields['by_category'] ) {
+				$category = ! empty( $instance['category'] ) ? $instance['category'] : '';
+
+				$categories = get_categories();
+			}
 
 			// Page Builder fix for widget id used in Backbone and in the surrounding div below.
 			if ( 'temp' === $this->id ) {
@@ -175,6 +209,30 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 					<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>"><?php esc_html_e( 'Read more text:', 'proteuswidgets' ); ?></label>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'read_more_text' ) ); ?>" type="text" value="<?php echo esc_attr( $read_more_text ); ?>" />
 				</p>
+
+				<?php if ( $this->fields['by_author'] ) : ?>
+					<p>
+						<label for="<?php echo esc_attr( $this->get_field_id( 'author' ) ); ?>"><?php esc_html_e( 'Posts from (author):', 'proteuswidgets' ); ?></label>
+						<select id="<?php echo esc_attr( $this->get_field_id( 'author' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'author' ) ); ?>">
+							<option value="none" <?php selected( $author, 'none' ); ?>><?php esc_html_e( 'All users' , 'proteuswidgets' ); ?></option>
+							<?php foreach( $users as $user ) : ?>
+								<option value="<?php echo esc_attr( $user->ID ); ?>" <?php selected( $author, $user->ID ); ?>><?php echo esc_html( $user->display_name ); ?></option>
+							<?php endforeach; ?>
+						</select>
+					</p>
+				<?php endif; ?>
+
+				<?php if ( $this->fields['by_category'] ) : ?>
+					<p>
+						<label for="<?php echo esc_attr( $this->get_field_id( 'category' ) ); ?>"><?php esc_html_e( 'Posts from (category):', 'proteuswidgets' ); ?></label>
+						<select id="<?php echo esc_attr( $this->get_field_id( 'category' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'category' ) ); ?>">
+							<option value="none" <?php selected( $category, 'none' ); ?>><?php esc_html_e( 'All categories' , 'proteuswidgets' ); ?></option>
+							<?php foreach( $categories as $cat ) : ?>
+								<option value="<?php echo esc_attr( $cat->cat_ID ); ?>" <?php selected( $category, $cat->cat_ID ); ?>><?php echo esc_html( $cat->name ); ?></option>
+							<?php endforeach; ?>
+						</select>
+					</p>
+				<?php endif; ?>
 			</div>
 
 			<script type="text/javascript">
