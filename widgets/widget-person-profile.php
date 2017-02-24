@@ -38,6 +38,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 				'cta'                       => false,
 				'icon_list_items'           => false,
 				'carousel_custom_links'     => false,
+				'name_link_url'             => false,
 			) );
 
 			// A list of icons to choose from in the widget backend.
@@ -137,6 +138,9 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 			$instance['name']    = sanitize_text_field( $new_instance['name'] );
 			$instance['new_tab'] = ! empty( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
 
+			if ( $this->fields['name_link_url'] ) {
+				$instance['name_link'] = esc_url_raw( $new_instance['name_link'] );
+			}
 
 			if ( $this->fields['description'] ) {
 				$instance['description'] = wp_kses_post( $new_instance['description'] );
@@ -224,6 +228,10 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 			$image       = empty( $instance['image'] ) ? '' : $instance['image'];
 			$new_tab     = empty( $instance['new_tab'] ) ? '' : $instance['new_tab'];
 
+			if ( $this->fields['name_link_url'] ) {
+				$name_link = empty( $instance['name_link'] ) ? '' : $instance['name_link'];
+			}
+
 			if ( $this->fields['description'] ) {
 				$description = empty( $instance['description'] ) ? '' : $instance['description'];
 			}
@@ -286,6 +294,13 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"><?php esc_html_e( 'Name:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'name' ) ); ?>" type="text" value="<?php echo esc_attr( $name ); ?>" />
 			</p>
+
+			<?php if ( $this->fields['name_link_url'] ) : ?>
+				<p>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'name_link' ) ); ?>"><?php esc_html_e( 'Link (URL):', 'proteuswidgets' ); ?></label>
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'name_link' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'name_link' ) ); ?>" type="text" value="<?php echo esc_attr( $name_link ); ?>" />
+				</p>
+			<?php endif; ?>
 
 			<?php if ( $this->fields['label_instead_of_tag'] ) : ?>
 				<p>
