@@ -77,11 +77,11 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 				$current_line['day'] = $day;
 
 				$class = $i % 2 == 0 ? '' : ' light-bg';
-				$class .= ( '1' != $instance[ $day_label . '_opened' ] ) ? ' closed' : '';
+				$class .= ( ! isset( $instance[ $day_label . '_opened' ] ) || '1' != $instance[ $day_label . '_opened' ] ) ? ' closed' : '';
 				$class .= ( date( 'D', $current_time ) == $day_label ) ? ' today' : '';
 				$current_line['class'] = esc_attr( $class );
 
-				if ( '1' == $instance[ $day_label . '_opened' ] ) {
+				if ( isset( $instance[ $day_label . '_opened' ] ) && '1' == $instance[ $day_label . '_opened' ] ) {
 					$current_line['day-time'] = $instance[ $day_label . '_from' ] . $instance['separator'] . $instance[ $day_label . '_to' ];
 				} else {
 					$current_line['day-time'] = $instance['closed_text'];
