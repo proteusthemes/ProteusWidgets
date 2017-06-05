@@ -75,8 +75,8 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base );
 
 			foreach ( $items as $key => $item ) {
-				$items[ $key ]['title']   = wp_kses( $item['title'], array() );
-				$items[ $key ]['content'] = wp_kses( $item['content'], $this->allowed_html_in_content_field );
+				$items[ $key ]['title']   = wp_kses_post( $item['title'] );
+				$items[ $key ]['content'] = wp_kses_post( $item['content'] );
 				$items[ $key ]['icon']    = esc_attr( $item['icon'] );
 				$items[ $key ]['step']    = esc_html( $item['step'] );
 			}
@@ -102,8 +102,8 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 
 			foreach ( $new_instance['items'] as $key => $item ) {
 				$instance['items'][ $key ]['id']      = sanitize_key( $item['id'] );
-				$instance['items'][ $key ]['title']   = sanitize_text_field( $item['title'] );
-				$instance['items'][ $key ]['content'] = wp_kses( $item['content'], $this->allowed_html_in_content_field );
+				$instance['items'][ $key ]['title']   = wp_kses_post( $item['title'] );
+				$instance['items'][ $key ]['content'] = wp_kses_post( $item['content'] );
 				$instance['items'][ $key ]['icon']    = sanitize_html_class( $item['icon'] );
 				$instance['items'][ $key ]['step']    = sanitize_text_field( $item['step'] );
 			}
