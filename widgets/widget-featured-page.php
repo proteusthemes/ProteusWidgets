@@ -54,7 +54,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			}
 
 			// Prepare the excerpt text
-			$excerpt = ! empty( $page['post_excerpt'] ) ? $page['post_excerpt'] : $page['post_content'];
+			$excerpt = wp_strip_all_tags( ! empty( $page['post_excerpt'] ) ? $page['post_excerpt'] : $page['post_content'] );
 
 			if ( 'inline' === $instance['layout'] && strlen( $excerpt ) > self::INLINE_EXCERPT ) {
 				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', self::INLINE_EXCERPT ) ) . ' &hellip;';
