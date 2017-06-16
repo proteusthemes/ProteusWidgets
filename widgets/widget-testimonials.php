@@ -32,6 +32,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				'author_avatar'                   => false,
 				'number_of_testimonial_per_slide' => 2,
 				'bootstrap_version'               => 3,
+				'title_filter'                    => true,
 			) );
 
 			// Set the max number of testimonials per slide to 3
@@ -101,7 +102,10 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				}
 			}
 
-			$instance['title']           = apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base );
+			if ( $this->fields['title_filter'] ) {
+				$instance['title'] = apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base );
+			}
+
 			$instance['navigation']      = count( $testimonials ) > $this->fields['number_of_testimonial_per_slide'];
 			$instance['slider_settings'] = 'yes' === $instance['autocycle'] ? esc_attr( empty( $instance['interval'] ) ? 5000 : absint( $instance['interval'] ) ) : 'false';
 
