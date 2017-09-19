@@ -50,7 +50,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				'rating'                          => true,
 				'author_description'              => false,
 				'author_avatar'                   => false,
-				'number_of_testimonial_per_slide' => 2,
+				'number_of_testimonial_per_slide' => 2, // -1 means there is no slider
 				'bootstrap_version'               => 3,
 				'title_filter'                    => true,
 			) );
@@ -90,19 +90,21 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				$testimonials = array_values( $instance['testimonials'] );
 			}
 
-			$instance['spans'] = '12';
+			if ( $this->fields['number_of_testimonial_per_slide'] > 0 ) {
+				$instance['spans'] = '12';
 
-			if ( 2 === $this->fields['number_of_testimonial_per_slide'] && ! count( $testimonials ) < 2 ) {
-				$instance['spans'] = '6';
-			}
-			elseif ( 3 === $this->fields['number_of_testimonial_per_slide'] ) {
-				$instance['spans'] = '4';
-
-				if ( 1 === count( $testimonials ) ) {
-					$instance['spans'] = '12';
-				}
-				elseif ( 2 === count( $testimonials ) ) {
+				if ( 2 === $this->fields['number_of_testimonial_per_slide'] && ! count( $testimonials ) < 2 ) {
 					$instance['spans'] = '6';
+				}
+				elseif ( 3 === $this->fields['number_of_testimonial_per_slide'] ) {
+					$instance['spans'] = '4';
+
+					if ( 1 === count( $testimonials ) ) {
+						$instance['spans'] = '12';
+					}
+					elseif ( 2 === count( $testimonials ) ) {
+						$instance['spans'] = '6';
+					}
 				}
 			}
 
