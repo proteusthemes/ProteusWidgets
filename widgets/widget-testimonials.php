@@ -10,7 +10,27 @@
 if ( ! class_exists( 'PW_Testimonials' ) ) {
 	class PW_Testimonials extends PW_Widget {
 
-		private $fields, $current_widget_id;
+		/**
+		 * Array of supported fields
+		 * @var array
+		 */
+		private $fields;
+
+
+		/**
+		 * Widget ID of number when the widget is not stored yet
+		 * @var int
+		 */
+		private $current_widget_id;
+
+
+		/**
+		 * Added support for this widget to contain multiple testimonials
+		 * @version v3.13.0
+		 * @var boolean
+		 */
+		private $supports_multiple_testimonials = true;
+
 
 		/**
 		 * Register widget with WordPress.
@@ -35,12 +55,15 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				'title_filter'                    => true,
 			) );
 
+			$this->supports_multiple_testimonials = apply_filters( 'pw/supports_multiple_testimonials', true );
+
 			// Set the max number of testimonials per slide to 3
 			if ( $this->fields['number_of_testimonial_per_slide'] > 3 ) {
 				$this->fields['number_of_testimonial_per_slide'] = 3;
 			}
 
 		}
+
 
 		/**
 		 * Front-end display of widget.
@@ -102,12 +125,15 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				}
 			}
 
-			if ( $this->fields['title_filter'] ) {
-				$instance['title'] = apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base );
-			}
-
 			$instance['navigation']      = count( $testimonials ) > $this->fields['number_of_testimonial_per_slide'];
-			$instance['slider_settings'] = 'yes' === $instance['autocycle'] ? esc_attr( empty( $instance['interval'] ) ? 5000 : absint( $instance['interval'] ) ) : 'false';
+
+			if ( $this->supports_multiple_testimonials ) {
+				if ( $this->fields['title_filter'] ) {
+					$instance['title'] = apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base );
+				}
+
+				$instance['slider_settings'] = 'yes' === $instance['autocycle'] ? esc_attr( empty( $instance['interval'] ) ? 5000 : absint( $instance['interval'] ) ) : 'false';
+			}
 
 			$text = array(
 				'previous'   => esc_html__( 'Previous', 'proteuswidgets' ),
@@ -123,6 +149,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			));
 		}
 
+
 		/**
 		 * Sanitize widget form values as they are saved.
 		 *
@@ -132,9 +159,11 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		public function update( $new_instance, $old_instance ) {
 			$instance = array();
 
-			$instance['title']     = wp_kses_post( $new_instance['title'] );
-			$instance['autocycle'] = sanitize_key( $new_instance['autocycle'] );
-			$instance['interval']  = absint( $new_instance['interval'] );
+			if ( $this->supports_multiple_testimonials ) {
+				$instance['title'] = wp_kses_post( $new_instance['title'] );
+				$instance['autocycle'] = sanitize_key( $new_instance['autocycle'] );
+				$instance['interval'] = absint( $new_instance['interval'] );
+			}
 
 			foreach ( $new_instance['testimonials'] as $key => $testimonial ) {
 				$instance['testimonials'][ $key ]['id']     = sanitize_key( $testimonial['id'] );
@@ -160,15 +189,18 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			return $instance;
 		}
 
+
 		/**
 		 * Back-end widget form.
 		 *
 		 * @param array $instance The widget options
 		 */
 		public function form( $instance ) {
-			$title     = empty( $instance['title'] ) ? 'Testimonials' : $instance['title'];
-			$autocycle = empty( $instance['autocycle'] ) ? 'no' : $instance['autocycle'];
-			$interval  = empty( $instance['interval'] ) ? 5000 : $instance['interval'];
+			if ( $this->supports_multiple_testimonials ) {
+				$title     = empty( $instance['title'] ) ? 'Testimonials' : $instance['title'];
+				$autocycle = empty( $instance['autocycle'] ) ? 'no' : $instance['autocycle'];
+				$interval  = empty( $instance['interval'] ) ? 5000 : $instance['interval'];
+			}
 
 			if ( isset( $instance['quote'] ) ) {
 				$testimonials = array(
@@ -205,6 +237,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 			?>
 
+			<?php if ( $this->supports_multiple_testimonials ) : ?>
 			<p>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'proteuswidgets' ); ?></label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
@@ -227,14 +260,18 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 			<h4><?php esc_html_e( 'Testimonials', 'proteuswidgets' ); ?></h4>
 
+			<?php endif; ?>
+
 			<script type="text/template" id="js-pt-testimonial-<?php echo esc_attr( $this->current_widget_id ); ?>">
 				<div class="pt-sortable-setting  ui-widget  ui-widget-content  ui-helper-clearfix  ui-corner-all">
+					<?php if ( $this->supports_multiple_testimonials ) : ?>
 					<div class="pt-sortable-setting__header  ui-widget-header  ui-corner-all">
 						<span class="dashicons  dashicons-sort"></span>
 						<span><?php esc_html_e( 'Testimonial', 'proteuswidgets' ); ?> - </span>
 						<span class="pt-sortable-setting__header-title">{{author}}</span>
 						<span class="pt-sortable-setting__toggle  dashicons  dashicons-minus"></span>
 					</div>
+					<?php endif; ?>
 					<div class="pt-sortable-setting__content">
 						<p>
 							<label for="<?php echo esc_attr( $this->get_field_id( 'quote' ) ); ?>-{{id}}-title"><?php esc_html_e( 'Quote:', 'proteuswidgets' ); ?></label>
@@ -277,16 +314,21 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 
 						<p>
 							<input name="<?php echo esc_attr( $this->get_field_name( 'testimonials' ) ); ?>[{{id}}][id]" class="js-pt-testimonial-id" type="hidden" value="{{id}}" />
+							<?php if ( $this->supports_multiple_testimonials ) : ?>
 							<a href="#" class="pt-remove-testimonial  js-pt-remove-testimonial"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Testimonial', 'proteuswidgets' ); ?></a>
+							<?php endif; ?>
 						</p>
 					</div>
 				</div>
 			</script>
 			<div class="pt-widget-testimonials" id="testimonials-<?php echo esc_attr( $this->current_widget_id ); ?>">
-				<div class="testimonials  js-pt-sortable-testimonials"></div>
+				<div class="testimonials  <?php echo $this->supports_multiple_testimonials ? 'js-pt-sortable-testimonials' : ''; ?>"></div>
+
+				<?php if ( $this->supports_multiple_testimonials ) : ?>
 				<p>
 					<a href="#" class="button  js-pt-add-testimonial"><?php esc_html_e( 'Add New Testimonial', 'proteuswidgets' ); ?></a>
 				</p>
+				<?php endif; ?>
 			</div>
 			<script type="text/javascript">
 				(function( $ ) {
