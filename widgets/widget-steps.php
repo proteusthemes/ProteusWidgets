@@ -25,7 +25,8 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 			$this->fields = apply_filters(
 				'pw/steps_widget_settings',
 				array(
-					'use_icons' => true,
+					'use_icons'      => true,
+					'use_step_input' => true,
 				)
 			);
 
@@ -109,7 +110,9 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 					$instance['items'][ $key ]['icon']  = sanitize_text_field( $item['icon'] );
 				}
 
-				$instance['items'][ $key ]['step']    = sanitize_text_field( $item['step'] );
+				if ( $this->fields['use_step_input'] ) {
+					$instance['items'][ $key ]['step'] = sanitize_text_field( $item['step'] );
+				}
 			}
 
 			return $instance;
@@ -173,10 +176,14 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content"><?php esc_html_e( 'Content:', 'proteuswidgets' ); ?></label>
 					<textarea rows="4" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-content" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][content]">{{content}}</textarea>
 				</p>
+
+				<?php if ( $this->fields['use_step_input'] ) : ?>
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-step"><?php esc_html_e( 'Step:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-step" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][step]" type="text" value="{{step}}" />
 				</p>
+				<?php endif: ?>
+
 				<p>
 					<input name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
 					<a href="#" class="pt-remove-step-item  js-pt-remove-step-item"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Step', 'proteuswidgets' ); ?></a>
