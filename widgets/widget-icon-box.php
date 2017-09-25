@@ -27,8 +27,7 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 
 			// Get the settings for the icon box widgets
 			$this->fields = apply_filters( 'pw/icon_box_widget', array(
-				'featured_setting'  => false,
-				'read_more_setting' => false,
+				'featured_setting' => false,
 			) );
 		}
 
@@ -74,11 +73,6 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 				$instance['featured'] = ! empty ( $new_instance['featured'] ) ? sanitize_key( $new_instance['featured'] ) : '';
 			}
 
-			if ( $this->fields['read_more_setting'] ) {
-				$instance['read_more_text'] = sanitize_text_field( $new_instance['read_more_text'] );
-				$instance['read_more_url']  = esc_url_raw( $new_instance['read_more_url'] );
-			}
-
 			return $instance;
 		}
 
@@ -98,11 +92,6 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 
 			if ( $this->fields['featured_setting'] ) {
 				$instance['featured'] = empty ( $instance['featured'] ) ? '' : $instance['featured'];
-			}
-
-			if ( $this->fields['read_more_setting'] ) {
-				$read_more_text = empty ( $instance['read_more_text'] ) ? '' : $instance['read_more_text'];
-				$read_more_url  = empty ( $instance['read_more_url'] ) ? '' : $instance['read_more_url'];
 			}
 
 			?>
@@ -185,18 +174,8 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 				</p>
 			<?php endif; ?>
 
-			<?php if ( $this->fields['read_more_setting'] ) : ?>
-				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>"><?php esc_html_e( 'Read more text:', 'proteuswidgets' ); ?></label>
-					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'read_more_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'read_more_text' ) ); ?>" type="text" value="<?php echo esc_attr( $read_more_text ); ?>" />
-				</p>
-				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'read_more_url' ) ); ?>"><?php esc_html_e( 'Read more URL:', 'proteuswidgets' ); ?></label>
-					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'read_more_url' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'read_more_url' ) ); ?>" type="text" value="<?php echo esc_attr( $read_more_url ); ?>" />
-				</p>
-			<?php endif; ?>
-
 			<?php
 		}
+
 	}
 }
