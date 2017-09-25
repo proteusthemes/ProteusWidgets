@@ -182,7 +182,7 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-step"><?php esc_html_e( 'Step:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-step" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][step]" type="text" value="{{step}}" />
 				</p>
-				<?php endif: ?>
+				<?php endif; ?>
 
 				<p>
 					<input name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][id]" type="hidden" value="{{id}}" />
