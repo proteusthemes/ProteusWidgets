@@ -155,7 +155,7 @@ _.extend( ProteusWidgets.Models, {
 	Step: Backbone.Model.extend( {
 		defaults: {
 			'title': '',
-			'icon': 'fa-mobile',
+			'icon': '',
 			'content': '',
 			'step': '',
 			'url': '',
