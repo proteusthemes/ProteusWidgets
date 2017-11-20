@@ -27,6 +27,7 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 				array(
 					'use_icons'      => true,
 					'use_step_input' => true,
+					'linkable'       => false,
 				)
 			);
 
@@ -101,6 +102,10 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 
 			$instance['title'] = sanitize_text_field( $new_instance['title'] );
 
+			if ( $this->fields['linkable'] ) {
+				$instance['new_tab'] = ! empty ( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
+			}
+
 			foreach ( $new_instance['items'] as $key => $item ) {
 				$instance['items'][ $key ]['id']      = sanitize_key( $item['id'] );
 				$instance['items'][ $key ]['title']   = sanitize_text_field( $item['title'] );
@@ -112,6 +117,10 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 
 				if ( $this->fields['use_step_input'] ) {
 					$instance['items'][ $key ]['step'] = sanitize_text_field( $item['step'] );
+				}
+
+				if ( $this->fields['linkable'] ) {
+					$instance['items'][ $key ]['url'] = esc_url_raw( $item['url'] );
 				}
 			}
 
@@ -153,6 +162,15 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 			</p>
 
+			<?php if ( $this->fields['linkable'] ) :
+				$new_tab = empty ( $instance['new_tab'] ) ? '' : $instance['new_tab'];
+			?>
+			<p>
+				<input class="checkbox" type="checkbox" <?php checked( $new_tab, 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'new_tab' ) ); ?>" value="on" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>"><?php esc_html_e( 'Open links in new tab', 'proteuswidgets' ); ?></label>
+			</p>
+			<?php endif; ?>
+
 			<hr>
 
 			<h4><?php esc_html_e( 'Steps:', 'proteuswidgets' ); ?></h4>
@@ -181,6 +199,13 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-step"><?php esc_html_e( 'Step:', 'proteuswidgets' ); ?></label>
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-step" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][step]" type="text" value="{{step}}" />
+				</p>
+				<?php endif; ?>
+
+				<?php if ( $this->fields['linkable'] ) : ?>
+				<p>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-url"><?php esc_html_e( 'URL:', 'proteuswidgets' ); ?></label>
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-url" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][url]" type="text" value="{{url}}" />
 				</p>
 				<?php endif; ?>
 

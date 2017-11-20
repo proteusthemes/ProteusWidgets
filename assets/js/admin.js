@@ -158,6 +158,7 @@ _.extend( ProteusWidgets.Models, {
 			'icon': 'fa-mobile',
 			'content': '',
 			'step': '',
+			'url': '',
 		}
 	} ),
 
