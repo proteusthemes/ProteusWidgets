@@ -61,7 +61,7 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 				$instance['items'][ $key ]['content'] = wp_kses_post( $item['content'] );
 			}
 
-			$instance['title']          = sanitize_text_field( $new_instance['title'] );
+			$instance['title']          = wp_kses_post( $new_instance['title'] );
 			$instance['read_more_link'] = esc_url_raw( $new_instance['read_more_link'] );
 
 			// Sort items by ids, because order might have changed.
