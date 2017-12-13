@@ -2,7 +2,7 @@
 	echo $args['before_widget'];
 
 	if ( ! empty( $instance['title'] ) ) {
-		echo $args['before_title'] . esc_html( $instance['preped_title'] ) . $args['after_title'];
+		echo $args['before_title'] . wp_kses_post( $instance['preped_title'] ) . $args['after_title'];
 	}
 ?>
 	<div class="accordion panel-group" id="accordion-<?php echo esc_attr( $args['widget_id'] ); ?>" role="tablist" aria-multiselectable="true">
