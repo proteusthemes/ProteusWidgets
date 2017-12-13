@@ -57,7 +57,7 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 
 			foreach ( $new_instance['items'] as $key => $item ) {
 				$instance['items'][ $key ]['id']      = sanitize_key( $item['id'] );
-				$instance['items'][ $key ]['title']   = sanitize_text_field( $item['title'] );
+				$instance['items'][ $key ]['title']   = wp_kses_post( $item['title'] );
 				$instance['items'][ $key ]['content'] = wp_kses_post( $item['content'] );
 			}
 
