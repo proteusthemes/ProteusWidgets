@@ -167,5 +167,29 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 		public static function is_wpml_plugin_activated() {
 			return class_exists( 'WPML_Config' );
 		}
+
+		/**
+		 * Get the correct Font Awesome 5 class string.
+		 *
+		 * @param string $class_string The string to filter through.
+		 *
+		 * @return string
+		 */
+		public static function get_full_fa_class( $class_string ) {
+			$allowed_prefix = [ 'fas', 'far', 'fab' ];
+			$class_words    = explode( ' ', $class_string );
+
+			// Remove 'fa' class from the string ('fa' is no longer used in FAv5).
+			if ( in_array( 'fa', $class_words, true ) ) {
+				$class_words  = array_diff( $class_words, [ 'fa' ] );
+				$class_string = implode( ' ', $class_words );
+			}
+
+			if ( 0 < count( array_intersect( $allowed_prefix, $class_words ) ) ) {
+				return $class_string;
+			}
+
+			return 'fas ' . $class_string;
+		}
 	}
 }
