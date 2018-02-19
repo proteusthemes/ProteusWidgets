@@ -23,7 +23,7 @@
 				<p class="social-icons__author">
 					<?php foreach ( $social_icons as $item ) : ?>
 						<a href="<?php echo esc_url( $item['url'] ); ?>" class="social-icons__container">
-							<i class="fa fa-<?php echo esc_attr( $item['icon'] ); ?>"></i>
+							<i class="<?php echo esc_attr( PW_Functions::get_full_fa_class( $item['icon'] ) ); ?>"></i>
 						</a>
 					<?php endforeach; ?>
 				</p>

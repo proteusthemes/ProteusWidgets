@@ -29,11 +29,11 @@
 	<?php if ( count( $people ) > 1 ) : ?>
 		<div class="about-us__navigation">
 			<a class="person__carousel  person__carousel--left about-us__navigation__left" href="#carousel-people-<?php echo esc_attr( $args['widget_id'] ); ?>" data-slide="prev">
-				<i class="fa  fa-chevron-left" aria-hidden="true"></i>
+				<i class="fas  fa-chevron-left" aria-hidden="true"></i>
 				<span class="sr-only" role="button"><?php echo esc_html( $text['previous'] ); ?></span>
 			</a>
 			<a class="person__carousel  person__carousel--right about-us__navigation__right" href="#carousel-people-<?php echo esc_attr( $args['widget_id'] ); ?>" data-slide="next">
-				<i class="fa  fa-chevron-right" aria-hidden="true"></i>
+				<i class="fas  fa-chevron-right" aria-hidden="true"></i>
 				<span class="sr-only" role="button"><?php echo esc_html( $text['next'] ); ?></span>
 			</a>
 		</div>

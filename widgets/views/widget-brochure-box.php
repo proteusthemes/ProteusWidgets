@@ -7,7 +7,7 @@
 ?>
 
 	<a class="brochure-box" href="<?php echo esc_url( $instance['brochure_url'] ); ?>" target="<?php echo ( ! empty( $instance['new_tab'] ) ) ? '_blank' : '_self'; ?>">
-		<span class="brochure-box__icon"><i class="fa  <?php echo esc_attr( $instance['brochure_icon'] ); ?>"></i></span>
+		<span class="brochure-box__icon"><i class="<?php echo esc_attr( PW_Functions::get_full_fa_class( $instance['brochure_icon'] ) ); ?>"></i></span>
 		<h5 class="brochure-box__text"><?php echo wp_kses_post( $instance['brochure_text'] ); ?></h5>
 	</a>
 

@@ -45,44 +45,44 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 			$this->font_awesome_icons_list = apply_filters(
 				'pw/social_icons_fa_icons_list',
 				array(
-					'fa-facebook',
-					'fa-twitter',
-					'fa-youtube',
-					'fa-skype',
-					'fa-google-plus',
-					'fa-pinterest',
-					'fa-instagram',
-					'fa-vine',
-					'fa-tumblr',
-					'fa-foursquare',
-					'fa-xing',
-					'fa-flickr',
-					'fa-vimeo',
-					'fa-linkedin',
-					'fa-dribble',
-					'fa-wordpress',
-					'fa-rss',
-					'fa-github',
-					'fa-bitbucket',
+					'fab fa-facebook',
+					'fab fa-twitter',
+					'fab fa-youtube',
+					'fab fa-skype',
+					'fab fa-google-plus',
+					'fab fa-pinterest',
+					'fab fa-instagram',
+					'fab fa-vine',
+					'fab fa-tumblr',
+					'fab fa-foursquare',
+					'fab fa-xing',
+					'fab fa-flickr',
+					'fab fa-vimeo',
+					'fab fa-linkedin',
+					'fab fa-dribble',
+					'fab fa-wordpress',
+					'fas fa-rss',
+					'fab fa-github',
+					'fab fa-bitbucket',
 				)
 			);
 
 			$this->icon_list_fa_icons = apply_filters(
 				'pw/icon_list_widget_fa_icons_list',
 				array(
-					'fa-home',
-					'fa-phone',
-					'fa-inbox',
-					'fa-angle-right',
-					'fa-question-circle',
-					'fa-envelope-o',
-					'fa-envelope',
-					'fa-map-marker',
-					'fa-users',
-					'fa-female',
-					'fa-male',
-					'fa-compass',
-					'fa-laptop',
+					'fas fa-home',
+					'fas fa-phone',
+					'fas fa-inbox',
+					'fas fa-angle-right',
+					'fas fa-question-circle',
+					'fas fa-envelope',
+					'far fa-envelope',
+					'fas fa-map-marker',
+					'fas fa-users',
+					'fas fa-female',
+					'fas fa-male',
+					'fas fa-compass',
+					'fas fa-laptop',
 				)
 			);
 		}
@@ -397,7 +397,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 						<small><?php echo wp_kses_post( apply_filters( 'pw/icons_input_field_notice', sprintf( esc_html__( 'Click on the icon below or manually select from the %s website.', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ) ) ); ?></small>
 						<input id="<?php echo esc_attr( $this->get_field_id( 'icon_list_items' ) ); ?>-{{id}}-icon" name="<?php echo esc_attr( $this->get_field_name( 'icon_list_items' ) ); ?>[{{id}}][icon]" type="text" value="{{icon}}" class="widefat  js-icon-input" /> <br><br>
 						<?php foreach ( $this->icon_list_fa_icons as $icon ) : ?>
-							<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo esc_attr( $icon ); ?>"><i class="fa fa-lg <?php echo esc_html( $icon ) ?>"></i></a>
+							<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo esc_attr( PW_Functions::get_full_fa_class( $icon ) ); ?>"><i class="<?php echo esc_html( PW_Functions::get_full_fa_class( $icon ) ) ?> fa-lg"></i></a>
 						<?php endforeach; ?>
 					</p>
 
@@ -536,7 +536,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 						<small><?php echo wp_kses_post( apply_filters( 'pw/icons_input_field_notice', sprintf( esc_html__( 'Click on the icon below or manually select from the %s website.', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ) ) ); ?></small>
 						<input id="<?php echo esc_attr( $this->get_field_id( 'social_icons' ) ); ?>-{{id}}-icon" name="<?php echo esc_attr( $this->get_field_name( 'social_icons' ) ); ?>[{{id}}][icon]" type="text" value="{{icon}}" class="widefat  js-icon-input" /> <br><br>
 						<?php foreach ( $this->font_awesome_icons_list as $icon ) : ?>
-							<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo esc_attr( $icon ); ?>"><i class="fa fa-lg <?php echo esc_attr( $icon ); ?>"></i></a>
+							<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo esc_attr( PW_Functions::get_full_fa_class( $icon ) ); ?>"><i class="<?php echo esc_attr( PW_Functions::get_full_fa_class( $icon ) ); ?> fa-lg"></i></a>
 						<?php endforeach; ?>
 					</p>
 

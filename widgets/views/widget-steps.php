@@ -8,7 +8,7 @@
 		<?php foreach ( $items as $step ): ?>
 			<div class="step">
 				<div class="step__title">
-					<i class="fa  <?php echo esc_attr( $step['icon'] ); ?>"></i> <?php echo esc_html( $step['title'] ); ?>
+					<i class="<?php echo esc_attr( PW_Functions::get_full_fa_class( $step['icon'] ) ); ?>"></i> <?php echo esc_html( $step['title'] ); ?>
 				</div>
 				<p class="step__content">
 				<?php echo wp_kses_post( $step['content'] ); ?>

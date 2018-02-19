@@ -33,7 +33,7 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for template
-			$instance['icon'] = 'skype' == substr( $instance['skype_username'], 0, 5 ) ? 'skype' : 'phone';
+			$instance['icon'] = 'skype' == substr( $instance['skype_username'], 0, 5 ) ? 'fab fa-skype' : 'fas fa-phone';
 
 			// widget-skype template rendering
 			echo $this->template_engine->render_template( apply_filters( 'pw/widget_skype_view', 'widget-skype' ), array(

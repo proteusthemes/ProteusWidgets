@@ -6,7 +6,7 @@
 		<div class="icon-box">
 	<?php endif; ?>
 
-		<i class="fa  <?php echo esc_attr( $instance['icon'] ); ?>  fa-3x"></i>
+		<i class="<?php echo esc_attr( PW_Functions::get_full_fa_class( $instance['icon'] ) ); ?>  fa-3x"></i>
 		<div class="icon-box__text">
 			<h4 class="icon-box__title"><?php echo wp_kses_post( $instance['title'] ); ?></h4>
 			<span class="icon-box__subtitle"><?php echo wp_kses_post( $instance['text'] ); ?></span>

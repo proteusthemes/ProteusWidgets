@@ -10,6 +10,8 @@
 if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 	class PW_Brochure_Box extends PW_Widget {
 
+		private $font_awesome_icons_list;
+
 		/**
 		 * Register widget with WordPress.
 		 */
@@ -22,6 +24,31 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 			$this->widget_class       = 'widget-brochure-box';
 
 			parent::__construct();
+
+			// A list of icons to choose from in the widget backend.
+			$this->font_awesome_icons_list = apply_filters(
+				'pw/brochure_box_fa_icons_list',
+				array(
+					'fas fa-copy',
+					'fas fa-file-pdf',
+					'fas fa-file-word',
+					'fas fa-file-alt',
+					'fas fa-file-image',
+					'fas fa-file-powerpoint',
+					'fas fa-file-excel',
+					'fas fa-file-audio',
+					'fas fa-file-video',
+					'fas fa-file-archive',
+					'fas fa-file-code',
+					'fas fa-save',
+					'fas fa-download',
+					'fas fa-print',
+					'fas fa-info-circle',
+					'fas fa-question-circle',
+					'fas fa-cog',
+					'fas fa-link',
+				)
+			);
 		}
 
 		/**
@@ -106,24 +133,9 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'brochure_icon' ) ); ?>"><?php esc_html_e( 'Brochure icon:', 'proteuswidgets' ); ?></label> <br />
 				<small><?php echo wp_kses_post( apply_filters( 'pw/icons_input_field_notice', sprintf( esc_html__( 'Click on the icon below or manually select from the %s website.', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ) ) ); ?></small>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'brochure_icon' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'brochure_icon' ) ); ?>" type="text" value="<?php echo esc_attr( $brochure_icon ); ?>" class="widefat  js-icon-input" /> <br><br>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-o"><i class="fa fa-lg fa-file-o"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-pdf-o"><i class="fa fa-lg fa-file-pdf-o"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-word-o"><i class="fa fa-lg fa-file-word-o"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-text-o"><i class="fa fa-lg fa-file-text-o"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-image-o"><i class="fa fa-lg fa-file-image-o"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-powerpoint-o"><i class="fa fa-lg fa-file-powerpoint-o"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-excel-o"><i class="fa fa-lg fa-file-excel-o"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-audio-o"><i class="fa fa-lg fa-file-audio-o"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-video-o"><i class="fa fa-lg fa-file-video-o"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-archive-o"><i class="fa fa-lg fa-file-archive-o"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-file-code-o"><i class="fa fa-lg fa-file-code-o"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-save"><i class="fa fa-lg fa-save"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-download"><i class="fa fa-lg fa-download"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-print"><i class="fa fa-lg fa-print"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-info-circle"><i class="fa fa-lg fa-info-circle"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-question-circle"><i class="fa fa-lg fa-question-circle"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-cog"><i class="fa fa-lg fa-cog"></i></a>
-				<a class="js-selectable-icon  icon-widget" href="#" data-iconname="fa-link"><i class="fa fa-lg fa-link"></i></a>
+				<?php foreach ( $this->font_awesome_icons_list as $icon ) : ?>
+					<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo esc_attr( PW_Functions::get_full_fa_class( $icon ) ); ?>"><i class="<?php echo esc_html( PW_Functions::get_full_fa_class( $icon ) ) ?> fa-lg"></i></a>
+				<?php endforeach; ?>
 			</p>
 
 			<?php

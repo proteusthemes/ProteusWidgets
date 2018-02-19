@@ -31,25 +31,24 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 			$this->font_awesome_icons_list = apply_filters(
 				'pw/number_counter_fa_icons_list',
 				array(
-					'fa-building-o',
-					'fa-users',
-					'fa-globe',
-					'fa-suitcase',
-					'fa-car',
-					'fa-road',
-					'fa-home',
-					'fa-phone',
-					'fa-clock-o',
-					'fa-money',
-					'fa-cog',
-					'fa-archive',
-					'fa-compass',
-					'fa-comments-o',
-					'fa-dashboard',
-					'fa-exclamation-circle',
-					'fa-female',
-					'fa-male',
-					'fa-heart',
+					'fas fa-building',
+					'fas fa-users',
+					'fas fa-globe',
+					'fas fa-suitcase',
+					'fas fa-car',
+					'fas fa-road',
+					'fas fa-home',
+					'fas fa-phone',
+					'fas fa-clock',
+					'fas fa-dollar-sign',
+					'fas fa-cog',
+					'fas fa-archive',
+					'fas fa-compass',
+					'fas fa-comments',
+					'fas fa-exclamation-circle',
+					'fas fa-female',
+					'fas fa-male',
+					'fas fa-heart',
 				)
 			);
 		}
@@ -170,7 +169,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 					<small><?php echo wp_kses_post( apply_filters( 'pw/icons_input_field_notice', sprintf( esc_html__( 'Click on the icon below or manually select from the %s website.', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ) ) ); ?></small>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-icon" name="<?php echo esc_attr( $this->get_field_name( 'counters' ) ); ?>[{{id}}][icon]" type="text" value="{{icon}}" class="widefat  js-icon-input" /> <br><br>
 					<?php foreach ( $this->font_awesome_icons_list as $icon ) : ?>
-						<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo esc_attr( $icon ); ?>"><i class="fa fa-lg <?php echo esc_attr( $icon ); ?>"></i></a>
+						<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo esc_attr( PW_Functions::get_full_fa_class( $icon ) ); ?>"><i class="<?php echo esc_attr( PW_Functions::get_full_fa_class( $icon ) ); ?> fa-lg"></i></a>
 					<?php endforeach; ?>
 				</p>
 			<?php endif;?>

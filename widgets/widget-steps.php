@@ -48,23 +48,23 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 			$this->font_awesome_icons_list = apply_filters(
 				'pw/steps_fa_icons_list',
 				array(
-					'fa-mobile',
-					'fa-envelope',
-					'fa-wrench',
-					'fa-reply',
-					'fa-laptop',
-					'fa-gamepad',
-					'fa-television',
-					'fa-music',
-					'fa-battery-full',
-					'fa-ellipsis-v',
-					'fa-apple',
-					'fa-linux',
-					'fa-windows',
-					'fa-android',
-					'fa-cogs',
-					'fa-plug',
-					'fa-volume-up',
+					'fas fa-mobile',
+					'fas fa-envelope',
+					'fas fa-wrench',
+					'fas fa-reply',
+					'fas fa-laptop',
+					'fas fa-gamepad',
+					'fas fa-tv',
+					'fas fa-music',
+					'fas fa-battery-full',
+					'fas fa-ellipsis-v',
+					'fab fa-apple',
+					'fab fa-linux',
+					'fab fa-windows',
+					'fab fa-android',
+					'fas fa-cogs',
+					'fas fa-plug',
+					'fas fa-volume-up',
 				)
 			);
 		}
@@ -186,7 +186,7 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 					<small><?php echo wp_kses_post( apply_filters( 'pw/icons_input_field_notice', sprintf( esc_html__( 'Click on the icon below or manually select from the %s website.', 'proteuswidgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">FontAwesome</a>' ) ) ); ?></small>
 					<input id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>-{{id}}-icon" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[{{id}}][icon]" type="text" value="{{icon}}" class="widefat  js-icon-input" /> <br><br>
 					<?php foreach ( $this->font_awesome_icons_list as $icon ) : ?>
-						<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo esc_attr( $icon ); ?>"><i class="fa fa-lg <?php echo esc_attr( $icon ); ?>"></i></a>
+						<a class="js-selectable-icon  icon-widget" href="#" data-iconname="<?php echo esc_attr( PW_Functions::get_full_fa_class( $icon ) ); ?>"><i class="<?php echo esc_attr( PW_Functions::get_full_fa_class( $icon ) ); ?> fa-lg"></i></a>
 					<?php endforeach; ?>
 				</p>
 			<?php endif; ?>
