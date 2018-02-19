@@ -40,7 +40,7 @@ class ProteusWidgets {
 		) );
 
 		// Enqueue admin dashboard CSS
-		wp_enqueue_style( 'pw-admin-style', PW_URL . '/assets/stylesheets/admin.css', array( apply_filters( 'pw/theme_prefix', '' ) . 'font-awesome' ) );
+		wp_enqueue_style( 'pw-admin-style', PW_URL . '/assets/stylesheets/admin.css', array( apply_filters( 'pw/theme_prefix', '' ) . 'font-awesome', apply_filters( 'pw/theme_prefix', '' ) . 'font-awesome-brands', apply_filters( 'pw/theme_prefix', '' ) . 'font-awesome-regular', apply_filters( 'pw/theme_prefix', '' ) . 'font-awesome-solid' ) );
 	}
 
 	/**
