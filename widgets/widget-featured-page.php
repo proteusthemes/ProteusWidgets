@@ -156,6 +156,8 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 						'id'       => $this->get_field_id( 'page_id' ),
 					) );
 				?>
+				<br>
+				<small><?php esc_html_e( 'Edit page:', 'proteuswidgets' ); ?> <a id="edit-featured-page" href="" target="_blank"><span id="edited-page"><?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?></span></a></small>
 			</p>
 
 			<p>
@@ -196,6 +198,25 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 					if ( 'inline' === '<?php echo esc_attr( $layout ); ?>' ) {
 						$( '.js-featured-page-settings__additional-block-settings' ).hide();
 					}
+
+					function editedPageTitle(){
+						var title = $( "#<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?> option:selected" ).text();
+						$( "#edited-page" ).html( $.trim( title ) );
+					}
+					editedPageTitle();
+
+					$( "#<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>" ).change( function(){
+						editedPageTitle();
+					});
+
+					$("#edit-featured-page").click( function( event ){
+						event.preventDefault();
+						editedPageTitle();
+						var id = $( "#<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?> option:selected" ).val();
+						var href = '<?php echo admin_url(); ?>/post.php?post=' + id + '&action=edit';
+						window.open( href );
+						return false;
+					});
 				})( jQuery );
 			</script>
 
