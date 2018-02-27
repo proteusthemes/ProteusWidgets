@@ -157,7 +157,7 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 					) );
 				?>
 				<br>
-				<small><?php esc_html_e( 'Edit selected fetured page text and image:', 'proteuswidgets' ); ?> <a id="<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>-edit-link" href="" target="_blank"></a></small>
+				<small><?php esc_html_e( 'Edit selected featured page text and image:', 'proteuswidgets' ); ?> <a id="<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>-edit-link" href="" target="_blank"></a></small>
 			</p>
 
 			<p>
