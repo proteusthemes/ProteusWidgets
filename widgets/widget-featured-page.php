@@ -199,16 +199,16 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 						$( '.js-featured-page-settings__additional-block-settings' ).hide();
 					}
 
-					$( "#<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>" )
+					$( '#<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>' )
 						.change( function(){
-							var selection = $( "#<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?> option:selected" );
-							var button = $( "#<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>-edit-link" );
-							var href = '<?php echo admin_url(); ?>/post.php?post=' + selection.val() + '&action=edit';
+							var selection = $( '#<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?> option:selected' );
+							var button = $( '#<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>-edit-link' );
+							var href = '<?php echo admin_url(); ?>post.php?post=' + selection.val() + '&action=edit';
 							var title =  $.trim( selection.text() );
-							button.prop( "href", href );
+							button.prop( 'href', href );
 							button.html( title );
 						})
-						.trigger( "change" );
+						.trigger( 'change' );
 				})( jQuery );
 			</script>
 
