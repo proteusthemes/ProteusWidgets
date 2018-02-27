@@ -156,6 +156,8 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 						'id'       => $this->get_field_id( 'page_id' ),
 					) );
 				?>
+				<br>
+				<small><?php esc_html_e( 'Edit selected featured page text and image:', 'proteuswidgets' ); ?> <a id="<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>-edit-link" href="" target="_blank"></a></small>
 			</p>
 
 			<p>
@@ -196,6 +198,17 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 					if ( 'inline' === '<?php echo esc_attr( $layout ); ?>' ) {
 						$( '.js-featured-page-settings__additional-block-settings' ).hide();
 					}
+
+					$( '#<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>' )
+						.change( function(){
+							var selection = $( '#<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?> option:selected' );
+							var button = $( '#<?php echo esc_attr( $this->get_field_id( 'page_id' ) ); ?>-edit-link' );
+							var href = '<?php echo admin_url(); ?>post.php?post=' + selection.val() + '&action=edit';
+							var title =  $.trim( selection.text() );
+							button.prop( 'href', href );
+							button.html( title );
+						})
+						.trigger( 'change' );
 				})( jQuery );
 			</script>
 
