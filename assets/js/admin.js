@@ -163,6 +163,9 @@ ProteusWidgets.Views.Abstract = Backbone.View.extend( {
 	destroy: function ( ev ) {
 		ev.preventDefault();
 
+		// Fix for triggering the widget "update" state in WP widgets area (otherwise the save button is disabled).
+		this.$el.trigger( 'change' );
+
 		this.remove();
 		this.model.trigger( 'destroy' );
 	},
