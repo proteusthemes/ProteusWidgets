@@ -1,11 +1,11 @@
 # ProteusWidgets #
-**Contributors:** cyman  
-**Tags:** widget, widgets, plugin, admin, sidebar, javascript  
-**Requires at least:** 4.0  
-**Tested up to:** 4.8  
-**Stable tag:** trunk  
-**License:** GPLv2 or later  
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
+**Contributors:** cyman
+**Tags:** widget, widgets, plugin, admin, sidebar, javascript
+**Requires at least:** 4.0
+**Tested up to:** 4.9
+**Stable tag:** trunk
+**License:** GPLv2 or later
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
 Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
 

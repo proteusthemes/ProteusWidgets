@@ -2,7 +2,7 @@
 Contributors: cyman
 Tags: widget, widgets, plugin, admin, sidebar, javascript
 Requires at least: 4.0
-Tested up to: 4.8
+Tested up to: 4.9
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
