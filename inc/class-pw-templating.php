@@ -83,4 +83,5 @@ if ( ! class_exists( 'PW_Templating' ) ) {
 		 * @return void
 		 */
 		private function __clone() {}
+	}
 }
