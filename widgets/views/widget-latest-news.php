@@ -20,7 +20,7 @@
 				<div class="latest-news__content">
 					<h4 class="latest-news__title"><?php echo wp_kses_post( $post['title'] ); ?></h4>
 					<div class="latest-news__author">
-						<?php echo esc_html( $text['by'] ) . esc_html( $post['author'] ); ?>
+						<?php echo esc_html( $text['by'] ) . ' ' . esc_html( $post['author'] ); ?>
 					</div>
 				</div>
 			</a>
@@ -36,7 +36,7 @@
 				<div class="latest-news__content">
 					<h4 class="latest-news__title"><?php echo wp_kses_post( $post['title'] ); ?></h4>
 						<div class="latest-news__author">
-							<?php echo esc_html( $text['by'] ) . esc_html( $post['author'] ); ?>
+							<?php echo esc_html( $text['by'] ) . ' ' . esc_html( $post['author'] ); ?>
 						</div>
 				</div>
 			</a>
