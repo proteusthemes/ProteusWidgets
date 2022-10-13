@@ -1,8 +1,8 @@
 === ProteusWidgets ===
 Contributors: cyman
 Tags: widget, widgets, plugin, admin, sidebar, javascript
-Requires at least: 4.0
-Tested up to: 4.9
+Requires at least: 5.2
+Tested up to: 6.0.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

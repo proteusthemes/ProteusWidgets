@@ -3,7 +3,7 @@
 Plugin Name: ProteusWidgets
 Plugin URI: http://www.proteusthemes.com
 Description: WP widgets for retail businesses by ProteusThemes
-Version: 1.1.2
+Version: 1.1.3
 Author: ProteusThemes
 Author URI: http://www.proteusthemes.com
 License: GPL3
@@ -73,6 +73,12 @@ class ProteusWidgets {
 	 * @return void
 	 */
 	public static function admin_enqueue_js_css() {
+		$version = get_option( 'pw_installed_version', '0.0.1' );
+
+		if ( ! defined( 'PW_VERSION' ) ) {
+			define( 'PW_VERSION', apply_filters( 'pw/version', $version ) );
+		}
+
 		wp_register_script( 'pw-mustache', PW_URL  . 'bower_components/mustache/mustache.min.js', array(), null, true );
 		wp_enqueue_script( 'pw-admin-script', PW_URL . 'assets/js/admin.js' , array( 'jquery', 'underscore', 'backbone', 'pw-mustache' ), PW_VERSION );
 
@@ -87,6 +93,12 @@ class ProteusWidgets {
 	 * @return void
 	 */
 	public static function enqueue_js_css() {
+		$version = get_option( 'pw_installed_version', '0.0.1' );
+
+		if ( ! defined( 'PW_VERSION' ) ) {
+			define( 'PW_VERSION', apply_filters( 'pw/version', $version ) );
+		}
+
 		wp_enqueue_style( 'font-awesome', PW_URL . 'bower_components/fontawesome/css/font-awesome.min.css' );
 		wp_enqueue_style( 'pw-style', PW_URL . 'main.css', array( 'font-awesome' ), PW_VERSION );
 
