@@ -1,5 +1,5 @@
 {
     "require": {
-        "mustache/mustache": "~2.7"
+        "mustache/mustache": "v2.14.2"
     }
 }
