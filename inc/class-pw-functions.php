@@ -14,7 +14,6 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 		 */
 		protected function __construct() {}
 		private function __clone() {}
-		private function __wakeup() {}
 
 
 		/**
