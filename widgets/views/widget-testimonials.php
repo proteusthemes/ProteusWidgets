@@ -18,7 +18,7 @@
 					<div class="row">
 						<?php foreach ( $testimonials as $testimonial ) : ?>
 							<?php echo wp_kses_post( $testimonial['more-at-once'] ); ?>
-							<div class="col-xs-12  col-sm-<?php echo esc_attr( $instance['spans'] ); ?>">
+							<div class="col-12  col-sm-<?php echo esc_attr( $instance['spans'] ); ?>">
 								<blockquote>
 									<p class="testimonial__quote">
 										<?php echo wp_kses_post( $testimonial['quote'] ); ?>
