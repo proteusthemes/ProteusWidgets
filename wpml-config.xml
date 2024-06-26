@@ -10,6 +10,13 @@
         <field type='Accordion: item: content' editor_type="AREA">content</field>
       </fields-in-item>
     </widget>
+    <widget name='PW_Brochure_Box'>
+    	<fields>
+      	<field type='Brochure box: title'>title</field>
+        <field type='Brochure box: brochure URL' editor_type="LINK">brochure_url</field>
+        <field type='Brochure box: text'>brochure_text</field>
+      </fields>
+    </widget>
     <widget name="PW_Call_To_Action">
       <fields>
         <field type="Call to Action: title">title</field>
