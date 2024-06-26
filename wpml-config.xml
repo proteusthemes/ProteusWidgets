@@ -1,0 +1,110 @@
+<wpml-config>
+  <custom-fields>
+    <custom-field action="translate">panels_data</custom-field>
+  </custom-fields>
+  <siteorigin-widgets>
+    <widget name="PW_Testimonials">
+      <fields>
+        <field type="Testimonials: title">title</field>
+      </fields>
+      <fields-in-item items_of="testimonials">
+        <field editor_type="VISUAL" type="Testimonials: quote">quote</field>
+        <field type="Testimonials: author">author</field>
+        <field type="Testimonials: the author’s description/credentials">author_description</field>
+      </fields-in-item>
+    </widget>
+    <widget name="PW_Icon_Box_With_Popover">
+      <fields>
+        <field type="Icon box with popover: Title">title</field>
+        <field type="Icon box with popover: Text">text</field>
+        <field type="Icon box with popover: Icon">icon</field>
+      </fields>
+    </widget>
+    <widget name='PW_Opening_Time'>
+      <fields>
+        <field type='Opening time: title'>title</field>
+        <field type='Opening time: separator'>separator</field>
+        <field type='Opening time: “closed” text'>closed_text</field>
+        <field type='Opening time: additional information'>additional_info</field>
+
+        <field type='Opening time: open Monday?'>Mon_opened</field>
+        <field type='Opening time: Monday’s opening time'>Mon_from</field>
+        <field type='Opening time: Monday’s closing time'>Mon_to</field>
+        <field type='Opening time: open Tuesday?'>Tue_opened</field>
+        <field type='Opening time: Tuesday’s opening time'>Tue_from</field>
+        <field type='Opening time: Tuesday’s closing time'>Tue_to</field>
+        <field type='Opening time: open Wednesday?'>Wed_opened</field>
+        <field type='Opening time: Wednesday’s opening time'>Wed_from</field>
+        <field type='Opening time: Wednesday’s closing time'>Wed_to</field>
+        <field type='Opening time: open Thursday?'>Thu_opened</field>
+        <field type='Opening time: Thursday’s opening time'>Thu_from</field>
+        <field type='Opening time: Thursday’s closing time'>Thu_to</field>
+        <field type='Opening time: open Friday?'>Fri_opened</field>
+        <field type='Opening time: Friday’s opening time'>Fri_from</field>
+        <field type='Opening time: Friday’s closing time'>Fri_to</field>
+        <field type='Opening time: open Saturday?'>Sat_opened</field>
+        <field type='Opening time: Saturday’s opening time'>Sat_from</field>
+        <field type='Opening time: Saturday’s closing time'>Sat_to</field>
+        <field type='Opening time: open Sunday?'>Sun_opened</field>
+        <field type='Opening time: Sunday’s opening time'>Sun_from</field>
+        <field type='Opening time: Sunday’s closing time'>Sun_to</field>
+      </fields>
+    </widget>
+    <widget name="PW_Featured_Page">
+      <fields>
+        <field type="Featured page: read-more text">read_more_text</field>
+        <field type="Featured page: tag">tag</field>
+      </fields>
+    </widget>
+    <widget name="PW_Icon_Box">
+      <fields>
+        <field type="Icon box: title">title</field>
+        <field type="Icon box: text">text</field>
+        <field type="Icon box: button link" editor_type="LINK">btn_link</field>
+        <field type="Icon box: icon">icon</field>
+      </fields>
+    </widget>
+    <widget name="PW_Steps">
+      <fields>
+        <field type="Steps: title">title</field>
+      </fields>
+      <fields-in-item items_of="items">
+        <field type="Step: title">title</field>
+        <field type="Step: content">content</field>
+      </fields-in-item>
+    </widget>
+    <widget name="PW_Call_To_Action">
+      <fields>
+        <field type="Call to Action: title">title</field>
+        <field type="Call to Action: subtitle">subtitle</field>
+        <field type="Call to Action: button text">button_text</field>
+      </fields>
+    </widget>
+    <widget name='PW_Portfolio_Grid'>
+      <fields>
+        <field type='Portfolio grid: widget title'>widget_title</field>
+        <field type='Portfolio grid: title'>title</field>
+        <field type='Portfolio grid: call-to-action title'>cta_title</field>
+        <field type='Portfolio grid: call-to-action text'>cta_text</field>
+        <field type='Portfolio grid: call-to-action button text'>cta_btn</field>
+        <field type='Portfolio grid: call-to-action link' editor_type="LINK">cta_link</field>
+      </fields>
+    </widget>
+    <widget name='PW_Pricing_List'>
+      <fields>
+        <field type='Pricing list: widget title'>widget_title</field>
+      </fields>
+      <fields-in-item items_of='items'>
+        <field type='Pricing list: item: badge'>badge</field>
+        <field type='Pricing list: item: title'>title</field>
+        <field type='Pricing list: item: price'>price</field>
+        <field type='Pricing list: item: description' editor_type="AREA">description</field>
+      </fields-in-item>
+    </widget>
+    <widget name='PW_Latest_News'>
+      <fields>
+        <field type='Latest news: read-more text'>read_more_text</field>
+      </fields>
+    </widget>
+  </siteorigin-widgets>
+</wpml-config>
