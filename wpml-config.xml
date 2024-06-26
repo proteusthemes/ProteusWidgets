@@ -56,6 +56,12 @@
         <field type='Latest news: read-more text'>read_more_text</field>
       </fields>
     </widget>
+    <widget name='PW_Number_Counter'>
+    	<fields-in-item items_of='counters'>
+	      <field type='Number counter: title'>title</field>
+        <field type='Number counter: number'>number</field>
+      </fields-in-item>
+    </widget>
     <widget name='PW_Opening_Time'>
       <fields>
         <field type='Opening time: title'>title</field>
