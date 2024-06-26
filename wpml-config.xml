@@ -3,6 +3,16 @@
     <custom-field action="translate">panels_data</custom-field>
   </custom-fields>
   <siteorigin-widgets>
+		<widget name='PW_Accordion'>
+    	<fields>
+      	<field type='Accordion: title'>title</field>
+        <field type='Accordion: read-more link' editor_type="LINK">read_more_link</field>
+      </fields>
+      <fields-in-item items_of='items'>
+      	<field type='Accordion: item: title'>title</field>
+        <field type='Accordion: item: content' editor_type="AREA">content</field>
+      </fields-in-item>
+    </widget>
     <widget name="PW_Call_To_Action">
       <fields>
         <field type="Call to Action: title">title</field>
