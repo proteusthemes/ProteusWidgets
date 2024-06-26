@@ -3,21 +3,37 @@
     <custom-field action="translate">panels_data</custom-field>
   </custom-fields>
   <siteorigin-widgets>
-    <widget name="PW_Testimonials">
+    <widget name="PW_Call_To_Action">
       <fields>
-        <field type="Testimonials: title">title</field>
+        <field type="Call to Action: title">title</field>
+        <field type="Call to Action: subtitle">subtitle</field>
+        <field type="Call to Action: button text">button_text</field>
       </fields>
-      <fields-in-item items_of="testimonials">
-        <field editor_type="VISUAL" type="Testimonials: quote">quote</field>
-        <field type="Testimonials: author">author</field>
-        <field type="Testimonials: the author’s description/credentials">author_description</field>
-      </fields-in-item>
+    </widget>
+    <widget name="PW_Featured_Page">
+      <fields>
+        <field type="Featured page: read-more text">read_more_text</field>
+        <field type="Featured page: tag">tag</field>
+      </fields>
+    </widget>
+    <widget name="PW_Icon_Box">
+      <fields>
+        <field type="Icon box: title">title</field>
+        <field type="Icon box: text">text</field>
+        <field type="Icon box: button link" editor_type="LINK">btn_link</field>
+        <field type="Icon box: icon">icon</field>
+      </fields>
     </widget>
     <widget name="PW_Icon_Box_With_Popover">
       <fields>
         <field type="Icon box with popover: Title">title</field>
         <field type="Icon box with popover: Text">text</field>
         <field type="Icon box with popover: Icon">icon</field>
+      </fields>
+    </widget>
+    <widget name='PW_Latest_News'>
+      <fields>
+        <field type='Latest news: read-more text'>read_more_text</field>
       </fields>
     </widget>
     <widget name='PW_Opening_Time'>
@@ -50,36 +66,6 @@
         <field type='Opening time: Sunday’s closing time'>Sun_to</field>
       </fields>
     </widget>
-    <widget name="PW_Featured_Page">
-      <fields>
-        <field type="Featured page: read-more text">read_more_text</field>
-        <field type="Featured page: tag">tag</field>
-      </fields>
-    </widget>
-    <widget name="PW_Icon_Box">
-      <fields>
-        <field type="Icon box: title">title</field>
-        <field type="Icon box: text">text</field>
-        <field type="Icon box: button link" editor_type="LINK">btn_link</field>
-        <field type="Icon box: icon">icon</field>
-      </fields>
-    </widget>
-    <widget name="PW_Steps">
-      <fields>
-        <field type="Steps: title">title</field>
-      </fields>
-      <fields-in-item items_of="items">
-        <field type="Step: title">title</field>
-        <field type="Step: content">content</field>
-      </fields-in-item>
-    </widget>
-    <widget name="PW_Call_To_Action">
-      <fields>
-        <field type="Call to Action: title">title</field>
-        <field type="Call to Action: subtitle">subtitle</field>
-        <field type="Call to Action: button text">button_text</field>
-      </fields>
-    </widget>
     <widget name='PW_Portfolio_Grid'>
       <fields>
         <field type='Portfolio grid: widget title'>widget_title</field>
@@ -101,10 +87,24 @@
         <field type='Pricing list: item: description' editor_type="AREA">description</field>
       </fields-in-item>
     </widget>
-    <widget name='PW_Latest_News'>
+    <widget name="PW_Steps">
       <fields>
-        <field type='Latest news: read-more text'>read_more_text</field>
+        <field type="Steps: title">title</field>
       </fields>
+      <fields-in-item items_of="items">
+        <field type="Step: title">title</field>
+        <field type="Step: content">content</field>
+      </fields-in-item>
+    </widget>
+    <widget name="PW_Testimonials">
+      <fields>
+        <field type="Testimonials: title">title</field>
+      </fields>
+      <fields-in-item items_of="testimonials">
+        <field editor_type="VISUAL" type="Testimonials: quote">quote</field>
+        <field type="Testimonials: author">author</field>
+        <field type="Testimonials: the author’s description/credentials">author_description</field>
+      </fields-in-item>
     </widget>
   </siteorigin-widgets>
 </wpml-config>
