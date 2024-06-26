@@ -1,7 +1,4 @@
 <wpml-config>
-  <custom-fields>
-    <custom-field action="translate">panels_data</custom-field>
-  </custom-fields>
   <siteorigin-widgets>
 		<widget name='PW_Accordion'>
     	<fields>
