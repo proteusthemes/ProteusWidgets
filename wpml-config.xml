@@ -24,6 +24,12 @@
         <field type="Call to Action: button text">button_text</field>
       </fields>
     </widget>
+    <widget name='PW_Facebook'>
+      <fields>
+      	<field type='Facebook: title'>title</field>
+        <field type='Facebook: link to “like”' editor_type="LINK">like_link</field>
+      </fields>
+    </widget>
     <widget name="PW_Featured_Page">
       <fields>
         <field type="Featured page: read-more text">read_more_text</field>
