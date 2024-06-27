@@ -101,6 +101,16 @@
         <field type="Opening time: Sunday’s closing time">Sun_to</field>
       </fields>
     </widget>
+		<widget name='PW_Person_Profile'>
+    	<fields>
+      	<field type='Person profile: name'>name</field>
+        <field type='Person profile: description' editor_type="AREA">description</field>
+        <field type='Person profile: tag'>tag</field>
+      </fields>
+      <fields-in-item items_of='social_icons'>
+      	<field type='Person profile: social icons: link' editor_type="LINK">link</field>
+      </fields-in-item>
+		</widget>
     <widget name="PW_Portfolio_Grid">
       <fields>
         <field type="Portfolio grid: widget title">widget_title</field>
