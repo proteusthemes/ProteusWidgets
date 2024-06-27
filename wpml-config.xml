@@ -62,14 +62,14 @@
         <field type="Number counter: number">number</field>
       </fields-in-item>
     </widget>
-    <widget name='PW_Open_Position'>
-    	<fields>
-      	<field type='Open position: title'>title</field>
-        <field type='Open position: content' editor_type="VISUAL">content</field>
-        <field type='Open position: details: title'>details_title</field>
+    <widget name="PW_Open_Position">
+      <fields>
+        <field type="Open position: title">title</field>
+        <field type="Open position: content" editor_type="VISUAL">content</field>
+        <field type="Open position: details: title">details_title</field>
       </fields>
-      <fields-in-item items_of='detail_items'>
-      	<field type='Open position: item details'>text</field>
+      <fields-in-item items_of="detail_items">
+        <field type="Open position: item details">text</field>
       </fields-in-item>
     </widget>
     <widget name="PW_Opening_Time">
@@ -101,16 +101,16 @@
         <field type="Opening time: Sunday’s closing time">Sun_to</field>
       </fields>
     </widget>
-		<widget name='PW_Person_Profile'>
-    	<fields>
-      	<field type='Person profile: name'>name</field>
-        <field type='Person profile: description' editor_type="AREA">description</field>
-        <field type='Person profile: tag'>tag</field>
+    <widget name="PW_Person_Profile">
+      <fields>
+        <field type="Person profile: name">name</field>
+        <field type="Person profile: description" editor_type="AREA">description</field>
+        <field type="Person profile: tag">tag</field>
       </fields>
-      <fields-in-item items_of='social_icons'>
-      	<field type='Person profile: social icons: link' editor_type="LINK">link</field>
+      <fields-in-item items_of="social_icons">
+        <field type="Person profile: social icons: link" editor_type="LINK">link</field>
       </fields-in-item>
-		</widget>
+    </widget>
     <widget name="PW_Portfolio_Grid">
       <fields>
         <field type="Portfolio grid: widget title">widget_title</field>
