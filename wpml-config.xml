@@ -132,6 +132,12 @@
         <field type="Pricing list: item: description" editor_type="AREA">description</field>
       </fields-in-item>
     </widget>
+		<widget name='PW_Skype'>
+			<fields>
+      	<field type='Skype: title'>title</field>
+        <field type='Skype: username'>skype_username</field>
+      </fields>
+		</widget>
     <widget name="PW_Steps">
       <fields>
         <field type="Steps: title">title</field>
