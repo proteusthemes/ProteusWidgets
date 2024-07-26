@@ -158,6 +158,18 @@
         <field type="Skype: username">skype_username</field>
       </fields>
     </widget>
+    <widget name="PW_Special_Offer">
+      <fields>
+        <field type="Special offer: title">title</field>
+        <field type="Special offer: label">label</field>
+        <field type="Special offer: location icon">location_icon</field>
+        <field type="Special offer: location name">location_name</field>
+        <field type="Special offer: price">price</field>
+        <field type="Special offer: image" editor_type="LINK">image</field>
+        <field type="Special offer: text">text</field>
+        <field type="Special offer: call-to-action text">cta_text</field>
+      </fields>
+    </widget>
     <widget name="PW_Special_Title">
       <fields>
         <field type="Special title: title">title</field>
