@@ -51,6 +51,26 @@
         <field type="Icon box with popover: Icon">icon</field>
       </fields>
     </widget>
+    <widget name="PW_Image_Banner">
+      <fields>
+        <field type="Image banner: title">title</field>
+        <field type="Image banner: text">text</field>
+        <field type="Image banner: text color">text_color</field>
+        <field type="Image banner: text size">text_size</field>
+        <field type="Image banner: image" editor_type="LINK">image</field>
+        <field type="Image banner: custom URL" editor_type="LINK">custom_url</field>
+        <field type="Image banner: call-to-action text">cta_text</field>
+      </fields>
+    </widget>
+    <widget name="PW_Instagram">
+      <fields>
+        <field type="Instagram: access token">instagram_access_token</field>
+        <field type="Instagram: number of images">number_of_images</field>
+        <field type="Instagram: title">title</field>
+        <field type="Instagram: text">text</field>
+        <field type="Instagram: URL" editor_type="LINK">url</field>
+      </fields>
+    </widget>
     <widget name="PW_Latest_News">
       <fields>
         <field type="Latest news: read-more text">read_more_text</field>
@@ -138,6 +158,23 @@
         <field type="Skype: username">skype_username</field>
       </fields>
     </widget>
+    <widget name="PW_Special_Offer">
+      <fields>
+        <field type="Special offer: title">title</field>
+        <field type="Special offer: label">label</field>
+        <field type="Special offer: location icon">location_icon</field>
+        <field type="Special offer: location name">location_name</field>
+        <field type="Special offer: price">price</field>
+        <field type="Special offer: image" editor_type="LINK">image</field>
+        <field type="Special offer: text">text</field>
+        <field type="Special offer: call-to-action text">cta_text</field>
+      </fields>
+    </widget>
+    <widget name="PW_Special_Title">
+      <fields>
+        <field type="Special title: title">title</field>
+      </fields>
+    </widget>
     <widget name="PW_Steps">
       <fields>
         <field type="Steps: title">title</field>
@@ -156,6 +193,24 @@
         <field type="Testimonials: author">author</field>
         <field type="Testimonials: the author’s description/credentials">author_description</field>
       </fields-in-item>
+    </widget>
+    <widget name="PW_Timetable">
+      <fields-in-item items_of="items">
+        <field type="Timetable: link" editor_type="LINK">link</field>
+        <field type="Timetable: month">month</field>
+        <field type="Timetable: day">day</field>
+        <field type="Timetable: name">name</field>
+        <field type="Timetable: description">description</field>
+        <field type="Timetable: price">price</field>
+      </fields-in-item>
+    </widget>
+    <widget name="PW_Weather">
+      <fields>
+        <field type="Weather: location">location</field>
+        <field type="Weather: latitude">latitude</field>
+        <field type="Weather: longitude">longitude</field>
+        <field type="Weather: temperature unit">temperature_unit</field>
+      </fields>
     </widget>
   </siteorigin-widgets>
 </wpml-config>
