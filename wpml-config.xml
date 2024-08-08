@@ -51,6 +51,14 @@
         <field type="Icon box with popover: Icon">icon</field>
       </fields>
     </widget>
+    <widget name="PW_Icon_List">
+      <fields-in-item items_of="items">
+        <field type="Icon list: text">text</field>
+        <field type="Icon list: icon">icon</field>
+        <field type="Icon list: link" editor_type="LINK">link</field>
+        <field type="Icon list: description">description</field>
+      </fields-in-item>
+    </widget>
     <widget name="PW_Image_Banner">
       <fields>
         <field type="Image banner: title">title</field>
@@ -74,6 +82,20 @@
     <widget name="PW_Latest_News">
       <fields>
         <field type="Latest news: read-more text">read_more_text</field>
+      </fields>
+    </widget>
+    <widget name="PW_New_Opening_Time">
+      <fields-in-item items_of="items">
+        <field type="Opening time: day or days">day</field>
+        <field type="Opening time: time (range)">time</field>
+      </fields-in-item>
+    </widget>
+    <widget name="PW_Notice">
+      <fields>
+        <field type="Notice: title">title</field>
+        <field type="Notice: tag text">tag_text</field>
+        <field type="Notice: tag_icon">tag_icon</field>
+        <field type="Notice: alignment">align</field>
       </fields>
     </widget>
     <widget name="PW_Number_Counter">
@@ -169,6 +191,12 @@
         <field type="Special offer: text">text</field>
         <field type="Special offer: call-to-action text">cta_text</field>
       </fields>
+    </widget>
+    <widget name="PW_Social_Icons">
+      <fields-in-item items_of="social_icons">
+        <field type="Social icons: URL" editor_type="LINK">link</field>
+        <field type="Social icons: icon">icon</field>
+      </fields-in-item>
     </widget>
     <widget name="PW_Special_Title">
       <fields>
