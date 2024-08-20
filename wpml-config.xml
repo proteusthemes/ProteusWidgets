@@ -36,6 +36,11 @@
         <field type="Featured page: tag">tag</field>
       </fields>
     </widget>
+    <widget name="PW_Featured_Product">
+      <fields>
+        <field type="Featured product: product ID">product_id</field>
+      </fields>
+    </widget>
     <widget name="PW_Icon_Box">
       <fields>
         <field type="Icon box: title">title</field>
