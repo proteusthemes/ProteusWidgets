@@ -151,9 +151,22 @@
     <widget name="PW_Person_Profile">
       <fields>
         <field type="Person profile: name">name</field>
+        <field type="Person profile: name link" editor_type="LINK">name_link</field>
+        <field type="Person profile: location">location</field>
+        <field type="Person profile: specific location">specific_location</field>
+        <field type="Person profile: call-to-action (button) text">cta_text</field>
+        <field type="Person profile: call-to-action (button) link" editor_type="LINK">cta_link</field>
+        <field type="Person profile: label">label</field>
         <field type="Person profile: description" editor_type="AREA">description</field>
         <field type="Person profile: tag">tag</field>
       </fields>
+      <!-- No translatable items in `carousel` -->
+      <fields-in-item items_of="icon_list_items">
+        <field type="Person profile: icon-list item: text">text</field>
+        <field type="Person profile: icon-list item: icon">icon</field>
+        <field type="Person profile: icon-list item: link" editor_type="LINK">link</field>
+        <field type="Person profile: icon-list item: description">description</field>
+      </fields-in-item>
       <fields-in-item items_of="social_icons">
         <field type="Person profile: social icons: link" editor_type="LINK">link</field>
       </fields-in-item>
