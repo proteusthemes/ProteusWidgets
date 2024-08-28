@@ -41,6 +41,14 @@
         <field type="Featured product: product ID">product_id</field>
       </fields>
     </widget>
+    <widget name="PW_Hero_Columns">
+      <fields-in-item items_of="items">
+        <field type="Hero Columns: title">title</field>
+        <field type="Hero Columns: content" editor_type="VISUAL">content</field>
+        <field type="Hero Columns: link text">link_text</field>
+        <field type="Hero Columns: link" editor_type="LINK">link_url</field>
+      </fields-in-item>
+    </widget>
     <widget name="PW_Icon_Box">
       <fields>
         <field type="Icon box: title">title</field>
@@ -228,6 +236,7 @@
       <fields-in-item items_of="items">
         <field type="Step: title">title</field>
         <field type="Step: content">content</field>
+        <field type="Step: step">step</field>
       </fields-in-item>
     </widget>
     <widget name="PW_Testimonials">
@@ -249,6 +258,13 @@
         <field type="Timetable: description">description</field>
         <field type="Timetable: price">price</field>
       </fields-in-item>
+    </widget>
+    <widget name="PW_Title_With_Button">
+      <fields>
+        <field type="Title with button: title">title</field>
+        <field type="Title with button: button text">button_text</field>
+        <field type="Title with button: button link" editor_type="LINK">button_link</field>
+      </fields>
     </widget>
     <widget name="PW_Weather">
       <fields>
