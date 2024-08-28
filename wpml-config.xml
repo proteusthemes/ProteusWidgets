@@ -236,6 +236,7 @@
       <fields-in-item items_of="items">
         <field type="Step: title">title</field>
         <field type="Step: content">content</field>
+        <field type="Step: step">step</field>
       </fields-in-item>
     </widget>
     <widget name="PW_Testimonials">
