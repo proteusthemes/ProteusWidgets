@@ -24,6 +24,21 @@
         <field type="Call to Action: button text">button_text</field>
       </fields>
     </widget>
+    <widget name="PW_Contact_Profile">
+      <fields>
+        <field type="Contact profile: name">name</field>
+        <field type="Contact profile: label">label</field>
+        <field type="Contact profile: image" editor_type="LINK">image</field>
+      </fields>
+      <fields-in-item items_of="social_icons">
+        <field type="Contact profile: social icon: icon">icon</field>
+        <field type="Contact profile: social icon: link" editor_type="LINK">link</field>
+      </fields-in-item>
+      <fields-in-item items_of="items">
+        <field type="Contact profile: item: icon">icon</field>
+        <field type="Contact profile: item: text">text</field>
+      </fields-in-item>
+    </widget>
     <widget name="PW_Facebook">
       <fields>
         <field type="Facebook: title">title</field>
