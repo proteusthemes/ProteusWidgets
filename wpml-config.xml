@@ -1,5 +1,14 @@
 <wpml-config>
   <siteorigin-widgets>
+    <widget name="PW_About_Us">
+      <fields-in-item items_of="people">
+        <field type="About us: tag">tag</field>
+        <field type="About us: image" editor_type="LINK">image</field>
+        <field type="About us: name">name</field>
+        <field type="About us: description">description</field>
+        <field type="About us: link" editor_type="LINK">link</field>
+      </fields-in-item>
+    </widget>
     <widget name="PW_Accordion">
       <fields>
         <field type="Accordion: title">title</field>
@@ -9,6 +18,13 @@
         <field type="Accordion: item: title">title</field>
         <field type="Accordion: item: content" editor_type="AREA">content</field>
       </fields-in-item>
+    </widget>
+    <widget name="PW_Banner">
+      <fields>
+      	<field type='Banner: title'>title</field>
+        <field type='Banner: content'>content</field>
+        <field type='Banner: link' editor_type="LINK">link</field>
+      </fields>
     </widget>
     <widget name="PW_Brochure_Box">
       <fields>
@@ -55,6 +71,17 @@
       <fields>
         <field type="Featured product: product ID">product_id</field>
       </fields>
+    </widget>
+    <widget name="PW_Google_Map">
+      <fields>
+        <field type="Google Map: latitude and longitude">latLng</field>
+        <field type="Google Map: zoom">zoom</field>
+      </fields>
+      <fields-in-item items_of="locations">
+        <field type="Google Map: location: title">title</field>
+        <field type="Google Map: location: location latitude and longitude">locationlatlng</field>
+        <field type="Google Map: location: custom pin image" editor_type="LINK">custompinimage</field>
+      </fields-in-item>
     </widget>
     <widget name="PW_Hero_Columns">
       <fields-in-item items_of="items">
