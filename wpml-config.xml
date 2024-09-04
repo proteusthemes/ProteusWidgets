@@ -256,9 +256,8 @@
         <field type="Pricing list: button URL">cta_url</field>
         <!-- new_tab, is_featured omitted -->
       </fields>
-      <fields-in-item items_of="…?">
-        <field type="Pricing list: item: text"></field>
-        <field type="Pricing list: item: icon"></field>
+      <fields-in-item items_of="items">
+        <field type="Pricing list: item: text">text</field>
       </fields-in-item>
     </widget>
     <widget name="PW_Skype">
