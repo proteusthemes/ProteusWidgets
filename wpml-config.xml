@@ -162,11 +162,14 @@
     <widget name="PW_Open_Position">
       <fields>
         <field type="Open position: title">title</field>
+        <field type="Open position: date">date</field>
+        <field type="Open position: location">location</field>
         <field type="Open position: content" editor_type="VISUAL">content</field>
         <field type="Open position: details: title">details_title</field>
       </fields>
       <fields-in-item items_of="detail_items">
         <field type="Open position: item details">text</field>
+        <!-- icon omitted -->
       </fields-in-item>
     </widget>
     <widget name="PW_Opening_Time">
@@ -209,6 +212,7 @@
         <field type="Person profile: label">label</field>
         <field type="Person profile: description" editor_type="AREA">description</field>
         <field type="Person profile: tag">tag</field>
+        <field type="Person profile: tags">tags</field>
       </fields>
       <!-- No translatable items in `carousel` -->
       <fields-in-item items_of="icon_list_items">
@@ -240,6 +244,21 @@
         <field type="Pricing list: item: title">title</field>
         <field type="Pricing list: item: price">price</field>
         <field type="Pricing list: item: description" editor_type="AREA">description</field>
+      </fields-in-item>
+    </widget>
+    <widget name="PW_Pricing_Package">
+      <fields>
+        <field type="Pricing list: title">title</field>
+        <field type="Pricing list: subtitle">subtitle</field>
+        <field type="Pricing list: label">label</field>
+        <field type="Pricing list: price">price</field>
+        <field type="Pricing list: button text">cta_text</field>
+        <field type="Pricing list: button URL">cta_url</field>
+        <!-- new_tab, is_featured omitted -->
+      </fields>
+      <fields-in-item items_of="…?">
+        <field type="Pricing list: item: text"></field>
+        <field type="Pricing list: item: icon"></field>
       </fields-in-item>
     </widget>
     <widget name="PW_Skype">
@@ -289,6 +308,7 @@
         <field editor_type="VISUAL" type="Testimonials: quote">quote</field>
         <field type="Testimonials: author">author</field>
         <field type="Testimonials: the author’s description/credentials">author_description</field>
+        <!-- author_avatar should get copied -->
       </fields-in-item>
     </widget>
     <widget name="PW_Timetable">
@@ -296,6 +316,7 @@
         <field type="Timetable: link" editor_type="LINK">link</field>
         <field type="Timetable: month">month</field>
         <field type="Timetable: day">day</field>
+        <field type="Timetable: title">title</field>
         <field type="Timetable: name">name</field>
         <field type="Timetable: description">description</field>
         <field type="Timetable: price">price</field>
