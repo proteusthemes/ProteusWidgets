@@ -65,12 +65,20 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				$page_id = pll_get_post( $page_id );
 			}
 
+			if ( function_exists( 'wpml_object_id' ) ) {
+				$page_id = wpml_object_id( $page_id, 'page', true );
+			}
+
 			$instance['layout']         = sanitize_key( $instance['layout'] );
 			$instance['read_more_text'] = empty( $instance['read_more_text'] ) ? esc_html__( 'Read more', 'proteuswidgets' ) : $instance['read_more_text'];
 			$thumbnail_size             = 'inline' === $instance['layout'] ? 'pw-inline' : 'pw-page-box';
 
 			// Get basic page info
 			$page = get_post( $page_id, ARRAY_A );
+
+			if ( ! $page ) {
+				return;
+			}
 
 			// Prepare the excerpt text
 			$excerpt = wp_strip_all_tags( ! empty( $page['post_excerpt'] ) ? $page['post_excerpt'] : $page['post_content'] );
@@ -91,9 +99,15 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				$attachment_image_id   = get_post_thumbnail_id( $page_id );
 				$attachment_image_data = wp_get_attachment_image_src( $attachment_image_id, 'pw-page-box' );
 
-				$page['image_url']     = $attachment_image_data[0];
-				$page['image_width']   = $attachment_image_data[1];
-				$page['image_height']  = $attachment_image_data[2];
+				if ( $attachment_image_data ) {
+					$page['image_url']    = $attachment_image_data[0];
+					$page['image_width']  = $attachment_image_data[1];
+					$page['image_height'] = $attachment_image_data[2];
+				} else {
+					$page['image_url']    = '';
+					$page['image_width']  = 0;
+					$page['image_height'] = 0;
+				}
 				$page['srcset']        = PW_Functions::get_attachment_image_srcs( $attachment_image_id, array( 'pw-page-box', 'full' ) );
 			}
 
