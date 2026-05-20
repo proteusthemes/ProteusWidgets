@@ -33,6 +33,14 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'         => '',
+				'brochure_url'  => '',
+				'new_tab'       => '',
+				'brochure_text' => '',
+				'brochure_icon' => '',
+			) );
+
 			// Prepare data for template
 			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 

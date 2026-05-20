@@ -46,9 +46,25 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'latLng'    => '51.507331,-0.127668',
+				'zoom'      => 12,
+				'type'      => 'roadmap',
+				'style'     => 'Subtle Grayscale',
+				'height'    => 380,
+				'locations' => array(),
+			) );
+
+			if ( ! is_array( $instance['locations'] ) ) {
+				$instance['locations'] = array();
+			}
+
+			$map_styles = is_array( $this->map_styles ) ? $this->map_styles : array();
+			$style      = is_scalar( $instance['style'] ) ? (string) $instance['style'] : '';
+
 			// Prepare data for template
-			$instance['locations'] = json_encode( array_values( $instance['locations'] ) );
-			$instance['style']     = $this->map_styles[ $instance['style'] ];
+			$instance['locations'] = wp_json_encode( array_values( $instance['locations'] ) );
+			$instance['style']     = array_key_exists( $style, $map_styles ) ? $map_styles[ $style ] : '[]';
 
 			// widget-google-map template rendering
 			echo $this->template_engine->render_template( apply_filters( 'pw/widget_google_map_view', 'widget-google-map' ), array(
