@@ -64,7 +64,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 
 			// Prepare data for template
 			$instance['locations'] = wp_json_encode( array_values( $instance['locations'] ) );
-			$instance['style']     = array_key_exists( $style, $map_styles ) ? $map_styles[ $style ] : '[]';
+			$instance['style']     = $map_styles[ $style ] ?? '[]';
 
 			// widget-google-map template rendering
 			echo $this->template_engine->render_template( apply_filters( 'pw/widget_google_map_view', 'widget-google-map' ), array(
