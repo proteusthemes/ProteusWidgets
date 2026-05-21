@@ -1,9 +1,9 @@
 {
   "private": true,
-  "devDependencies": {
-    "grunt": "^1.6.1",
-    "grunt-po2mo": "proteusthemes/grunt-po2mo",
-    "grunt-wp-i18n": "^1.0.0",
-    "load-grunt-tasks": "^3.3.0"
+  "scripts": {
+    "i18n:pot": "wp i18n make-pot . languages/proteuswidgets.pot --slug=proteuswidgets --domain=proteuswidgets --exclude=bin --headers='{\"Report-Msgid-Bugs-To\":\"http://support.proteusthemes.com/\"}' --file-comment='© ProteusThemes. This file is distributed under the GPL 2.0.'",
+    "i18n:po": "wp i18n update-po languages/proteuswidgets.pot languages/",
+    "i18n:mo": "wp i18n make-mo languages/ languages/",
+    "i18n": "npm run i18n:pot && npm run i18n:po && npm run i18n:mo"
   }
 }
