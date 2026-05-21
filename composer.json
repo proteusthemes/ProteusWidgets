@@ -1,9 +1,13 @@
 {
   "name": "proteusthemes/proteuswidgets",
   "description": "WordPress widgets used in ProtuesThemes.",
-  "license": "GPL-2.0+",
+  "license": "GPL-2.0-or-later",
   "require": {
     "league/plates": "^3.1.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.6",
+    "yoast/phpunit-polyfills": "^2.0"
   },
   "autoload": {
     "classmap": ["widgets/", "inc/", "proteuswidgets.php"]

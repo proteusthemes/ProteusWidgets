@@ -1,8 +1,10 @@
 <?php
 
 class PWFunctionsTest extends WP_UnitTestCase {
-	function setUp() {
-		parent::setUp();
+	protected $ProteusWidgets;
+
+	public function set_up() {
+		parent::set_up();
 		$this->ProteusWidgets = new ProteusWidgets();
 	}
 

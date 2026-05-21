@@ -2,6 +2,8 @@
 
 class WidgetAboutUsTest extends WP_UnitTestCase {
 
+	protected $AboutUs;
+
 	var $widget_params_array = array(
 
 		'minimal params' => array(
@@ -95,10 +97,9 @@ class WidgetAboutUsTest extends WP_UnitTestCase {
 		),
 	);
 
-	function setUp() {
-		parent::setUp();
+	public function set_up() {
+		parent::set_up();
 		$this->AboutUs = new PW_About_Us();
-
 	}
 
 	function test_class_is_available_and_instances() {
