@@ -9,6 +9,6 @@
     "classmap": ["widgets/", "inc/", "proteuswidgets.php"]
   },
   "archive": {
-    "exclude": ["/tests/", "phpunit.xml", ".travis.yml", ".gitignore", "Gruntfile.js"]
+    "exclude": ["/tests/", "phpunit.xml", ".gitignore", "Gruntfile.js"]
   }
 }
