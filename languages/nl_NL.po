@@ -32,134 +32,134 @@ msgstr "Over ons"
 msgid "Displaying person profiles in a carousel."
 msgstr "Persoonsprofielen weergeven in een carrousel."
 
-#: widgets/widget-about-us.php:64
+#: widgets/widget-about-us.php:89
 msgid "About us image"
 msgstr "Over ons afbeelding"
 
-#: widgets/widget-about-us.php:65
-#: widgets/widget-accordion.php:37
+#: widgets/widget-about-us.php:90
+#: widgets/widget-accordion.php:53
 #: widgets/widget-featured-page.php:79
 #: widgets/widget-featured-page.php:164
 msgid "Read more"
 msgstr "Lees meer"
 
-#: widgets/widget-about-us.php:66
-#: widgets/widget-testimonials.php:141
+#: widgets/widget-about-us.php:91
+#: widgets/widget-testimonials.php:168
 msgid "Previous"
 msgstr "Vorige"
 
-#: widgets/widget-about-us.php:67
-#: widgets/widget-testimonials.php:142
+#: widgets/widget-about-us.php:92
+#: widgets/widget-testimonials.php:169
 msgid "Next"
 msgstr "Volgende"
 
-#: widgets/widget-about-us.php:140
+#: widgets/widget-about-us.php:165
 msgid "People"
 msgstr "Mensen"
 
-#: widgets/widget-about-us.php:144
+#: widgets/widget-about-us.php:169
 #: widgets/widget-featured-page.php:208
 msgid "Tag:"
 msgstr "Label:"
 
-#: widgets/widget-about-us.php:149
-#: widgets/widget-person-profile.php:319
+#: widgets/widget-about-us.php:174
+#: widgets/widget-person-profile.php:346
 msgid "Picture URL:"
 msgstr "Afbeelding URL:"
 
-#: widgets/widget-about-us.php:155
-#: widgets/widget-person-profile.php:294
-#: widgets/widget-person-profile.php:490
+#: widgets/widget-about-us.php:180
+#: widgets/widget-person-profile.php:321
+#: widgets/widget-person-profile.php:517
 msgid "Name:"
 msgstr "Naam:"
 
-#: widgets/widget-about-us.php:160
-#: widgets/widget-person-profile.php:417
+#: widgets/widget-about-us.php:185
+#: widgets/widget-person-profile.php:444
 #: widgets/widget-pricing-list.php:137
 msgid "Description:"
 msgstr "Beschrijving:"
 
-#: widgets/widget-about-us.php:165
-#: widgets/widget-banner.php:84
-#: widgets/widget-icon-box.php:110
-#: widgets/widget-person-profile.php:462
-#: widgets/widget-person-profile.php:530
+#: widgets/widget-about-us.php:190
+#: widgets/widget-banner.php:91
+#: widgets/widget-icon-box.php:118
+#: widgets/widget-person-profile.php:489
+#: widgets/widget-person-profile.php:557
 #: widgets/widget-social-icons.php:155
 msgid "Link:"
 msgstr "Link:"
 
-#: widgets/widget-about-us.php:172
+#: widgets/widget-about-us.php:197
 msgid "Remove Person"
 msgstr "Persoon verwijderen"
 
-#: widgets/widget-about-us.php:178
+#: widgets/widget-about-us.php:203
 msgid "Add New Person"
 msgstr "Nieuw persoon toevoegen"
 
-#: widgets/widget-about-us.php:198
-#: widgets/widget-testimonials.php:249
+#: widgets/widget-about-us.php:223
+#: widgets/widget-testimonials.php:276
 msgid "Automatically cycle the carousel:"
 msgstr "De carrousel automatisch ronddraaien:"
 
-#: widgets/widget-about-us.php:200
-#: widgets/widget-testimonials.php:251
+#: widgets/widget-about-us.php:225
+#: widgets/widget-testimonials.php:278
 msgid "Yes"
 msgstr "Ja"
 
-#: widgets/widget-about-us.php:201
-#: widgets/widget-testimonials.php:252
+#: widgets/widget-about-us.php:226
+#: widgets/widget-testimonials.php:279
 msgid "No"
 msgstr "Nee"
 
-#: widgets/widget-about-us.php:206
-#: widgets/widget-testimonials.php:257
+#: widgets/widget-about-us.php:231
+#: widgets/widget-testimonials.php:284
 msgid "Interval (in milliseconds):"
 msgstr "Interval (in milliseconden):"
 
-#: widgets/widget-accordion.php:16
-#: widgets/widget-accordion.php:122
+#: widgets/widget-accordion.php:18
+#: widgets/widget-accordion.php:138
 msgid "Accordion"
 msgstr "Accordeon"
 
-#: widgets/widget-accordion.php:103
-#: widgets/widget-accordion.php:128
-#: widgets/widget-banner.php:74
+#: widgets/widget-accordion.php:119
+#: widgets/widget-accordion.php:144
+#: widgets/widget-banner.php:81
 #: widgets/widget-brochure-box.php:93
 #: widgets/widget-facebook.php:116
-#: widgets/widget-icon-box.php:100
-#: widgets/widget-number-counter.php:150
-#: widgets/widget-opening-time.php:201
-#: widgets/widget-person-profile.php:312
+#: widgets/widget-icon-box.php:108
+#: widgets/widget-number-counter.php:163
+#: widgets/widget-opening-time.php:210
+#: widgets/widget-person-profile.php:339
 #: widgets/widget-pricing-list.php:128
-#: widgets/widget-skype.php:72
-#: widgets/widget-steps.php:180
-#: widgets/widget-testimonials.php:244
+#: widgets/widget-skype.php:77
+#: widgets/widget-steps.php:197
+#: widgets/widget-testimonials.php:271
 msgid "Title:"
 msgstr "Titel:"
 
-#: widgets/widget-accordion.php:108
+#: widgets/widget-accordion.php:124
 msgid "Read more URL:"
 msgstr "Lees meer URL:"
 
-#: widgets/widget-accordion.php:111
+#: widgets/widget-accordion.php:127
 msgid "If you leave this field empty the read more link will not be displayed in the widget."
 msgstr "Als je dit veld leeg laat, wordt de 'Lees meer' link niet in de widget weergegeven."
 
-#: widgets/widget-accordion.php:116
+#: widgets/widget-accordion.php:132
 msgid "Accordion items"
 msgstr "Accordeon-items"
 
-#: widgets/widget-accordion.php:132
-#: widgets/widget-banner.php:79
-#: widgets/widget-steps.php:194
+#: widgets/widget-accordion.php:148
+#: widgets/widget-banner.php:86
+#: widgets/widget-steps.php:211
 msgid "Content:"
 msgstr "Inhoud:"
 
-#: widgets/widget-accordion.php:137
+#: widgets/widget-accordion.php:153
 msgid "Remove Item"
 msgstr "Item verwijderen"
 
-#: widgets/widget-accordion.php:145
+#: widgets/widget-accordion.php:161
 #: widgets/widget-pricing-list.php:151
 msgid "Add New Item"
 msgstr "Nieuw item toevoegen"
@@ -172,11 +172,11 @@ msgstr "Auteur"
 msgid "Displays author details with a gravatar photo."
 msgstr "Geeft gegevens van auteur weer met een gravatar."
 
-#: widgets/widget-author.php:76
+#: widgets/widget-author.php:80
 msgid "Display author:"
 msgstr "Auteur weergeven:"
 
-#: widgets/widget-author.php:86
+#: widgets/widget-author.php:90
 #, php-format
 msgid "To add the social icons to this widget, please install the %sExtra User Details%s plugin and fill in the details in the &quot;Users&quot; section."
 msgstr "Om sociale pictogrammen aan deze widget toe te voegen, dien je de %sExtra Gebruikersgegevens%s plug-in te installeren en de gegevens in te vullen in de &quot;Gebruikers&quot; sectie."
@@ -189,9 +189,9 @@ msgstr "Banner"
 msgid "Linkable block with title and content."
 msgstr "Te linken blok met titel en inhoud."
 
-#: widgets/widget-banner.php:87
+#: widgets/widget-banner.php:94
 #: widgets/widget-brochure-box.php:105
-#: widgets/widget-icon-box.php:117
+#: widgets/widget-icon-box.php:125
 #: widgets/widget-social-icons.php:146
 msgid "Open link in new tab"
 msgstr "Link openen in nieuw tabblad"
@@ -221,12 +221,12 @@ msgid "Brochure icon:"
 msgstr "Brochurepictogram:"
 
 #: widgets/widget-brochure-box.php:115
-#: widgets/widget-icon-box.php:122
-#: widgets/widget-number-counter.php:170
-#: widgets/widget-person-profile.php:397
-#: widgets/widget-person-profile.php:536
+#: widgets/widget-icon-box.php:130
+#: widgets/widget-number-counter.php:183
+#: widgets/widget-person-profile.php:424
+#: widgets/widget-person-profile.php:563
 #: widgets/widget-social-icons.php:161
-#: widgets/widget-steps.php:186
+#: widgets/widget-steps.php:203
 #, php-format
 msgid "Click on the icon below or manually select from the %s website."
 msgstr "Klik op het pictogram hieronder of selecteer handmatig van de %s website."
@@ -292,7 +292,7 @@ msgid "With small picture, inline"
 msgstr "Met kleine afbeelding, inline"
 
 #: widgets/widget-featured-page.php:201
-#: widgets/widget-latest-news.php:209
+#: widgets/widget-latest-news.php:220
 msgid "Read more text:"
 msgstr "Lees meer tekst:"
 
@@ -369,23 +369,23 @@ msgstr "Pictogramvak"
 msgid "Linkable block with title, text and font awesome icon."
 msgstr "Te linken blok met geweldig pictogram met titel, tekst en lettertype."
 
-#: widgets/widget-icon-box.php:105
-#: widgets/widget-person-profile.php:391
+#: widgets/widget-icon-box.php:113
+#: widgets/widget-person-profile.php:418
 msgid "Text:"
 msgstr "Tekst:"
 
-#: widgets/widget-icon-box.php:111
+#: widgets/widget-icon-box.php:119
 msgid "URL to any page, optional."
 msgstr "URL naar elke pagina, optioneel."
 
-#: widgets/widget-icon-box.php:121
-#: widgets/widget-number-counter.php:169
-#: widgets/widget-person-profile.php:396
-#: widgets/widget-steps.php:185
+#: widgets/widget-icon-box.php:129
+#: widgets/widget-number-counter.php:182
+#: widgets/widget-person-profile.php:423
+#: widgets/widget-steps.php:202
 msgid "Icon:"
 msgstr "Pictogram:"
 
-#: widgets/widget-icon-box.php:173
+#: widgets/widget-icon-box.php:181
 msgid "Highlight this widget."
 msgstr ""
 
@@ -397,37 +397,37 @@ msgstr "Laatste nieuws"
 msgid "Displays one or more latest posts."
 msgstr "Geeft een of meer van de laatste berichten weer."
 
-#: widgets/widget-latest-news.php:93
+#: widgets/widget-latest-news.php:104
 msgid "By"
 msgstr "Door"
 
-#: widgets/widget-latest-news.php:184
+#: widgets/widget-latest-news.php:195
 msgid "Display type:"
 msgstr "Type weergave:"
 
-#: widgets/widget-latest-news.php:186
+#: widgets/widget-latest-news.php:197
 msgid "Box (one post)"
 msgstr "Vak (één bericht)"
 
-#: widgets/widget-latest-news.php:190
+#: widgets/widget-latest-news.php:201
 msgid "Inline (multiple posts)"
 msgstr "Inline (meerdere berichten)"
 
-#: widgets/widget-latest-news.php:195
-#: widgets/widget-latest-news.php:278
+#: widgets/widget-latest-news.php:206
+#: widgets/widget-latest-news.php:289
 msgid "Post order number from:"
 msgstr "Nummer volgorde berichten vanaf:"
 
-#: widgets/widget-latest-news.php:198
+#: widgets/widget-latest-news.php:209
 msgid "To:"
 msgstr "Aan:"
 
-#: widgets/widget-latest-news.php:204
+#: widgets/widget-latest-news.php:215
 msgid "More news link:"
 msgstr "Link voor meer nieuws:"
 
-#: widgets/widget-latest-news.php:261
-#: widgets/widget-latest-news.php:274
+#: widgets/widget-latest-news.php:272
+#: widgets/widget-latest-news.php:285
 msgid "Post order number:"
 msgstr "Nummer volgorde berichten:"
 
@@ -439,28 +439,28 @@ msgstr "Nummerteller"
 msgid "Widget with multiple animated counters."
 msgstr "Widget met meerdere geanimeerde tellers."
 
-#: widgets/widget-number-counter.php:140
+#: widgets/widget-number-counter.php:153
 msgid "Counting Speed (in milliseconds):"
 msgstr "Telsnelheid (in milliseconden):"
 
-#: widgets/widget-number-counter.php:146
+#: widgets/widget-number-counter.php:159
 msgid "Counters"
 msgstr "Tellers"
 
-#: widgets/widget-number-counter.php:155
+#: widgets/widget-number-counter.php:168
 msgid "Number:"
 msgstr "Nummer:"
 
-#: widgets/widget-number-counter.php:180
+#: widgets/widget-number-counter.php:193
 msgid "Remove Counter"
 msgstr "Teller verwijderen"
 
-#: widgets/widget-number-counter.php:186
+#: widgets/widget-number-counter.php:199
 msgid "Add New Counter"
 msgstr "Nieuwe teller toevoegen"
 
 #: widgets/widget-opening-time.php:25
-#: widgets/widget-opening-time.php:150
+#: widgets/widget-opening-time.php:159
 msgid "Opening Time"
 msgstr "Openingstijd"
 
@@ -496,31 +496,33 @@ msgstr "Vrijdag"
 msgid "Saturday"
 msgstr "Zaterdag"
 
-#: widgets/widget-opening-time.php:182
+#: widgets/widget-opening-time.php:71
+#: widgets/widget-opening-time.php:191
 msgid "-"
 msgstr "-"
 
-#: widgets/widget-opening-time.php:189
+#: widgets/widget-opening-time.php:72
+#: widgets/widget-opening-time.php:198
 msgid "CLOSED"
 msgstr "GESLOTEN"
 
-#: widgets/widget-opening-time.php:208
+#: widgets/widget-opening-time.php:217
 msgid "opened"
 msgstr "geopend"
 
-#: widgets/widget-opening-time.php:210
+#: widgets/widget-opening-time.php:219
 msgid "to"
 msgstr "van"
 
-#: widgets/widget-opening-time.php:216
+#: widgets/widget-opening-time.php:225
 msgid "Separator between hours:"
 msgstr "Scheidingsteken tussen uren:"
 
-#: widgets/widget-opening-time.php:221
+#: widgets/widget-opening-time.php:230
 msgid "Text used for closed days:"
 msgstr "Tekst gebruikt voor gesloten dagen:"
 
-#: widgets/widget-opening-time.php:226
+#: widgets/widget-opening-time.php:235
 msgid "Text below the timetable for additional info (for example lunch time):"
 msgstr "Tekst onder het tijdsrooster voor aanvullende info (b.v. lunchtijd):"
 
@@ -532,29 +534,29 @@ msgstr "Persoonsprofiel"
 msgid "Widget displaying person's profile with a photo."
 msgstr "Widget die persoonsprofiel met een foto weergeeft."
 
-#: widgets/widget-person-profile.php:117
+#: widgets/widget-person-profile.php:144
 msgid "Picture of"
 msgstr "Foto van"
 
-#: widgets/widget-person-profile.php:118
+#: widgets/widget-person-profile.php:145
 msgid "Meet me on:"
 msgstr "Ontmoet me op:"
 
-#: widgets/widget-person-profile.php:363
+#: widgets/widget-person-profile.php:390
 msgid "Introduction:"
 msgstr "Introductie:"
 
-#: widgets/widget-person-profile.php:535
+#: widgets/widget-person-profile.php:562
 #: widgets/widget-social-icons.php:160
 msgid "Select social icon:"
 msgstr "Sociaal pictogram selecteren:"
 
-#: widgets/widget-person-profile.php:545
+#: widgets/widget-person-profile.php:572
 #: widgets/widget-social-icons.php:170
 msgid "Remove Social Icon"
 msgstr "Sociaal pictogram verwijderen"
 
-#: widgets/widget-person-profile.php:551
+#: widgets/widget-person-profile.php:578
 #: widgets/widget-social-icons.php:176
 msgid "Add New Social Icon"
 msgstr "Nieuw sociaal pictogram toevoegen"
@@ -568,7 +570,7 @@ msgid "Displays a simple pricing list"
 msgstr ""
 
 #: widgets/widget-pricing-list.php:106
-#: widgets/widget-steps.php:161
+#: widgets/widget-steps.php:178
 msgid "Widget title:"
 msgstr "Titel widget:"
 
@@ -584,7 +586,7 @@ msgstr ""
 msgid "Price:"
 msgstr ""
 
-#: widgets/widget-person-profile.php:423
+#: widgets/widget-person-profile.php:450
 #: widgets/widget-pricing-list.php:143
 msgid "Remove item"
 msgstr "Item verwijderen"
@@ -597,11 +599,11 @@ msgstr "Skype"
 msgid "Linkable block with Skype or telephone icon."
 msgstr "Te linken blok met Skype- of telefoonpictogram."
 
-#: widgets/widget-skype.php:77
+#: widgets/widget-skype.php:82
 msgid "Skype username:"
 msgstr "Gebruikersnaam Skype:"
 
-#: widgets/widget-skype.php:79
+#: widgets/widget-skype.php:84
 #, php-format
 msgid "Examples of use: %1$sskype:your_skype_username%2$s or %1$stel:your_phone_number%2$s."
 msgstr "Voorbeelden van gebruik: %1$sskype:your_skype_username%2$s of %1$stel:your_phone_number%2$s."
@@ -622,53 +624,53 @@ msgstr "Stappen"
 msgid "Displays multiple steps for your process."
 msgstr "Meerdere stappen voor je proces weergeven."
 
-#: widgets/widget-steps.php:176
+#: widgets/widget-steps.php:193
 msgid "Steps:"
 msgstr "Stappen:"
 
-#: widgets/widget-steps.php:200
+#: widgets/widget-steps.php:217
 msgid "Step:"
 msgstr "Stap:"
 
-#: widgets/widget-steps.php:214
+#: widgets/widget-steps.php:231
 msgid "Remove Step"
 msgstr "Stap verwijderen"
 
-#: widgets/widget-steps.php:220
+#: widgets/widget-steps.php:237
 msgid "Add New Step"
 msgstr "Nieuwe stap toevoegen"
 
 #: widgets/widget-testimonials.php:42
-#: widgets/widget-testimonials.php:263
+#: widgets/widget-testimonials.php:290
 msgid "Testimonials"
 msgstr "Getuigschriften"
 
-#: widgets/widget-testimonials.php:279
+#: widgets/widget-testimonials.php:306
 msgid "Quote:"
 msgstr "Citaat:"
 
-#: widgets/widget-testimonials.php:284
+#: widgets/widget-testimonials.php:311
 msgid "Author:"
 msgstr "Auteur:"
 
-#: widgets/widget-testimonials.php:290
+#: widgets/widget-testimonials.php:317
 msgid "Author description:"
 msgstr "Beschrijving auteur:"
 
-#: widgets/widget-testimonials.php:297
+#: widgets/widget-testimonials.php:324
 msgid "Author avatar:"
 msgstr "Avatar van auteur:"
 
-#: widgets/widget-person-profile.php:495
-#: widgets/widget-testimonials.php:305
+#: widgets/widget-person-profile.php:522
+#: widgets/widget-testimonials.php:332
 msgid "Rating:"
 msgstr "Beoordeling:"
 
-#: widgets/widget-testimonials.php:320
+#: widgets/widget-testimonials.php:347
 msgid "Remove Testimonial"
 msgstr "Getuigschrift verwijderen"
 
-#: widgets/widget-testimonials.php:331
+#: widgets/widget-testimonials.php:358
 msgid "Add New Testimonial"
 msgstr "Nieuw getuigschrift toevoegen"
 
@@ -685,158 +687,158 @@ msgstr ""
 msgid "If you want to edit the image and text of this widget, please %sread this article%s."
 msgstr ""
 
-#: widgets/widget-latest-news.php:188
+#: widgets/widget-latest-news.php:199
 msgid "Featured (one post)"
 msgstr ""
 
-#: widgets/widget-latest-news.php:215
+#: widgets/widget-latest-news.php:226
 msgid "Posts from (author):"
 msgstr ""
 
-#: widgets/widget-latest-news.php:217
+#: widgets/widget-latest-news.php:228
 msgid "All users"
 msgstr ""
 
-#: widgets/widget-latest-news.php:227
+#: widgets/widget-latest-news.php:238
 msgid "Posts from (category):"
 msgstr ""
 
-#: widgets/widget-latest-news.php:229
+#: widgets/widget-latest-news.php:240
 msgid "All categories"
 msgstr ""
 
-#: widgets/widget-number-counter.php:161
+#: widgets/widget-number-counter.php:174
 msgid "Progress bar value:"
 msgstr ""
 
-#: widgets/widget-number-counter.php:163
+#: widgets/widget-number-counter.php:176
 msgid "Input a number from 0 to 100, which corresponds to the percentage of the progress bar."
 msgstr ""
 
-#: widgets/widget-person-profile.php:300
+#: widgets/widget-person-profile.php:327
 msgid "Link (URL):"
 msgstr ""
 
-#: widgets/widget-person-profile.php:307
+#: widgets/widget-person-profile.php:334
 msgid "Label:"
 msgstr ""
 
-#: widgets/widget-person-profile.php:327
+#: widgets/widget-person-profile.php:354
 msgid "Location:"
 msgstr ""
 
-#: widgets/widget-person-profile.php:334
+#: widgets/widget-person-profile.php:361
 msgid "Specific location:"
 msgstr ""
 
-#: widgets/widget-person-profile.php:341
+#: widgets/widget-person-profile.php:368
 msgid "Button/CTA"
 msgstr ""
 
-#: widgets/widget-person-profile.php:342
+#: widgets/widget-person-profile.php:369
 msgid "To disable the CTA button, just leave the button text field empty."
 msgstr ""
 
-#: widgets/widget-person-profile.php:345
+#: widgets/widget-person-profile.php:372
 msgid "Button text:"
 msgstr ""
 
-#: widgets/widget-person-profile.php:350
+#: widgets/widget-person-profile.php:377
 msgid "Button URL:"
 msgstr ""
 
-#: widgets/widget-person-profile.php:356
+#: widgets/widget-person-profile.php:383
 msgid "Open button link in new tab!"
 msgstr ""
 
-#: widgets/widget-person-profile.php:370
+#: widgets/widget-person-profile.php:397
 msgid "Tags:"
 msgstr ""
 
-#: widgets/widget-person-profile.php:373
+#: widgets/widget-person-profile.php:400
 msgid "Separate the tags with a comma. Example: first tag, second tag, third tag"
 msgstr ""
 
-#: widgets/widget-person-profile.php:380
-#: widgets/widget-steps.php:170
+#: widgets/widget-person-profile.php:407
+#: widgets/widget-steps.php:187
 msgid "Open links in new tab"
 msgstr ""
 
-#: widgets/widget-person-profile.php:387
+#: widgets/widget-person-profile.php:414
 msgid "Icon list items:"
 msgstr ""
 
-#: widgets/widget-person-profile.php:405
-#: widgets/widget-person-profile.php:455
-#: widgets/widget-steps.php:207
+#: widgets/widget-person-profile.php:432
+#: widgets/widget-person-profile.php:482
+#: widgets/widget-steps.php:224
 msgid "URL:"
 msgstr ""
 
-#: widgets/widget-person-profile.php:411
+#: widgets/widget-person-profile.php:438
 msgid "Set this item as featured!"
 msgstr ""
 
-#: widgets/widget-person-profile.php:413
+#: widgets/widget-person-profile.php:440
 msgid "It will make this item bigger and display a description as well."
 msgstr ""
 
-#: widgets/widget-person-profile.php:430
+#: widgets/widget-person-profile.php:457
 msgid "Add new item"
 msgstr ""
 
-#: widgets/widget-person-profile.php:439
+#: widgets/widget-person-profile.php:466
 msgid "Carousel items:"
 msgstr ""
 
-#: widgets/widget-person-profile.php:442
+#: widgets/widget-person-profile.php:469
 msgid "Note: in order to have a smooth transition between your images, please use images with equal size. If you also have a video in the carousel, then use images with 16:9 ratio."
 msgstr ""
 
-#: widgets/widget-person-profile.php:447
+#: widgets/widget-person-profile.php:474
 msgid "Media type:"
 msgstr ""
 
-#: widgets/widget-person-profile.php:449
+#: widgets/widget-person-profile.php:476
 msgid "Image"
 msgstr ""
 
-#: widgets/widget-person-profile.php:450
+#: widgets/widget-person-profile.php:477
 msgid "Video"
 msgstr ""
 
-#: widgets/widget-person-profile.php:463
+#: widgets/widget-person-profile.php:490
 msgid "https://www.proteusthemes.com"
 msgstr ""
 
-#: widgets/widget-person-profile.php:464
+#: widgets/widget-person-profile.php:491
 msgid "Optional. Works only with Image media type. If set, the image will link to the specified URL."
 msgstr ""
 
-#: widgets/widget-person-profile.php:470
+#: widgets/widget-person-profile.php:497
 msgid "Remove Carousel Item"
 msgstr ""
 
-#: widgets/widget-person-profile.php:476
+#: widgets/widget-person-profile.php:503
 msgid "Add New Carousel Item"
 msgstr ""
 
-#: widgets/widget-person-profile.php:486
+#: widgets/widget-person-profile.php:513
 msgid "Skills:"
 msgstr ""
 
-#: widgets/widget-person-profile.php:497
+#: widgets/widget-person-profile.php:524
 msgid "Don't show"
 msgstr ""
 
-#: widgets/widget-person-profile.php:509
+#: widgets/widget-person-profile.php:536
 msgid "Remove Skill"
 msgstr ""
 
-#: widgets/widget-person-profile.php:515
+#: widgets/widget-person-profile.php:542
 msgid "Add New Skill"
 msgstr ""
 
-#: widgets/widget-person-profile.php:526
+#: widgets/widget-person-profile.php:553
 msgid "Social icons:"
 msgstr ""
 
@@ -844,6 +846,6 @@ msgstr ""
 msgid "Pricing list"
 msgstr ""
 
-#: widgets/widget-testimonials.php:272
+#: widgets/widget-testimonials.php:299
 msgid "Testimonial"
 msgstr ""
