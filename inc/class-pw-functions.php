@@ -140,7 +140,11 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 
 			foreach ( $sizes as $size ) {
 				$img = wp_get_attachment_image_src( $img_id, $size );
-				$srcset[] = sprintf( '%s %sw', $img[0], $img[1] ); //
+				if ( ! is_array( $img ) || ! isset( $img[0], $img[1] ) ) {
+					continue;
+				}
+
+				$srcset[] = sprintf( '%s %sw', $img[0], $img[1] );
 			}
 
 			return implode( ', ' , $srcset );
