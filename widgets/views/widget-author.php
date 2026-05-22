@@ -9,7 +9,7 @@
 		</a>
 	</div>
 	<div class="row widget-author__content">
-		<div class="col-xs-10  col-xs-offset-1">
+		<div class="col-10  col-xs-10  offset-1  col-xs-offset-1">
 			<?php echo wp_kses_post( $author_meta_name ); ?>
 			<?php echo esc_html( $author_meta_description ); ?>
 
