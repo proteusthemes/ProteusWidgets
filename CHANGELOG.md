@@ -8,6 +8,12 @@ This file documents the v3.x → 5.0 line. The parallel 4.x line (used by Woonde
 
 ## [Unreleased]
 
+## [5.0.1] – 2026-05-22
+
+### Fixed
+
+- `PW_Functions::get_attachment_image_srcs()` now skips sizes where `wp_get_attachment_image_src()` returns `false` (or any non-array), preventing PHP warnings when an attachment is missing or a requested size is unavailable (#20, #21).
+
 ## [5.0.0] – 2026-05-21
 
 > Major release. Downstream theme maintainers consuming ProteusWidgets via Composer should review the **Breaking changes** section below before upgrading from 3.16.x.
@@ -46,5 +52,6 @@ This file documents the v3.x → 5.0 line. The parallel 4.x line (used by Woonde
 - Travis CI configuration (`aa4b637`) — replaced by GitHub Actions.
 - `Gruntfile.js`-driven i18n — superseded by WP-CLI scripts.
 
-[Unreleased]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.0...HEAD
+[Unreleased]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.1...HEAD
+[5.0.1]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.0...v5.0.1
 [5.0.0]: https://github.com/proteusthemes/ProteusWidgets/compare/v3.16.14...v5.0.0
