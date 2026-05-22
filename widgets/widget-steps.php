@@ -78,8 +78,25 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'   => '',
+				'items'   => array(),
+				'new_tab' => '',
+			) );
+
 			// Prepare data for template
-			$items = isset( $instance['items'] ) ? array_values( $instance['items'] ) : array();
+			$items = is_array( $instance['items'] ) ? array_values( $instance['items'] ) : array();
+			foreach ( $items as $key => $item ) {
+				$items[ $key ] = wp_parse_args( (array) $item, array(
+					'id'      => 1,
+					'title'   => '',
+					'icon'    => '',
+					'content' => '',
+					'step'    => '',
+					'url'     => '',
+				) );
+			}
+
 			$instance['title_is_set'] = ! empty( $instance['title'] );
 			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base );
 

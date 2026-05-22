@@ -66,8 +66,15 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'           => '',
+				'separator'       => esc_html__( '-' , 'proteuswidgets' ),
+				'closed_text'     => esc_html__( 'CLOSED' , 'proteuswidgets' ),
+				'additional_info' => '',
+			) );
+
 			// Prepare data for template
-			$current_time = intval( time() + ( (double) get_option( 'gmt_offset' ) * 3600 ) );
+			$current_time = intval( time() + ( (float) get_option( 'gmt_offset' ) * 3600 ) );
 			$opening_times = array();
 
 			$i = 0;
@@ -82,7 +89,9 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 				$current_line['class'] = esc_attr( $class );
 
 				if ( isset( $instance[ $day_label . '_opened' ] ) && '1' == $instance[ $day_label . '_opened' ] ) {
-					$current_line['day-time'] = $instance[ $day_label . '_from' ] . $instance['separator'] . $instance[ $day_label . '_to' ];
+					$from = isset( $instance[ $day_label . '_from' ] ) ? $instance[ $day_label . '_from' ] : '8:00';
+					$to   = isset( $instance[ $day_label . '_to' ] ) ? $instance[ $day_label . '_to' ] : '16:00';
+					$current_line['day-time'] = $from . $instance['separator'] . $to;
 				} else {
 					$current_line['day-time'] = $instance['closed_text'];
 				}

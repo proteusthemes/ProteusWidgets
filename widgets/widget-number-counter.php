@@ -63,8 +63,21 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'speed'    => 1000,
+				'counters' => array(),
+			) );
+
 			// Prepare the data for template.
-			$counters = isset( $instance['counters'] ) ? array_values( $instance['counters'] ) : array();
+			$counters = is_array( $instance['counters'] ) ? array_values( $instance['counters'] ) : array();
+			foreach ( $counters as $key => $counter ) {
+				$counters[ $key ] = wp_parse_args( (array) $counter, array(
+					'id'     => 1,
+					'title'  => '',
+					'number' => '',
+					'icon'   => '',
+				) );
+			}
 
 			// The widget-number-counter template rendering.
 			echo $this->template_engine->render_template( apply_filters( 'pw/widget_number_counter_view', 'widget-number-counter' ), array(

@@ -40,12 +40,23 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'type'           => '',
+				'from'           => 1,
+				'to'             => 1,
+				'more_news'      => '',
+				'read_more_text' => '',
+				'author'         => 'none',
+				'category'       => 'none',
+			) );
+
 			$type      = ! empty( $instance['type'] ) ? $instance['type'] : '';
 			$from      = ! empty( $instance['from'] ) ? $instance['from'] : '';
 			$to        = ! empty( $instance['to'] ) ? $instance['to'] : '';
 			$more_news = ! empty( $instance['more_news'] ) ? $instance['more_news'] : '';
 
 			// Prepare data for template.
+			$instance['block']             = false;
 			$instance['link_to_more_news'] = get_permalink( get_option( 'page_for_posts' ) );
 			$instance['read_more_text']    = empty( $instance['read_more_text'] ) ? $this->texts['read_more'] : $instance['read_more_text'];
 

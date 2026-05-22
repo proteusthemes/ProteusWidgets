@@ -46,10 +46,23 @@ tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
 function _register_proteuswidgets_widgets_for_tests() {
 	$widget_classes = array(
 		'PW_About_Us',
+		'PW_Accordion',
+		'PW_Author',
+		'PW_Banner',
 		'PW_Brochure_Box',
 		'PW_Facebook',
 		'PW_Featured_Page',
 		'PW_Google_Map',
+		'PW_Icon_Box',
+		'PW_Latest_News',
+		'PW_Number_Counter',
+		'PW_Opening_Time',
+		'PW_Person_Profile',
+		'PW_Pricing_List',
+		'PW_Skype',
+		'PW_Social_Icons',
+		'PW_Steps',
+		'PW_Testimonials',
 	);
 	foreach ( $widget_classes as $widget_class ) {
 		if ( class_exists( $widget_class ) ) {

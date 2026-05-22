@@ -9,6 +9,10 @@ on:
 jobs:
   phpunit:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        wordpress-version: ['7.0.0', 'latest']
 
     services:
       mysql:
@@ -38,7 +42,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Install WordPress test library
-        run: bin/install-wp-tests.sh wordpress_test root '' 127.0.0.1 latest true
+        run: bin/install-wp-tests.sh wordpress_test root '' 127.0.0.1 ${{ matrix.wordpress-version }} true
 
       - name: Run PHPUnit
         run: vendor/bin/phpunit

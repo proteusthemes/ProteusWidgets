@@ -33,6 +33,13 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'    => '',
+				'content'  => '',
+				'link'     => '',
+				'open_new' => '',
+			) );
+
 			// widget-banner template rendering
 			echo $this->template_engine->render_template( apply_filters( 'pw/widget_banner_view', 'widget-banner' ), array(
 				'args'        => $args,

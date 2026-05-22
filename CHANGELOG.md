@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Breaking changes
 
+- PHP 8.0 or newer is now required. WordPress 7.0 still runs on PHP 7.4, but ProteusWidgets 5.0 depends on `league/plates` releases that require PHP 8+.
 - Removed public method `PW_Functions::get_full_fa_class()`. The Font Awesome class-name helper that expanded shorthand like `fa-facebook` to a fully prefixed FA5 class string is gone with no shim. Themes that called this method directly will fatal on upgrade; replace call sites with the bare Font Awesome class string emitted in the widget option (e.g. `class="fa <icon>"`).
 - Font Awesome class convention changed in view templates. Widget views now hard-code `class="fa <icon>"` (FA4-style single prefix) instead of running the icon string through `get_full_fa_class()`. Themes that override these view files, or that ship CSS targeting `.fab.fa-*` / `.fas.fa-*` / `.far.fa-*` selectors, may need adjustments.
 - Filter `pw/default_social_icon` default value changed from `fab fa-facebook` to `fa-facebook`. The filter name and signature are unchanged.
@@ -28,7 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Edit-page link in the Featured Page widget (#5).
 - WPML config coverage for Person Profile (#11), Adrenaline widgets (#8), Autocomplete (#7), Featured Product (#10), and Featured Page widget (`bf16a06`).
 - `bin/check-dep-age.php` plus `.github/workflows/dep-age.yml`: CI gate that rejects locked dependencies less than 7 days old (closes #19).
-- `.github/workflows/tests.yml`: PHPUnit runs on every PR and push to `master`, against PHP 8.5 with a MySQL 9 service.
+- `.github/workflows/tests.yml`: PHPUnit runs on every PR and push to `master`, against PHP 8.5 with a MySQL 9 service and both WordPress 7.0.0 and latest.
 
 ### Changed
 
@@ -38,12 +39,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - CI now runs on PHP 8.5 with MySQL 9 and `actions/checkout@v6` (`fde0b76`).
 - `LICENSE` replaced with `LICENSE.md` to match the GPL 2.0 only text actually offered (`50a57de`).
 - `composer.json` `license` SPDX id updated from the deprecated `GPL-2.0+` to `GPL-2.0-or-later`.
+- `composer.json` now declares the PHP 8.0+ runtime floor.
 - `league/plates` Composer constraint relaxed from `^3.4.0` to `^3.1.1`.
 - `composer.lock` regenerated; `require-dev` now pins `phpunit/phpunit ^9.6` and `yoast/phpunit-polyfills ^2.0`.
 
 ### Fixed
 
-- Sparse widget instances no longer warn under PHP 8 — `wp_parse_args()` defaults applied before widget rendering (#18, `394f2b9`).
+- Sparse widget instances no longer warn under PHP 8 — `wp_parse_args()` defaults applied before widget rendering (#18, `394f2b9`). Coverage now includes all widget render paths under WordPress 7.0.
+- Opening Time no longer triggers PHP 8.5's non-canonical `(double)` cast deprecation.
 - Featured Page widget: PHP 8 null-safety and WPML translation support (`bf16a06`).
 - Removing a repeater field now triggers the widget save button (`866e722`).
 - PHP 8 deprecation warning from a private magic method in `PW_Functions` (`a714e90`).

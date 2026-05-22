@@ -74,20 +74,47 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'        => 'Testimonials',
+				'autocycle'    => 'no',
+				'interval'     => 5000,
+				'testimonials' => array(
+					array(
+						'id'                 => 1,
+						'quote'              => '',
+						'author'             => '',
+						'rating'             => 5,
+						'author_description' => '',
+						'author_avatar'      => '',
+					),
+				),
+			) );
+
 			// Prepare data for template
 			if ( isset( $instance['quote'] ) ) {
 				$testimonials = array(
 					array(
-						'quote'              => $instance['quote'],
-						'author'             => $instance['author'],
-						'rating'             => $instance['rating'],
-						'author_description' => $instance['author_description'],
-						'author_avatar'      => $instance['author_avatar'],
+						'quote'              => isset( $instance['quote'] ) ? $instance['quote'] : '',
+						'author'             => isset( $instance['author'] ) ? $instance['author'] : '',
+						'rating'             => isset( $instance['rating'] ) ? $instance['rating'] : 5,
+						'author_description' => isset( $instance['author_description'] ) ? $instance['author_description'] : '',
+						'author_avatar'      => isset( $instance['author_avatar'] ) ? $instance['author_avatar'] : '',
 					),
 				);
 			}
 			else {
-				$testimonials = array_values( $instance['testimonials'] );
+				$testimonials = is_array( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array();
+			}
+
+			foreach ( $testimonials as $key => $testimonial ) {
+				$testimonials[ $key ] = wp_parse_args( (array) $testimonial, array(
+					'id'                 => 1,
+					'quote'              => '',
+					'author'             => '',
+					'rating'             => 5,
+					'author_description' => '',
+					'author_avatar'      => '',
+				) );
 			}
 
 			if ( $this->fields['number_of_testimonial_per_slide'] > 0 ) {

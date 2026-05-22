@@ -40,6 +40,14 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'    => '',
+				'text'     => '',
+				'btn_link' => '',
+				'icon'     => '',
+				'new_tab'  => '',
+			) );
+
 			// Prepare data for template
 			$instance['target']   = ! empty ( $instance['new_tab'] ) ? '_blank' : '_self';
 

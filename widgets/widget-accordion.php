@@ -9,6 +9,8 @@
 if ( ! class_exists( 'PW_Accordion' ) ) {
 	class PW_Accordion extends PW_Widget {
 
+		private $current_widget_id;
+
 		public function __construct() {
 
 			// Overwrite the widget variables of the parent class
@@ -29,8 +31,22 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'          => '',
+				'read_more_link' => '',
+				'items'          => array(),
+			) );
+
 			// Prepare data for template
-			$items = isset( $instance['items'] ) ? array_values( $instance['items'] ) : array();
+			$items = is_array( $instance['items'] ) ? array_values( $instance['items'] ) : array();
+			foreach ( $items as $key => $item ) {
+				$items[ $key ] = wp_parse_args( (array) $item, array(
+					'id'      => 1,
+					'title'   => '',
+					'content' => '',
+				) );
+			}
+
 			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
 			$text = array(

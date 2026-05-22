@@ -21,6 +21,12 @@ Individual steps are available as `npm run i18n:pot`, `npm run i18n:po`, and `np
 
 ---
 
+## Testing
+
+Use the full first-release version when pinning a major WordPress release in the test installer. For example, use `7.0.0` instead of `7.0` so the installer resolves the release tag correctly.
+
+---
+
 ## Branch consolidation (2026-02-12)
 
 The `v3` branch has been folded into `master`. Previously, `master` held the v2.x line (Mustache-based, frozen since April 2018) while `v3` (Plates-based) was the active default branch. Since no theme uses v2.x anymore, the branches have been consolidated:

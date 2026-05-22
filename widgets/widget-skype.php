@@ -32,6 +32,11 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'          => '',
+				'skype_username' => '',
+			) );
+
 			// Prepare data for template
 			$instance['icon'] = 'skype' == substr( $instance['skype_username'], 0, 5 ) ? 'skype' : 'phone';
 

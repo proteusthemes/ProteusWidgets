@@ -2,19 +2,69 @@
 
 class SparseWidgetInstancesTest extends WP_UnitTestCase {
 
-	function render_widget( $widget_class, $instance ) {
+	function render_widget( $widget_class, $instance, $message = '' ) {
+		$errors = array();
+
+		set_error_handler( function ( $severity, $error, $file, $line ) use ( &$errors ) {
+			if ( 0 === ( error_reporting() & $severity ) ) {
+				return false;
+			}
+
+			$errors[] = sprintf( '%s:%d %s', basename( $file ), $line, $error );
+			return true;
+		} );
+
 		ob_start();
-		the_widget( $widget_class, $instance, array(
-			'before_widget' => '<div class="test-widget %s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h2>',
-			'after_title'   => '</h2>',
-		) );
-		return ob_get_clean();
+		try {
+			the_widget( $widget_class, $instance, array(
+				'before_widget' => '<div class="test-widget %s">',
+				'after_widget'  => '</div>',
+				'before_title'  => '<h2>',
+				'after_title'   => '</h2>',
+				'widget_id'     => 'test_' . strtolower( $widget_class ),
+			) );
+		}
+		finally {
+			restore_error_handler();
+			$output = ob_get_clean();
+		}
+
+		$this->assertSame( array(), array_values( array_unique( $errors ) ), $message );
+
+		return $output;
 	}
 
 	function assert_output_contains( $needle, $output, $message = '' ) {
 		$this->assertTrue( false !== strpos( $output, $needle ), $message );
+	}
+
+	function test_all_widgets_render_empty_instances_without_php_errors() {
+		$widget_classes = array(
+			'PW_About_Us',
+			'PW_Accordion',
+			'PW_Author',
+			'PW_Banner',
+			'PW_Brochure_Box',
+			'PW_Facebook',
+			'PW_Featured_Page',
+			'PW_Google_Map',
+			'PW_Icon_Box',
+			'PW_Latest_News',
+			'PW_Number_Counter',
+			'PW_Opening_Time',
+			'PW_Person_Profile',
+			'PW_Pricing_List',
+			'PW_Skype',
+			'PW_Social_Icons',
+			'PW_Steps',
+			'PW_Testimonials',
+		);
+
+		foreach ( $widget_classes as $widget_class ) {
+			$this->assertIsString(
+				$this->render_widget( $widget_class, array(), "{$widget_class} should render an empty instance without PHP warnings." )
+			);
+		}
 	}
 
 	function test_brochure_box_renders_empty_instance_with_defaults() {

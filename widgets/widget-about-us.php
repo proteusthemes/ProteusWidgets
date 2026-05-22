@@ -35,11 +35,23 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'autocycle' => 'no',
+				'interval'  => 5000,
+				'people'    => array(
+					array(
+						'id'          => 1,
+						'tag'         => '',
+						'image'       => '',
+						'name'        => '',
+						'description' => '',
+						'link'        => '',
+					),
+				),
+			) );
+
 			// Prepare data for template
-			if ( isset( $instance['people'] ) ) {
-				$people = $instance['people'];
-			}
-			else {
+			if ( ! is_array( $instance['people'] ) ) {
 				$people = array(
 					array(
 						'id'          => 1,
@@ -51,8 +63,21 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 					),
 				);
 			}
+			else {
+				$people = $instance['people'];
+			}
 
 			$people = array_values( $people );
+			foreach ( $people as $key => $person ) {
+				$people[ $key ] = wp_parse_args( (array) $person, array(
+					'id'          => 1,
+					'tag'         => '',
+					'image'       => '',
+					'name'        => '',
+					'description' => '',
+					'link'        => '',
+				) );
+			}
 
 			if ( isset( $people[0] ) ) {
 				$people[0]['active'] = 'active';

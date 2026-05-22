@@ -96,21 +96,48 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'name'              => '',
+				'image'             => '',
+				'new_tab'           => '',
+				'name_link'         => '',
+				'description'       => '',
+				'location'          => '',
+				'specific_location' => '',
+				'cta_text'          => '',
+				'cta_link'          => '',
+				'cta_new_tab'       => '',
+				'label'             => '',
+				'tag'               => '',
+				'tags'              => '',
+				'social_icons'      => array(),
+				'skills'            => array(),
+				'carousel'          => array(),
+				'icon_list_items'   => array(),
+			) );
+
 			// Prepare data for template.
 			if ( $this->fields['social_icons'] ) {
-				$instance['social_icons'] = isset( $instance['social_icons'] ) ? array_values( $instance['social_icons'] ) : array();
+				$instance['social_icons'] = is_array( $instance['social_icons'] ) ? array_values( $instance['social_icons'] ) : array();
+				foreach ( $instance['social_icons'] as $key => $social_icon ) {
+					$instance['social_icons'][ $key ] = wp_parse_args( (array) $social_icon, array(
+						'id'   => 1,
+						'icon' => '',
+						'link' => '',
+					) );
+				}
 			}
 			if ( $this->fields['skills'] ) {
-				$instance['skills'] = ! empty( $instance['skills'] ) ? array_values( $instance['skills'] ) : array();
+				$instance['skills'] = ! empty( $instance['skills'] ) && is_array( $instance['skills'] ) ? array_values( $instance['skills'] ) : array();
 			}
 			if ( $this->fields['carousel_instead_of_image'] ) {
-				$instance['carousel'] = ! empty( $instance['carousel'] ) ? array_values( $instance['carousel'] ) : array();
+				$instance['carousel'] = ! empty( $instance['carousel'] ) && is_array( $instance['carousel'] ) ? array_values( $instance['carousel'] ) : array();
 			}
 			if ( $this->fields['tags'] ) {
 				$instance['tags'] = ! empty( $instance['tags'] ) ? explode( ',', $instance['tags'] ) : array();
 			}
 			if ( $this->fields['icon_list_items'] ) {
-				$instance['icon_list_items'] = ! empty( $instance['icon_list_items'] ) ? array_values( $instance['icon_list_items'] ) : array();
+				$instance['icon_list_items'] = ! empty( $instance['icon_list_items'] ) && is_array( $instance['icon_list_items'] ) ? array_values( $instance['icon_list_items'] ) : array();
 			}
 
 			$text = array(
