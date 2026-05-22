@@ -15,6 +15,7 @@ class PWFunctionsTest extends WP_UnitTestCase {
 	function test_all_methods_exist_and_are_callable() {
 		$methods = array(
 			'get_social_icons_links',
+			'get_attachment_image_srcs',
 		);
 
 		foreach ( $methods as $method ) {
@@ -63,5 +64,45 @@ class PWFunctionsTest extends WP_UnitTestCase {
 			PW_Functions::get_social_icons_links( $array_to_test, 'foo' ),
 			'now the foo can be included'
 		);
+	}
+
+	function test_get_attachment_image_srcs_skips_missing_images() {
+		$this->assertSame(
+			'',
+			PW_Functions::get_attachment_image_srcs( 0, array( 'thumbnail', 'full' ) )
+		);
+	}
+
+	function test_get_attachment_image_srcs_skips_malformed_image_data() {
+		$filter = function( $out, $id, $size ) {
+			if ( 123 !== $id ) {
+				return $out;
+			}
+
+			if ( 'thumbnail' === $size ) {
+				return array( 'https://example.com/thumb.jpg' );
+			}
+
+			if ( 'medium' === $size ) {
+				return 'not-an-array';
+			}
+
+			if ( 'full' === $size ) {
+				return array( 'https://example.com/full.jpg', 1200, 800, false );
+			}
+
+			return $out;
+		};
+
+		add_filter( 'image_downsize', $filter, 10, 3 );
+
+		try {
+			$this->assertSame(
+				'https://example.com/full.jpg 1200w',
+				PW_Functions::get_attachment_image_srcs( 123, array( 'thumbnail', 'medium', 'full' ) )
+			);
+		} finally {
+			remove_filter( 'image_downsize', $filter, 10 );
+		}
 	}
 }
