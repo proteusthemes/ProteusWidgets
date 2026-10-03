@@ -60,9 +60,8 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 			) );
 			$instance = array( 'items' => array() );
 
-			$items = is_array( $new_instance['items'] ) ? $new_instance['items'] : array();
-			foreach ( $items as $key => $item ) {
-				$item = wp_parse_args( (array) $item, array( 'id' => 1, 'title' => '', 'content' => '' ) );
+			foreach ( $this->fill_missing_row_ids( $new_instance['items'] ) as $key => $item ) {
+				$item = wp_parse_args( $item, array( 'title' => '', 'content' => '' ) );
 				$instance['items'][ $key ]['id']      = sanitize_key( $item['id'] );
 				$instance['items'][ $key ]['title']   = wp_kses_post( $item['title'] );
 				$instance['items'][ $key ]['content'] = wp_kses_post( $item['content'] );

@@ -139,6 +139,44 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		$this->assertSame( $saved, $this->update_widget( 'PW_Testimonials', $saved ) );
 	}
 
+	function test_items_without_ids_get_unique_ids() {
+		foreach ( array(
+			'PW_Accordion'      => 'items',
+			'PW_Pricing_List'   => 'items',
+			'PW_Testimonials'   => 'testimonials',
+			'PW_Number_Counter' => 'counters',
+			'PW_Google_Map'     => 'locations',
+		) as $widget_class => $field ) {
+			$saved = $this->update_widget( $widget_class, array( $field => array( array( 'id' => '1' ), array(), array( 'id' => '' ) ) ) );
+			$ids   = array_column( $saved[ $field ], 'id' );
+			$this->assertSame( '1', $ids[0], $widget_class );
+			$this->assertCount( 3, array_unique( $ids ), $widget_class );
+		}
+	}
+
+	function test_testimonials_and_map_render_without_saved_lists() {
+		$args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'pw-1' );
+		set_error_handler( function ( $severity, $message, $file, $line ) {
+			throw new ErrorException( $message, 0, $severity, $file, $line );
+		} );
+		try {
+			foreach ( array( 'PW_Testimonials', 'PW_Google_Map' ) as $widget_class ) {
+				ob_start();
+				try {
+					( new $widget_class() )->widget( $args, array() );
+				}
+				finally {
+					$html = ob_get_clean();
+				}
+				$this->assertNotSame( '', trim( $html ), $widget_class );
+			}
+		}
+		finally {
+			restore_error_handler();
+		}
+		$this->assertStringContainsString( 'data-markers="[]"', $html );
+	}
+
 	function test_sparse_map_markers_can_be_resaved() {
 		$saved = $this->update_widget( 'PW_Google_Map', array( 'locations' => array( array( 'locationlatlng' => '10,20' ) ) ) );
 		$this->assertSame( '10,20', $saved['locations'][0]['locationlatlng'] );

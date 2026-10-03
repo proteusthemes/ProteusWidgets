@@ -33,5 +33,35 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 		function sort_by_id( $a, $b ) {
 			return $a['id'] - $b['id'];
 		}
+
+		/**
+		 * Give setting items without an id the next free id.
+		 * The widget form keeps one item per id, so items sharing an id would be lost.
+		 *
+		 * @param array $items widget setting items.
+		 * @return array
+		 */
+		protected function fill_missing_row_ids( $items ) {
+			$items  = is_array( $items ) ? $items : array();
+			$max_id = -1;
+
+			foreach ( $items as $item ) {
+				if ( is_array( $item ) && isset( $item['id'] ) && is_numeric( $item['id'] ) ) {
+					$max_id = max( $max_id, (int) $item['id'] );
+				}
+			}
+
+			foreach ( $items as $key => $item ) {
+				$item = (array) $item;
+
+				if ( ! isset( $item['id'] ) || '' === $item['id'] ) {
+					$item['id'] = ++$max_id;
+				}
+
+				$items[ $key ] = $item;
+			}
+
+			return $items;
+		}
 	}
 }

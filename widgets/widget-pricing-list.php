@@ -71,8 +71,8 @@ if ( ! class_exists( 'PW_Pricing_List' ) ) {
 			$instance['widget_title'] = sanitize_text_field( $new_instance['widget_title'] );
 
 			if ( is_array( $new_instance['items'] ) ) {
-				foreach ( $new_instance['items'] as $key => $item ) {
-					$item = wp_parse_args( (array) $item, array( 'id' => 1, 'badge' => '', 'title' => '', 'price' => '', 'description' => '' ) );
+				foreach ( $this->fill_missing_row_ids( $new_instance['items'] ) as $key => $item ) {
+					$item = wp_parse_args( $item, array( 'badge' => '', 'title' => '', 'price' => '', 'description' => '' ) );
 					$instance['items'][ $key ]['id']          = sanitize_key( $item['id'] );
 					$instance['items'][ $key ]['badge']       = sanitize_text_field( $item['badge'] );
 					$instance['items'][ $key ]['title']       = sanitize_text_field( $item['title'] );
