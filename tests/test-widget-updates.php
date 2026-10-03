@@ -161,6 +161,54 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'href=""', $this->render_skype( 'javascript:alert(1)' ) );
 	}
 
+	function render_featured_page( $page_id ) {
+		ob_start();
+		( new PW_Featured_Page() )->widget( array( 'before_widget' => '<div>', 'after_widget' => '</div>', 'before_title' => '', 'after_title' => '', 'widget_id' => 'fp-1' ), array( 'page_id' => $page_id, 'layout' => 'inline' ) );
+		return ob_get_clean();
+	}
+
+	function test_featured_page_hides_unpublished_and_protected_text() {
+		foreach ( array( 'private', 'draft', 'trash' ) as $status ) {
+			$page_id = self::factory()->post->create( array( 'post_type' => 'page', 'post_status' => $status, 'post_content' => 'RESTRICTED-BODY' ) );
+			$this->assertSame( '', $this->render_featured_page( $page_id ), $status );
+		}
+		$page_id = self::factory()->post->create( array( 'post_type' => 'page', 'post_title' => 'Protected', 'post_password' => 'secret', 'post_content' => 'RESTRICTED-BODY', 'post_excerpt' => 'RESTRICTED-EXCERPT' ) );
+		$html    = $this->render_featured_page( $page_id );
+		$this->assertStringContainsString( 'Protected', $html );
+		$this->assertStringNotContainsString( 'RESTRICTED', $html );
+		$GLOBALS['post'] = get_post( $page_id );
+		$this->assertSame( '', $this->render_featured_page( 0 ) );
+		$this->assertSame( '', $this->render_featured_page( $page_id + 1000 ) );
+	}
+
+	function test_featured_page_excerpt_drops_shortcodes_separates_blocks_and_cuts_long_words() {
+		foreach ( array(
+			'[gallery ids="1,2"] Text after the gallery.'  => '<p>Text after the gallery.</p>',
+			'<h3>Our Vision</h3><p>Founded in 1979.</p>' => '<p>Our Vision Founded in 1979.</p>',
+			'Start ' . str_repeat( 'b', 400 )             => '<p>Start ' . str_repeat( 'b', 54 ) . ' &hellip;</p>',
+		) as $content => $expected ) {
+			$page_id = self::factory()->post->create( array( 'post_type' => 'page', 'post_content' => $content, 'post_excerpt' => '' ) );
+			$this->assertStringContainsString( $expected, $this->render_featured_page( $page_id ) );
+		}
+	}
+
+	function test_featured_page_without_image_renders_without_warnings() {
+		$page_id = self::factory()->post->create( array( 'post_type' => 'page', 'post_title' => 'No picture' ) );
+		set_error_handler( function ( $severity, $message, $file, $line ) {
+			throw new ErrorException( $message, 0, $severity, $file, $line );
+		} );
+		try {
+			ob_start();
+			( new PW_Featured_Page() )->widget( array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'fp-1' ), array( 'page_id' => $page_id, 'layout' => 'block' ) );
+			$html = ob_get_clean();
+		}
+		finally {
+			restore_error_handler();
+		}
+		$this->assertStringContainsString( 'No picture', $html );
+		$this->assertSame( '', PW_Functions::get_attachment_image_srcs( 0, array( 'pw-page-box', 'full' ) ) );
+	}
+
 	function test_legacy_testimonial_is_preserved_when_resaved() {
 		$saved = $this->update_widget( 'PW_Testimonials', array( 'quote' => '<strong>Great service</strong>', 'author' => 'Customer' ) );
 		$this->assertSame( '<strong>Great service</strong>', $saved['testimonials'][0]['quote'] );
