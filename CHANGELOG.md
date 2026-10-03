@@ -8,6 +8,10 @@ This file documents the v3.x → 5.0 line. The parallel 4.x line (used by Woonde
 
 ## [Unreleased]
 
+### Fixed
+
+- Social Icons, Person Profile and About Us keep percent-encoded characters (such as `%20` or `%C3%A9`) in link and image URLs when saved. Addresses that were already saved without these characters cannot be restored and must be re-entered.
+
 ## [5.0.2] – 2026-10-03
 
 ### Fixed

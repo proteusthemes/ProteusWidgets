@@ -185,7 +185,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 
 			if ( $this->fields['cta'] ) {
 				$instance['cta_text']    = sanitize_text_field( $new_instance['cta_text'] );
-				$instance['cta_link']    = sanitize_text_field( $new_instance['cta_link'] );
+				$instance['cta_link']    = esc_url_raw( trim( $new_instance['cta_link'] ) );
 				$instance['cta_new_tab'] = ! empty( $new_instance['cta_new_tab'] ) ? sanitize_key( $new_instance['cta_new_tab'] ) : '';
 			}
 

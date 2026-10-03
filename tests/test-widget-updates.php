@@ -106,6 +106,16 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		$this->assertSame( '', $saved['show_facepile'] );
 	}
 
+	function test_percent_encoded_urls_survive_saving() {
+		$link  = 'https://example.com/caf%C3%A9/my%20page/?q=a%26b';
+		$image = 'https://example.com/uploads/team%20photo.jpg';
+		$saved = $this->update_widget( 'PW_Social_Icons', array( 'social_icons' => array( array( 'id' => '1', 'link' => $link . ' ', 'icon' => 'fa-facebook' ) ) ) );
+		$this->assertSame( $link, $saved['social_icons'][0]['link'] );
+		$saved = $this->update_widget( 'PW_About_Us', array( 'autocycle' => 'no', 'interval' => 5000, 'people' => array( array( 'id' => '1', 'tag' => '', 'image' => $image, 'name' => '', 'description' => '', 'link' => $link ) ) ) );
+		$this->assertSame( $image, $saved['people'][0]['image'] );
+		$this->assertSame( $link, $saved['people'][0]['link'] );
+	}
+
 	function test_legacy_testimonial_is_preserved_when_resaved() {
 		$saved = $this->update_widget( 'PW_Testimonials', array( 'quote' => '<strong>Great service</strong>', 'author' => 'Customer' ) );
 		$this->assertSame( '<strong>Great service</strong>', $saved['testimonials'][0]['quote'] );
