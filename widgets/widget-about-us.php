@@ -47,6 +47,11 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 
 			$people = PW_Functions::reorder_widget_array_key_values( $people );
 
+			foreach ( $people as $key => $person ) {
+				$people[ $key ]['image'] = esc_url( isset( $person['image'] ) ? $person['image'] : '' );
+				$people[ $key ]['link']  = esc_url( isset( $person['link'] ) ? $person['link'] : '' );
+			}
+
 			if ( isset( $people[0] ) ) {
 				$people[0]['active'] = 'active';
 			}
@@ -99,10 +104,10 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 				$person = wp_parse_args( $person, array( 'id' => $key, 'tag' => '', 'image' => '', 'name' => '', 'description' => '', 'link' => '' ) );
 				$instance['people'][ $key ]['id']          = sanitize_key( $person['id'] );
 				$instance['people'][ $key ]['tag']         = sanitize_text_field( $person['tag'] );
-				$instance['people'][ $key ]['image']       = sanitize_text_field( $person['image'] );
+				$instance['people'][ $key ]['image']       = esc_url_raw( trim( $person['image'] ) );
 				$instance['people'][ $key ]['name']        = sanitize_text_field( $person['name'] );
 				$instance['people'][ $key ]['description'] = sanitize_text_field( $person['description'] );
-				$instance['people'][ $key ]['link']        = sanitize_text_field( $person['link'] );
+				$instance['people'][ $key ]['link']        = esc_url_raw( trim( $person['link'] ) );
 			}
 
 			return $instance;

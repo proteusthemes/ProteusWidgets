@@ -55,7 +55,8 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 			$title                  = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 			$instance['title']      = ! empty( $title ) ? $args['before_title'] . $title . $args['after_title'] : '';
 			$instance['height']     = absint( $instance['height'] );
-			$instance['background'] = esc_attr( $instance['background'] );
+			$background             = sanitize_hex_color( isset( $instance['background'] ) ? $instance['background'] : '' );
+			$instance['background'] = $background ? $background : '#ffffff';
 
 			// params for the iframe
 			// @see https://developers.facebook.com/docs/plugins/page-plugin
@@ -102,7 +103,8 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 			$instance['colorscheme'] = sanitize_key( $new_instance['colorscheme'] );
 			$instance['like_link']   = esc_url_raw( $new_instance['like_link'] );
 			$instance['height']      = absint( $new_instance['height'] );
-			$instance['background']  = esc_attr( $new_instance['background'] );
+			$background              = sanitize_hex_color( isset( $new_instance['background'] ) ? $new_instance['background'] : '' );
+			$instance['background']  = $background ? $background : '#ffffff';
 
 			return $instance;
 		}

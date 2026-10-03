@@ -6,7 +6,7 @@
 				<div class="item {{ active }}">
 					{{# tag }}
 						{{# link }}
-							<a href="{{ link }}" class="about-us__tag">{{ tag }}</a>
+							<a href="{{{ link }}}" class="about-us__tag">{{ tag }}</a>
 						{{/ link }}
 						{{^ link }}
 							<div class="about-us__tag">{{ tag }}</div>
@@ -14,13 +14,13 @@
 					{{/ tag }}
 
 					{{# image }}
-						<img class="about-us__image" src="{{ image }}" alt="{{ text.image-alt }}" />
+						<img class="about-us__image" src="{{{ image }}}" alt="{{ text.image-alt }}" />
 					{{/ image }}
 
 					<h5 class="about-us__name">{{ name }}</h5>
 					<p class="about-us__description">{{ description }}</p>
 					{{# link }}
-						<a href="{{ link }}" class="read-more  about-us__link">{{ text.read-more }}</a>
+						<a href="{{{ link }}}" class="read-more  about-us__link">{{ text.read-more }}</a>
 					{{/ link }}
 				</div>
 			{{/ people }}
