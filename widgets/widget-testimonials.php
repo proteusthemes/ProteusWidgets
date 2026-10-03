@@ -114,7 +114,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			if ( $this->fields['number_of_testimonial_per_slide'] > 0 ) {
 				$instance['spans'] = '12';
 
-				if ( 2 === $this->fields['number_of_testimonial_per_slide'] && ! count( $testimonials ) < 2 ) {
+				if ( 2 === $this->fields['number_of_testimonial_per_slide'] && count( $testimonials ) >= 2 ) {
 					$instance['spans'] = '6';
 				}
 				elseif ( 3 === $this->fields['number_of_testimonial_per_slide'] ) {
@@ -238,7 +238,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		 */
 		public function form( $instance ) {
 			if ( $this->supports_multiple_testimonials ) {
-				$title     = empty( $instance['title'] ) ? 'Testimonials' : $instance['title'];
+				$title     = isset( $instance['title'] ) ? $instance['title'] : 'Testimonials';
 				$autocycle = empty( $instance['autocycle'] ) ? 'no' : $instance['autocycle'];
 				$interval  = empty( $instance['interval'] ) ? 5000 : $instance['interval'];
 			}

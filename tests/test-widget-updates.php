@@ -368,4 +368,25 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 			$this->assertStringContainsString( 'name="' . $widget->get_field_name( $field . '_ready' ) . '" value="1" disabled', $form, $widget_class );
 		}
 	}
+
+	function test_testimonials_form_keeps_a_cleared_title() {
+		$widget = new PW_Testimonials();
+		$widget->_set( 2 );
+		foreach ( array( 'Testimonials' => array(), '' => array( 'title' => '' ) ) as $expected => $instance ) {
+			ob_start();
+			$widget->form( $instance );
+			$this->assertStringContainsString( 'name="' . $widget->get_field_name( 'title' ) . '" type="text" value="' . $expected . '"', ob_get_clean() );
+		}
+	}
+
+	function test_testimonials_use_the_full_width_for_a_single_testimonial() {
+		$one = array( 'id' => 1, 'quote' => 'Q', 'author' => 'A', 'rating' => 5 );
+		$this->assertStringContainsString( 'col-sm-12', $this->render_widget( 'PW_Testimonials', array( 'testimonials' => array( $one ) ) ) );
+		$this->assertStringContainsString( 'col-sm-6', $this->render_widget( 'PW_Testimonials', array( 'testimonials' => array( $one, array( 'id' => 2 ) + $one ) ) ) );
+	}
+
+	function test_testimonials_without_a_title_print_no_heading() {
+		$args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '<h2>', 'after_title' => '</h2>', 'widget_id' => 'pw-1' );
+		$this->assertStringNotContainsString( '<h2>', $this->render_widget( 'PW_Testimonials', array( 'title' => '', 'testimonials' => array( array( 'id' => 1, 'quote' => 'Q' ) ) ), $args ) );
+	}
 }

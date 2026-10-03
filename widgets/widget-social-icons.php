@@ -44,7 +44,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 					'fab fa-flickr',
 					'fab fa-vimeo',
 					'fab fa-linkedin',
-					'fab fa-dribble',
+					'fab fa-dribbble',
 					'fab fa-wordpress',
 					'fas fa-rss',
 					'fab fa-github',
@@ -75,6 +75,10 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 					'link' => '',
 					'icon' => '',
 				) );
+
+				if ( 'fab fa-dribble' === $instance['social_icons'][ $i ]['icon'] ) {
+					$instance['social_icons'][ $i ]['icon'] = 'fab fa-dribbble';
+				}
 			}
 			$instance['target'] = ! empty ( $instance['new_tab'] ) ? '_blank' : '_self';
 

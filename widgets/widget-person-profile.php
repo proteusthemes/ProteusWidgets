@@ -59,7 +59,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 					'fab fa-flickr',
 					'fab fa-vimeo',
 					'fab fa-linkedin',
-					'fab fa-dribble',
+					'fab fa-dribbble',
 					'fab fa-wordpress',
 					'fas fa-rss',
 					'fab fa-github',
@@ -125,6 +125,10 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 						'icon' => '',
 						'link' => '',
 					) );
+
+					if ( 'fab fa-dribble' === $instance['social_icons'][ $key ]['icon'] ) {
+						$instance['social_icons'][ $key ]['icon'] = 'fab fa-dribbble';
+					}
 				}
 			}
 			if ( $this->fields['skills'] ) {
