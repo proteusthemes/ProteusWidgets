@@ -183,4 +183,44 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		$this->assertSame( '', $saved['locations'][0]['custompinimage'] );
 		$this->assertSame( $saved, $this->update_widget( 'PW_Google_Map', $saved ) );
 	}
+
+	function test_non_numeric_ids_can_be_saved() {
+		foreach ( array(
+			'PW_Accordion'    => 'items',
+			'PW_Pricing_List' => 'items',
+			'PW_Testimonials' => 'testimonials',
+		) as $widget_class => $field ) {
+			$saved = $this->update_widget( $widget_class, array( $field => array( array( 'id' => 'abc' ), array( 'id' => 'x' ) ) ) );
+			$this->assertSame( array( 'abc', 'x' ), array_column( $saved[ $field ], 'id' ), $widget_class );
+		}
+	}
+
+	function test_malformed_lists_and_rows_do_not_throw() {
+		$args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'pw-1' );
+		$rows = array( array( 'id' => '0', 'title' => 'Kept', 'content' => '', 'quote' => 'Kept' ), 'oops' );
+		set_error_handler( '__return_true' );
+		ob_start();
+		try {
+			( new PW_Social_Icons() )->update( array( 'social_icons' => $rows ), array() );
+			( new PW_Accordion() )->widget( $args, array( 'items' => 'oops' ) );
+			( new PW_Accordion() )->widget( $args, array( 'items' => $rows ) );
+			( new PW_Testimonials() )->widget( $args, array( 'testimonials' => $rows ) );
+			( new PW_Testimonials() )->form( array( 'testimonials' => 'oops' ) );
+		}
+		finally {
+			$html = ob_get_clean();
+			restore_error_handler();
+		}
+		$this->assertSame( 2, substr_count( $html, 'Kept' ) );
+		$this->assertStringContainsString( 'var testimonialsJSON = [];', $html );
+	}
+
+	function test_testimonial_rating_is_rendered_as_zero_to_five_stars() {
+		$args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'pw-1' );
+		foreach ( array( 'abc' => 0, '999' => 5, '3' => 3 ) as $rating => $stars ) {
+			ob_start();
+			( new PW_Testimonials() )->widget( $args, array( 'testimonials' => array( array( 'id' => '0', 'quote' => 'Q', 'author' => 'A', 'author_description' => '', 'author_avatar' => '', 'rating' => (string) $rating ) ) ) );
+			$this->assertSame( $stars, substr_count( ob_get_clean(), 'fa-star' ), (string) $rating );
+		}
+	}
 }

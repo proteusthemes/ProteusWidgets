@@ -31,7 +31,7 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 		 * @param int $b second comparable parameter.
 		 */
 		function sort_by_id( $a, $b ) {
-			return $a['id'] - $b['id'];
+			return (int) $a['id'] <=> (int) $b['id'];
 		}
 
 		/**

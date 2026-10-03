@@ -94,7 +94,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				);
 			}
 			else {
-				$testimonials = is_array( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array();
+				$testimonials = array_values( $this->fill_missing_row_ids( $instance['testimonials'] ) );
 			}
 
 			if ( $this->fields['number_of_testimonial_per_slide'] > 0 ) {
@@ -129,7 +129,8 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				}
 
 				if ( $this->fields['rating'] && isset( $testimonials[ $key ]['rating'] ) ) {
-					$testimonials[ $key ]['rating'] = ( $testimonials[ $key ]['rating'] > 0 ) ? range( 0, ( $testimonials[ $key ]['rating'] - 1 ) ) : 0;
+					$rating                         = PW_Functions::bound( (int) $testimonials[ $key ]['rating'], 0, 5 );
+					$testimonials[ $key ]['rating'] = ( $rating > 0 ) ? range( 0, $rating - 1 ) : 0;
 					$testimonials[ $key ]['display-ratings'] = $testimonials[ $key ]['rating'] > 0;
 				}
 			}
@@ -240,7 +241,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				);
 			}
 			else {
-				$testimonials = isset( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array(
+				$testimonials = isset( $instance['testimonials'] ) ? array_values( $this->fill_missing_row_ids( $instance['testimonials'] ) ) : array(
 					array(
 						'id'                 => 1,
 						'quote'              => '',

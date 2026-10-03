@@ -30,7 +30,7 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for template
-			$items = isset( $instance['items'] ) ? array_values( $instance['items'] ) : array();
+			$items = isset( $instance['items'] ) ? array_values( $this->fill_missing_row_ids( $instance['items'] ) ) : array();
 			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
 			$text = array(
