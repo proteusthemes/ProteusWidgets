@@ -31,6 +31,10 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			if ( empty( $args['widget_id'] ) ) {
+				$args['widget_id'] = wp_unique_id( $this->id_base . '-' );
+			}
+
 			$instance = wp_parse_args( (array) $instance, array(
 				'title'          => '',
 				'read_more_link' => '',

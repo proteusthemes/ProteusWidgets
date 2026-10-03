@@ -46,6 +46,15 @@ if ( ! class_exists( 'PW_Pricing_List' ) ) {
 			$items                    = isset( $instance['items'] ) ? $this->fill_missing_row_ids( $instance['items'] ) : array();
 			$instance['widget_title'] = empty( $instance['widget_title'] ) ? '' : apply_filters( 'widget_title', $instance['widget_title'], $instance );
 
+			foreach ( $items as $key => $item ) {
+				$items[ $key ] = wp_parse_args( (array) $item, array(
+					'badge'       => '',
+					'title'       => '',
+					'price'       => '',
+					'description' => '',
+				) );
+			}
+
 			// widget-pricing-list template rendering.
 			echo $this->template_engine->render_template( apply_filters( 'pw/widget_pricing_list_view', 'widget-pricing-list' ), array(
 				'args'         => $args,

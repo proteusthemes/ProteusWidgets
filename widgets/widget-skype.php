@@ -54,6 +54,10 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title'          => '',
+				'skype_username' => '',
+			) );
 			$instance = array();
 
 			$instance['title']          = wp_kses_post( $new_instance['title'] );

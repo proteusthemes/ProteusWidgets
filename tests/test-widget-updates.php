@@ -235,4 +235,39 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 			$this->assertSame( $stars, substr_count( ob_get_clean(), 'fa-star' ), (string) $rating );
 		}
 	}
+
+	function test_unopened_widgets_and_sparse_rows_save_without_php_messages() {
+		foreach ( array(
+			'PW_About_Us'       => array( 'people' => array( array() ) ),
+			'PW_Author'         => array(),
+			'PW_Banner'         => array(),
+			'PW_Brochure_Box'   => array(),
+			'PW_Icon_Box'       => array(),
+			'PW_Latest_News'    => array(),
+			'PW_Person_Profile' => array( 'social_icons' => array( array() ) ),
+			'PW_Skype'          => array(),
+			'PW_Social_Icons'   => array( 'social_icons' => array( array() ) ),
+			'PW_Steps'          => array( 'items' => array( array() ) ),
+		) as $widget_class => $sparse_rows ) {
+			$this->assertIsArray( $this->update_widget( $widget_class, array() ), $widget_class );
+			$this->assertIsArray( $this->update_widget( $widget_class, $sparse_rows ), $widget_class );
+		}
+	}
+
+	function test_emptied_lists_are_stored_as_empty_lists() {
+		foreach ( array(
+			'PW_About_Us'     => 'people',
+			'PW_Social_Icons' => 'social_icons',
+			'PW_Steps'        => 'items',
+		) as $widget_class => $field ) {
+			$saved = $this->update_widget( $widget_class, array( $field => array() ) );
+			$this->assertSame( array(), $saved[ $field ], $widget_class );
+		}
+	}
+
+	function test_unopened_author_and_banner_keep_their_defaults() {
+		$this->assertSame( 1, $this->update_widget( 'PW_Author', array() )['selected_user_id'] );
+		$this->assertSame( '', $this->update_widget( 'PW_Banner', array( 'title' => 'T' ) )['open_new'] );
+		$this->assertSame( '1', $this->update_widget( 'PW_Banner', array( 'open_new' => '1' ) )['open_new'] );
+	}
 }

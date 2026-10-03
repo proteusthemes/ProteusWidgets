@@ -114,4 +114,45 @@ class SparseWidgetInstancesTest extends WP_UnitTestCase {
 		$this->assert_output_contains( 'data-markers="[]"', $output, 'Google Map should ignore non-array locations.' );
 		$this->assert_output_contains( 'data-style="[]"', $output, 'Google Map should fall back to an empty style for unknown styles.' );
 	}
+
+	function test_widgets_rendered_without_a_widget_id_get_unique_ids() {
+		foreach ( array(
+			'PW_About_Us'     => '/id="carousel-people-([^"]*)"/',
+			'PW_Accordion'    => '/id="accordion-([^"]*)"/',
+			'PW_Testimonials' => '/id="carousel-testimonials-([^"]*)"/',
+		) as $widget_class => $pattern ) {
+			$ids = array();
+			foreach ( array( 1, 2 ) as $call ) {
+				$errors = array();
+				set_error_handler( function ( $severity, $error ) use ( &$errors ) {
+					$errors[] = $error;
+					return true;
+				} );
+				ob_start();
+				the_widget( $widget_class, array() );
+				$output = ob_get_clean();
+				restore_error_handler();
+
+				$this->assertSame( array(), $errors, $widget_class );
+				$this->assertSame( 1, preg_match( $pattern, $output, $matches ), $widget_class );
+				$this->assertNotSame( '', $matches[1], $widget_class );
+				$ids[] = $matches[1];
+			}
+			$this->assertNotSame( $ids[0], $ids[1], $widget_class );
+		}
+	}
+
+	function test_social_icons_without_rows_print_no_link() {
+		foreach ( array( array(), array( 'social_icons' => array() ) ) as $instance ) {
+			$output = $this->render_widget( 'PW_Social_Icons', $instance );
+			$this->assertFalse( strpos( $output, 'social-icons__link' ) );
+		}
+	}
+
+	function test_sparse_rows_render_without_php_errors() {
+		$output = $this->render_widget( 'PW_Pricing_List', array( 'items' => array( array( 'id' => 1 ) ) ) );
+		$this->assert_output_contains( 'class="pricing-list__title"', $output );
+		$output = $this->render_widget( 'PW_Social_Icons', array( 'social_icons' => array( array( 'id' => 1 ) ) ) );
+		$this->assert_output_contains( 'class="social-icons__link" href=""', $output );
+	}
 }

@@ -115,6 +115,10 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title' => '',
+				'items' => array(),
+			) );
 			$instance = array();
 
 			$instance['title'] = sanitize_text_field( $new_instance['title'] );
@@ -123,7 +127,10 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 				$instance['new_tab'] = ! empty ( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
 			}
 
+			$instance['items'] = array();
+
 			foreach ( $this->fill_missing_row_ids( $new_instance['items'] ) as $key => $item ) {
+				$item = wp_parse_args( $item, array( 'title' => '', 'content' => '', 'icon' => '', 'step' => '', 'url' => '' ) );
 				$instance['items'][ $key ]['id']      = sanitize_key( $item['id'] );
 				$instance['items'][ $key ]['title']   = sanitize_text_field( $item['title'] );
 				$instance['items'][ $key ]['content'] = wp_kses( $item['content'], $this->allowed_html_in_content_field );
