@@ -8,6 +8,8 @@ This file documents the v3.x → 5.0 line. The parallel 4.x line (used by Woonde
 
 ## [Unreleased]
 
+## [5.0.2] – 2026-10-03
+
 ### Fixed
 
 - Widget saves now retain defaults for missing settings and accept empty repeating fields without PHP errors when SiteOrigin re-saves stored instances.
@@ -60,6 +62,7 @@ This file documents the v3.x → 5.0 line. The parallel 4.x line (used by Woonde
 - Travis CI configuration (`aa4b637`) — replaced by GitHub Actions.
 - `Gruntfile.js`-driven i18n — superseded by WP-CLI scripts.
 
-[Unreleased]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.1...HEAD
+[Unreleased]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.2...HEAD
+[5.0.2]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.1...v5.0.2
 [5.0.1]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.0...v5.0.1
 [5.0.0]: https://github.com/proteusthemes/ProteusWidgets/compare/v3.16.14...v5.0.0
