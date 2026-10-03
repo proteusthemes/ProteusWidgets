@@ -21,7 +21,8 @@ register_activation_hook( __FILE__, function () {
 } );
 
 // The theme's own ProteusWidgets copy declares the same classes as this plugin
-if ( file_exists( get_template_directory() . '/vendor/proteusthemes/proteuswidgets/proteuswidgets.php' ) ) {
+$pw_theme_copy = realpath( get_template_directory() . '/vendor/proteusthemes/proteuswidgets/proteuswidgets.php' );
+if ( $pw_theme_copy && __FILE__ !== $pw_theme_copy ) {
 	return;
 }
 
