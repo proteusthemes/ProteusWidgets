@@ -108,6 +108,18 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			if ( isset( $new_instance['quote'] ) && ! isset( $new_instance['testimonials'] ) ) {
+				$new_instance['testimonials'] = array(
+					array(
+						'id'                 => 1,
+						'quote'              => $new_instance['quote'],
+						'author'             => isset( $new_instance['author'] ) ? $new_instance['author'] : '',
+						'rating'             => isset( $new_instance['rating'] ) ? $new_instance['rating'] : 5,
+						'author_description' => isset( $new_instance['author_description'] ) ? $new_instance['author_description'] : '',
+					),
+				);
+			}
+
 			$instance = array();
 
 			$instance['title']     = wp_kses_post( $new_instance['title'] );
