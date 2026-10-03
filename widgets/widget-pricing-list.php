@@ -43,8 +43,17 @@ if ( ! class_exists( 'PW_Pricing_List' ) ) {
 		public function widget( $args, $instance ) {
 
 			// Prepare data.
-			$items                    = isset( $instance['items'] ) ? $instance['items'] : array();
+			$items                    = isset( $instance['items'] ) && is_array( $instance['items'] ) ? $instance['items'] : array();
 			$instance['widget_title'] = empty( $instance['widget_title'] ) ? '' : apply_filters( 'widget_title', $instance['widget_title'], $instance );
+
+			foreach ( $items as $key => $item ) {
+				$items[ $key ] = wp_parse_args( (array) $item, array(
+					'badge'       => '',
+					'title'       => '',
+					'price'       => '',
+					'description' => '',
+				) );
+			}
 
 			// widget-pricing-list template rendering.
 			echo $this->template_engine->render_template( apply_filters( 'pw/widget_pricing_list_view', 'widget-pricing-list' ), array(

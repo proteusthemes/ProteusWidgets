@@ -53,6 +53,12 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'page_id'        => 0,
+				'layout'         => 'block',
+				'read_more_text' => '',
+			) );
+
 			// Prepare data for template
 			$page_id = absint( $instance['page_id'] );
 

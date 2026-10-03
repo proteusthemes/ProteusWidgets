@@ -29,8 +29,25 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			if ( empty( $args['widget_id'] ) ) {
+				$args['widget_id'] = wp_unique_id( $this->id_base . '-' );
+			}
+
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'          => '',
+				'read_more_link' => '',
+				'items'          => array(),
+			) );
+
 			// Prepare data for template
-			$items = isset( $instance['items'] ) ? array_values( $this->fill_missing_row_ids( $instance['items'] ) ) : array();
+			$items = array_values( $this->fill_missing_row_ids( $instance['items'] ) );
+			foreach ( $items as $key => $item ) {
+				$items[ $key ] = wp_parse_args( $item, array(
+					'title'   => '',
+					'content' => '',
+				) );
+			}
+
 			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
 			$text = array(

@@ -64,19 +64,17 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		public function widget( $args, $instance ) {
 			// Prepare data for template
 			if ( ! isset( $instance['social_icons'] ) ) {
-				$instance['social_icons'] = array(
-					array(
-						'link' => '',
-						'icon' => '',
-					),
-				);
+				$instance['social_icons'] = array();
 			}
 
 			$instance['social_icons'] = array_values( (array) $instance['social_icons'] );
 			// Escape data
 			for ( $i = 0; $i < count( $instance['social_icons'] ); $i++ ) {
 				// Cast object to array for one click demo import
-				$instance['social_icons'][ $i ] = (array) $instance['social_icons'][ $i ];
+				$instance['social_icons'][ $i ] = wp_parse_args( (array) $instance['social_icons'][ $i ], array(
+					'link' => '',
+					'icon' => '',
+				) );
 			}
 			$instance['target'] = ! empty ( $instance['new_tab'] ) ? '_blank' : '_self';
 
@@ -98,9 +96,13 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
-			$instance = array();
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'social_icons' => array(),
+			) );
+			$instance = array( 'social_icons' => array() );
 
 			foreach ( $this->fill_missing_row_ids( $new_instance['social_icons'] ) as $key => $social_icon ) {
+				$social_icon = wp_parse_args( $social_icon, array( 'link' => '', 'icon' => '' ) );
 				$instance['social_icons'][ $key ]['id']   = sanitize_key( $social_icon['id'] );
 				$instance['social_icons'][ $key ]['link'] = esc_url_raw( trim( $social_icon['link'] ) );
 				$instance['social_icons'][ $key ]['icon'] = sanitize_text_field( $social_icon['icon'] );

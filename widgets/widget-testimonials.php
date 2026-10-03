@@ -74,6 +74,10 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			if ( empty( $args['widget_id'] ) ) {
+				$args['widget_id'] = wp_unique_id( $this->id_base . '-' );
+			}
+
 			$instance = wp_parse_args( (array) $instance, array(
 				'title'        => 'Testimonials',
 				'autocycle'    => 'no',
@@ -95,6 +99,16 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			}
 			else {
 				$testimonials = array_values( $this->fill_missing_row_ids( $instance['testimonials'] ) );
+			}
+
+			foreach ( $this->fill_missing_row_ids( $testimonials ) as $key => $testimonial ) {
+				$testimonials[ $key ] = wp_parse_args( $testimonial, array(
+					'quote'              => '',
+					'author'             => '',
+					'rating'             => 5,
+					'author_description' => '',
+					'author_avatar'      => '',
+				) );
 			}
 
 			if ( $this->fields['number_of_testimonial_per_slide'] > 0 ) {

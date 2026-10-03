@@ -233,4 +233,93 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 			$this->assertSame( $stars, substr_count( ob_get_clean(), 'fa-star' ), (string) $rating );
 		}
 	}
+
+	function render_widget( $widget_class, $instance, $args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'pw-1' ) ) {
+		set_error_handler( function ( $severity, $message, $file, $line ) {
+			throw new ErrorException( $message, 0, $severity, $file, $line );
+		} );
+		ob_start();
+		try {
+			( new $widget_class() )->widget( $args, $instance );
+		}
+		finally {
+			$html = ob_get_clean();
+			restore_error_handler();
+		}
+		return $html;
+	}
+
+	function test_unopened_widgets_and_sparse_rows_save_without_php_messages() {
+		foreach ( array(
+			'PW_About_Us'       => array( 'people' => array( array() ) ),
+			'PW_Author'         => array(),
+			'PW_Banner'         => array(),
+			'PW_Brochure_Box'   => array(),
+			'PW_Icon_Box'       => array(),
+			'PW_Latest_News'    => array(),
+			'PW_Person_Profile' => array( 'social_icons' => array( array() ) ),
+			'PW_Skype'          => array(),
+			'PW_Social_Icons'   => array( 'social_icons' => array( array() ) ),
+			'PW_Steps'          => array( 'items' => array( array() ) ),
+		) as $widget_class => $sparse_rows ) {
+			$this->assertIsArray( $this->update_widget( $widget_class, array() ), $widget_class );
+			$this->assertIsArray( $this->update_widget( $widget_class, $sparse_rows ), $widget_class );
+		}
+	}
+
+	function test_emptied_lists_are_stored_as_empty_lists() {
+		foreach ( array(
+			'PW_About_Us'     => 'people',
+			'PW_Social_Icons' => 'social_icons',
+			'PW_Steps'        => 'items',
+		) as $widget_class => $field ) {
+			$saved = $this->update_widget( $widget_class, array( $field => array() ) );
+			$this->assertSame( array(), $saved[ $field ], $widget_class );
+		}
+	}
+
+	function test_unopened_author_and_banner_keep_their_defaults() {
+		$this->assertSame( 1, $this->update_widget( 'PW_Author', array() )['selected_user_id'] );
+		$this->assertSame( '', $this->update_widget( 'PW_Banner', array( 'title' => 'T' ) )['open_new'] );
+		$this->assertSame( '1', $this->update_widget( 'PW_Banner', array( 'open_new' => '1' ) )['open_new'] );
+	}
+
+	function test_empty_instances_and_sparse_rows_render_without_php_messages() {
+		foreach ( array( 'PW_About_Us', 'PW_Accordion', 'PW_Author', 'PW_Banner', 'PW_Brochure_Box', 'PW_Facebook', 'PW_Google_Map', 'PW_Icon_Box', 'PW_Number_Counter', 'PW_Opening_Time', 'PW_Person_Profile', 'PW_Pricing_List', 'PW_Skype', 'PW_Social_Icons', 'PW_Steps', 'PW_Testimonials' ) as $widget_class ) {
+			$this->assertIsString( $this->render_widget( $widget_class, array() ), $widget_class );
+		}
+		foreach ( array(
+			'PW_Accordion'      => array( 'items' => array( array( 'id' => 1 ) ) ),
+			'PW_Number_Counter' => array( 'counters' => array( array( 'id' => 1 ) ) ),
+			'PW_Pricing_List'   => array( 'items' => array( array( 'id' => 1 ) ) ),
+			'PW_Social_Icons'   => array( 'social_icons' => array( array( 'id' => 1 ) ) ),
+			'PW_Steps'          => array( 'items' => array( array( 'id' => 1 ) ) ),
+			'PW_Testimonials'   => array( 'testimonials' => array( array( 'id' => 1 ) ) ),
+		) as $widget_class => $instance ) {
+			$this->assertIsString( $this->render_widget( $widget_class, $instance ), $widget_class );
+		}
+	}
+
+	function test_widgets_rendered_without_a_widget_id_get_unique_ids() {
+		$args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '' );
+		foreach ( array(
+			'PW_About_Us'     => '/id="carousel-people-([^"]*)"/',
+			'PW_Accordion'    => '/id="accordion-([^"]*)"/',
+			'PW_Testimonials' => '/id="carousel-testimonials-([^"]*)"/',
+		) as $widget_class => $pattern ) {
+			$ids = array();
+			foreach ( array( 1, 2 ) as $call ) {
+				$this->assertSame( 1, preg_match( $pattern, $this->render_widget( $widget_class, array(), $args ), $matches ), $widget_class );
+				$this->assertNotSame( '', $matches[1], $widget_class );
+				$ids[] = $matches[1];
+			}
+			$this->assertNotSame( $ids[0], $ids[1], $widget_class );
+		}
+	}
+
+	function test_social_icons_without_rows_print_no_link() {
+		foreach ( array( array(), array( 'social_icons' => array() ) ) as $instance ) {
+			$this->assertStringNotContainsString( 'social-icons__link', $this->render_widget( 'PW_Social_Icons', $instance ) );
+		}
+	}
 }

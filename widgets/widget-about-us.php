@@ -35,11 +35,27 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for template
-			if ( isset( $instance['people'] ) ) {
-				$people = $instance['people'];
+			if ( empty( $args['widget_id'] ) ) {
+				$args['widget_id'] = wp_unique_id( $this->id_base . '-' );
 			}
-			else {
+
+			$instance = wp_parse_args( (array) $instance, array(
+				'autocycle' => 'no',
+				'interval'  => 5000,
+				'people'    => array(
+					array(
+						'id'          => 1,
+						'tag'         => '',
+						'image'       => '',
+						'name'        => '',
+						'description' => '',
+						'link'        => '',
+					),
+				),
+			) );
+
+			// Prepare data for template
+			if ( ! is_array( $instance['people'] ) ) {
 				$people = array(
 					array(
 						'id'          => 1,
@@ -51,8 +67,21 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 					),
 				);
 			}
+			else {
+				$people = $instance['people'];
+			}
 
 			$people = array_values( $people );
+			foreach ( $people as $key => $person ) {
+				$people[ $key ] = wp_parse_args( (array) $person, array(
+					'id'          => 1,
+					'tag'         => '',
+					'image'       => '',
+					'name'        => '',
+					'description' => '',
+					'link'        => '',
+				) );
+			}
 
 			if ( isset( $people[0] ) ) {
 				$people[0]['active'] = 'active';
@@ -84,12 +113,19 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'autocycle' => 'no',
+				'interval'  => 5000,
+				'people'    => array(),
+			) );
 			$instance = array();
 
 			$instance['autocycle'] = sanitize_key( $new_instance['autocycle'] );
 			$instance['interval']  = absint( $new_instance['interval'] );
+			$instance['people']    = array();
 
-			foreach ( $new_instance['people'] as $key => $person ) {
+			foreach ( $this->fill_missing_row_ids( $new_instance['people'] ) as $key => $person ) {
+				$person = wp_parse_args( $person, array( 'tag' => '', 'image' => '', 'name' => '', 'description' => '', 'link' => '' ) );
 				$instance['people'][ $key ]['id']          = sanitize_key( $person['id'] );
 				$instance['people'][ $key ]['tag']         = sanitize_text_field( $person['tag'] );
 				$instance['people'][ $key ]['image']       = esc_url_raw( trim( $person['image'] ) );

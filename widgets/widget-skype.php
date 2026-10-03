@@ -32,6 +32,11 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'          => '',
+				'skype_username' => '',
+			) );
+
 			// Prepare data for template
 			$instance['icon'] = 'skype' == substr( $instance['skype_username'], 0, 5 ) ? 'fab fa-skype' : 'fas fa-phone';
 
@@ -49,6 +54,10 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title'          => '',
+				'skype_username' => '',
+			) );
 			$instance = array();
 
 			$instance['title']          = wp_kses_post( $new_instance['title'] );
