@@ -96,6 +96,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = $this->keep_unshown_rows( $new_instance, $old_instance, array( 'social_icons' ) );
 			$new_instance = wp_parse_args( (array) $new_instance, array(
 				'social_icons' => array(),
 			) );
@@ -172,7 +173,8 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 					<a href="#" class="pt-remove-social-icon  js-pt-remove-social-icon"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Social Icon', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-social-icons" id="social-icons-<?php echo esc_attr( $this->current_widget_id ); ?>">
+			<div class="pt-widget-social-icons" id="social-icons-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="SocialIcons" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $instance['social_icons'] ) ); ?>">
+				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'social_icons_ready' ) ); ?>" value="1" disabled />
 				<div class="social-icons"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-social-icon"><?php esc_html_e( 'Add New Social Icon', 'proteuswidgets' ); ?></a>
@@ -186,7 +188,10 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulateSocialIcons ) ) {
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#social-icons-' + widgetId ) );
+					}
+					else if ( _.isFunction( ProteusWidgets.Utils.repopulateSocialIcons ) ) {
 						ProteusWidgets.Utils.repopulateSocialIcons( socialIconsJSON, widgetId );
 					}
 				})();

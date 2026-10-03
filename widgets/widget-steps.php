@@ -115,6 +115,7 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = $this->keep_unshown_rows( $new_instance, $old_instance, array( 'items' ) );
 			$new_instance = wp_parse_args( (array) $new_instance, array(
 				'title' => '',
 				'items' => array(),
@@ -238,7 +239,8 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 					<a href="#" class="pt-remove-step-item  js-pt-remove-step-item"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Step', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-step-items" id="step-items-<?php echo esc_attr( $this->current_widget_id ); ?>">
+			<div class="pt-widget-step-items" id="step-items-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="StepItems" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $instance['items'] ) ); ?>">
+				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'items_ready' ) ); ?>" value="1" disabled />
 				<div class="step-items"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-step-item"><?php esc_html_e( 'Add New Step', 'proteuswidgets' ); ?></a>
@@ -252,7 +254,10 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulateStepItems ) ) {
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#step-items-' + widgetId ) );
+					}
+					else if ( _.isFunction( ProteusWidgets.Utils.repopulateStepItems ) ) {
 						ProteusWidgets.Utils.repopulateStepItems( stepItemsJSON, widgetId );
 					}
 				})();
