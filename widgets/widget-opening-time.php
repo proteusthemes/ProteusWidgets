@@ -122,6 +122,12 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title'           => '',
+				'separator'       => esc_html__( '-', 'proteuswidgets' ),
+				'closed_text'     => esc_html__( 'CLOSED', 'proteuswidgets' ),
+				'additional_info' => '',
+			) );
 			$instance = array();
 
 			// title
@@ -130,8 +136,8 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 			// days
 			foreach ( $this->days as $day_label => $day ) {
 				$instance[ $day_label . '_opened' ] = ! empty( $new_instance[ $day_label . '_opened' ] ) ? strip_tags( $new_instance[ $day_label . '_opened' ] ) : '';
-				$instance[ $day_label . '_from' ]   = strip_tags( $new_instance[ $day_label . '_from' ] );
-				$instance[ $day_label . '_to' ]     = strip_tags( $new_instance[ $day_label . '_to' ] );
+				$instance[ $day_label . '_from' ]   = strip_tags( isset( $new_instance[ $day_label . '_from' ] ) ? $new_instance[ $day_label . '_from' ] : '8:00' );
+				$instance[ $day_label . '_to' ]     = strip_tags( isset( $new_instance[ $day_label . '_to' ] ) ? $new_instance[ $day_label . '_to' ] : '16:00' );
 			}
 
 			// separator

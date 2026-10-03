@@ -38,10 +38,9 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 			) );
 
 			// Prepare data for template
-			$items = is_array( $instance['items'] ) ? array_values( $instance['items'] ) : array();
+			$items = array_values( $this->fill_missing_row_ids( $instance['items'] ) );
 			foreach ( $items as $key => $item ) {
-				$items[ $key ] = wp_parse_args( (array) $item, array(
-					'id'      => 1,
+				$items[ $key ] = wp_parse_args( $item, array(
 					'title'   => '',
 					'content' => '',
 				) );
@@ -69,9 +68,15 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
-			$instance = array();
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title'          => '',
+				'read_more_link' => '',
+				'items'          => array(),
+			) );
+			$instance = array( 'items' => array() );
 
-			foreach ( $new_instance['items'] as $key => $item ) {
+			foreach ( $this->fill_missing_row_ids( $new_instance['items'] ) as $key => $item ) {
+				$item = wp_parse_args( $item, array( 'title' => '', 'content' => '' ) );
 				$instance['items'][ $key ]['id']      = sanitize_key( $item['id'] );
 				$instance['items'][ $key ]['title']   = wp_kses_post( $item['title'] );
 				$instance['items'][ $key ]['content'] = wp_kses_post( $item['content'] );

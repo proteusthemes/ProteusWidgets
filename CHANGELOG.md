@@ -8,6 +8,16 @@ This file documents the v3.x → 5.0 line. The parallel 4.x line (used by Woonde
 
 ## [Unreleased]
 
+## [5.0.2] – 2026-10-03
+
+### Fixed
+
+- Widget saves now retain defaults for missing settings and accept empty repeating fields without PHP errors when SiteOrigin re-saves stored instances.
+- Number Counter keeps an empty progress value hidden, and legacy single testimonials retain their content when saved.
+- Repeating items saved without an id get unique ids, so the widget form no longer merges them into one.
+- The single-testimonial form keeps its fields after the widget is saved before it is opened.
+- `PW_Functions::get_attachment_image_srcs()` skips sizes without a width instead of printing a `0w` candidate.
+
 ## [5.0.1] – 2026-05-22
 
 ### Fixed
@@ -52,6 +62,7 @@ This file documents the v3.x → 5.0 line. The parallel 4.x line (used by Woonde
 - Travis CI configuration (`aa4b637`) — replaced by GitHub Actions.
 - `Gruntfile.js`-driven i18n — superseded by WP-CLI scripts.
 
-[Unreleased]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.1...HEAD
+[Unreleased]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.2...HEAD
+[5.0.2]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.1...v5.0.2
 [5.0.1]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.0...v5.0.1
 [5.0.0]: https://github.com/proteusthemes/ProteusWidgets/compare/v3.16.14...v5.0.0

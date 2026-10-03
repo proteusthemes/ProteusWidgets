@@ -69,10 +69,9 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 			) );
 
 			// Prepare the data for template.
-			$counters = is_array( $instance['counters'] ) ? array_values( $instance['counters'] ) : array();
+			$counters = array_values( $this->fill_missing_row_ids( $instance['counters'] ) );
 			foreach ( $counters as $key => $counter ) {
-				$counters[ $key ] = wp_parse_args( (array) $counter, array(
-					'id'     => 1,
+				$counters[ $key ] = wp_parse_args( $counter, array(
 					'title'  => '',
 					'number' => '',
 					'icon'   => '',
@@ -95,11 +94,21 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 		 * @param array $old_instance The previous options.
 		 */
 		public function update( $new_instance, $old_instance ) {
-			$instance = array();
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'speed'    => 1000,
+				'counters' => array(),
+			) );
+			$instance = array( 'counters' => array() );
 
 			$instance['speed'] = absint( $new_instance['speed'] );
 
-			foreach ( $new_instance['counters'] as $key => $counter ) {
+			foreach ( $this->fill_missing_row_ids( $new_instance['counters'] ) as $key => $counter ) {
+				$counter = wp_parse_args( $counter, array(
+					'title'              => '',
+					'number'             => '',
+					'icon'               => '',
+					'progress_bar_value' => '',
+				) );
 				$instance['counters'][ $key ]['id']     = sanitize_key( $counter['id'] );
 				$instance['counters'][ $key ]['title']  = sanitize_text_field( $counter['title'] );
 				$instance['counters'][ $key ]['number'] = absint( $counter['number'] );
@@ -109,7 +118,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 				}
 
 				if ( $this->fields['progress_bar'] ) {
-					$instance['counters'][ $key ]['progress_bar_value'] = PW_Functions::bound( $counter['progress_bar_value'], 0, 100 );
+					$instance['counters'][ $key ]['progress_bar_value'] = '' === $counter['progress_bar_value'] ? '' : PW_Functions::bound( $counter['progress_bar_value'], 0, 100 );
 				}
 			}
 

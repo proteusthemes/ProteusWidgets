@@ -106,9 +106,8 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				$testimonials = is_array( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array();
 			}
 
-			foreach ( $testimonials as $key => $testimonial ) {
-				$testimonials[ $key ] = wp_parse_args( (array) $testimonial, array(
-					'id'                 => 1,
+			foreach ( $this->fill_missing_row_ids( $testimonials ) as $key => $testimonial ) {
+				$testimonials[ $key ] = wp_parse_args( $testimonial, array(
 					'quote'              => '',
 					'author'             => '',
 					'rating'             => 5,
@@ -186,7 +185,16 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
-			$instance = array();
+			if ( isset( $new_instance['quote'] ) && ! isset( $new_instance['testimonials'] ) ) {
+				$new_instance['testimonials'] = array( $new_instance );
+			}
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title'        => 'Testimonials',
+				'autocycle'    => 'no',
+				'interval'     => 5000,
+				'testimonials' => array(),
+			) );
+			$instance = array( 'testimonials' => array() );
 
 			if ( $this->supports_multiple_testimonials ) {
 				$instance['title'] = wp_kses_post( $new_instance['title'] );
@@ -194,7 +202,14 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				$instance['interval'] = absint( $new_instance['interval'] );
 			}
 
-			foreach ( $new_instance['testimonials'] as $key => $testimonial ) {
+			foreach ( $this->fill_missing_row_ids( $new_instance['testimonials'] ) as $key => $testimonial ) {
+				$testimonial = wp_parse_args( $testimonial, array(
+					'quote'              => '',
+					'author'             => '',
+					'rating'             => 5,
+					'author_description' => '',
+					'author_avatar'      => '',
+				) );
 				$instance['testimonials'][ $key ]['id']     = sanitize_key( $testimonial['id'] );
 				$instance['testimonials'][ $key ]['quote']  = wp_kses_post( $testimonial['quote'] );
 				$instance['testimonials'][ $key ]['author'] = sanitize_text_field( $testimonial['author'] );
@@ -244,16 +259,21 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				);
 			}
 			else {
-				$testimonials = isset( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array(
-					array(
-						'id'                 => 1,
-						'quote'              => '',
-						'author'             => '',
-						'rating'             => 5,
-						'author_description' => '',
-						'author_avatar'      => '',
-					),
+				$blank_testimonial = array(
+					'id'                 => 1,
+					'quote'              => '',
+					'author'             => '',
+					'rating'             => 5,
+					'author_description' => '',
+					'author_avatar'      => '',
 				);
+
+				$testimonials = isset( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array( $blank_testimonial );
+
+				// Without the add button, an empty list would leave no fields to fill in.
+				if ( empty( $testimonials ) && ! $this->supports_multiple_testimonials ) {
+					$testimonials = array( $blank_testimonial );
+				}
 			}
 
 			// Page Builder fix when using repeating fields
