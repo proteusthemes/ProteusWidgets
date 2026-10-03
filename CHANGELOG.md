@@ -8,9 +8,18 @@ This file documents the v3.x → 5.0 line. The parallel 4.x line (used by Woonde
 
 ## [Unreleased]
 
+## [5.0.3] – 2026-10-03
+
+Security hardening and bug fixes.
+
 ### Fixed
 
+- Repeating items with malformed rows or non-numeric ids no longer break widget saves, forms or views, and testimonial ratings render as zero to five stars.
+- Person Profile keeps its portrait when the theme replaces the image with a carousel.
 - Social Icons, Person Profile and About Us keep percent-encoded characters (such as `%20` or `%C3%A9`) in link and image URLs when saved. Addresses that were already saved without these characters cannot be restored and must be re-entered.
+- Widgets saved before their form was opened, or with every item removed, save and render without PHP messages. An emptied Social Icons list no longer prints an empty link, and Author widgets saved before they were opened keep the default user.
+- Repeating fields load in the block-based widget editor, and saving a form that did not show a list keeps that list's items.
+- The Facebook widget uses Facebook's Page Plugin, the Testimonials widget labels its previous and next buttons correctly, hides an empty title and uses the full width for a single testimonial, the Dribbble social icon displays, and the Number Counter number field accepts only numbers.
 
 ## [5.0.2] – 2026-10-03
 
@@ -66,7 +75,8 @@ This file documents the v3.x → 5.0 line. The parallel 4.x line (used by Woonde
 - Travis CI configuration (`aa4b637`) — replaced by GitHub Actions.
 - `Gruntfile.js`-driven i18n — superseded by WP-CLI scripts.
 
-[Unreleased]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.2...HEAD
+[Unreleased]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.3...HEAD
+[5.0.3]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.2...v5.0.3
 [5.0.2]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.1...v5.0.2
 [5.0.1]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.0...v5.0.1
 [5.0.0]: https://github.com/proteusthemes/ProteusWidgets/compare/v3.16.14...v5.0.0
