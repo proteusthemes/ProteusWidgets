@@ -183,6 +183,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 		 * @param array $old_instance The previous options.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = $this->keep_unshown_rows( $new_instance, $old_instance, array( 'icon_list_items', 'carousel', 'skills', 'social_icons' ) );
 			$new_instance = $this->migrate_legacy_image( $new_instance );
 			$new_instance = wp_parse_args( (array) $new_instance, array(
 				'name'              => '',
@@ -497,7 +498,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 					</p>
 				</script>
 
-				<div class="pt-widget-icon-list-items" id="icon-list-items-<?php echo esc_attr( $this->current_widget_id ); ?>">
+				<div class="pt-widget-icon-list-items" id="icon-list-items-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="IconListItems" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $icon_list_items ) ); ?>">
+					<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'icon_list_items_ready' ) ); ?>" value="1" disabled />
 					<div class="icon-list-items  js-pt-sortable-icon-list-items"></div>
 					<p>
 						<a href="#" class="button  js-pt-add-icon-list-item"><?php esc_html_e( 'Add new item', 'proteuswidgets' ); ?></a>
@@ -543,7 +545,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 						<a href="#" class="pt-remove-carousel-item  js-pt-remove-carousel-item"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Carousel Item', 'proteuswidgets' ); ?></a>
 					</p>
 				</script>
-				<div class="pt-widget-carousel-items" id="carousel-items-<?php echo esc_attr( $this->current_widget_id ); ?>">
+				<div class="pt-widget-carousel-items" id="carousel-items-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="Carousel" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $carousel ) ); ?>">
+					<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'carousel_ready' ) ); ?>" value="1" disabled />
 					<div class="carousel-items"></div>
 					<p>
 						<a href="#" class="button  js-pt-add-carousel-item"><?php esc_html_e( 'Add New Carousel Item', 'proteuswidgets' ); ?></a>
@@ -582,7 +585,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 						<a href="#" class="pt-remove-skill  js-pt-remove-skill"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Skill', 'proteuswidgets' ); ?></a>
 					</p>
 				</script>
-				<div class="pt-widget-skills" id="skills-<?php echo esc_attr( $this->current_widget_id ); ?>">
+				<div class="pt-widget-skills" id="skills-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="Skills" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $skills ) ); ?>">
+					<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'skills_ready' ) ); ?>" value="1" disabled />
 					<div class="skills"></div>
 					<p>
 						<a href="#" class="button  js-pt-add-skill"><?php esc_html_e( 'Add New Skill', 'proteuswidgets' ); ?></a>
@@ -618,7 +622,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 						<a href="#" class="pt-remove-social-icon  js-pt-remove-social-icon"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Social Icon', 'proteuswidgets' ); ?></a>
 					</p>
 				</script>
-				<div class="pt-widget-social-icons" id="social-icons-<?php echo esc_attr( $this->current_widget_id ); ?>">
+				<div class="pt-widget-social-icons" id="social-icons-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="SocialIcons" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $social_icons ) ); ?>">
+					<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'social_icons_ready' ) ); ?>" value="1" disabled />
 					<div class="social-icons"></div>
 					<p>
 						<a href="#" class="button  js-pt-add-social-icon"><?php esc_html_e( 'Add New Social Icon', 'proteuswidgets' ); ?></a>
@@ -637,7 +642,10 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 					<?php if ( $this->fields['social_icons'] ) : ?>
 						var socialIconsJSON = <?php echo wp_json_encode( $social_icons ); ?>;
 
-						if ( _.isFunction( ProteusWidgets.Utils.repopulateSocialIcons ) ) {
+						if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+							ProteusWidgets.Utils.initRepeaters( jQuery( '#social-icons-' + widgetId ) );
+						}
+						else if ( _.isFunction( ProteusWidgets.Utils.repopulateSocialIcons ) ) {
 							ProteusWidgets.Utils.repopulateSocialIcons( socialIconsJSON, widgetId );
 						}
 					<?php endif; ?>
@@ -645,7 +653,10 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 					<?php if ( $this->fields['icon_list_items'] ) : ?>
 						var iconListItemsJSON = <?php echo wp_json_encode( $icon_list_items ) ?>;
 
-						if ( _.isFunction( ProteusWidgets.Utils.repopulateIconListItems ) ) {
+						if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+							ProteusWidgets.Utils.initRepeaters( jQuery( '#icon-list-items-' + widgetId ) );
+						}
+						else if ( _.isFunction( ProteusWidgets.Utils.repopulateIconListItems ) ) {
 							ProteusWidgets.Utils.repopulateIconListItems( iconListItemsJSON, widgetId );
 						}
 
@@ -661,7 +672,10 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 					<?php if ( $this->fields['carousel_instead_of_image'] ) : ?>
 						var carouselJSON = <?php echo wp_json_encode( $carousel ); ?>;
 
-						if ( _.isFunction( ProteusWidgets.Utils.repopulateCarousel ) ) {
+						if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+							ProteusWidgets.Utils.initRepeaters( jQuery( '#carousel-items-' + widgetId ) );
+						}
+						else if ( _.isFunction( ProteusWidgets.Utils.repopulateCarousel ) ) {
 							ProteusWidgets.Utils.repopulateCarousel( carouselJSON, widgetId );
 						}
 					<?php endif; ?>
@@ -669,7 +683,10 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 					<?php if ( $this->fields['skills'] ) : ?>
 						var skillsJSON = <?php echo wp_json_encode( $skills ); ?>;
 
-						if ( _.isFunction( ProteusWidgets.Utils.repopulateSkills ) ) {
+						if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+							ProteusWidgets.Utils.initRepeaters( jQuery( '#skills-' + widgetId ) );
+						}
+						else if ( _.isFunction( ProteusWidgets.Utils.repopulateSkills ) ) {
 							ProteusWidgets.Utils.repopulateSkills( skillsJSON, widgetId );
 						}
 					<?php endif; ?>

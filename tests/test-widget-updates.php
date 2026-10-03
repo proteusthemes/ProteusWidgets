@@ -23,7 +23,7 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 			'PW_Number_Counter' => 'counters',
 			'PW_Google_Map'     => 'locations',
 		) as $widget_class => $field ) {
-			foreach ( array( array(), array( $field => array() ), array( $field => null ), array( $field => '' ) ) as $instance ) {
+			foreach ( array( array( $field . '_ready' => '1' ), array( $field => array() ), array( $field => null, $field . '_ready' => '1' ), array( $field => '' ) ) as $instance ) {
 				$saved = $this->update_widget( $widget_class, $instance, array( $field => array( array( 'id' => 1 ) ) ) );
 				$this->assertSame( array(), $saved[ $field ], $widget_class );
 			}
@@ -269,5 +269,51 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		$this->assertSame( 1, $this->update_widget( 'PW_Author', array() )['selected_user_id'] );
 		$this->assertSame( '', $this->update_widget( 'PW_Banner', array( 'title' => 'T' ) )['open_new'] );
 		$this->assertSame( '1', $this->update_widget( 'PW_Banner', array( 'open_new' => '1' ) )['open_new'] );
+	}
+
+	function test_lists_missing_from_a_form_that_never_showed_them_keep_their_rows() {
+		foreach ( array(
+			'PW_About_Us'       => 'people',
+			'PW_Accordion'      => 'items',
+			'PW_Google_Map'     => 'locations',
+			'PW_Number_Counter' => 'counters',
+			'PW_Person_Profile' => 'social_icons',
+			'PW_Pricing_List'   => 'items',
+			'PW_Social_Icons'   => 'social_icons',
+			'PW_Steps'          => 'items',
+			'PW_Testimonials'   => 'testimonials',
+		) as $widget_class => $field ) {
+			$old = $this->update_widget( $widget_class, array( $field => array( array( 'id' => '1' ) ) ) );
+			$this->assertSame( $old[ $field ], $this->update_widget( $widget_class, array( 'title' => 'T' ), $old )[ $field ], $widget_class );
+
+			$saved = $this->update_widget( $widget_class, array( $field . '_ready' => '1' ), $old );
+			$this->assertEmpty( isset( $saved[ $field ] ) ? $saved[ $field ] : array(), $widget_class );
+			$this->assertArrayNotHasKey( $field . '_ready', $saved, $widget_class );
+		}
+	}
+
+	function test_repeater_forms_carry_their_rows_and_a_disabled_ready_field() {
+		foreach ( array(
+			'PW_About_Us'       => array( 'People', 'people' ),
+			'PW_Accordion'      => array( 'AccordionItems', 'items' ),
+			'PW_Google_Map'     => array( 'Locations', 'locations' ),
+			'PW_Number_Counter' => array( 'Counters', 'counters' ),
+			'PW_Person_Profile' => array( 'SocialIcons', 'social_icons' ),
+			'PW_Pricing_List'   => array( 'PricingListItems', 'items' ),
+			'PW_Social_Icons'   => array( 'SocialIcons', 'social_icons' ),
+			'PW_Steps'          => array( 'StepItems', 'items' ),
+			'PW_Testimonials'   => array( 'Testimonials', 'testimonials' ),
+		) as $widget_class => $list ) {
+			list( $repeater, $field ) = $list;
+			$widget = new $widget_class();
+			$widget->_set( 3 );
+			ob_start();
+			$widget->form( array( $field => array( array( 'id' => 1 ) ) ) );
+			$form = ob_get_clean();
+
+			$this->assertStringContainsString( 'data-pw-repeater="' . $repeater . '" data-pw-widget-id="' . $widget->id . '" data-pw-rows="', $form, $widget_class );
+			$this->assertStringContainsString( '&quot;id&quot;:1', $form, $widget_class );
+			$this->assertStringContainsString( 'name="' . $widget->get_field_name( $field . '_ready' ) . '" value="1" disabled', $form, $widget_class );
+		}
 	}
 }

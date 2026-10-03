@@ -63,5 +63,26 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 
 			return $items;
 		}
+
+		/**
+		 * Keep the saved rows of lists that the submitted form did not show.
+		 * A list that was shown posts a "<list>_ready" field, so a missing list without it was never on screen.
+		 *
+		 * @param array $new_instance submitted widget settings.
+		 * @param array $old_instance saved widget settings.
+		 * @param array $lists        names of the list settings.
+		 * @return array
+		 */
+		protected function keep_unshown_rows( $new_instance, $old_instance, $lists ) {
+			$new_instance = (array) $new_instance;
+
+			foreach ( $lists as $list ) {
+				if ( ! isset( $new_instance[ $list ] ) && empty( $new_instance[ $list . '_ready' ] ) && isset( $old_instance[ $list ] ) ) {
+					$new_instance[ $list ] = $old_instance[ $list ];
+				}
+			}
+
+			return $new_instance;
+		}
 	}
 }

@@ -193,6 +193,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			if ( isset( $new_instance['quote'] ) && ! isset( $new_instance['testimonials'] ) ) {
 				$new_instance['testimonials'] = array( $new_instance );
 			}
+			$new_instance = $this->keep_unshown_rows( $new_instance, $old_instance, array( 'testimonials' ) );
 			$new_instance = wp_parse_args( (array) $new_instance, array(
 				'title'        => 'Testimonials',
 				'autocycle'    => 'no',
@@ -375,7 +376,8 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 					</div>
 				</div>
 			</script>
-			<div class="pt-widget-testimonials" id="testimonials-<?php echo esc_attr( $this->current_widget_id ); ?>">
+			<div class="pt-widget-testimonials" id="testimonials-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="Testimonials" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $testimonials ) ); ?>">
+				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'testimonials_ready' ) ); ?>" value="1" disabled />
 				<div class="testimonials  <?php echo $this->supports_multiple_testimonials ? 'js-pt-sortable-testimonials' : ''; ?>"></div>
 
 				<?php if ( $this->supports_multiple_testimonials ) : ?>
@@ -392,7 +394,10 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulateTestimonials ) ) {
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#testimonials-' + widgetId ) );
+					}
+					else if ( _.isFunction( ProteusWidgets.Utils.repopulateTestimonials ) ) {
 						ProteusWidgets.Utils.repopulateTestimonials( testimonialsJSON, widgetId );
 					}
 
