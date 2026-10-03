@@ -52,22 +52,22 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 			) );
 
 			// Prepare data for mustache template
-			$instance['title']      = $args['before_title'] . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $args['after_title'];
+			$title                  = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
+			$instance['title']      = ! empty( $title ) ? $args['before_title'] . $title . $args['after_title'] : '';
 			$instance['height']     = absint( $instance['height'] );
 			$instance['background'] = esc_attr( $instance['background'] );
 
 			// params for the iframe
-			// @see https://developers.facebook.com/docs/plugins/like-box-for-pages
+			// @see https://developers.facebook.com/docs/plugins/page-plugin
 
 			$fb_params = array(
-				'colorscheme' => $instance['colorscheme'],
-				'stream'      => 'false',
-				'show_border' => 'false',
-				'header'      => 'false',
-				'show_faces'  => 'true',
-				'width'       => 263,
-				'height'      => $instance['height'],
-				'href'        => $instance['like_link'],
+				'href'                  => $instance['like_link'],
+				'width'                 => 263,
+				'height'                => $instance['height'],
+				'show_facepile'         => 'true',
+				'small_header'          => 'false',
+				'hide_cover'            => 'false',
+				'adapt_container_width' => 'true',
 			);
 
 			// Mustache widget-facebook template rendering

@@ -39,8 +39,10 @@ if ( ! class_exists( 'PW_Brochure_Box' ) ) {
 			) );
 
 			// Prepare data for mustache template
-			$instance['title']         = $args['before_title'] . apply_filters( 'widget_title', $instance['title'], $instance ) . $args['after_title'];
+			$title                     = apply_filters( 'widget_title', $instance['title'], $instance );
+			$instance['title']         = ! empty( $title ) ? $args['before_title'] . $title . $args['after_title'] : '';
 			$instance['brochure_url']  = esc_url( $instance['brochure_url'] );
+			$instance['brochure_text'] = wp_kses_post( $instance['brochure_text'] );
 			$instance['brochure_icon'] = sanitize_html_class( $instance['brochure_icon'] );
 
 			// Mustache widget-brochure-box template rendering

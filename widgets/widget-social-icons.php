@@ -45,6 +45,9 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 			// Escape data
 			for ( $i = 0; $i < count( $instance['social_icons'] ); $i++ ) {
 				$instance['social_icons'][ $i ] = wp_parse_args( $instance['social_icons'][ $i ], array( 'link' => '', 'icon' => '' ) );
+				if ( 'fa-dribble' === $instance['social_icons'][ $i ]['icon'] ) {
+					$instance['social_icons'][ $i ]['icon'] = 'fa-dribbble';
+				}
 				$instance['social_icons'][ $i ]['link'] = esc_url( $instance['social_icons'][ $i ]['link'] );
 				$instance['social_icons'][ $i ]['icon'] = esc_attr( $instance['social_icons'][ $i ]['icon'] );
 			}
@@ -107,6 +110,12 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 				);
 			}
 
+			foreach ( (array) $instance['social_icons'] as $key => $social_icon ) {
+				if ( is_array( $social_icon ) && isset( $social_icon['icon'] ) && 'fa-dribble' === $social_icon['icon'] ) {
+					$instance['social_icons'][ $key ]['icon'] = 'fa-dribbble';
+				}
+			}
+
 			$new_tab  = empty( $instance['new_tab'] ) ? '' : $instance['new_tab'];
 
 			// Page Builder fix when using repeating fields
@@ -149,7 +158,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 						<option value="fa-flickr" <?php selected( '{{icon}}', 'fa-flickr' ); ?>>Flickr</option>
 						<option value="fa-vimeo-square" <?php selected( '{{icon}}', 'fa-vimeo-square' ); ?>>Vimeo</option>
 						<option value="fa-linkedin" <?php selected( '{{icon}}', 'fa-linkedin' ); ?>>Linkedin</option>
-						<option value="fa-dribble" <?php selected( '{{icon}}', 'fa-dribble' ); ?>>Dribble</option>
+						<option value="fa-dribbble" <?php selected( '{{icon}}', 'fa-dribbble' ); ?>>Dribbble</option>
 						<option value="fa-wordpress" <?php selected( '{{icon}}', 'fa-wordpress' ); ?>>Wordpress</option>
 						<option value="fa-rss" <?php selected( '{{icon}}', 'fa-rss' ); ?>>RSS</option>
 					</select>

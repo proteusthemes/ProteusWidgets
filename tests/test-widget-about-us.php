@@ -11,7 +11,8 @@ class WidgetAboutUsTest extends WP_UnitTestCase {
 			'args'         => array(
 				'widget_id' => 'widget_pw_about_us_999',
 			),
-			'expectedHTML' => '<div class="widget widget-about-us"><div class="carousel slide" data-interval="false" data-ride="carousel" id="carousel-people-widget_pw_about_us_999"><div class="carousel-inner" role="listbox"><div class="item active"><h5 class="about-us__name"/><p class="about-us__description"/></div></div></div></div>',
+			'expectedHTML' => '<div class="widget widget-about-us"><div class="carousel slide" data-interval="false" data-ride="carousel" id="carousel-people-widget_pw_about_us_999"><div class="carousel-inner" role="listbox">
+		</div></div></div>',
 		),
 
 		'custom autocycle params' => array(
@@ -22,7 +23,8 @@ class WidgetAboutUsTest extends WP_UnitTestCase {
 			'args'         => array(
 				'widget_id' => 'widget_pw_about_us_999',
 			),
-			'expectedHTML' => '<div class="widget widget-about-us"><div class="carousel slide" data-interval="1235" data-ride="carousel" id="carousel-people-widget_pw_about_us_999"><div class="carousel-inner" role="listbox"><div class="item active"><h5 class="about-us__name"/><p class="about-us__description"/></div></div></div></div>',
+			'expectedHTML' => '<div class="widget widget-about-us"><div class="carousel slide" data-interval="1235" data-ride="carousel" id="carousel-people-widget_pw_about_us_999"><div class="carousel-inner" role="listbox">
+		</div></div></div>',
 		),
 
 		'1 person, no link' => array(

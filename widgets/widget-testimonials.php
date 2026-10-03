@@ -167,7 +167,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		 * @param array $instance The widget options
 		 */
 		public function form( $instance ) {
-			$title     = empty( $instance['title'] ) ? 'Testimonials' : $instance['title'];
+			$title     = isset( $instance['title'] ) ? $instance['title'] : 'Testimonials';
 			$autocycle = empty( $instance['autocycle'] ) ? 'no' : $instance['autocycle'];
 			$interval  = empty( $instance['interval'] ) ? 5000 : $instance['interval'];
 

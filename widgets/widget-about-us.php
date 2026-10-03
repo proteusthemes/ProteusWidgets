@@ -43,21 +43,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			}
 
 			// Prepare data for mustache template
-			if ( isset( $instance['people'] ) ) {
-				$people = $instance['people'];
-			}
-			else {
-				$people = array(
-					array(
-						'id'          => 1,
-						'tag'         => '',
-						'image'       => '',
-						'name'        => '',
-						'description' => '',
-						'link'        => '',
-					),
-				);
-			}
+			$people = isset( $instance['people'] ) && is_array( $instance['people'] ) ? $instance['people'] : array();
 
 			$people = PW_Functions::reorder_widget_array_key_values( $people );
 

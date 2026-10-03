@@ -37,7 +37,8 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 			) );
 
 			// Prepare data for mustache template
-			$instance['icon'] = 'skype' == substr( $instance['skype_username'], 0, 5 ) ? 'skype' : 'phone';
+			$instance['icon']  = 'skype' == substr( $instance['skype_username'], 0, 5 ) ? 'skype' : 'phone';
+			$instance['title'] = wp_kses_post( $instance['title'] );
 
 			// Mustache widget-skype template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_skype_view', 'widget-skype' ), array(

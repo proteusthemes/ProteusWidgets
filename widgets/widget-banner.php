@@ -38,7 +38,9 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 			) );
 
 			// Prepare data for mustache template
-			$instance['link'] = esc_url( $instance['link'] );
+			$instance['link']    = esc_url( $instance['link'] );
+			$instance['title']   = esc_html( $instance['title'] );
+			$instance['content'] = esc_html( $instance['content'] );
 
 			// Mustache widget-banner template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_banner_view', 'widget-banner' ), array(
