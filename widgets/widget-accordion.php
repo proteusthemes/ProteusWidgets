@@ -69,9 +69,16 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
-			$instance = array();
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title'          => '',
+				'read_more_link' => '',
+				'items'          => array(),
+			) );
+			$instance = array( 'items' => array() );
 
-			foreach ( $new_instance['items'] as $key => $item ) {
+			$items = is_array( $new_instance['items'] ) ? $new_instance['items'] : array();
+			foreach ( $items as $key => $item ) {
+				$item = wp_parse_args( (array) $item, array( 'id' => 1, 'title' => '', 'content' => '' ) );
 				$instance['items'][ $key ]['id']      = sanitize_key( $item['id'] );
 				$instance['items'][ $key ]['title']   = wp_kses_post( $item['title'] );
 				$instance['items'][ $key ]['content'] = wp_kses_post( $item['content'] );

@@ -8,6 +8,11 @@ This file documents the v3.x → 5.0 line. The parallel 4.x line (used by Woonde
 
 ## [Unreleased]
 
+### Fixed
+
+- Widget saves now retain defaults for missing settings and accept empty repeating fields without PHP errors when SiteOrigin re-saves stored instances.
+- Number Counter keeps an empty progress value hidden, and legacy single testimonials retain their content when saved.
+
 ## [5.0.1] – 2026-05-22
 
 ### Fixed

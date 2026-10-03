@@ -85,7 +85,15 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
-			$instance = array();
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'latLng'    => '51.507331,-0.127668',
+				'zoom'      => 12,
+				'type'      => 'roadmap',
+				'style'     => 'Subtle Grayscale',
+				'height'    => 380,
+				'locations' => array(),
+			) );
+			$instance = array( 'locations' => array() );
 
 			$instance['latLng'] = sanitize_text_field( $new_instance['latLng'] );
 			$instance['zoom']   = absint( $new_instance['zoom'] );
@@ -93,7 +101,9 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			$instance['style']  = sanitize_text_field( $new_instance['style'] );
 			$instance['height'] = absint( $new_instance['height'] );
 
-			foreach ( $new_instance['locations'] as $key => $location ) {
+			$locations = is_array( $new_instance['locations'] ) ? $new_instance['locations'] : array();
+			foreach ( $locations as $key => $location ) {
+				$location = wp_parse_args( (array) $location, array( 'id' => 1, 'title' => '', 'locationlatlng' => '', 'custompinimage' => '' ) );
 				$instance['locations'][ $key ]['id']             = sanitize_key( $location['id'] );
 				$instance['locations'][ $key ]['title']          = sanitize_text_field( $location['title'] );
 				$instance['locations'][ $key ]['locationlatlng'] = sanitize_text_field( $location['locationlatlng'] );

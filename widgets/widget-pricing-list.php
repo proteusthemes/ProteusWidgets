@@ -62,12 +62,17 @@ if ( ! class_exists( 'PW_Pricing_List' ) ) {
 		 * @param array $old_instance The previous options.
 		 */
 		public function update( $new_instance, $old_instance ) {
-			$instance = array();
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'widget_title' => '',
+				'items'        => array(),
+			) );
+			$instance = array( 'items' => array() );
 
 			$instance['widget_title'] = sanitize_text_field( $new_instance['widget_title'] );
 
-			if ( ! empty( $new_instance['items'] )  ) {
+			if ( is_array( $new_instance['items'] ) ) {
 				foreach ( $new_instance['items'] as $key => $item ) {
+					$item = wp_parse_args( (array) $item, array( 'id' => 1, 'badge' => '', 'title' => '', 'price' => '', 'description' => '' ) );
 					$instance['items'][ $key ]['id']          = sanitize_key( $item['id'] );
 					$instance['items'][ $key ]['badge']       = sanitize_text_field( $item['badge'] );
 					$instance['items'][ $key ]['title']       = sanitize_text_field( $item['title'] );

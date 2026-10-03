@@ -133,6 +133,12 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'page_id'        => 0,
+				'layout'         => 'block',
+				'read_more_text' => '',
+				'tag'            => '',
+			) );
 			$instance = array();
 
 			$instance['page_id']        = absint( $new_instance['page_id'] );
