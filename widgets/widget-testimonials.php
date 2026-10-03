@@ -60,7 +60,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				);
 			}
 			else {
-				$testimonials = array_values( $instance['testimonials'] );
+				$testimonials = isset( $instance['testimonials'] ) && is_array( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array();
 			}
 
 			$instance['spans'] = count( $testimonials ) < 2 ? '12' : '6';
