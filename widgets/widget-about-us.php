@@ -93,6 +93,10 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			if ( ! isset( $new_instance['people'] ) && empty( $new_instance['people_ready'] ) && isset( $old_instance['people'] ) ) {
+				$new_instance['people'] = $old_instance['people'];
+			}
+
 			$new_instance = wp_parse_args( (array) $new_instance, array(
 				'autocycle' => 'no',
 				'interval'  => 5000,
@@ -190,7 +194,11 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 					<a href="#" class="pt-remove-person  js-pt-remove-person"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Person', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-about-us" id="people-<?php echo $this->current_widget_id; ?>">
+			<div class="pt-widget-about-us" id="people-<?php echo $this->current_widget_id; ?>"
+				data-pw-repeater="People"
+				data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>"
+				data-pw-rows="<?php echo esc_attr( wp_json_encode( array_values( (array) $people ) ) ); ?>"
+				data-pw-ready-name="<?php echo esc_attr( $this->get_field_name( 'people_ready' ) ); ?>">
 				<div class="people"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-person"><?php _e( 'Add New Person', 'proteuswidgets' ); ?></a>
@@ -198,14 +206,11 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			</div>
 			<script type="text/javascript">
 				(function() {
-					// repopulate the form
-					var peopleJSON = <?php echo wp_json_encode( $people ) ?>;
-
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulatePeople ) ) {
-						ProteusWidgets.Utils.repopulatePeople( peopleJSON, widgetId );
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#people-' + widgetId ) );
 					}
 				})();
 			</script>

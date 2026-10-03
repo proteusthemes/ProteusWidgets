@@ -131,6 +131,10 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				);
 			}
 
+			if ( ! isset( $new_instance['testimonials'] ) && empty( $new_instance['testimonials_ready'] ) && isset( $old_instance['testimonials'] ) ) {
+				$new_instance['testimonials'] = $old_instance['testimonials'];
+			}
+
 			$new_instance = wp_parse_args( (array) $new_instance, array(
 				'title'        => 'Testimonials',
 				'autocycle'    => 'no',
@@ -261,7 +265,11 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 					<a href="#" class="pt-remove-testimonial  js-pt-remove-testimonial"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Testimonial', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-testimonials" id="testimonials-<?php echo $this->current_widget_id; ?>">
+			<div class="pt-widget-testimonials" id="testimonials-<?php echo $this->current_widget_id; ?>"
+				data-pw-repeater="Testimonials"
+				data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>"
+				data-pw-rows="<?php echo esc_attr( wp_json_encode( array_values( (array) $testimonials ) ) ); ?>"
+				data-pw-ready-name="<?php echo esc_attr( $this->get_field_name( 'testimonials_ready' ) ); ?>">
 				<div class="testimonials"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-testimonial">Add New Testimonial</a>
@@ -269,14 +277,11 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			</div>
 			<script type="text/javascript">
 				(function() {
-					// repopulate the form
-					var testimonialsJSON = <?php echo wp_json_encode( $testimonials ) ?>;
-
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulateTestimonials ) ) {
-						ProteusWidgets.Utils.repopulateTestimonials( testimonialsJSON, widgetId );
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#testimonials-' + widgetId ) );
 					}
 				})();
 			</script>

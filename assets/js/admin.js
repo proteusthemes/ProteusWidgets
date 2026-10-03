@@ -92,6 +92,8 @@ ProteusWidgets.Views.Abstract = Backbone.View.extend( {
 	destroy: function ( ev ) {
 		ev.preventDefault();
 
+		this.$el.trigger( 'change' );
+
 		this.remove();
 		this.model.trigger( 'destroy' );
 	},
@@ -191,6 +193,8 @@ ProteusWidgets.ListViews.Abstract = Backbone.View.extend( {
 		this.items.add( new this.itemsModel( {
 			id: (currentMaxId + 1)
 		} ) );
+
+		this.$el.trigger( 'change' );
 
 		return this;
 	},
@@ -356,4 +360,29 @@ _.extend( ProteusWidgets.Utils, {
 
 		this.repopulateGeneric( ProteusWidgets.ListViews.SocialIcons, parameters, socialIconsJSON, widgetId );
 	},
+
+
+	/**
+	 * Builds the repeating fields of the widget forms in $root that are not built yet
+	 * @param  {jQuery} $root a list with the data-pw-repeater attribute, or an element that contains such lists
+	 * @return {void}
+	 */
+	initRepeaters: function ( $root ) {
+		jQuery( $root ).find( '[data-pw-repeater]' ).addBack( '[data-pw-repeater]' ).each( function () {
+			var $list    = jQuery( this );
+			var widgetId = String( $list.attr( 'data-pw-widget-id' ) );
+
+			if ( $list.data( 'pwReady' ) || '__i__' === widgetId.slice( -5 ) ) {
+				return;
+			}
+
+			$list.data( 'pwReady', true );
+			$list.append( jQuery( '<input type="hidden" value="1" />' ).attr( 'name', $list.attr( 'data-pw-ready-name' ) ) );
+			ProteusWidgets.Utils[ 'repopulate' + $list.attr( 'data-pw-repeater' ) ]( $list.data( 'pwRows' ), widgetId );
+		} );
+	},
+} );
+
+jQuery( document ).on( 'widget-added widget-updated', function ( event, $widget ) {
+	ProteusWidgets.Utils.initRepeaters( $widget );
 } );

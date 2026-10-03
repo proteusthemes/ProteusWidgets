@@ -68,6 +68,10 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			if ( ! isset( $new_instance['social_icons'] ) && empty( $new_instance['social_icons_ready'] ) && isset( $old_instance['social_icons'] ) ) {
+				$new_instance['social_icons'] = $old_instance['social_icons'];
+			}
+
 			$new_instance = wp_parse_args( (array) $new_instance, array(
 				'social_icons' => array(),
 			) );
@@ -156,7 +160,11 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 					<a href="#" class="pt-remove-social-icon  js-pt-remove-social-icon"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove social icon', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-social-icons" id="social-icons-<?php echo $this->current_widget_id; ?>">
+			<div class="pt-widget-social-icons" id="social-icons-<?php echo $this->current_widget_id; ?>"
+				data-pw-repeater="SocialIcons"
+				data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>"
+				data-pw-rows="<?php echo esc_attr( wp_json_encode( array_values( (array) $instance['social_icons'] ) ) ); ?>"
+				data-pw-ready-name="<?php echo esc_attr( $this->get_field_name( 'social_icons_ready' ) ); ?>">
 				<div class="social-icons"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-social-icon"><?php _e( 'Add New Social Icon', 'proteuswidgets' ); ?></a>
@@ -164,14 +172,11 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 			</div>
 			<script type="text/javascript">
 				(function() {
-					// repopulate the form
-					var socialIconsJSON = <?php echo wp_json_encode( $instance['social_icons'] ) ?>;
-
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulateSocialIcons ) ) {
-						ProteusWidgets.Utils.repopulateSocialIcons( socialIconsJSON, widgetId );
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#social-icons-' + widgetId ) );
 					}
 				})();
 			</script>

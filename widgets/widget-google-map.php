@@ -81,6 +81,10 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			if ( ! isset( $new_instance['locations'] ) && empty( $new_instance['locations_ready'] ) && isset( $old_instance['locations'] ) ) {
+				$new_instance['locations'] = $old_instance['locations'];
+			}
+
 			$new_instance = wp_parse_args( (array) $new_instance, array(
 				'latLng'    => '51.507331,-0.127668',
 				'zoom'      => 12,
@@ -212,7 +216,11 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 					<a href="#" class="pt-remove-location  js-pt-remove-location"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Location', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-locations" id="locations-<?php echo $this->current_widget_id; ?>">
+			<div class="pt-widget-locations" id="locations-<?php echo $this->current_widget_id; ?>"
+				data-pw-repeater="Locations"
+				data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>"
+				data-pw-rows="<?php echo esc_attr( wp_json_encode( array_values( (array) $locations ) ) ); ?>"
+				data-pw-ready-name="<?php echo esc_attr( $this->get_field_name( 'locations_ready' ) ); ?>">
 				<div class="locations"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-location">Add New Location</a>
@@ -220,14 +228,11 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			</div>
 			<script type="text/javascript">
 				(function() {
-					// repopulate the form
-					var locationsJSON = <?php echo wp_json_encode( $locations ) ?>;
-
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulateLocations ) ) {
-						ProteusWidgets.Utils.repopulateLocations( locationsJSON, widgetId );
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#locations-' + widgetId ) );
 					}
 				})();
 			</script>
