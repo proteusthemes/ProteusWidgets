@@ -80,7 +80,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			$instance['style']  = sanitize_text_field( $new_instance['style'] );
 			$instance['height'] = absint( $new_instance['height'] );
 
-			foreach ( $new_instance['locations'] as $key => $location ) {
+			foreach ( PW_Functions::normalize_rows( $new_instance['locations'] ) as $key => $location ) {
 				$instance['locations'][ $key ]['id']             = sanitize_key( $location['id'] );
 				$instance['locations'][ $key ]['title']          = sanitize_text_field( $location['title'] );
 				$instance['locations'][ $key ]['locationlatlng'] = sanitize_text_field( $location['locationlatlng'] );
@@ -105,7 +105,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			$style  = isset( $instance['style'] ) ? $instance['style'] : 'Subtle Grayscale';
 			$height = isset( $instance['height'] ) ? $instance['height'] : 380;
 
-			$locations = isset( $instance['locations'] ) ? array_values( $instance['locations'] ) : array(
+			$locations = isset( $instance['locations'] ) ? array_values( PW_Functions::normalize_rows( $instance['locations'] ) ) : array(
 				array(
 					'id'             => 1,
 					'title'          => 'London',

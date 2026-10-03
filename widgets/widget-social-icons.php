@@ -72,7 +72,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		public function update( $new_instance, $old_instance ) {
 			$instance = array();
 
-			foreach ( $new_instance['social_icons'] as $key => $social_icon ) {
+			foreach ( PW_Functions::normalize_rows( $new_instance['social_icons'] ) as $key => $social_icon ) {
 				$instance['social_icons'][ $key ]['id']   = sanitize_key( $social_icon['id'] );
 				$instance['social_icons'][ $key ]['link'] = sanitize_text_field( $social_icon['link'] );
 				$instance['social_icons'][ $key ]['icon'] = sanitize_html_class( $social_icon['icon'] );

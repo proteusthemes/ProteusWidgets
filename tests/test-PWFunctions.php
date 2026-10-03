@@ -14,6 +14,7 @@ class PWFunctionsTest extends WP_UnitTestCase {
 		$methods = array(
 			'get_social_icons_links',
 			'reorder_widget_array_key_values',
+			'normalize_rows',
 			'installed_after',
 		);
 
@@ -108,6 +109,24 @@ class PWFunctionsTest extends WP_UnitTestCase {
 		);
 
 		$this->assertFalse( $is_array_error, 'array values are not of type Array' );
+	}
+
+	function test_normalize_rows() {
+		$rows = array(
+			3 => array( 'id' => '3', 'title' => 'first' ),
+			1 => array( 'id' => '1', 'title' => 'second' ),
+		);
+
+		$this->assertSame( $rows, PW_Functions::normalize_rows( $rows ), 'array rows keep their keys and order' );
+
+		$this->assertSame(
+			array( 0 => array( 'id' => '0' ), 2 => array( 'id' => '2' ) ),
+			PW_Functions::normalize_rows( array( array( 'id' => '0' ), 'oops', (object) array( 'id' => '2' ), null ) ),
+			'rows that are not arrays are dropped, object rows are converted'
+		);
+
+		$this->assertSame( array(), PW_Functions::normalize_rows( 'oops' ), 'a list that is not an array is empty' );
+		$this->assertSame( array(), PW_Functions::normalize_rows( null ) );
 	}
 
 	function test_installed_after() {

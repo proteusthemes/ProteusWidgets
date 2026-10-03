@@ -89,7 +89,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			$instance['autocycle'] = sanitize_key( $new_instance['autocycle'] );
 			$instance['interval']  = absint( $new_instance['interval'] );
 
-			foreach ( $new_instance['people'] as $key => $person ) {
+			foreach ( PW_Functions::normalize_rows( $new_instance['people'] ) as $key => $person ) {
 				$instance['people'][ $key ]['id']          = sanitize_key( $person['id'] );
 				$instance['people'][ $key ]['tag']         = sanitize_text_field( $person['tag'] );
 				$instance['people'][ $key ]['image']       = sanitize_text_field( $person['image'] );

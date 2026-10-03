@@ -114,7 +114,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			$instance['autocycle'] = sanitize_key( $new_instance['autocycle'] );
 			$instance['interval']  = absint( $new_instance['interval'] );
 
-			foreach ( $new_instance['testimonials'] as $key => $testimonial ) {
+			foreach ( PW_Functions::normalize_rows( $new_instance['testimonials'] ) as $key => $testimonial ) {
 				$instance['testimonials'][ $key ]['id']                 = sanitize_key( $testimonial['id'] );
 				$instance['testimonials'][ $key ]['quote']              = sanitize_text_field( $testimonial['quote'] );
 				$instance['testimonials'][ $key ]['author']             = sanitize_text_field( $testimonial['author'] );
@@ -147,7 +147,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				);
 			}
 			else {
-				$testimonials = isset( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array(
+				$testimonials = isset( $instance['testimonials'] ) ? array_values( PW_Functions::normalize_rows( $instance['testimonials'] ) ) : array(
 					array(
 						'id'     => 1,
 						'quote'  => '',

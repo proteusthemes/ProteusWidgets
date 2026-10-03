@@ -60,6 +60,25 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 
 
 		/**
+		 * Keep only the rows of a repeating widget field that are arrays, with their keys and order (object rows are converted).
+		 * @return array The rows, or an empty array when the field is not a list
+		 */
+		public static function normalize_rows( $rows ) {
+			$normalized = array();
+
+			foreach ( is_array( $rows ) || is_object( $rows ) ? (array) $rows : array() as $key => $row ) {
+				$row = is_object( $row ) ? (array) $row : $row;
+
+				if ( is_array( $row ) ) {
+					$normalized[ $key ] = $row;
+				}
+			}
+
+			return $normalized;
+		}
+
+
+		/**
 		 * Checks if the plugin was installed after the specified version.
 		 * @param  string $version_to_compare
 		 * @return boolean
