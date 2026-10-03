@@ -43,7 +43,7 @@ if ( ! class_exists( 'PW_Pricing_List' ) ) {
 		public function widget( $args, $instance ) {
 
 			// Prepare data.
-			$items                    = isset( $instance['items'] ) ? $instance['items'] : array();
+			$items                    = isset( $instance['items'] ) ? $this->fill_missing_row_ids( $instance['items'] ) : array();
 			$instance['widget_title'] = empty( $instance['widget_title'] ) ? '' : apply_filters( 'widget_title', $instance['widget_title'], $instance );
 
 			// widget-pricing-list template rendering.

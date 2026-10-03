@@ -123,7 +123,7 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 				$instance['new_tab'] = ! empty ( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
 			}
 
-			foreach ( $new_instance['items'] as $key => $item ) {
+			foreach ( $this->fill_missing_row_ids( $new_instance['items'] ) as $key => $item ) {
 				$instance['items'][ $key ]['id']      = sanitize_key( $item['id'] );
 				$instance['items'][ $key ]['title']   = sanitize_text_field( $item['title'] );
 				$instance['items'][ $key ]['content'] = wp_kses( $item['content'], $this->allowed_html_in_content_field );

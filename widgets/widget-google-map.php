@@ -127,7 +127,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			$style  = isset( $instance['style'] ) ? $instance['style'] : 'Subtle Grayscale';
 			$height = isset( $instance['height'] ) ? $instance['height'] : 380;
 
-			$locations = isset( $instance['locations'] ) ? array_values( $instance['locations'] ) : array(
+			$locations = isset( $instance['locations'] ) ? array_values( $this->fill_missing_row_ids( $instance['locations'] ) ) : array(
 				array(
 					'id'             => 1,
 					'title'          => 'London',

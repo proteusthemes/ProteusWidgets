@@ -154,4 +154,55 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		$this->assertSame( '', $saved['locations'][0]['custompinimage'] );
 		$this->assertSame( $saved, $this->update_widget( 'PW_Google_Map', $saved ) );
 	}
+
+	function test_non_numeric_ids_can_be_saved() {
+		foreach ( array(
+			'PW_Accordion'    => 'items',
+			'PW_Pricing_List' => 'items',
+			'PW_Testimonials' => 'testimonials',
+		) as $widget_class => $field ) {
+			$saved = $this->update_widget( $widget_class, array( $field => array( array( 'id' => 'abc' ), array( 'id' => 'x' ) ) ) );
+			$this->assertSame( array( 'abc', 'x' ), array_column( $saved[ $field ], 'id' ), $widget_class );
+		}
+	}
+
+	function test_malformed_lists_and_rows_do_not_throw() {
+		$enable_lists = function ( $fields ) {
+			return array_merge( $fields, array( 'carousel_instead_of_image' => true, 'skills' => true, 'icon_list_items' => true ) );
+		};
+		$args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'pw-1' );
+		$rows = array( array( 'id' => '0', 'title' => 'Kept' ), 'oops' );
+		add_filter( 'pw/person_profile_widget_settings', $enable_lists );
+		set_error_handler( '__return_true' );
+		try {
+			foreach ( array( 'carousel', 'social_icons', 'skills', 'icon_list_items' ) as $field ) {
+				( new PW_Person_Profile() )->update( array( $field => $rows ), array() );
+				( new PW_Person_Profile() )->widget( $args, array( $field => $rows ) );
+			}
+			( new PW_Social_Icons() )->update( array( 'social_icons' => $rows ), array() );
+			( new PW_Steps() )->update( array( 'items' => $rows ), array() );
+
+			ob_start();
+			( new PW_Pricing_List() )->widget( $args, array( 'items' => $rows ) );
+			( new PW_Testimonials() )->form( array( 'testimonials' => 'oops' ) );
+			( new PW_Google_Map() )->form( array( 'locations' => 'oops' ) );
+			$html = ob_get_clean();
+		}
+		finally {
+			restore_error_handler();
+			remove_filter( 'pw/person_profile_widget_settings', $enable_lists );
+		}
+		$this->assertStringContainsString( 'Kept', $html );
+		$this->assertStringContainsString( 'var testimonialsJSON = [];', $html );
+		$this->assertStringContainsString( 'var locationsJSON = [];', $html );
+	}
+
+	function test_testimonial_rating_is_rendered_as_zero_to_five_stars() {
+		$args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'pw-1' );
+		foreach ( array( 'abc' => 0, '999' => 5, '3' => 3 ) as $rating => $stars ) {
+			ob_start();
+			( new PW_Testimonials() )->widget( $args, array( 'testimonials' => array( array( 'id' => '0', 'quote' => 'Q', 'rating' => (string) $rating ) ) ) );
+			$this->assertSame( $stars, substr_count( ob_get_clean(), 'fa-star' ), (string) $rating );
+		}
+	}
 }

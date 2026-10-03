@@ -148,7 +148,8 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				}
 
 				if ( $this->fields['rating'] && isset( $testimonials[ $key ]['rating'] ) ) {
-					$testimonials[ $key ]['rating'] = ( $testimonials[ $key ]['rating'] > 0 ) ? range( 0, ( $testimonials[ $key ]['rating'] - 1 ) ) : 0;
+					$rating                         = PW_Functions::bound( (int) $testimonials[ $key ]['rating'], 0, 5 );
+					$testimonials[ $key ]['rating'] = ( $rating > 0 ) ? range( 0, $rating - 1 ) : 0;
 					$testimonials[ $key ]['display-ratings'] = $testimonials[ $key ]['rating'] > 0;
 				}
 			}
@@ -268,7 +269,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 					'author_avatar'      => '',
 				);
 
-				$testimonials = isset( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array( $blank_testimonial );
+				$testimonials = isset( $instance['testimonials'] ) ? array_values( $this->fill_missing_row_ids( $instance['testimonials'] ) ) : array( $blank_testimonial );
 
 				// Without the add button, an empty list would leave no fields to fill in.
 				if ( empty( $testimonials ) && ! $this->supports_multiple_testimonials ) {

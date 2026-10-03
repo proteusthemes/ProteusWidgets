@@ -128,16 +128,16 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 				}
 			}
 			if ( $this->fields['skills'] ) {
-				$instance['skills'] = ! empty( $instance['skills'] ) && is_array( $instance['skills'] ) ? array_values( $instance['skills'] ) : array();
+				$instance['skills'] = array_values( $this->fill_missing_row_ids( $instance['skills'] ) );
 			}
 			if ( $this->fields['carousel_instead_of_image'] ) {
-				$instance['carousel'] = ! empty( $instance['carousel'] ) && is_array( $instance['carousel'] ) ? array_values( $instance['carousel'] ) : array();
+				$instance['carousel'] = array_values( $this->fill_missing_row_ids( $instance['carousel'] ) );
 			}
 			if ( $this->fields['tags'] ) {
 				$instance['tags'] = ! empty( $instance['tags'] ) ? explode( ',', $instance['tags'] ) : array();
 			}
 			if ( $this->fields['icon_list_items'] ) {
-				$instance['icon_list_items'] = ! empty( $instance['icon_list_items'] ) && is_array( $instance['icon_list_items'] ) ? array_values( $instance['icon_list_items'] ) : array();
+				$instance['icon_list_items'] = array_values( $this->fill_missing_row_ids( $instance['icon_list_items'] ) );
 			}
 
 			$text = array(
@@ -200,7 +200,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 
 			if ( $this->fields['carousel_instead_of_image'] ) {
 				if ( ! empty( $new_instance['carousel'] ) ) {
-					foreach ( $new_instance['carousel'] as $key => $carousel_item ) {
+					foreach ( $this->fill_missing_row_ids( $new_instance['carousel'] ) as $key => $carousel_item ) {
 						$instance['carousel'][ $key ]['id']   = sanitize_key( $carousel_item['id'] );
 						$instance['carousel'][ $key ]['type'] = sanitize_text_field( $carousel_item['type'] );
 						$instance['carousel'][ $key ]['url']  = esc_url_raw( $carousel_item['url'] );
@@ -216,7 +216,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 			}
 
 			if ( $this->fields['social_icons'] && ! empty( $new_instance['social_icons'] )  ) {
-				foreach ( $new_instance['social_icons'] as $key => $social_icon ) {
+				foreach ( $this->fill_missing_row_ids( $new_instance['social_icons'] ) as $key => $social_icon ) {
 					$instance['social_icons'][ $key ]['id']   = sanitize_key( $social_icon['id'] );
 					$instance['social_icons'][ $key ]['icon'] = sanitize_text_field( $social_icon['icon'] );
 					$instance['social_icons'][ $key ]['link'] = esc_url_raw( $social_icon['link'] );
@@ -224,7 +224,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 			}
 
 			if ( $this->fields['skills'] && ! empty( $new_instance['skills'] ) ) {
-				foreach ( $new_instance['skills'] as $key => $skill ) {
+				foreach ( $this->fill_missing_row_ids( $new_instance['skills'] ) as $key => $skill ) {
 					$instance['skills'][ $key ]['id']     = sanitize_key( $skill['id'] );
 					$instance['skills'][ $key ]['name']   = sanitize_text_field( $skill['name'] );
 					$instance['skills'][ $key ]['rating'] = sanitize_text_field( $skill['rating'] );
@@ -232,7 +232,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 			}
 
 			if ( $this->fields['icon_list_items'] && ! empty( $new_instance['icon_list_items'] ) ) {
-				foreach ( $new_instance['icon_list_items'] as $key => $item ) {
+				foreach ( $this->fill_missing_row_ids( $new_instance['icon_list_items'] ) as $key => $item ) {
 					$instance['icon_list_items'][ $key ]['id']          = sanitize_key( $item['id'] );
 					$instance['icon_list_items'][ $key ]['text']        = sanitize_text_field( $item['text'] );
 					$instance['icon_list_items'][ $key ]['icon']        = sanitize_text_field( $item['icon'] );
