@@ -25,7 +25,7 @@
 				</div>
 			</a>
 		<?php endforeach; ?>
-		<?php if ( ! empty( $instance['more_news'] ) ) : ?>
+		<?php if ( ! empty( $instance['more_news'] ) && ! empty( $instance['link_to_more_news'] ) ) : ?>
 			<a href="<?php echo esc_url( $instance['link_to_more_news'] ); ?>" class="latest-news  latest-news--more-news">
 				<?php echo esc_html( $text['more_news'] ); ?>
 			</a>
@@ -42,7 +42,7 @@
 			</a>
 		<?php endforeach; ?>
 
-		<?php if ( ! empty( $instance['more_news'] ) ) : ?>
+		<?php if ( ! empty( $instance['more_news'] ) && ! empty( $instance['link_to_more_news'] ) ) : ?>
 			<a href="<?php echo esc_url( $instance['link_to_more_news'] ); ?>" class="latest-news  latest-news--more-news">
 				<?php echo esc_html( $text['more_news'] ); ?>
 			</a>

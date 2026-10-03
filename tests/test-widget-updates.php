@@ -227,6 +227,27 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		}
 	}
 
+	function test_latest_news_renders_without_from_and_to() {
+		$args    = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'pw-1' );
+		$post_id = wp_insert_post( array( 'post_status' => 'publish', 'post_title' => 'Only post' ) );
+
+		try {
+			foreach ( array( 'block', 'featured', 'inline' ) as $type ) {
+				ob_start();
+				try {
+					( new PW_Latest_News() )->widget( $args, array( 'type' => $type, 'from' => '', 'to' => '' ) );
+				}
+				finally {
+					$html = ob_get_clean();
+				}
+				$this->assertStringContainsString( 'Only post', $html, $type );
+			}
+		}
+		finally {
+			wp_delete_post( $post_id, true );
+		}
+	}
+
 	function test_testimonial_rating_is_rendered_as_zero_to_five_stars() {
 		$args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'pw-1' );
 		foreach ( array( 'abc' => 0, '999' => 5, '3' => 3 ) as $rating => $stars ) {

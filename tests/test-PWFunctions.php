@@ -105,4 +105,50 @@ class PWFunctionsTest extends WP_UnitTestCase {
 			remove_filter( 'image_downsize', $filter, 10 );
 		}
 	}
+
+	function test_get_cached_data_follows_post_changes() {
+		PW_Functions::get_cached_data( 'pw_test_recent_posts', 10 );
+		$post_id = wp_insert_post( array( 'post_status' => 'publish', 'post_title' => 'Newest post' ) );
+
+		try {
+			$posts = PW_Functions::get_cached_data( 'pw_test_recent_posts', 10 );
+			$this->assertSame( $post_id, $posts[0]['id'] );
+		} finally {
+			wp_delete_post( $post_id, true );
+		}
+	}
+
+	function test_get_cached_data_hides_protected_post_content() {
+		$post_id = wp_insert_post( array( 'post_status' => 'publish', 'post_title' => 'Protected', 'post_password' => 'secret', 'post_content' => 'PROTECTED-BODY' ) );
+
+		try {
+			$posts = PW_Functions::get_cached_data( 'pw_test_protected_posts', 10 );
+			$this->assertSame( 'Protected', $posts[0]['title'] );
+			$this->assertStringNotContainsString( 'PROTECTED-BODY', $posts[0]['excerpt'] );
+		} finally {
+			wp_delete_post( $post_id, true );
+		}
+	}
+
+	function test_get_posts_index_url() {
+		$options = array( 'show_on_front' => get_option( 'show_on_front' ), 'page_for_posts' => get_option( 'page_for_posts' ) );
+		$page_id = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'News' ) );
+
+		try {
+			update_option( 'show_on_front', 'posts' );
+			update_option( 'page_for_posts', $page_id );
+			$this->assertSame( home_url( '/' ), PW_Functions::get_posts_index_url() );
+
+			update_option( 'show_on_front', 'page' );
+			$this->assertSame( get_permalink( $page_id ), PW_Functions::get_posts_index_url() );
+
+			update_option( 'page_for_posts', 0 );
+			$this->assertSame( '', PW_Functions::get_posts_index_url() );
+		} finally {
+			foreach ( $options as $option => $value ) {
+				update_option( $option, $value );
+			}
+			wp_delete_post( $page_id, true );
+		}
+	}
 }
