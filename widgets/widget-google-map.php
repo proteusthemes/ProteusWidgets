@@ -45,7 +45,8 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			// Prepare data for mustache template
-			$instance['locations'] = esc_attr( json_encode( array_values( $instance['locations'] ) ) );
+			$locations             = isset( $instance['locations'] ) && is_array( $instance['locations'] ) ? array_values( $instance['locations'] ) : array();
+			$instance['locations'] = esc_attr( json_encode( $locations ) );
 			$instance['latLng']    = esc_attr( $instance['latLng'] );
 			$instance['zoom']      = absint( $instance['zoom'] );
 			$instance['type']      = esc_attr( $instance['type'] );
