@@ -155,4 +155,15 @@ class SparseWidgetInstancesTest extends WP_UnitTestCase {
 		$output = $this->render_widget( 'PW_Social_Icons', array( 'social_icons' => array( array( 'id' => 1 ) ) ) );
 		$this->assert_output_contains( 'class="social-icons__link" href=""', $output );
 	}
+
+	function test_testimonials_use_the_full_width_for_a_single_testimonial() {
+		$one = array( 'id' => 1, 'quote' => 'Q', 'author' => 'A', 'rating' => 5 );
+		$this->assert_output_contains( 'col-sm-12', $this->render_widget( 'PW_Testimonials', array( 'testimonials' => array( $one ) ) ) );
+		$this->assert_output_contains( 'col-sm-6', $this->render_widget( 'PW_Testimonials', array( 'testimonials' => array( $one, array( 'id' => 2 ) + $one ) ) ) );
+	}
+
+	function test_testimonials_without_a_title_print_no_heading() {
+		$output = $this->render_widget( 'PW_Testimonials', array( 'title' => '', 'testimonials' => array( array( 'id' => 1, 'quote' => 'Q' ) ) ) );
+		$this->assertFalse( strpos( $output, '<h2>' ) );
+	}
 }

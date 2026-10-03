@@ -176,7 +176,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-number"><?php esc_html_e( 'Number:', 'proteuswidgets' ); ?></label>
-					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-number" name="<?php echo esc_attr( $this->get_field_name( 'counters' ) ); ?>[{{id}}][number]" type="text" value="{{number}}" />
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-number" name="<?php echo esc_attr( $this->get_field_name( 'counters' ) ); ?>[{{id}}][number]" type="number" min="0" step="1" inputmode="numeric" value="{{number}}" />
 				</p>
 
 			<?php if ( $this->fields['progress_bar'] ) : ?>

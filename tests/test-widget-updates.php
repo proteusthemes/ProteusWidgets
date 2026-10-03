@@ -316,4 +316,14 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 			$this->assertStringContainsString( 'name="' . $widget->get_field_name( $field . '_ready' ) . '" value="1" disabled', $form, $widget_class );
 		}
 	}
+
+	function test_testimonials_form_keeps_a_cleared_title() {
+		$widget = new PW_Testimonials();
+		$widget->_set( 2 );
+		foreach ( array( 'Testimonials' => array(), '' => array( 'title' => '' ) ) as $expected => $instance ) {
+			ob_start();
+			$widget->form( $instance );
+			$this->assertStringContainsString( 'name="' . $widget->get_field_name( 'title' ) . '" type="text" value="' . $expected . '"', ob_get_clean() );
+		}
+	}
 }
