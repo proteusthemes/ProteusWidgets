@@ -23,6 +23,10 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 			parent::__construct();
 		}
 
+		public static function allowed_protocols() {
+			return array_unique( array_merge( wp_allowed_protocols(), array( 'skype', 'callto' ) ) );
+		}
+
 		/**
 		 * Front-end display of widget.
 		 *
@@ -36,6 +40,8 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 				'title'          => '',
 				'skype_username' => '',
 			) );
+
+			$instance['skype_username'] = esc_url_raw( $instance['skype_username'], self::allowed_protocols() );
 
 			// Prepare data for template
 			$instance['icon'] = 'skype' == substr( $instance['skype_username'], 0, 5 ) ? 'skype' : 'phone';
@@ -61,7 +67,8 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 			$instance = array();
 
 			$instance['title']          = wp_kses_post( $new_instance['title'] );
-			$instance['skype_username'] = wp_kses_post( $new_instance['skype_username'] );
+			$username                   = wp_kses_post( $new_instance['skype_username'] );
+			$instance['skype_username'] = '' === esc_url_raw( $username, self::allowed_protocols() ) ? '' : $username;
 
 			return $instance;
 		}
