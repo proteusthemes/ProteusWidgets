@@ -92,10 +92,10 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			foreach ( $new_instance['people'] as $key => $person ) {
 				$instance['people'][ $key ]['id']          = sanitize_key( $person['id'] );
 				$instance['people'][ $key ]['tag']         = sanitize_text_field( $person['tag'] );
-				$instance['people'][ $key ]['image']       = sanitize_text_field( $person['image'] );
+				$instance['people'][ $key ]['image']       = esc_url_raw( trim( $person['image'] ) );
 				$instance['people'][ $key ]['name']        = sanitize_text_field( $person['name'] );
 				$instance['people'][ $key ]['description'] = sanitize_text_field( $person['description'] );
-				$instance['people'][ $key ]['link']        = sanitize_text_field( $person['link'] );
+				$instance['people'][ $key ]['link']        = esc_url_raw( trim( $person['link'] ) );
 			}
 
 			return $instance;
