@@ -96,6 +96,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = $this->migrate_legacy_image( $instance );
 			$instance = wp_parse_args( (array) $instance, array(
 				'name'              => '',
 				'image'             => '',
@@ -160,7 +161,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 		 * @param array $old_instance The previous options.
 		 */
 		public function update( $new_instance, $old_instance ) {
-			$instance = array();
+			$new_instance = $this->migrate_legacy_image( $new_instance );
+			$instance     = array();
 
 			$instance['name']    = sanitize_text_field( $new_instance['name'] );
 			$instance['new_tab'] = ! empty( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
@@ -251,6 +253,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 		 * @param array $instance The widget options
 		 */
 		public function form( $instance ) {
+			$instance    = $this->migrate_legacy_image( $instance );
 			$name        = empty( $instance['name'] ) ? '' : $instance['name'];
 			$image       = empty( $instance['image'] ) ? '' : $instance['image'];
 			$new_tab     = empty( $instance['new_tab'] ) ? '' : $instance['new_tab'];
@@ -631,6 +634,38 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 			</script>
 
 			<?php
+		}
+
+		/**
+		 * Move a portrait stored in image into the carousel, which replaces the image field.
+		 *
+		 * @param array $instance The widget options.
+		 * @return array
+		 */
+		private function migrate_legacy_image( $instance ) {
+			if ( ! $this->fields['carousel_instead_of_image'] || empty( $instance['image'] ) ) {
+				return $instance;
+			}
+
+			$carousel = array();
+			foreach ( ! empty( $instance['carousel'] ) && is_array( $instance['carousel'] ) ? $instance['carousel'] : array() as $row ) {
+				if ( is_array( $row ) ) {
+					$carousel[] = $row;
+				}
+			}
+
+			if ( ! in_array( $instance['image'], wp_list_pluck( $carousel, 'url' ), true ) ) {
+				array_unshift( $carousel, array( 'type' => 'image', 'url' => $instance['image'], 'link' => '' ) );
+			}
+
+			foreach ( $carousel as $index => $row ) {
+				$carousel[ $index ]['id'] = (string) $index;
+			}
+
+			$instance['carousel'] = $carousel;
+			unset( $instance['image'] );
+
+			return $instance;
 		}
 	}
 }

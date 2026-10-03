@@ -197,6 +197,26 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'var locationsJSON = [];', $html );
 	}
 
+	function test_person_profile_portrait_moves_into_the_carousel() {
+		$stored = array( 'name' => 'Jane', 'image' => 'https://example.com/portrait.jpg', 'tag' => '', 'description' => '' );
+		$this->assertSame( $stored['image'], $this->update_widget( 'PW_Person_Profile', $stored )['image'] );
+
+		$enable_carousel = function ( $fields ) {
+			$fields['carousel_instead_of_image'] = true;
+			return $fields;
+		};
+		add_filter( 'pw/person_profile_widget_settings', $enable_carousel );
+		try {
+			$saved = $this->update_widget( 'PW_Person_Profile', $stored );
+			$this->assertArrayNotHasKey( 'image', $saved );
+			$this->assertSame( array( array( 'id' => '0', 'type' => 'image', 'url' => $stored['image'] ) ), $saved['carousel'] );
+			$this->assertSame( $saved, $this->update_widget( 'PW_Person_Profile', $saved ) );
+		}
+		finally {
+			remove_filter( 'pw/person_profile_widget_settings', $enable_carousel );
+		}
+	}
+
 	function test_testimonial_rating_is_rendered_as_zero_to_five_stars() {
 		$args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'pw-1' );
 		foreach ( array( 'abc' => 0, '999' => 5, '3' => 3 ) as $rating => $stars ) {
