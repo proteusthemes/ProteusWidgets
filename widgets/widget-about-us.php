@@ -33,6 +33,15 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'autocycle' => 'no',
+				'interval'  => 5000,
+			) );
+
+			if ( empty( $args['widget_id'] ) ) {
+				$args['widget_id'] = wp_unique_id( $this->id_base . '-' );
+			}
+
 			// Prepare data for mustache template
 			if ( isset( $instance['people'] ) ) {
 				$people = $instance['people'];
@@ -84,12 +93,20 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'autocycle' => 'no',
+				'interval'  => 5000,
+				'people'    => array(),
+			) );
 			$instance = array();
 
 			$instance['autocycle'] = sanitize_key( $new_instance['autocycle'] );
 			$instance['interval']  = absint( $new_instance['interval'] );
 
+			$instance['people'] = array();
+
 			foreach ( PW_Functions::normalize_rows( $new_instance['people'] ) as $key => $person ) {
+				$person = wp_parse_args( $person, array( 'id' => $key, 'tag' => '', 'image' => '', 'name' => '', 'description' => '', 'link' => '' ) );
 				$instance['people'][ $key ]['id']          = sanitize_key( $person['id'] );
 				$instance['people'][ $key ]['tag']         = sanitize_text_field( $person['tag'] );
 				$instance['people'][ $key ]['image']       = sanitize_text_field( $person['image'] );

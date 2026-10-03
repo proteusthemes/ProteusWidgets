@@ -37,6 +37,11 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'page_id' => 0,
+				'layout'  => 'block',
+			) );
+
 			// Prepare data for mustache template
 			$page_id            = absint( $instance['page_id'] );
 			$instance['layout'] = sanitize_key( $instance['layout'] );
@@ -85,6 +90,10 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'page_id' => 0,
+				'layout'  => 'block',
+			) );
 			$instance = array();
 
 			$instance['page_id'] = absint( $new_instance['page_id'] );

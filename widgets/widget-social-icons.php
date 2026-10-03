@@ -34,19 +34,17 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for mustache template
-			if ( ! isset( $instance['social_icons'] ) ) {
-				$instance['social_icons'] = array(
-					array(
-						'link' => '',
-						'icon' => '',
-					),
-				);
-			}
+			$instance = wp_parse_args( (array) $instance, array(
+				'social_icons' => array(),
+			) );
 
-			$instance['social_icons'] = PW_Functions::reorder_widget_array_key_values( $instance['social_icons'] );
+			// Prepare data for mustache template
+			$social_icons = is_array( $instance['social_icons'] ) ? $instance['social_icons'] : array();
+
+			$instance['social_icons'] = PW_Functions::reorder_widget_array_key_values( $social_icons );
 			// Escape data
 			for ( $i = 0; $i < count( $instance['social_icons'] ); $i++ ) {
+				$instance['social_icons'][ $i ] = wp_parse_args( $instance['social_icons'][ $i ], array( 'link' => '', 'icon' => '' ) );
 				$instance['social_icons'][ $i ]['link'] = esc_url( $instance['social_icons'][ $i ]['link'] );
 				$instance['social_icons'][ $i ]['icon'] = esc_attr( $instance['social_icons'][ $i ]['icon'] );
 			}
@@ -70,15 +68,19 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
-			$instance = array();
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'social_icons' => array(),
+			) );
+			$instance = array( 'social_icons' => array() );
 
 			foreach ( PW_Functions::normalize_rows( $new_instance['social_icons'] ) as $key => $social_icon ) {
+				$social_icon = wp_parse_args( $social_icon, array( 'id' => $key, 'link' => '', 'icon' => '' ) );
 				$instance['social_icons'][ $key ]['id']   = sanitize_key( $social_icon['id'] );
 				$instance['social_icons'][ $key ]['link'] = esc_url_raw( trim( $social_icon['link'] ) );
 				$instance['social_icons'][ $key ]['icon'] = sanitize_html_class( $social_icon['icon'] );
 			}
 
-			$instance['new_tab'] = sanitize_key( $new_instance['new_tab'] );
+			$instance['new_tab'] = ! empty( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
 
 			return $instance;
 		}

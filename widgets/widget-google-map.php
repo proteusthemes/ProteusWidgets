@@ -44,13 +44,22 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'latLng'    => '51.507331,-0.127668',
+				'zoom'      => 12,
+				'type'      => 'roadmap',
+				'style'     => 'Subtle Grayscale',
+				'height'    => 380,
+				'locations' => array(),
+			) );
+
 			// Prepare data for mustache template
 			$locations             = isset( $instance['locations'] ) && is_array( $instance['locations'] ) ? array_values( $instance['locations'] ) : array();
 			$instance['locations'] = esc_attr( json_encode( $locations ) );
 			$instance['latLng']    = esc_attr( $instance['latLng'] );
 			$instance['zoom']      = absint( $instance['zoom'] );
 			$instance['type']      = esc_attr( $instance['type'] );
-			$instance['style']     = esc_attr( $this->map_styles[ $instance['style'] ] );
+			$instance['style']     = esc_attr( isset( $this->map_styles[ $instance['style'] ] ) ? $this->map_styles[ $instance['style'] ] : '[]' );
 			$instance['height']    = absint( $instance['height'] );
 
 			// Mustache widget-google-map template rendering
@@ -72,6 +81,14 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'latLng'    => '51.507331,-0.127668',
+				'zoom'      => 12,
+				'type'      => 'roadmap',
+				'style'     => 'Subtle Grayscale',
+				'height'    => 380,
+				'locations' => array(),
+			) );
 			$instance = array();
 
 			$instance['latLng'] = sanitize_text_field( $new_instance['latLng'] );
@@ -80,7 +97,10 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			$instance['style']  = sanitize_text_field( $new_instance['style'] );
 			$instance['height'] = absint( $new_instance['height'] );
 
+			$instance['locations'] = array();
+
 			foreach ( PW_Functions::normalize_rows( $new_instance['locations'] ) as $key => $location ) {
+				$location = wp_parse_args( $location, array( 'id' => $key, 'title' => '', 'locationlatlng' => '', 'custompinimage' => '' ) );
 				$instance['locations'][ $key ]['id']             = sanitize_key( $location['id'] );
 				$instance['locations'][ $key ]['title']          = sanitize_text_field( $location['title'] );
 				$instance['locations'][ $key ]['locationlatlng'] = sanitize_text_field( $location['locationlatlng'] );

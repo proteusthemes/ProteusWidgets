@@ -43,6 +43,14 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'       => 'Facebook',
+				'colorscheme' => 'light',
+				'like_link'   => 'https://www.facebook.com/ProteusThemes',
+				'height'      => 290,
+				'background'  => '#ffffff',
+			) );
+
 			// Prepare data for mustache template
 			$instance['title']      = $args['before_title'] . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $args['after_title'];
 			$instance['height']     = absint( $instance['height'] );
@@ -81,6 +89,13 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title'       => 'Facebook',
+				'colorscheme' => 'light',
+				'like_link'   => 'https://www.facebook.com/ProteusThemes',
+				'height'      => 290,
+				'background'  => '#ffffff',
+			) );
 			$instance = array();
 
 			$instance['title']       = wp_kses_post( $new_instance['title'] );

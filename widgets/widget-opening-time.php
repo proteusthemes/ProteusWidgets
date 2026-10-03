@@ -70,6 +70,13 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'           => '',
+				'separator'       => '-',
+				'closed_text'     => 'CLOSED',
+				'additional_info' => '',
+			) );
+
 			// Prepare data for mustache template
 			$current_time = intval( time() + ( (double) get_option( 'gmt_offset' ) * 3600 ) );
 			$opening_times = array();
@@ -81,12 +88,14 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 				$current_line['day'] = $day;
 
 				$class = $i % 2 == 0 ? '' : ' light-bg';
-				$class .= ( '1' != $instance[ $day_label . '_opened' ] ) ? ' closed' : '';
+				$class .= ( ! isset( $instance[ $day_label . '_opened' ] ) || '1' != $instance[ $day_label . '_opened' ] ) ? ' closed' : '';
 				$class .= ( date( 'D', $current_time ) == $day_label ) ? ' today' : '';
 				$current_line['class'] = esc_attr( $class );
 
-				if ( '1' == $instance[ $day_label . '_opened' ] ) {
-					$current_line['day-time'] = $instance[ $day_label . '_from' ] . $instance['separator'] . $instance[ $day_label . '_to' ];
+				if ( isset( $instance[ $day_label . '_opened' ] ) && '1' == $instance[ $day_label . '_opened' ] ) {
+					$from = isset( $instance[ $day_label . '_from' ] ) ? $instance[ $day_label . '_from' ] : '8:00';
+					$to   = isset( $instance[ $day_label . '_to' ] ) ? $instance[ $day_label . '_to' ] : '16:00';
+					$current_line['day-time'] = $from . $instance['separator'] . $to;
 				} else {
 					$current_line['day-time'] = $instance['closed_text'];
 				}
@@ -117,6 +126,12 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title'           => '',
+				'separator'       => '-',
+				'closed_text'     => 'CLOSED',
+				'additional_info' => '',
+			) );
 			$instance = array();
 
 			// title
@@ -124,9 +139,9 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 
 			// days
 			foreach ( $this->days as $day_label => $day ) {
-				$instance[ $day_label . '_opened' ] = strip_tags( $new_instance[ $day_label . '_opened' ] );
-				$instance[ $day_label . '_from' ] = strip_tags( $new_instance[ $day_label . '_from' ] );
-				$instance[ $day_label . '_to' ] = strip_tags( $new_instance[ $day_label . '_to' ] );
+				$instance[ $day_label . '_opened' ] = ! empty( $new_instance[ $day_label . '_opened' ] ) ? strip_tags( $new_instance[ $day_label . '_opened' ] ) : '';
+				$instance[ $day_label . '_from' ]   = strip_tags( isset( $new_instance[ $day_label . '_from' ] ) ? $new_instance[ $day_label . '_from' ] : '8:00' );
+				$instance[ $day_label . '_to' ]     = strip_tags( isset( $new_instance[ $day_label . '_to' ] ) ? $new_instance[ $day_label . '_to' ] : '16:00' );
 			}
 
 			// separator

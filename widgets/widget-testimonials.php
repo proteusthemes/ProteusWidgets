@@ -48,14 +48,25 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'        => 'Testimonials',
+				'autocycle'    => 'no',
+				'interval'     => 5000,
+				'testimonials' => array(),
+			) );
+
+			if ( empty( $args['widget_id'] ) ) {
+				$args['widget_id'] = wp_unique_id( $this->id_base . '-' );
+			}
+
 			// Prepare data for mustache template
 			if ( isset( $instance['quote'] ) ) {
 				$testimonials = array(
 					array(
 						'quote'  => $instance['quote'],
-						'author' => $instance['author'],
-						'rating' => $instance['rating'],
-						'author_description' => $instance['author_description'],
+						'author' => isset( $instance['author'] ) ? $instance['author'] : '',
+						'rating' => isset( $instance['rating'] ) ? $instance['rating'] : '',
+						'author_description' => isset( $instance['author_description'] ) ? $instance['author_description'] : '',
 					),
 				);
 			}
@@ -120,13 +131,22 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				);
 			}
 
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title'        => 'Testimonials',
+				'autocycle'    => 'no',
+				'interval'     => 5000,
+				'testimonials' => array(),
+			) );
 			$instance = array();
 
 			$instance['title']     = wp_kses_post( $new_instance['title'] );
 			$instance['autocycle'] = sanitize_key( $new_instance['autocycle'] );
 			$instance['interval']  = absint( $new_instance['interval'] );
 
+			$instance['testimonials'] = array();
+
 			foreach ( PW_Functions::normalize_rows( $new_instance['testimonials'] ) as $key => $testimonial ) {
+				$testimonial = wp_parse_args( $testimonial, array( 'id' => $key, 'quote' => '', 'author' => '', 'rating' => '', 'author_description' => '' ) );
 				$instance['testimonials'][ $key ]['id']                 = sanitize_key( $testimonial['id'] );
 				$instance['testimonials'][ $key ]['quote']              = sanitize_text_field( $testimonial['quote'] );
 				$instance['testimonials'][ $key ]['author']             = sanitize_text_field( $testimonial['author'] );
