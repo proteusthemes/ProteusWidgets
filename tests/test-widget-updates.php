@@ -292,6 +292,81 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'var testimonialsJSON = [];', $html );
 	}
 
+	function test_cached_posts_follow_post_changes() {
+		PW_Functions::get_cached_data( 'pw_test_recent_posts', 10 );
+		$post_id = wp_insert_post( array( 'post_status' => 'publish', 'post_title' => 'Newest post' ) );
+
+		try {
+			$posts = PW_Functions::get_cached_data( 'pw_test_recent_posts', 10 );
+			$this->assertSame( $post_id, $posts[0]['id'] );
+		}
+		finally {
+			wp_delete_post( $post_id, true );
+		}
+	}
+
+	function test_cached_posts_hide_protected_post_content() {
+		$post_id = wp_insert_post( array( 'post_status' => 'publish', 'post_title' => 'Protected', 'post_password' => 'secret', 'post_content' => 'PROTECTED-BODY' ) );
+
+		try {
+			$posts = PW_Functions::get_cached_data( 'pw_test_protected_posts', 10 );
+			$this->assertSame( 'Protected', $posts[0]['title'] );
+			$this->assertStringNotContainsString( 'PROTECTED-BODY', $posts[0]['excerpt'] );
+		}
+		finally {
+			wp_delete_post( $post_id, true );
+		}
+	}
+
+	function test_posts_index_url() {
+		$options = array( 'show_on_front' => get_option( 'show_on_front' ), 'page_for_posts' => get_option( 'page_for_posts' ) );
+		$page_id = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'News' ) );
+
+		try {
+			update_option( 'show_on_front', 'posts' );
+			update_option( 'page_for_posts', $page_id );
+			$this->assertSame( home_url( '/' ), PW_Functions::get_posts_index_url() );
+
+			update_option( 'show_on_front', 'page' );
+			$this->assertSame( get_permalink( $page_id ), PW_Functions::get_posts_index_url() );
+
+			update_option( 'page_for_posts', 0 );
+			$this->assertSame( '', PW_Functions::get_posts_index_url() );
+		}
+		finally {
+			foreach ( $options as $option => $value ) {
+				update_option( $option, $value );
+			}
+			wp_delete_post( $page_id, true );
+		}
+	}
+
+	function test_latest_news_renders_without_from_and_to() {
+		$args    = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'pw-1' );
+		$post_id = wp_insert_post( array( 'post_status' => 'publish', 'post_title' => 'Only post' ) );
+
+		try {
+			foreach ( array( 'block', 'featured', 'inline', '' ) as $type ) {
+				ob_start();
+				try {
+					( new PW_Latest_News() )->widget( $args, array( 'type' => $type ) );
+				}
+				finally {
+					$html = ob_get_clean();
+				}
+				if ( '' === $type ) {
+					$this->assertSame( '', trim( $html ) );
+				}
+				else {
+					$this->assertStringContainsString( 'Only post', $html, $type );
+				}
+			}
+		}
+		finally {
+			wp_delete_post( $post_id, true );
+		}
+	}
+
 	function test_testimonial_rating_is_rendered_as_zero_to_five_stars() {
 		$args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'pw-1' );
 		foreach ( array( 'abc' => 0, '999' => 5, '3' => 3 ) as $rating => $stars ) {
