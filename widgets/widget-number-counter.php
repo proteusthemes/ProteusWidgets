@@ -69,10 +69,9 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 			) );
 
 			// Prepare the data for template.
-			$counters = is_array( $instance['counters'] ) ? array_values( $instance['counters'] ) : array();
+			$counters = array_values( $this->fill_missing_row_ids( $instance['counters'] ) );
 			foreach ( $counters as $key => $counter ) {
-				$counters[ $key ] = wp_parse_args( (array) $counter, array(
-					'id'     => 1,
+				$counters[ $key ] = wp_parse_args( $counter, array(
 					'title'  => '',
 					'number' => '',
 					'icon'   => '',
@@ -103,10 +102,8 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 
 			$instance['speed'] = absint( $new_instance['speed'] );
 
-			$counters = is_array( $new_instance['counters'] ) ? $new_instance['counters'] : array();
-			foreach ( $counters as $key => $counter ) {
-				$counter = wp_parse_args( (array) $counter, array(
-					'id'                 => 1,
+			foreach ( $this->fill_missing_row_ids( $new_instance['counters'] ) as $key => $counter ) {
+				$counter = wp_parse_args( $counter, array(
 					'title'              => '',
 					'number'             => '',
 					'icon'               => '',

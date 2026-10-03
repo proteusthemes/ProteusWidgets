@@ -113,6 +113,41 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		$this->assertSame( $saved, $this->update_widget( 'PW_Testimonials', $saved ) );
 	}
 
+	function test_items_without_ids_get_unique_ids() {
+		foreach ( array(
+			'PW_Accordion'      => 'items',
+			'PW_Pricing_List'   => 'items',
+			'PW_Testimonials'   => 'testimonials',
+			'PW_Number_Counter' => 'counters',
+			'PW_Google_Map'     => 'locations',
+		) as $widget_class => $field ) {
+			$saved = $this->update_widget( $widget_class, array( $field => array( array( 'id' => '1' ), array(), array( 'id' => '' ) ) ) );
+			$ids   = array_column( $saved[ $field ], 'id' );
+			$this->assertSame( '1', $ids[0], $widget_class );
+			$this->assertCount( 3, array_unique( $ids ), $widget_class );
+		}
+	}
+
+	function get_testimonial_form_rows() {
+		$widget = new PW_Testimonials();
+		$widget->_set( 2 );
+		ob_start();
+		$widget->form( $widget->update( array(), array() ) );
+		preg_match( '/var testimonialsJSON = (.*?);/', ob_get_clean(), $matches );
+		return json_decode( $matches[1], true );
+	}
+
+	function test_single_testimonial_form_keeps_a_row_after_an_empty_save() {
+		add_filter( 'pw/supports_multiple_testimonials', '__return_false' );
+		try {
+			$this->assertCount( 1, $this->get_testimonial_form_rows() );
+		}
+		finally {
+			remove_filter( 'pw/supports_multiple_testimonials', '__return_false' );
+		}
+		$this->assertSame( array(), $this->get_testimonial_form_rows() );
+	}
+
 	function test_sparse_map_markers_can_be_resaved() {
 		$saved = $this->update_widget( 'PW_Google_Map', array( 'locations' => array( array( 'locationlatlng' => '10,20' ) ) ) );
 		$this->assertSame( '10,20', $saved['locations'][0]['locationlatlng'] );

@@ -106,9 +106,8 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				$testimonials = is_array( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array();
 			}
 
-			foreach ( $testimonials as $key => $testimonial ) {
-				$testimonials[ $key ] = wp_parse_args( (array) $testimonial, array(
-					'id'                 => 1,
+			foreach ( $this->fill_missing_row_ids( $testimonials ) as $key => $testimonial ) {
+				$testimonials[ $key ] = wp_parse_args( $testimonial, array(
 					'quote'              => '',
 					'author'             => '',
 					'rating'             => 5,
@@ -203,10 +202,8 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				$instance['interval'] = absint( $new_instance['interval'] );
 			}
 
-			$testimonials = is_array( $new_instance['testimonials'] ) ? $new_instance['testimonials'] : array();
-			foreach ( $testimonials as $key => $testimonial ) {
-				$testimonial = wp_parse_args( (array) $testimonial, array(
-					'id'                 => 1,
+			foreach ( $this->fill_missing_row_ids( $new_instance['testimonials'] ) as $key => $testimonial ) {
+				$testimonial = wp_parse_args( $testimonial, array(
 					'quote'              => '',
 					'author'             => '',
 					'rating'             => 5,
@@ -262,16 +259,21 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				);
 			}
 			else {
-				$testimonials = isset( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array(
-					array(
-						'id'                 => 1,
-						'quote'              => '',
-						'author'             => '',
-						'rating'             => 5,
-						'author_description' => '',
-						'author_avatar'      => '',
-					),
+				$blank_testimonial = array(
+					'id'                 => 1,
+					'quote'              => '',
+					'author'             => '',
+					'rating'             => 5,
+					'author_description' => '',
+					'author_avatar'      => '',
 				);
+
+				$testimonials = isset( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array( $blank_testimonial );
+
+				// Without the add button, an empty list would leave no fields to fill in.
+				if ( empty( $testimonials ) && ! $this->supports_multiple_testimonials ) {
+					$testimonials = array( $blank_testimonial );
+				}
 			}
 
 			// Page Builder fix when using repeating fields

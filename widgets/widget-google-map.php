@@ -101,9 +101,8 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			$instance['style']  = sanitize_text_field( $new_instance['style'] );
 			$instance['height'] = absint( $new_instance['height'] );
 
-			$locations = is_array( $new_instance['locations'] ) ? $new_instance['locations'] : array();
-			foreach ( $locations as $key => $location ) {
-				$location = wp_parse_args( (array) $location, array( 'id' => 1, 'title' => '', 'locationlatlng' => '', 'custompinimage' => '' ) );
+			foreach ( $this->fill_missing_row_ids( $new_instance['locations'] ) as $key => $location ) {
+				$location = wp_parse_args( $location, array( 'title' => '', 'locationlatlng' => '', 'custompinimage' => '' ) );
 				$instance['locations'][ $key ]['id']             = sanitize_key( $location['id'] );
 				$instance['locations'][ $key ]['title']          = sanitize_text_field( $location['title'] );
 				$instance['locations'][ $key ]['locationlatlng'] = sanitize_text_field( $location['locationlatlng'] );
