@@ -486,6 +486,24 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		}
 	}
 
+	function test_page_builder_saves_do_not_take_rows_from_another_widget() {
+		foreach ( array(
+			'PW_About_Us'       => 'people',
+			'PW_Accordion'      => 'items',
+			'PW_Google_Map'     => 'locations',
+			'PW_Number_Counter' => 'counters',
+			'PW_Person_Profile' => 'social_icons',
+			'PW_Pricing_List'   => 'items',
+			'PW_Social_Icons'   => 'social_icons',
+			'PW_Steps'          => 'items',
+			'PW_Testimonials'   => 'testimonials',
+		) as $widget_class => $field ) {
+			$old   = $this->update_widget( $widget_class, array( $field => array( array( 'id' => '1' ) ) ) );
+			$saved = $this->update_widget( $widget_class, array( 'panels_info' => array( 'widget_id' => 'shared' ) ), $old );
+			$this->assertEmpty( isset( $saved[ $field ] ) ? $saved[ $field ] : array(), $widget_class );
+		}
+	}
+
 	function test_repeater_forms_carry_their_rows_and_a_disabled_ready_field() {
 		foreach ( array(
 			'PW_About_Us'       => array( 'People', 'people' ),

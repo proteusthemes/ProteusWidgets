@@ -76,6 +76,11 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 		protected function keep_unshown_rows( $new_instance, $old_instance, $lists ) {
 			$new_instance = (array) $new_instance;
 
+			// Page Builder passes the whole stored widget and pairs $old_instance by a widget id that need not be unique.
+			if ( isset( $new_instance['panels_info'] ) ) {
+				return $new_instance;
+			}
+
 			foreach ( $lists as $list ) {
 				if ( ! isset( $new_instance[ $list ] ) && empty( $new_instance[ $list . '_ready' ] ) && isset( $old_instance[ $list ] ) ) {
 					$new_instance[ $list ] = $old_instance[ $list ];
