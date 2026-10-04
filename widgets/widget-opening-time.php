@@ -78,7 +78,7 @@ if ( ! class_exists( 'PW_Opening_Time' ) ) {
 			) );
 
 			// Prepare data for mustache template
-			$current_time = intval( time() + ( (double) get_option( 'gmt_offset' ) * 3600 ) );
+			$current_time = intval( time() + ( (float) get_option( 'gmt_offset' ) * 3600 ) );
 			$opening_times = array();
 
 			$i = 0;
