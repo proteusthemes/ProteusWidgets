@@ -131,7 +131,8 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				);
 			}
 
-			if ( ! isset( $new_instance['testimonials'] ) && empty( $new_instance['testimonials_ready'] ) && isset( $old_instance['testimonials'] ) ) {
+			// Page Builder passes the whole stored widget and pairs $old_instance by a widget id that need not be unique.
+			if ( ! isset( $new_instance['testimonials'] ) && empty( $new_instance['testimonials_ready'] ) && ! isset( $new_instance['panels_info'] ) && isset( $old_instance['testimonials'] ) ) {
 				$new_instance['testimonials'] = $old_instance['testimonials'];
 			}
 

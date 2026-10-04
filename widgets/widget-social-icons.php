@@ -71,7 +71,8 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
-			if ( ! isset( $new_instance['social_icons'] ) && empty( $new_instance['social_icons_ready'] ) && isset( $old_instance['social_icons'] ) ) {
+			// Page Builder passes the whole stored widget and pairs $old_instance by a widget id that need not be unique.
+			if ( ! isset( $new_instance['social_icons'] ) && empty( $new_instance['social_icons_ready'] ) && ! isset( $new_instance['panels_info'] ) && isset( $old_instance['social_icons'] ) ) {
 				$new_instance['social_icons'] = $old_instance['social_icons'];
 			}
 

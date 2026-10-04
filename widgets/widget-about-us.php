@@ -84,7 +84,8 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
-			if ( ! isset( $new_instance['people'] ) && empty( $new_instance['people_ready'] ) && isset( $old_instance['people'] ) ) {
+			// Page Builder passes the whole stored widget and pairs $old_instance by a widget id that need not be unique.
+			if ( ! isset( $new_instance['people'] ) && empty( $new_instance['people_ready'] ) && ! isset( $new_instance['panels_info'] ) && isset( $old_instance['people'] ) ) {
 				$new_instance['people'] = $old_instance['people'];
 			}
 

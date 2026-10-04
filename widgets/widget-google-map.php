@@ -81,7 +81,8 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
-			if ( ! isset( $new_instance['locations'] ) && empty( $new_instance['locations_ready'] ) && isset( $old_instance['locations'] ) ) {
+			// Page Builder passes the whole stored widget and pairs $old_instance by a widget id that need not be unique.
+			if ( ! isset( $new_instance['locations'] ) && empty( $new_instance['locations_ready'] ) && ! isset( $new_instance['panels_info'] ) && isset( $old_instance['locations'] ) ) {
 				$new_instance['locations'] = $old_instance['locations'];
 			}
 
