@@ -139,13 +139,8 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'height' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'height' ) ); ?>" type="number" min="0" step="10" value="<?php echo esc_attr( $height ); ?>" />
 			</p>
 
-			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'colorscheme' ) ); ?>"><?php _e( 'Color scheme:', 'proteuswidgets' ); ?></label> <br />
-				<select id="<?php echo esc_attr( $this->get_field_id( 'colorscheme' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'colorscheme' ) ); ?>">
-					<option value="light"<?php selected( $colorscheme, 'light' ); ?>><?php _e( 'Light', 'proteuswidgets' ); ?></option>
-					<option value="dark"<?php selected( $colorscheme, 'dark' ); ?>><?php _e( 'Dark', 'proteuswidgets' ); ?></option>
-				</select>
-			</p>
+			<?php // Page Plugin has no color scheme option; retain the legacy value for custom views. ?>
+			<input type="hidden" name="<?php echo esc_attr( $this->get_field_name( 'colorscheme' ) ); ?>" value="<?php echo esc_attr( $colorscheme ); ?>" />
 
 			<p>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'background' ) ); ?>"><?php _e( 'Background color:', 'proteuswidgets' ); ?></label> <br>
