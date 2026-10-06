@@ -51,13 +51,13 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 			) );
 
 			$type      = ! empty( $instance['type'] ) ? $instance['type'] : '';
-			$from      = ! empty( $instance['from'] ) ? $instance['from'] : '';
-			$to        = ! empty( $instance['to'] ) ? $instance['to'] : '';
+			$from      = PW_Functions::bound( (int) $instance['from'], 1, $this->max_post_number );
+			$to        = max( $from, PW_Functions::bound( (int) $instance['to'], 1, $this->max_post_number ) );
 			$more_news = ! empty( $instance['more_news'] ) ? $instance['more_news'] : '';
 
 			// Prepare data for template.
 			$instance['block']             = false;
-			$instance['link_to_more_news'] = get_permalink( get_option( 'page_for_posts' ) );
+			$instance['link_to_more_news'] = PW_Functions::get_posts_index_url();
 			$instance['read_more_text']    = empty( $instance['read_more_text'] ) ? $this->texts['read_more'] : $instance['read_more_text'];
 
 			if (
@@ -121,6 +121,14 @@ if ( ! class_exists( 'PW_Latest_News' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'type'           => '',
+				'from'           => 1,
+				'to'             => 1,
+				'read_more_text' => '',
+				'author'         => 'none',
+				'category'       => 'none',
+			) );
 			$instance = array();
 
 			$instance['type'] = sanitize_key( $new_instance['type'] );

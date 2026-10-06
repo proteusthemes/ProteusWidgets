@@ -43,8 +43,17 @@ if ( ! class_exists( 'PW_Pricing_List' ) ) {
 		public function widget( $args, $instance ) {
 
 			// Prepare data.
-			$items                    = isset( $instance['items'] ) ? $instance['items'] : array();
+			$items                    = isset( $instance['items'] ) ? $this->fill_missing_row_ids( $instance['items'] ) : array();
 			$instance['widget_title'] = empty( $instance['widget_title'] ) ? '' : apply_filters( 'widget_title', $instance['widget_title'], $instance );
+
+			foreach ( $items as $key => $item ) {
+				$items[ $key ] = wp_parse_args( (array) $item, array(
+					'badge'       => '',
+					'title'       => '',
+					'price'       => '',
+					'description' => '',
+				) );
+			}
 
 			// widget-pricing-list template rendering.
 			echo $this->template_engine->render_template( apply_filters( 'pw/widget_pricing_list_view', 'widget-pricing-list' ), array(
@@ -62,6 +71,7 @@ if ( ! class_exists( 'PW_Pricing_List' ) ) {
 		 * @param array $old_instance The previous options.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = $this->keep_unshown_rows( $new_instance, $old_instance, array( 'items' ) );
 			$new_instance = wp_parse_args( (array) $new_instance, array(
 				'widget_title' => '',
 				'items'        => array(),
@@ -150,7 +160,8 @@ if ( ! class_exists( 'PW_Pricing_List' ) ) {
 					</div>
 				</div>
 			</script>
-			<div class="pt-widget-pricing-list-items" id="pricing-list-items-<?php echo esc_attr( $this->current_widget_id ); ?>">
+			<div class="pt-widget-pricing-list-items" id="pricing-list-items-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="PricingListItems" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $items ) ); ?>">
+				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'items_ready' ) ); ?>" value="1" disabled />
 				<div class="pricing-list-items  js-pt-sortable-pricing-lists"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-pricing-list-item"><?php esc_html_e( 'Add New Item', 'proteuswidgets' ); ?></a>
@@ -164,7 +175,10 @@ if ( ! class_exists( 'PW_Pricing_List' ) ) {
 					// Get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulatePricingListItems ) ) {
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#pricing-list-items-' + widgetId ) );
+					}
+					else if ( _.isFunction( ProteusWidgets.Utils.repopulatePricingListItems ) ) {
 						ProteusWidgets.Utils.repopulatePricingListItems( pricingListItemJSON, widgetId );
 					}
 

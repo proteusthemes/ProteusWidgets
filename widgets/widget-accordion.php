@@ -31,6 +31,10 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			if ( empty( $args['widget_id'] ) ) {
+				$args['widget_id'] = wp_unique_id( $this->id_base . '-' );
+			}
+
 			$instance = wp_parse_args( (array) $instance, array(
 				'title'          => '',
 				'read_more_link' => '',
@@ -68,6 +72,7 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = $this->keep_unshown_rows( $new_instance, $old_instance, array( 'items' ) );
 			$new_instance = wp_parse_args( (array) $new_instance, array(
 				'title'          => '',
 				'read_more_link' => '',
@@ -160,7 +165,8 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 					</div>
 				</div>
 			</script>
-			<div class="pt-widget-accordion-items" id="accordion-items-<?php echo esc_attr( $this->current_widget_id ); ?>">
+			<div class="pt-widget-accordion-items" id="accordion-items-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="AccordionItems" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $instance['items'] ) ); ?>">
+				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'items_ready' ) ); ?>" value="1" disabled />
 				<div class="accordion-items  js-pt-sortable-accordions"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-accordion-item"><?php esc_html_e( 'Add New Item','proteuswidgets' ); ?></a>
@@ -174,7 +180,10 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulateAccordionItems ) ) {
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#accordion-items-' + widgetId ) );
+					}
+					else if ( _.isFunction( ProteusWidgets.Utils.repopulateAccordionItems ) ) {
 						ProteusWidgets.Utils.repopulateAccordionItems( accordionItemsJSON, widgetId );
 					}
 

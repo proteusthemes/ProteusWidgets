@@ -23,7 +23,7 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 			'PW_Number_Counter' => 'counters',
 			'PW_Google_Map'     => 'locations',
 		) as $widget_class => $field ) {
-			foreach ( array( array(), array( $field => array() ), array( $field => null ), array( $field => '' ) ) as $instance ) {
+			foreach ( array( array( $field . '_ready' => '1' ), array( $field => array() ), array( $field => null, $field . '_ready' => '1' ), array( $field => '' ) ) as $instance ) {
 				$saved = $this->update_widget( $widget_class, $instance, array( $field => array( array( 'id' => 1 ) ) ) );
 				$this->assertSame( array(), $saved[ $field ], $widget_class );
 			}
@@ -106,6 +106,16 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		$this->assertSame( '', $saved['show_facepile'] );
 	}
 
+	function test_percent_encoded_urls_survive_saving() {
+		$link  = 'https://example.com/caf%C3%A9/my%20page/?q=a%26b';
+		$image = 'https://example.com/uploads/team%20photo.jpg';
+		$saved = $this->update_widget( 'PW_Social_Icons', array( 'social_icons' => array( array( 'id' => '1', 'link' => $link . ' ', 'icon' => 'fa-facebook' ) ) ) );
+		$this->assertSame( $link, $saved['social_icons'][0]['link'] );
+		$saved = $this->update_widget( 'PW_About_Us', array( 'autocycle' => 'no', 'interval' => 5000, 'people' => array( array( 'id' => '1', 'tag' => '', 'image' => $image, 'name' => '', 'description' => '', 'link' => $link ) ) ) );
+		$this->assertSame( $image, $saved['people'][0]['image'] );
+		$this->assertSame( $link, $saved['people'][0]['link'] );
+	}
+
 	function test_legacy_testimonial_is_preserved_when_resaved() {
 		$saved = $this->update_widget( 'PW_Testimonials', array( 'quote' => '<strong>Great service</strong>', 'author' => 'Customer' ) );
 		$this->assertSame( '<strong>Great service</strong>', $saved['testimonials'][0]['quote'] );
@@ -153,5 +163,225 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		$this->assertSame( '10,20', $saved['locations'][0]['locationlatlng'] );
 		$this->assertSame( '', $saved['locations'][0]['custompinimage'] );
 		$this->assertSame( $saved, $this->update_widget( 'PW_Google_Map', $saved ) );
+	}
+
+	function test_non_numeric_ids_can_be_saved() {
+		foreach ( array(
+			'PW_Accordion'    => 'items',
+			'PW_Pricing_List' => 'items',
+			'PW_Testimonials' => 'testimonials',
+		) as $widget_class => $field ) {
+			$saved = $this->update_widget( $widget_class, array( $field => array( array( 'id' => 'abc' ), array( 'id' => 'x' ) ) ) );
+			$this->assertSame( array( 'abc', 'x' ), array_column( $saved[ $field ], 'id' ), $widget_class );
+		}
+	}
+
+	function test_malformed_lists_and_rows_do_not_throw() {
+		$enable_lists = function ( $fields ) {
+			return array_merge( $fields, array( 'carousel_instead_of_image' => true, 'skills' => true, 'icon_list_items' => true ) );
+		};
+		$args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'pw-1' );
+		$rows = array( array( 'id' => '0', 'title' => 'Kept' ), 'oops' );
+		add_filter( 'pw/person_profile_widget_settings', $enable_lists );
+		set_error_handler( '__return_true' );
+		try {
+			foreach ( array( 'carousel', 'social_icons', 'skills', 'icon_list_items' ) as $field ) {
+				( new PW_Person_Profile() )->update( array( $field => $rows ), array() );
+				( new PW_Person_Profile() )->widget( $args, array( $field => $rows ) );
+			}
+			( new PW_Social_Icons() )->update( array( 'social_icons' => $rows ), array() );
+			( new PW_Steps() )->update( array( 'items' => $rows ), array() );
+
+			ob_start();
+			( new PW_Pricing_List() )->widget( $args, array( 'items' => $rows ) );
+			( new PW_Testimonials() )->form( array( 'testimonials' => 'oops' ) );
+			( new PW_Google_Map() )->form( array( 'locations' => 'oops' ) );
+			$html = ob_get_clean();
+		}
+		finally {
+			restore_error_handler();
+			remove_filter( 'pw/person_profile_widget_settings', $enable_lists );
+		}
+		$this->assertStringContainsString( 'Kept', $html );
+		$this->assertStringContainsString( 'var testimonialsJSON = [];', $html );
+		$this->assertStringContainsString( 'var locationsJSON = [];', $html );
+	}
+
+	function test_person_profile_portrait_moves_into_the_carousel() {
+		$stored = array( 'name' => 'Jane', 'image' => 'https://example.com/portrait.jpg', 'tag' => '', 'description' => '' );
+		$this->assertSame( $stored['image'], $this->update_widget( 'PW_Person_Profile', $stored )['image'] );
+
+		$enable_carousel = function ( $fields ) {
+			$fields['carousel_instead_of_image'] = true;
+			return $fields;
+		};
+		add_filter( 'pw/person_profile_widget_settings', $enable_carousel );
+		try {
+			$saved = $this->update_widget( 'PW_Person_Profile', $stored );
+			$this->assertArrayNotHasKey( 'image', $saved );
+			$this->assertSame( array( array( 'id' => '0', 'type' => 'image', 'url' => $stored['image'] ) ), $saved['carousel'] );
+			$this->assertSame( $saved, $this->update_widget( 'PW_Person_Profile', $saved ) );
+		}
+		finally {
+			remove_filter( 'pw/person_profile_widget_settings', $enable_carousel );
+		}
+	}
+
+	function test_facebook_posts_checkbox_selects_page_plugin_tabs() {
+		$args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '' );
+		foreach ( array( 'on' => 'timeline', '' => '' ) as $show_posts => $tabs ) {
+			ob_start();
+			try {
+				( new PW_Facebook() )->widget( $args, array( 'show_posts' => $show_posts ) );
+			}
+			finally {
+				$html = ob_get_clean();
+			}
+			$this->assertSame( 1, preg_match( '/<iframe src="([^"]+)"/', $html, $matches ) );
+			$url = html_entity_decode( $matches[1], ENT_QUOTES, 'UTF-8' );
+			$this->assertSame( '/plugins/page.php', wp_parse_url( $url, PHP_URL_PATH ) );
+			parse_str( wp_parse_url( $url, PHP_URL_QUERY ), $query );
+			$this->assertSame( $tabs, $query['tabs'] );
+			$this->assertArrayNotHasKey( 'show_posts', $query );
+		}
+	}
+
+	function test_latest_news_renders_without_from_and_to() {
+		$args    = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'pw-1' );
+		$post_id = wp_insert_post( array( 'post_status' => 'publish', 'post_title' => 'Only post' ) );
+
+		try {
+			foreach ( array( 'block', 'featured', 'inline' ) as $type ) {
+				ob_start();
+				try {
+					( new PW_Latest_News() )->widget( $args, array( 'type' => $type, 'from' => '', 'to' => '' ) );
+				}
+				finally {
+					$html = ob_get_clean();
+				}
+				$this->assertStringContainsString( 'Only post', $html, $type );
+			}
+		}
+		finally {
+			wp_delete_post( $post_id, true );
+		}
+	}
+
+	function test_testimonial_rating_is_rendered_as_zero_to_five_stars() {
+		$args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'pw-1' );
+		foreach ( array( 'abc' => 0, '999' => 5, '3' => 3 ) as $rating => $stars ) {
+			ob_start();
+			( new PW_Testimonials() )->widget( $args, array( 'testimonials' => array( array( 'id' => '0', 'quote' => 'Q', 'rating' => (string) $rating ) ) ) );
+			$this->assertSame( $stars, substr_count( ob_get_clean(), 'fa-star' ), (string) $rating );
+		}
+	}
+
+	function test_unopened_widgets_and_sparse_rows_save_without_php_messages() {
+		foreach ( array(
+			'PW_About_Us'       => array( 'people' => array( array() ) ),
+			'PW_Author'         => array(),
+			'PW_Banner'         => array(),
+			'PW_Brochure_Box'   => array(),
+			'PW_Icon_Box'       => array(),
+			'PW_Latest_News'    => array(),
+			'PW_Person_Profile' => array( 'social_icons' => array( array() ) ),
+			'PW_Skype'          => array(),
+			'PW_Social_Icons'   => array( 'social_icons' => array( array() ) ),
+			'PW_Steps'          => array( 'items' => array( array() ) ),
+		) as $widget_class => $sparse_rows ) {
+			$this->assertIsArray( $this->update_widget( $widget_class, array() ), $widget_class );
+			$this->assertIsArray( $this->update_widget( $widget_class, $sparse_rows ), $widget_class );
+		}
+	}
+
+	function test_emptied_lists_are_stored_as_empty_lists() {
+		foreach ( array(
+			'PW_About_Us'     => 'people',
+			'PW_Social_Icons' => 'social_icons',
+			'PW_Steps'        => 'items',
+		) as $widget_class => $field ) {
+			$saved = $this->update_widget( $widget_class, array( $field => array() ) );
+			$this->assertSame( array(), $saved[ $field ], $widget_class );
+		}
+	}
+
+	function test_unopened_author_and_banner_keep_their_defaults() {
+		$this->assertSame( 1, $this->update_widget( 'PW_Author', array() )['selected_user_id'] );
+		$this->assertSame( '', $this->update_widget( 'PW_Banner', array( 'title' => 'T' ) )['open_new'] );
+		$this->assertSame( '1', $this->update_widget( 'PW_Banner', array( 'open_new' => '1' ) )['open_new'] );
+	}
+
+	function test_lists_missing_from_a_form_that_never_showed_them_keep_their_rows() {
+		foreach ( array(
+			'PW_About_Us'       => 'people',
+			'PW_Accordion'      => 'items',
+			'PW_Google_Map'     => 'locations',
+			'PW_Number_Counter' => 'counters',
+			'PW_Person_Profile' => 'social_icons',
+			'PW_Pricing_List'   => 'items',
+			'PW_Social_Icons'   => 'social_icons',
+			'PW_Steps'          => 'items',
+			'PW_Testimonials'   => 'testimonials',
+		) as $widget_class => $field ) {
+			$old = $this->update_widget( $widget_class, array( $field => array( array( 'id' => '1' ) ) ) );
+			$this->assertSame( $old[ $field ], $this->update_widget( $widget_class, array( 'title' => 'T' ), $old )[ $field ], $widget_class );
+
+			$saved = $this->update_widget( $widget_class, array( $field . '_ready' => '1' ), $old );
+			$this->assertEmpty( isset( $saved[ $field ] ) ? $saved[ $field ] : array(), $widget_class );
+			$this->assertArrayNotHasKey( $field . '_ready', $saved, $widget_class );
+		}
+	}
+
+	function test_page_builder_saves_do_not_take_rows_from_another_widget() {
+		foreach ( array(
+			'PW_About_Us'       => 'people',
+			'PW_Accordion'      => 'items',
+			'PW_Google_Map'     => 'locations',
+			'PW_Number_Counter' => 'counters',
+			'PW_Person_Profile' => 'social_icons',
+			'PW_Pricing_List'   => 'items',
+			'PW_Social_Icons'   => 'social_icons',
+			'PW_Steps'          => 'items',
+			'PW_Testimonials'   => 'testimonials',
+		) as $widget_class => $field ) {
+			$old   = $this->update_widget( $widget_class, array( $field => array( array( 'id' => '1' ) ) ) );
+			$saved = $this->update_widget( $widget_class, array( 'panels_info' => array( 'widget_id' => 'shared' ) ), $old );
+			$this->assertEmpty( isset( $saved[ $field ] ) ? $saved[ $field ] : array(), $widget_class );
+		}
+	}
+
+	function test_repeater_forms_carry_their_rows_and_a_disabled_ready_field() {
+		foreach ( array(
+			'PW_About_Us'       => array( 'People', 'people' ),
+			'PW_Accordion'      => array( 'AccordionItems', 'items' ),
+			'PW_Google_Map'     => array( 'Locations', 'locations' ),
+			'PW_Number_Counter' => array( 'Counters', 'counters' ),
+			'PW_Person_Profile' => array( 'SocialIcons', 'social_icons' ),
+			'PW_Pricing_List'   => array( 'PricingListItems', 'items' ),
+			'PW_Social_Icons'   => array( 'SocialIcons', 'social_icons' ),
+			'PW_Steps'          => array( 'StepItems', 'items' ),
+			'PW_Testimonials'   => array( 'Testimonials', 'testimonials' ),
+		) as $widget_class => $list ) {
+			list( $repeater, $field ) = $list;
+			$widget = new $widget_class();
+			$widget->_set( 3 );
+			ob_start();
+			$widget->form( array( $field => array( array( 'id' => 1 ) ) ) );
+			$form = ob_get_clean();
+
+			$this->assertStringContainsString( 'data-pw-repeater="' . $repeater . '" data-pw-widget-id="' . $widget->id . '" data-pw-rows="', $form, $widget_class );
+			$this->assertStringContainsString( '&quot;id&quot;:1', $form, $widget_class );
+			$this->assertStringContainsString( 'name="' . $widget->get_field_name( $field . '_ready' ) . '" value="1" disabled', $form, $widget_class );
+		}
+	}
+
+	function test_testimonials_form_keeps_a_cleared_title() {
+		$widget = new PW_Testimonials();
+		$widget->_set( 2 );
+		foreach ( array( 'Testimonials' => array(), '' => array( 'title' => '' ) ) as $expected => $instance ) {
+			ob_start();
+			$widget->form( $instance );
+			$this->assertStringContainsString( 'name="' . $widget->get_field_name( 'title' ) . '" type="text" value="' . $expected . '"', ob_get_clean() );
+		}
 	}
 }

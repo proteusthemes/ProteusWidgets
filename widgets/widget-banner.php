@@ -54,12 +54,17 @@ if ( ! class_exists( 'PW_Banner' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title'   => '',
+				'content' => '',
+				'link'    => '',
+			) );
 			$instance = array();
 
 			$instance['title']    = wp_kses_post( $new_instance['title'] );
 			$instance['content']  = wp_kses_post( $new_instance['content'] );
 			$instance['link']     = esc_url_raw( $new_instance['link'] );
-			$instance['open_new'] = wp_kses_post( $new_instance['open_new'] );
+			$instance['open_new'] = ! empty( $new_instance['open_new'] ) ? '1' : '';
 
 			return $instance;
 		}

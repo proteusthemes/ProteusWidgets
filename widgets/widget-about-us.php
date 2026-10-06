@@ -35,6 +35,10 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			if ( empty( $args['widget_id'] ) ) {
+				$args['widget_id'] = wp_unique_id( $this->id_base . '-' );
+			}
+
 			$instance = wp_parse_args( (array) $instance, array(
 				'autocycle' => 'no',
 				'interval'  => 5000,
@@ -109,18 +113,26 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = $this->keep_unshown_rows( $new_instance, $old_instance, array( 'people' ) );
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'autocycle' => 'no',
+				'interval'  => 5000,
+				'people'    => array(),
+			) );
 			$instance = array();
 
 			$instance['autocycle'] = sanitize_key( $new_instance['autocycle'] );
 			$instance['interval']  = absint( $new_instance['interval'] );
+			$instance['people']    = array();
 
-			foreach ( $new_instance['people'] as $key => $person ) {
+			foreach ( $this->fill_missing_row_ids( $new_instance['people'] ) as $key => $person ) {
+				$person = wp_parse_args( $person, array( 'tag' => '', 'image' => '', 'name' => '', 'description' => '', 'link' => '' ) );
 				$instance['people'][ $key ]['id']          = sanitize_key( $person['id'] );
 				$instance['people'][ $key ]['tag']         = sanitize_text_field( $person['tag'] );
-				$instance['people'][ $key ]['image']       = sanitize_text_field( $person['image'] );
+				$instance['people'][ $key ]['image']       = esc_url_raw( trim( $person['image'] ) );
 				$instance['people'][ $key ]['name']        = sanitize_text_field( $person['name'] );
 				$instance['people'][ $key ]['description'] = sanitize_text_field( $person['description'] );
-				$instance['people'][ $key ]['link']        = sanitize_text_field( $person['link'] );
+				$instance['people'][ $key ]['link']        = esc_url_raw( trim( $person['link'] ) );
 			}
 
 			return $instance;
@@ -197,7 +209,8 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 					<a href="#" class="pt-remove-person  js-pt-remove-person"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Person', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-about-us" id="people-<?php echo esc_attr( $this->current_widget_id ); ?>">
+			<div class="pt-widget-about-us" id="people-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="People" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $people ) ); ?>">
+				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'people_ready' ) ); ?>" value="1" disabled />
 				<div class="people"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-person"><?php esc_html_e( 'Add New Person', 'proteuswidgets' ); ?></a>
@@ -211,7 +224,10 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulatePeople ) ) {
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#people-' + widgetId ) );
+					}
+					else if ( _.isFunction( ProteusWidgets.Utils.repopulatePeople ) ) {
 						ProteusWidgets.Utils.repopulatePeople( peopleJSON, widgetId );
 					}
 				})();

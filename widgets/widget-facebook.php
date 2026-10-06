@@ -57,7 +57,7 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 				'height'        => $instance['height'],
 				'hide_cover'    => ! empty( $instance['hide_cover'] ),
 				'show_facepile' => empty( $instance['show_facepile'] ),
-				'show_posts'    => ! empty( $instance['show_posts'] ),
+				'tabs'          => ! empty( $instance['show_posts'] ) ? 'timeline' : '',
 				'small_header'  => ! empty( $instance['small_header'] ),
 			);
 

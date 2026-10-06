@@ -2,13 +2,15 @@
 
 	<div class="testimonial">
 		<?php if ( isset( $instance['navigation'] ) && $instance['navigation'] ) : ?>
-			<a class="testimonial__carousel  testimonial__carousel--left" href="#carousel-testimonials-<?php echo esc_attr( $args['widget_id'] ); ?>" data-slide="prev"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button"><?php echo esc_html( $text['next'] ); ?></span></a>
+			<a class="testimonial__carousel  testimonial__carousel--left" href="#carousel-testimonials-<?php echo esc_attr( $args['widget_id'] ); ?>" data-slide="prev"><i class="fa  fa-chevron-left" aria-hidden="true"></i><span class="sr-only" role="button"><?php echo esc_html( $text['previous'] ); ?></span></a>
 		<?php endif; ?>
 
-		<?php echo $args['before_title'] . wp_kses_post( $instance['title'] ) . $args['after_title']; ?>
+		<?php if ( ! empty( $instance['title'] ) ) : ?>
+			<?php echo $args['before_title'] . wp_kses_post( $instance['title'] ) . $args['after_title']; ?>
+		<?php endif; ?>
 
 		<?php if ( isset( $instance['navigation'] ) && $instance['navigation'] ) : ?>
-			<a class="testimonial__carousel  testimonial__carousel--right" href="#carousel-testimonials-<?php echo esc_attr( $args['widget_id'] ); ?>" data-slide="next"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button"><?php echo esc_html( $text['previous'] ); ?></span></a>
+			<a class="testimonial__carousel  testimonial__carousel--right" href="#carousel-testimonials-<?php echo esc_attr( $args['widget_id'] ); ?>" data-slide="next"><i class="fa  fa-chevron-right" aria-hidden="true"></i><span class="sr-only" role="button"><?php echo esc_html( $text['next'] ); ?></span></a>
 		<?php endif; ?>
 
 		<div id="carousel-testimonials-<?php echo esc_attr( $args['widget_id'] ); ?>" class="carousel slide" data-ride="carousel" data-interval="<?php echo esc_attr( $instance['slider_settings'] ); ?>">

@@ -59,7 +59,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 					'fa-flickr',
 					'fa-vimeo',
 					'fa-linkedin',
-					'fa-dribble',
+					'fa-dribbble',
 					'fa-wordpress',
 					'fa-rss',
 					'fa-github',
@@ -96,6 +96,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = $this->migrate_legacy_image( $instance );
 			$instance = wp_parse_args( (array) $instance, array(
 				'name'              => '',
 				'image'             => '',
@@ -125,19 +126,45 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 						'icon' => '',
 						'link' => '',
 					) );
+
+					if ( 'fa-dribble' === $instance['social_icons'][ $key ]['icon'] ) {
+						$instance['social_icons'][ $key ]['icon'] = 'fa-dribbble';
+					}
 				}
 			}
 			if ( $this->fields['skills'] ) {
-				$instance['skills'] = ! empty( $instance['skills'] ) && is_array( $instance['skills'] ) ? array_values( $instance['skills'] ) : array();
+				$instance['skills'] = array_values( $this->fill_missing_row_ids( $instance['skills'] ) );
+				foreach ( $instance['skills'] as $key => $skill ) {
+					$instance['skills'][ $key ] = wp_parse_args( (array) $skill, array(
+						'name'   => '',
+						'rating' => '',
+					) );
+				}
 			}
 			if ( $this->fields['carousel_instead_of_image'] ) {
-				$instance['carousel'] = ! empty( $instance['carousel'] ) && is_array( $instance['carousel'] ) ? array_values( $instance['carousel'] ) : array();
+				$instance['carousel'] = array_values( $this->fill_missing_row_ids( $instance['carousel'] ) );
+				foreach ( $instance['carousel'] as $key => $carousel_item ) {
+					$instance['carousel'][ $key ] = wp_parse_args( (array) $carousel_item, array(
+						'type' => '',
+						'url'  => '',
+						'link' => '',
+					) );
+				}
 			}
 			if ( $this->fields['tags'] ) {
 				$instance['tags'] = ! empty( $instance['tags'] ) ? explode( ',', $instance['tags'] ) : array();
 			}
 			if ( $this->fields['icon_list_items'] ) {
-				$instance['icon_list_items'] = ! empty( $instance['icon_list_items'] ) && is_array( $instance['icon_list_items'] ) ? array_values( $instance['icon_list_items'] ) : array();
+				$instance['icon_list_items'] = array_values( $this->fill_missing_row_ids( $instance['icon_list_items'] ) );
+				foreach ( $instance['icon_list_items'] as $key => $item ) {
+					$instance['icon_list_items'][ $key ] = wp_parse_args( (array) $item, array(
+						'text'        => '',
+						'icon'        => '',
+						'link'        => '',
+						'description' => '',
+						'is-featured' => '',
+					) );
+				}
 			}
 
 			$text = array(
@@ -160,6 +187,25 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 		 * @param array $old_instance The previous options.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = $this->keep_unshown_rows( $new_instance, $old_instance, array( 'icon_list_items', 'carousel', 'skills', 'social_icons' ) );
+			$new_instance = $this->migrate_legacy_image( $new_instance );
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'name'              => '',
+				'name_link'         => '',
+				'description'       => '',
+				'location'          => '',
+				'specific_location' => '',
+				'cta_text'          => '',
+				'cta_link'          => '',
+				'label'             => '',
+				'tag'               => '',
+				'tags'              => '',
+				'image'             => '',
+				'carousel'          => array(),
+				'social_icons'      => array(),
+				'skills'            => array(),
+				'icon_list_items'   => array(),
+			) );
 			$instance = array();
 
 			$instance['name']    = sanitize_text_field( $new_instance['name'] );
@@ -183,7 +229,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 
 			if ( $this->fields['cta'] ) {
 				$instance['cta_text']    = sanitize_text_field( $new_instance['cta_text'] );
-				$instance['cta_link']    = sanitize_text_field( $new_instance['cta_link'] );
+				$instance['cta_link']    = esc_url_raw( trim( $new_instance['cta_link'] ) );
 				$instance['cta_new_tab'] = ! empty( $new_instance['cta_new_tab'] ) ? sanitize_key( $new_instance['cta_new_tab'] ) : '';
 			}
 
@@ -200,7 +246,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 
 			if ( $this->fields['carousel_instead_of_image'] ) {
 				if ( ! empty( $new_instance['carousel'] ) ) {
-					foreach ( $new_instance['carousel'] as $key => $carousel_item ) {
+					foreach ( $this->fill_missing_row_ids( $new_instance['carousel'] ) as $key => $carousel_item ) {
+						$carousel_item = wp_parse_args( $carousel_item, array( 'type' => '', 'url' => '', 'link' => '' ) );
 						$instance['carousel'][ $key ]['id']   = sanitize_key( $carousel_item['id'] );
 						$instance['carousel'][ $key ]['type'] = sanitize_text_field( $carousel_item['type'] );
 						$instance['carousel'][ $key ]['url']  = esc_url_raw( $carousel_item['url'] );
@@ -216,7 +263,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 			}
 
 			if ( $this->fields['social_icons'] && ! empty( $new_instance['social_icons'] )  ) {
-				foreach ( $new_instance['social_icons'] as $key => $social_icon ) {
+				foreach ( $this->fill_missing_row_ids( $new_instance['social_icons'] ) as $key => $social_icon ) {
+					$social_icon = wp_parse_args( $social_icon, array( 'icon' => '', 'link' => '' ) );
 					$instance['social_icons'][ $key ]['id']   = sanitize_key( $social_icon['id'] );
 					$instance['social_icons'][ $key ]['icon'] = sanitize_text_field( $social_icon['icon'] );
 					$instance['social_icons'][ $key ]['link'] = esc_url_raw( $social_icon['link'] );
@@ -224,7 +272,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 			}
 
 			if ( $this->fields['skills'] && ! empty( $new_instance['skills'] ) ) {
-				foreach ( $new_instance['skills'] as $key => $skill ) {
+				foreach ( $this->fill_missing_row_ids( $new_instance['skills'] ) as $key => $skill ) {
+					$skill = wp_parse_args( $skill, array( 'name' => '', 'rating' => '' ) );
 					$instance['skills'][ $key ]['id']     = sanitize_key( $skill['id'] );
 					$instance['skills'][ $key ]['name']   = sanitize_text_field( $skill['name'] );
 					$instance['skills'][ $key ]['rating'] = sanitize_text_field( $skill['rating'] );
@@ -232,7 +281,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 			}
 
 			if ( $this->fields['icon_list_items'] && ! empty( $new_instance['icon_list_items'] ) ) {
-				foreach ( $new_instance['icon_list_items'] as $key => $item ) {
+				foreach ( $this->fill_missing_row_ids( $new_instance['icon_list_items'] ) as $key => $item ) {
+					$item = wp_parse_args( $item, array( 'text' => '', 'icon' => '', 'link' => '', 'description' => '' ) );
 					$instance['icon_list_items'][ $key ]['id']          = sanitize_key( $item['id'] );
 					$instance['icon_list_items'][ $key ]['text']        = sanitize_text_field( $item['text'] );
 					$instance['icon_list_items'][ $key ]['icon']        = sanitize_text_field( $item['icon'] );
@@ -251,6 +301,7 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 		 * @param array $instance The widget options
 		 */
 		public function form( $instance ) {
+			$instance    = $this->migrate_legacy_image( $instance );
 			$name        = empty( $instance['name'] ) ? '' : $instance['name'];
 			$image       = empty( $instance['image'] ) ? '' : $instance['image'];
 			$new_tab     = empty( $instance['new_tab'] ) ? '' : $instance['new_tab'];
@@ -451,7 +502,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 					</p>
 				</script>
 
-				<div class="pt-widget-icon-list-items" id="icon-list-items-<?php echo esc_attr( $this->current_widget_id ); ?>">
+				<div class="pt-widget-icon-list-items" id="icon-list-items-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="IconListItems" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $icon_list_items ) ); ?>">
+					<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'icon_list_items_ready' ) ); ?>" value="1" disabled />
 					<div class="icon-list-items  js-pt-sortable-icon-list-items"></div>
 					<p>
 						<a href="#" class="button  js-pt-add-icon-list-item"><?php esc_html_e( 'Add new item', 'proteuswidgets' ); ?></a>
@@ -497,7 +549,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 						<a href="#" class="pt-remove-carousel-item  js-pt-remove-carousel-item"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Carousel Item', 'proteuswidgets' ); ?></a>
 					</p>
 				</script>
-				<div class="pt-widget-carousel-items" id="carousel-items-<?php echo esc_attr( $this->current_widget_id ); ?>">
+				<div class="pt-widget-carousel-items" id="carousel-items-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="Carousel" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $carousel ) ); ?>">
+					<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'carousel_ready' ) ); ?>" value="1" disabled />
 					<div class="carousel-items"></div>
 					<p>
 						<a href="#" class="button  js-pt-add-carousel-item"><?php esc_html_e( 'Add New Carousel Item', 'proteuswidgets' ); ?></a>
@@ -536,7 +589,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 						<a href="#" class="pt-remove-skill  js-pt-remove-skill"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Skill', 'proteuswidgets' ); ?></a>
 					</p>
 				</script>
-				<div class="pt-widget-skills" id="skills-<?php echo esc_attr( $this->current_widget_id ); ?>">
+				<div class="pt-widget-skills" id="skills-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="Skills" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $skills ) ); ?>">
+					<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'skills_ready' ) ); ?>" value="1" disabled />
 					<div class="skills"></div>
 					<p>
 						<a href="#" class="button  js-pt-add-skill"><?php esc_html_e( 'Add New Skill', 'proteuswidgets' ); ?></a>
@@ -572,7 +626,8 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 						<a href="#" class="pt-remove-social-icon  js-pt-remove-social-icon"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Social Icon', 'proteuswidgets' ); ?></a>
 					</p>
 				</script>
-				<div class="pt-widget-social-icons" id="social-icons-<?php echo esc_attr( $this->current_widget_id ); ?>">
+				<div class="pt-widget-social-icons" id="social-icons-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="SocialIcons" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $social_icons ) ); ?>">
+					<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'social_icons_ready' ) ); ?>" value="1" disabled />
 					<div class="social-icons"></div>
 					<p>
 						<a href="#" class="button  js-pt-add-social-icon"><?php esc_html_e( 'Add New Social Icon', 'proteuswidgets' ); ?></a>
@@ -591,7 +646,10 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 					<?php if ( $this->fields['social_icons'] ) : ?>
 						var socialIconsJSON = <?php echo wp_json_encode( $social_icons ); ?>;
 
-						if ( _.isFunction( ProteusWidgets.Utils.repopulateSocialIcons ) ) {
+						if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+							ProteusWidgets.Utils.initRepeaters( jQuery( '#social-icons-' + widgetId ) );
+						}
+						else if ( _.isFunction( ProteusWidgets.Utils.repopulateSocialIcons ) ) {
 							ProteusWidgets.Utils.repopulateSocialIcons( socialIconsJSON, widgetId );
 						}
 					<?php endif; ?>
@@ -599,7 +657,10 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 					<?php if ( $this->fields['icon_list_items'] ) : ?>
 						var iconListItemsJSON = <?php echo wp_json_encode( $icon_list_items ) ?>;
 
-						if ( _.isFunction( ProteusWidgets.Utils.repopulateIconListItems ) ) {
+						if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+							ProteusWidgets.Utils.initRepeaters( jQuery( '#icon-list-items-' + widgetId ) );
+						}
+						else if ( _.isFunction( ProteusWidgets.Utils.repopulateIconListItems ) ) {
 							ProteusWidgets.Utils.repopulateIconListItems( iconListItemsJSON, widgetId );
 						}
 
@@ -615,7 +676,10 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 					<?php if ( $this->fields['carousel_instead_of_image'] ) : ?>
 						var carouselJSON = <?php echo wp_json_encode( $carousel ); ?>;
 
-						if ( _.isFunction( ProteusWidgets.Utils.repopulateCarousel ) ) {
+						if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+							ProteusWidgets.Utils.initRepeaters( jQuery( '#carousel-items-' + widgetId ) );
+						}
+						else if ( _.isFunction( ProteusWidgets.Utils.repopulateCarousel ) ) {
 							ProteusWidgets.Utils.repopulateCarousel( carouselJSON, widgetId );
 						}
 					<?php endif; ?>
@@ -623,7 +687,10 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 					<?php if ( $this->fields['skills'] ) : ?>
 						var skillsJSON = <?php echo wp_json_encode( $skills ); ?>;
 
-						if ( _.isFunction( ProteusWidgets.Utils.repopulateSkills ) ) {
+						if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+							ProteusWidgets.Utils.initRepeaters( jQuery( '#skills-' + widgetId ) );
+						}
+						else if ( _.isFunction( ProteusWidgets.Utils.repopulateSkills ) ) {
 							ProteusWidgets.Utils.repopulateSkills( skillsJSON, widgetId );
 						}
 					<?php endif; ?>
@@ -631,6 +698,38 @@ if ( ! class_exists( 'PW_Person_Profile' ) ) {
 			</script>
 
 			<?php
+		}
+
+		/**
+		 * Move a portrait stored in image into the carousel, which replaces the image field.
+		 *
+		 * @param array $instance The widget options.
+		 * @return array
+		 */
+		private function migrate_legacy_image( $instance ) {
+			if ( ! $this->fields['carousel_instead_of_image'] || empty( $instance['image'] ) ) {
+				return $instance;
+			}
+
+			$carousel = array();
+			foreach ( ! empty( $instance['carousel'] ) && is_array( $instance['carousel'] ) ? $instance['carousel'] : array() as $row ) {
+				if ( is_array( $row ) ) {
+					$carousel[] = $row;
+				}
+			}
+
+			if ( ! in_array( $instance['image'], wp_list_pluck( $carousel, 'url' ), true ) ) {
+				array_unshift( $carousel, array( 'type' => 'image', 'url' => $instance['image'], 'link' => '' ) );
+			}
+
+			foreach ( $carousel as $index => $row ) {
+				$carousel[ $index ]['id'] = (string) $index;
+			}
+
+			$instance['carousel'] = $carousel;
+			unset( $instance['image'] );
+
+			return $instance;
 		}
 	}
 }

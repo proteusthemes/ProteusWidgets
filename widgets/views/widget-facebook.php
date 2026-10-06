@@ -7,7 +7,7 @@
 ?>
 
 	<div class="iframe-like-box">
-		<iframe src="//www.facebook.com/plugins/likebox.php?<?php echo esc_attr( $http_query ); ?>" frameborder="0"></iframe>
+		<iframe src="https://www.facebook.com/plugins/page.php?<?php echo esc_attr( $http_query ); ?>" frameborder="0"></iframe>
 	</div>
 
 	<style type="text/css">

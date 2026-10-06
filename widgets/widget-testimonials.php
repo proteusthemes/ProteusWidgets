@@ -74,6 +74,10 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			if ( empty( $args['widget_id'] ) ) {
+				$args['widget_id'] = wp_unique_id( $this->id_base . '-' );
+			}
+
 			$instance = wp_parse_args( (array) $instance, array(
 				'title'        => 'Testimonials',
 				'autocycle'    => 'no',
@@ -119,7 +123,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			if ( $this->fields['number_of_testimonial_per_slide'] > 0 ) {
 				$instance['spans'] = '12';
 
-				if ( 2 === $this->fields['number_of_testimonial_per_slide'] && ! count( $testimonials ) < 2 ) {
+				if ( 2 === $this->fields['number_of_testimonial_per_slide'] && count( $testimonials ) >= 2 ) {
 					$instance['spans'] = '6';
 				}
 				elseif ( 3 === $this->fields['number_of_testimonial_per_slide'] ) {
@@ -148,7 +152,8 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				}
 
 				if ( $this->fields['rating'] && isset( $testimonials[ $key ]['rating'] ) ) {
-					$testimonials[ $key ]['rating'] = ( $testimonials[ $key ]['rating'] > 0 ) ? range( 0, ( $testimonials[ $key ]['rating'] - 1 ) ) : 0;
+					$rating                         = PW_Functions::bound( (int) $testimonials[ $key ]['rating'], 0, 5 );
+					$testimonials[ $key ]['rating'] = ( $rating > 0 ) ? range( 0, $rating - 1 ) : 0;
 					$testimonials[ $key ]['display-ratings'] = $testimonials[ $key ]['rating'] > 0;
 				}
 			}
@@ -188,6 +193,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			if ( isset( $new_instance['quote'] ) && ! isset( $new_instance['testimonials'] ) ) {
 				$new_instance['testimonials'] = array( $new_instance );
 			}
+			$new_instance = $this->keep_unshown_rows( $new_instance, $old_instance, array( 'testimonials' ) );
 			$new_instance = wp_parse_args( (array) $new_instance, array(
 				'title'        => 'Testimonials',
 				'autocycle'    => 'no',
@@ -241,7 +247,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		 */
 		public function form( $instance ) {
 			if ( $this->supports_multiple_testimonials ) {
-				$title     = empty( $instance['title'] ) ? 'Testimonials' : $instance['title'];
+				$title     = isset( $instance['title'] ) ? $instance['title'] : 'Testimonials';
 				$autocycle = empty( $instance['autocycle'] ) ? 'no' : $instance['autocycle'];
 				$interval  = empty( $instance['interval'] ) ? 5000 : $instance['interval'];
 			}
@@ -268,7 +274,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 					'author_avatar'      => '',
 				);
 
-				$testimonials = isset( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array( $blank_testimonial );
+				$testimonials = isset( $instance['testimonials'] ) ? array_values( $this->fill_missing_row_ids( $instance['testimonials'] ) ) : array( $blank_testimonial );
 
 				// Without the add button, an empty list would leave no fields to fill in.
 				if ( empty( $testimonials ) && ! $this->supports_multiple_testimonials ) {
@@ -370,7 +376,8 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 					</div>
 				</div>
 			</script>
-			<div class="pt-widget-testimonials" id="testimonials-<?php echo esc_attr( $this->current_widget_id ); ?>">
+			<div class="pt-widget-testimonials" id="testimonials-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="Testimonials" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $testimonials ) ); ?>">
+				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'testimonials_ready' ) ); ?>" value="1" disabled />
 				<div class="testimonials  <?php echo $this->supports_multiple_testimonials ? 'js-pt-sortable-testimonials' : ''; ?>"></div>
 
 				<?php if ( $this->supports_multiple_testimonials ) : ?>
@@ -387,7 +394,10 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulateTestimonials ) ) {
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#testimonials-' + widgetId ) );
+					}
+					else if ( _.isFunction( ProteusWidgets.Utils.repopulateTestimonials ) ) {
 						ProteusWidgets.Utils.repopulateTestimonials( testimonialsJSON, widgetId );
 					}
 

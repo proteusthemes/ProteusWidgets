@@ -6,6 +6,8 @@
 if ( ! class_exists( 'PW_Functions' ) ) {
 	class PW_Functions {
 
+		const CACHE_GROUP = 'proteuswidgets';
+
 		/**
 		 * Filter the array to return only the social icons links / values
 		 * @return array The array of the social icons and links, or empty array when there is no options in the DB
@@ -64,7 +66,10 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 		 */
 		public static function get_cached_data( $cache_name, $number_of_posts, $author = '', $category = '' ) {
 			// Get/set cache data just once for multiple widgets
-			$recent_posts_data = wp_cache_get( $cache_name );
+			$cache_key         = $cache_name . ':' . get_locale();
+			$salt              = wp_cache_get_last_changed( 'posts' );
+			$cached            = wp_cache_get( $cache_key, self::CACHE_GROUP );
+			$recent_posts_data = is_array( $cached ) && isset( $cached['salt'], $cached['data'] ) && $cached['salt'] === $salt ? $cached['data'] : false;
 			if ( false === $recent_posts_data ) {
 				$recent_posts_original_args = array(
 					'numberposts'         => $number_of_posts,
@@ -108,13 +113,26 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 					$recent_posts_data[ $key ]['link']         = get_permalink( $post['ID'] );
 					$recent_posts_data[ $key ]['title']        = $post['post_title'];
 					$recent_posts_data[ $key ]['author']       = get_the_author_meta( 'display_name', $post['post_author'] );
-					$recent_posts_data[ $key ]['excerpt']      = self::get_post_excerpt( $post['post_excerpt'], $post['post_content'] );
+					$recent_posts_data[ $key ]['excerpt']      = '' === $post['post_password'] ? self::get_post_excerpt( $post['post_excerpt'], $post['post_content'] ) : __( 'There is no excerpt because this is a protected post.' );
 				}
 
-				wp_cache_set( $cache_name, $recent_posts_data );
+				wp_cache_set( $cache_key, array( 'salt' => $salt, 'data' => $recent_posts_data ), self::CACHE_GROUP, HOUR_IN_SECONDS );
 			}
 
 			return $recent_posts_data;
+		}
+
+		/**
+		 * URL of the page that lists the blog posts, or an empty string when the site has none.
+		 */
+		public static function get_posts_index_url() {
+			if ( 'page' !== get_option( 'show_on_front' ) ) {
+				return home_url( '/' );
+			}
+
+			$posts_page = (int) get_option( 'page_for_posts' );
+
+			return $posts_page ? (string) get_permalink( $posts_page ) : '';
 		}
 
 		/**

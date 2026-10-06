@@ -68,7 +68,8 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			 * https://polylang.wordpress.com/documentation/documentation-for-developers/functions-reference/#pll_get_post
 			 */
 			if ( function_exists( 'pll_get_post' ) ) {
-				$page_id = pll_get_post( $page_id );
+				$translated = pll_get_post( $page_id );
+				$page_id    = $translated ? (int) $translated : $page_id;
 			}
 
 			if ( function_exists( 'wpml_object_id' ) ) {
@@ -79,23 +80,28 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 			$instance['read_more_text'] = empty( $instance['read_more_text'] ) ? esc_html__( 'Read more', 'proteuswidgets' ) : $instance['read_more_text'];
 			$thumbnail_size             = 'inline' === $instance['layout'] ? 'pw-inline' : 'pw-page-box';
 
+			if ( ! $page_id ) {
+				return;
+			}
+
 			// Get basic page info
 			$page = get_post( $page_id, ARRAY_A );
 
-			if ( ! $page ) {
+			if ( ! $page || 'publish' !== $page['post_status'] || ! is_post_type_viewable( $page['post_type'] ) ) {
 				return;
 			}
 
 			// Prepare the excerpt text
-			$excerpt = wp_strip_all_tags( ! empty( $page['post_excerpt'] ) ? $page['post_excerpt'] : $page['post_content'] );
+			$excerpt = '' !== $page['post_password'] ? '' : strip_shortcodes( ! empty( $page['post_excerpt'] ) ? $page['post_excerpt'] : $page['post_content'] );
+			$excerpt = wp_strip_all_tags( preg_replace( '#(</(?:p|div|h[1-6]|li|blockquote|td|th|tr|section|article|figcaption)>|<br\s*/?>)(?!\s)#i', '$1 ', $excerpt ) );
 
 			if ( 'inline' === $instance['layout'] && strlen( $excerpt ) > $this->excerpt_lengths['inline_excerpt'] ) {
 				$strpos  = strpos( $excerpt , ' ', $this->excerpt_lengths['inline_excerpt'] );
-				$excerpt = ( false !== $strpos ) ? substr( $excerpt, 0, $strpos ) . ' &hellip;' : $excerpt;
+				$excerpt = ( false !== $strpos ) ? substr( $excerpt, 0, $strpos ) . ' &hellip;' : wp_html_excerpt( $excerpt, $this->excerpt_lengths['inline_excerpt'], ' &hellip;' );
 			}
 			elseif ( strlen( $excerpt ) > $this->excerpt_lengths['block_excerpt'] ) {
 				$strpos  = strpos( $excerpt , ' ', $this->excerpt_lengths['block_excerpt'] );
-				$excerpt = ( false !== $strpos ) ? substr( $excerpt, 0, $strpos ) . ' &hellip;' : $excerpt;
+				$excerpt = ( false !== $strpos ) ? substr( $excerpt, 0, $strpos ) . ' &hellip;' : wp_html_excerpt( $excerpt, $this->excerpt_lengths['block_excerpt'], ' &hellip;' );
 			}
 
 			$page['post_excerpt'] = $excerpt;
