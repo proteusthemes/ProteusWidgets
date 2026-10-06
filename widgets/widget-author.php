@@ -28,6 +28,10 @@ if ( ! class_exists( 'PW_Author' ) ) {
 		 * Front-end display of widget.
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'selected_user_id' => 1,
+			) );
+
 			// Prepare data for template
 			$selected_user_id = intval( $instance['selected_user_id'] );
 			$social_icons     = array();
@@ -57,6 +61,9 @@ if ( ! class_exists( 'PW_Author' ) ) {
 		 * Sanitize widget form values as they are saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'selected_user_id' => 1,
+			) );
 			$instance = array();
 
 			$instance['selected_user_id'] = intval( $new_instance['selected_user_id'] );

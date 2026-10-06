@@ -436,6 +436,9 @@ ProteusWidgets.ListViews.Abstract = Backbone.View.extend( {
 			id: (currentMaxId + 1)
 		} ) );
 
+		// Let the block-based widget editor notice the new item.
+		this.$el.trigger( 'change' );
+
 		return this;
 	},
 
@@ -783,4 +786,30 @@ _.extend( ProteusWidgets.Utils, {
 
 		this.repopulateGeneric( ProteusWidgets.ListViews.IconListItems, parameters, iconListItemJSON, widgetId );
 	},
+
+	/**
+	 * Fill the repeater lists in $root (or $root itself) from their data attributes, once per list.
+	 * The block-based widget editor inserts forms without running their inline scripts.
+	 * @param  {jQuery} $root
+	 * @return {void}
+	 */
+	initRepeaters: function ( $root ) {
+		$root.find( '[data-pw-repeater]' ).addBack( '[data-pw-repeater]' ).each( function () {
+			var $list      = jQuery( this );
+			var widgetId   = String( $list.attr( 'data-pw-widget-id' ) );
+			var repopulate = ProteusWidgets.Utils[ 'repopulate' + $list.attr( 'data-pw-repeater' ) ];
+
+			if ( $list.data( 'pwReady' ) || '__i__' === widgetId.slice( -5 ) || ! _.isFunction( repopulate ) ) {
+				return;
+			}
+
+			$list.data( 'pwReady', true );
+			$list.find( '.js-pw-repeater-ready' ).prop( 'disabled', false );
+			repopulate.call( ProteusWidgets.Utils, $list.data( 'pwRows' ), widgetId );
+		} );
+	},
+} );
+
+jQuery( document ).on( 'widget-added widget-updated', function ( event, $widget ) {
+	ProteusWidgets.Utils.initRepeaters( jQuery( $widget ) );
 } );

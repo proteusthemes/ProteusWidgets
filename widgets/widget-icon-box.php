@@ -89,6 +89,14 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'    => '',
+				'text'     => '',
+				'btn_link' => '',
+				'icon'     => '',
+				'new_tab'  => '',
+			) );
+
 			// Prepare data for template
 			$instance['target']   = ! empty ( $instance['new_tab'] ) ? '_blank' : '_self';
 
@@ -110,6 +118,12 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title'    => '',
+				'text'     => '',
+				'btn_link' => '',
+				'icon'     => '',
+			) );
 			$instance = array();
 
 			$instance['title']    = wp_kses_post( $new_instance['title'] );

@@ -44,7 +44,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 					'fab fa-flickr',
 					'fab fa-vimeo',
 					'fab fa-linkedin',
-					'fab fa-dribble',
+					'fab fa-dribbble',
 					'fab fa-wordpress',
 					'fas fa-rss',
 					'fab fa-github',
@@ -64,19 +64,21 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		public function widget( $args, $instance ) {
 			// Prepare data for template
 			if ( ! isset( $instance['social_icons'] ) ) {
-				$instance['social_icons'] = array(
-					array(
-						'link' => '',
-						'icon' => '',
-					),
-				);
+				$instance['social_icons'] = array();
 			}
 
 			$instance['social_icons'] = array_values( (array) $instance['social_icons'] );
 			// Escape data
 			for ( $i = 0; $i < count( $instance['social_icons'] ); $i++ ) {
 				// Cast object to array for one click demo import
-				$instance['social_icons'][ $i ] = (array) $instance['social_icons'][ $i ];
+				$instance['social_icons'][ $i ] = wp_parse_args( (array) $instance['social_icons'][ $i ], array(
+					'link' => '',
+					'icon' => '',
+				) );
+
+				if ( 'fab fa-dribble' === $instance['social_icons'][ $i ]['icon'] ) {
+					$instance['social_icons'][ $i ]['icon'] = 'fab fa-dribbble';
+				}
 			}
 			$instance['target'] = ! empty ( $instance['new_tab'] ) ? '_blank' : '_self';
 
@@ -98,11 +100,16 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
-			$instance = array();
+			$new_instance = $this->keep_unshown_rows( $new_instance, $old_instance, array( 'social_icons' ) );
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'social_icons' => array(),
+			) );
+			$instance = array( 'social_icons' => array() );
 
-			foreach ( $new_instance['social_icons'] as $key => $social_icon ) {
+			foreach ( $this->fill_missing_row_ids( $new_instance['social_icons'] ) as $key => $social_icon ) {
+				$social_icon = wp_parse_args( $social_icon, array( 'link' => '', 'icon' => '' ) );
 				$instance['social_icons'][ $key ]['id']   = sanitize_key( $social_icon['id'] );
-				$instance['social_icons'][ $key ]['link'] = sanitize_text_field( $social_icon['link'] );
+				$instance['social_icons'][ $key ]['link'] = esc_url_raw( trim( $social_icon['link'] ) );
 				$instance['social_icons'][ $key ]['icon'] = sanitize_text_field( $social_icon['icon'] );
 			}
 
@@ -170,7 +177,8 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 					<a href="#" class="pt-remove-social-icon  js-pt-remove-social-icon"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Social Icon', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-social-icons" id="social-icons-<?php echo esc_attr( $this->current_widget_id ); ?>">
+			<div class="pt-widget-social-icons" id="social-icons-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="SocialIcons" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $instance['social_icons'] ) ); ?>">
+				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'social_icons_ready' ) ); ?>" value="1" disabled />
 				<div class="social-icons"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-social-icon"><?php esc_html_e( 'Add New Social Icon', 'proteuswidgets' ); ?></a>
@@ -184,7 +192,10 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulateSocialIcons ) ) {
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#social-icons-' + widgetId ) );
+					}
+					else if ( _.isFunction( ProteusWidgets.Utils.repopulateSocialIcons ) ) {
 						ProteusWidgets.Utils.repopulateSocialIcons( socialIconsJSON, widgetId );
 					}
 				})();

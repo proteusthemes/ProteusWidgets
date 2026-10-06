@@ -78,8 +78,25 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'   => '',
+				'items'   => array(),
+				'new_tab' => '',
+			) );
+
 			// Prepare data for template
-			$items = isset( $instance['items'] ) ? array_values( $instance['items'] ) : array();
+			$items = is_array( $instance['items'] ) ? array_values( $instance['items'] ) : array();
+			foreach ( $items as $key => $item ) {
+				$items[ $key ] = wp_parse_args( (array) $item, array(
+					'id'      => 1,
+					'title'   => '',
+					'icon'    => '',
+					'content' => '',
+					'step'    => '',
+					'url'     => '',
+				) );
+			}
+
 			$instance['title_is_set'] = ! empty( $instance['title'] );
 			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base );
 
@@ -98,6 +115,11 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = $this->keep_unshown_rows( $new_instance, $old_instance, array( 'items' ) );
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title' => '',
+				'items' => array(),
+			) );
 			$instance = array();
 
 			$instance['title'] = sanitize_text_field( $new_instance['title'] );
@@ -106,7 +128,10 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 				$instance['new_tab'] = ! empty ( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
 			}
 
-			foreach ( $new_instance['items'] as $key => $item ) {
+			$instance['items'] = array();
+
+			foreach ( $this->fill_missing_row_ids( $new_instance['items'] ) as $key => $item ) {
+				$item = wp_parse_args( $item, array( 'title' => '', 'content' => '', 'icon' => '', 'step' => '', 'url' => '' ) );
 				$instance['items'][ $key ]['id']      = sanitize_key( $item['id'] );
 				$instance['items'][ $key ]['title']   = sanitize_text_field( $item['title'] );
 				$instance['items'][ $key ]['content'] = wp_kses( $item['content'], $this->allowed_html_in_content_field );
@@ -214,7 +239,8 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 					<a href="#" class="pt-remove-step-item  js-pt-remove-step-item"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Step', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-step-items" id="step-items-<?php echo esc_attr( $this->current_widget_id ); ?>">
+			<div class="pt-widget-step-items" id="step-items-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="StepItems" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $instance['items'] ) ); ?>">
+				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'items_ready' ) ); ?>" value="1" disabled />
 				<div class="step-items"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-step-item"><?php esc_html_e( 'Add New Step', 'proteuswidgets' ); ?></a>
@@ -228,7 +254,10 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulateStepItems ) ) {
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#step-items-' + widgetId ) );
+					}
+					else if ( _.isFunction( ProteusWidgets.Utils.repopulateStepItems ) ) {
 						ProteusWidgets.Utils.repopulateStepItems( stepItemsJSON, widgetId );
 					}
 				})();

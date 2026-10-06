@@ -62,8 +62,20 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'speed'    => 1000,
+				'counters' => array(),
+			) );
+
 			// Prepare the data for template.
-			$counters = isset( $instance['counters'] ) ? array_values( $instance['counters'] ) : array();
+			$counters = array_values( $this->fill_missing_row_ids( $instance['counters'] ) );
+			foreach ( $counters as $key => $counter ) {
+				$counters[ $key ] = wp_parse_args( $counter, array(
+					'title'  => '',
+					'number' => '',
+					'icon'   => '',
+				) );
+			}
 
 			// The widget-number-counter template rendering.
 			echo $this->template_engine->render_template( apply_filters( 'pw/widget_number_counter_view', 'widget-number-counter' ), array(
@@ -81,6 +93,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 		 * @param array $old_instance The previous options.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = $this->keep_unshown_rows( $new_instance, $old_instance, array( 'counters' ) );
 			$new_instance = wp_parse_args( (array) $new_instance, array(
 				'speed'    => 1000,
 				'counters' => array(),
@@ -162,7 +175,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 
 				<p>
 					<label for="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-number"><?php esc_html_e( 'Number:', 'proteuswidgets' ); ?></label>
-					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-number" name="<?php echo esc_attr( $this->get_field_name( 'counters' ) ); ?>[{{id}}][number]" type="text" value="{{number}}" />
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'counters' ) ); ?>-{{id}}-number" name="<?php echo esc_attr( $this->get_field_name( 'counters' ) ); ?>[{{id}}][number]" type="number" min="0" step="1" inputmode="numeric" value="{{number}}" />
 				</p>
 
 			<?php if ( $this->fields['progress_bar'] ) : ?>
@@ -189,7 +202,8 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 					<a href="#" class="pt-remove-counter  js-pt-remove-counter"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Counter', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-about-us" id="counters-<?php echo esc_attr( $this->current_widget_id ); ?>">
+			<div class="pt-widget-about-us" id="counters-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="Counters" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $counters ) ); ?>">
+				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'counters_ready' ) ); ?>" value="1" disabled />
 				<div class="counters"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-counter"><?php esc_html_e( 'Add New Counter', 'proteuswidgets' ); ?></a>
@@ -203,7 +217,10 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulateCounters ) ) {
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#counters-' + widgetId ) );
+					}
+					else if ( _.isFunction( ProteusWidgets.Utils.repopulateCounters ) ) {
 						ProteusWidgets.Utils.repopulateCounters( countersJSON, widgetId );
 					}
 				})();

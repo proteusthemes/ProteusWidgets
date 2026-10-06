@@ -33,6 +33,17 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'         => 'Facebook',
+				'like_link'     => 'https://www.facebook.com/ProteusThemes',
+				'width'         => 340,
+				'height'        => 500,
+				'hide_cover'    => '',
+				'show_facepile' => '',
+				'show_posts'    => '',
+				'small_header'  => '',
+			) );
+
 			// Prepare data for template
 			$instance['preped_title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
@@ -46,7 +57,7 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 				'height'        => $instance['height'],
 				'hide_cover'    => ! empty( $instance['hide_cover'] ),
 				'show_facepile' => empty( $instance['show_facepile'] ),
-				'show_posts'    => ! empty( $instance['show_posts'] ),
+				'tabs'          => ! empty( $instance['show_posts'] ) ? 'timeline' : '',
 				'small_header'  => ! empty( $instance['small_header'] ),
 			);
 

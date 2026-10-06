@@ -11,7 +11,7 @@
 	<div class="row widget-author__content">
 		<div class="col-xs-10  col-xs-offset-1">
 			<?php echo wp_kses_post( $author_meta_name ); ?>
-			<?php echo esc_html( $author_meta_description ); ?>
+			<?php echo wp_kses_post( $author_meta_description ); ?>
 
 			<?php if ( ! empty( $author_meta_user_url ) ) : ?>
 				<p>
