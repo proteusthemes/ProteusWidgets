@@ -48,14 +48,25 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'        => 'Testimonials',
+				'autocycle'    => 'no',
+				'interval'     => 5000,
+				'testimonials' => array(),
+			) );
+
+			if ( empty( $args['widget_id'] ) ) {
+				$args['widget_id'] = wp_unique_id( $this->id_base . '-' );
+			}
+
 			// Prepare data for mustache template
 			if ( isset( $instance['quote'] ) ) {
 				$testimonials = array(
 					array(
 						'quote'  => $instance['quote'],
-						'author' => $instance['author'],
-						'rating' => $instance['rating'],
-						'author_description' => $instance['author_description'],
+						'author' => isset( $instance['author'] ) ? $instance['author'] : '',
+						'rating' => isset( $instance['rating'] ) ? $instance['rating'] : '',
+						'author_description' => isset( $instance['author_description'] ) ? $instance['author_description'] : '',
 					),
 				);
 			}
@@ -108,13 +119,39 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			if ( isset( $new_instance['quote'] ) && ! isset( $new_instance['testimonials'] ) ) {
+				$new_instance['testimonials'] = array(
+					array(
+						'id'                 => 1,
+						'quote'              => $new_instance['quote'],
+						'author'             => isset( $new_instance['author'] ) ? $new_instance['author'] : '',
+						'rating'             => isset( $new_instance['rating'] ) ? $new_instance['rating'] : 5,
+						'author_description' => isset( $new_instance['author_description'] ) ? $new_instance['author_description'] : '',
+					),
+				);
+			}
+
+			// Page Builder passes the whole stored widget and pairs $old_instance by a widget id that need not be unique.
+			if ( ! isset( $new_instance['testimonials'] ) && empty( $new_instance['testimonials_ready'] ) && ! isset( $new_instance['panels_info'] ) && isset( $old_instance['testimonials'] ) ) {
+				$new_instance['testimonials'] = $old_instance['testimonials'];
+			}
+
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title'        => 'Testimonials',
+				'autocycle'    => 'no',
+				'interval'     => 5000,
+				'testimonials' => array(),
+			) );
 			$instance = array();
 
 			$instance['title']     = wp_kses_post( $new_instance['title'] );
 			$instance['autocycle'] = sanitize_key( $new_instance['autocycle'] );
 			$instance['interval']  = absint( $new_instance['interval'] );
 
-			foreach ( $new_instance['testimonials'] as $key => $testimonial ) {
+			$instance['testimonials'] = array();
+
+			foreach ( PW_Functions::normalize_rows( $new_instance['testimonials'] ) as $key => $testimonial ) {
+				$testimonial = wp_parse_args( $testimonial, array( 'id' => $key, 'quote' => '', 'author' => '', 'rating' => '', 'author_description' => '' ) );
 				$instance['testimonials'][ $key ]['id']                 = sanitize_key( $testimonial['id'] );
 				$instance['testimonials'][ $key ]['quote']              = sanitize_text_field( $testimonial['quote'] );
 				$instance['testimonials'][ $key ]['author']             = sanitize_text_field( $testimonial['author'] );
@@ -131,7 +168,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 		 * @param array $instance The widget options
 		 */
 		public function form( $instance ) {
-			$title     = empty( $instance['title'] ) ? 'Testimonials' : $instance['title'];
+			$title     = isset( $instance['title'] ) ? $instance['title'] : 'Testimonials';
 			$autocycle = empty( $instance['autocycle'] ) ? 'no' : $instance['autocycle'];
 			$interval  = empty( $instance['interval'] ) ? 5000 : $instance['interval'];
 
@@ -147,7 +184,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 				);
 			}
 			else {
-				$testimonials = isset( $instance['testimonials'] ) ? array_values( $instance['testimonials'] ) : array(
+				$testimonials = isset( $instance['testimonials'] ) ? array_values( PW_Functions::normalize_rows( $instance['testimonials'] ) ) : array(
 					array(
 						'id'     => 1,
 						'quote'  => '',
@@ -229,7 +266,11 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 					<a href="#" class="pt-remove-testimonial  js-pt-remove-testimonial"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Testimonial', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-testimonials" id="testimonials-<?php echo $this->current_widget_id; ?>">
+			<div class="pt-widget-testimonials" id="testimonials-<?php echo $this->current_widget_id; ?>"
+				data-pw-repeater="Testimonials"
+				data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>"
+				data-pw-rows="<?php echo esc_attr( wp_json_encode( array_values( (array) $testimonials ) ) ); ?>"
+				data-pw-ready-name="<?php echo esc_attr( $this->get_field_name( 'testimonials_ready' ) ); ?>">
 				<div class="testimonials"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-testimonial">Add New Testimonial</a>
@@ -237,14 +278,11 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			</div>
 			<script type="text/javascript">
 				(function() {
-					// repopulate the form
-					var testimonialsJSON = <?php echo wp_json_encode( $testimonials ) ?>;
-
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulateTestimonials ) ) {
-						ProteusWidgets.Utils.repopulateTestimonials( testimonialsJSON, widgetId );
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#testimonials-' + widgetId ) );
 					}
 				})();
 			</script>

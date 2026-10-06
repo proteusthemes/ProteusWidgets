@@ -44,13 +44,22 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'latLng'    => '51.507331,-0.127668',
+				'zoom'      => 12,
+				'type'      => 'roadmap',
+				'style'     => 'Subtle Grayscale',
+				'height'    => 380,
+				'locations' => array(),
+			) );
+
 			// Prepare data for mustache template
 			$locations             = isset( $instance['locations'] ) && is_array( $instance['locations'] ) ? array_values( $instance['locations'] ) : array();
 			$instance['locations'] = esc_attr( json_encode( $locations ) );
 			$instance['latLng']    = esc_attr( $instance['latLng'] );
 			$instance['zoom']      = absint( $instance['zoom'] );
 			$instance['type']      = esc_attr( $instance['type'] );
-			$instance['style']     = esc_attr( $this->map_styles[ $instance['style'] ] );
+			$instance['style']     = esc_attr( isset( $this->map_styles[ $instance['style'] ] ) ? $this->map_styles[ $instance['style'] ] : '[]' );
 			$instance['height']    = absint( $instance['height'] );
 
 			// Mustache widget-google-map template rendering
@@ -72,6 +81,19 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			// Page Builder passes the whole stored widget and pairs $old_instance by a widget id that need not be unique.
+			if ( ! isset( $new_instance['locations'] ) && empty( $new_instance['locations_ready'] ) && ! isset( $new_instance['panels_info'] ) && isset( $old_instance['locations'] ) ) {
+				$new_instance['locations'] = $old_instance['locations'];
+			}
+
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'latLng'    => '51.507331,-0.127668',
+				'zoom'      => 12,
+				'type'      => 'roadmap',
+				'style'     => 'Subtle Grayscale',
+				'height'    => 380,
+				'locations' => array(),
+			) );
 			$instance = array();
 
 			$instance['latLng'] = sanitize_text_field( $new_instance['latLng'] );
@@ -80,7 +102,10 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			$instance['style']  = sanitize_text_field( $new_instance['style'] );
 			$instance['height'] = absint( $new_instance['height'] );
 
-			foreach ( $new_instance['locations'] as $key => $location ) {
+			$instance['locations'] = array();
+
+			foreach ( PW_Functions::normalize_rows( $new_instance['locations'] ) as $key => $location ) {
+				$location = wp_parse_args( $location, array( 'id' => $key, 'title' => '', 'locationlatlng' => '', 'custompinimage' => '' ) );
 				$instance['locations'][ $key ]['id']             = sanitize_key( $location['id'] );
 				$instance['locations'][ $key ]['title']          = sanitize_text_field( $location['title'] );
 				$instance['locations'][ $key ]['locationlatlng'] = sanitize_text_field( $location['locationlatlng'] );
@@ -105,7 +130,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			$style  = isset( $instance['style'] ) ? $instance['style'] : 'Subtle Grayscale';
 			$height = isset( $instance['height'] ) ? $instance['height'] : 380;
 
-			$locations = isset( $instance['locations'] ) ? array_values( $instance['locations'] ) : array(
+			$locations = isset( $instance['locations'] ) ? array_values( PW_Functions::normalize_rows( $instance['locations'] ) ) : array(
 				array(
 					'id'             => 1,
 					'title'          => 'London',
@@ -192,7 +217,11 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 					<a href="#" class="pt-remove-location  js-pt-remove-location"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove Location', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-locations" id="locations-<?php echo $this->current_widget_id; ?>">
+			<div class="pt-widget-locations" id="locations-<?php echo $this->current_widget_id; ?>"
+				data-pw-repeater="Locations"
+				data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>"
+				data-pw-rows="<?php echo esc_attr( wp_json_encode( array_values( (array) $locations ) ) ); ?>"
+				data-pw-ready-name="<?php echo esc_attr( $this->get_field_name( 'locations_ready' ) ); ?>">
 				<div class="locations"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-location">Add New Location</a>
@@ -200,14 +229,11 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			</div>
 			<script type="text/javascript">
 				(function() {
-					// repopulate the form
-					var locationsJSON = <?php echo wp_json_encode( $locations ) ?>;
-
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulateLocations ) ) {
-						ProteusWidgets.Utils.repopulateLocations( locationsJSON, widgetId );
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#locations-' + widgetId ) );
 					}
 				})();
 			</script>

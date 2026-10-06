@@ -31,6 +31,13 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'    => '',
+				'text'     => '',
+				'btn_link' => '',
+				'icon'     => '',
+			) );
+
 			// Prepare data for mustache template
 			$instance['btn_link'] = esc_url( $instance['btn_link'] );
 			$instance['target']   = ! empty ( $instance['new_tab'] ) ? '_blank' : '_self';
@@ -54,13 +61,19 @@ if ( ! class_exists( 'PW_Icon_Box' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title'    => '',
+				'text'     => '',
+				'btn_link' => '',
+				'icon'     => '',
+			) );
 			$instance = array();
 
 			$instance['title']    = wp_kses_post( $new_instance['title'] );
 			$instance['text']     = wp_kses_post( $new_instance['text'] );
 			$instance['btn_link'] = esc_url_raw( $new_instance['btn_link'] );
 			$instance['icon']     = sanitize_key( $new_instance['icon'] );
-			$instance['new_tab']  = sanitize_key( $new_instance['new_tab'] );
+			$instance['new_tab']  = ! empty( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
 
 			return $instance;
 		}

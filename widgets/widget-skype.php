@@ -23,6 +23,13 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		}
 
 		/**
+		 * Protocols allowed in the Skype link
+		 */
+		public static function allowed_protocols() {
+			return array_unique( array_merge( wp_allowed_protocols(), array( 'skype', 'callto' ) ) );
+		}
+
+		/**
 		 * Front-end display of widget.
 		 *
 		 * @see WP_Widget::widget()
@@ -31,8 +38,15 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'          => '',
+				'skype_username' => '',
+			) );
+
 			// Prepare data for mustache template
-			$instance['icon'] = 'skype' == substr( $instance['skype_username'], 0, 5 ) ? 'skype' : 'phone';
+			$instance['skype_username'] = esc_url( $instance['skype_username'], self::allowed_protocols() );
+			$instance['icon']           = 'skype' == substr( $instance['skype_username'], 0, 5 ) ? 'skype' : 'phone';
+			$instance['title']          = wp_kses_post( $instance['title'] );
 
 			// Mustache widget-skype template rendering
 			echo $this->mustache->render( apply_filters( 'pw/widget_skype_view', 'widget-skype' ), array(
@@ -48,10 +62,15 @@ if ( ! class_exists( 'PW_Skype' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title'          => '',
+				'skype_username' => '',
+			) );
 			$instance = array();
 
 			$instance['title']          = wp_kses_post( $new_instance['title'] );
-			$instance['skype_username'] = wp_kses_post( $new_instance['skype_username'] );
+			$username                   = wp_kses_post( $new_instance['skype_username'] );
+			$instance['skype_username'] = '' === esc_url_raw( $username, self::allowed_protocols() ) ? '' : $username;
 
 			return $instance;
 		}

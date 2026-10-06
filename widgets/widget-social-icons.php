@@ -34,19 +34,20 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			// Prepare data for mustache template
-			if ( ! isset( $instance['social_icons'] ) ) {
-				$instance['social_icons'] = array(
-					array(
-						'link' => '',
-						'icon' => '',
-					),
-				);
-			}
+			$instance = wp_parse_args( (array) $instance, array(
+				'social_icons' => array(),
+			) );
 
-			$instance['social_icons'] = PW_Functions::reorder_widget_array_key_values( $instance['social_icons'] );
+			// Prepare data for mustache template
+			$social_icons = is_array( $instance['social_icons'] ) ? $instance['social_icons'] : array();
+
+			$instance['social_icons'] = PW_Functions::reorder_widget_array_key_values( $social_icons );
 			// Escape data
 			for ( $i = 0; $i < count( $instance['social_icons'] ); $i++ ) {
+				$instance['social_icons'][ $i ] = wp_parse_args( $instance['social_icons'][ $i ], array( 'link' => '', 'icon' => '' ) );
+				if ( 'fa-dribble' === $instance['social_icons'][ $i ]['icon'] ) {
+					$instance['social_icons'][ $i ]['icon'] = 'fa-dribbble';
+				}
 				$instance['social_icons'][ $i ]['link'] = esc_url( $instance['social_icons'][ $i ]['link'] );
 				$instance['social_icons'][ $i ]['icon'] = esc_attr( $instance['social_icons'][ $i ]['icon'] );
 			}
@@ -70,15 +71,24 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
-			$instance = array();
+			// Page Builder passes the whole stored widget and pairs $old_instance by a widget id that need not be unique.
+			if ( ! isset( $new_instance['social_icons'] ) && empty( $new_instance['social_icons_ready'] ) && ! isset( $new_instance['panels_info'] ) && isset( $old_instance['social_icons'] ) ) {
+				$new_instance['social_icons'] = $old_instance['social_icons'];
+			}
 
-			foreach ( $new_instance['social_icons'] as $key => $social_icon ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'social_icons' => array(),
+			) );
+			$instance = array( 'social_icons' => array() );
+
+			foreach ( PW_Functions::normalize_rows( $new_instance['social_icons'] ) as $key => $social_icon ) {
+				$social_icon = wp_parse_args( $social_icon, array( 'id' => $key, 'link' => '', 'icon' => '' ) );
 				$instance['social_icons'][ $key ]['id']   = sanitize_key( $social_icon['id'] );
-				$instance['social_icons'][ $key ]['link'] = sanitize_text_field( $social_icon['link'] );
+				$instance['social_icons'][ $key ]['link'] = esc_url_raw( trim( $social_icon['link'] ) );
 				$instance['social_icons'][ $key ]['icon'] = sanitize_html_class( $social_icon['icon'] );
 			}
 
-			$instance['new_tab'] = sanitize_key( $new_instance['new_tab'] );
+			$instance['new_tab'] = ! empty( $new_instance['new_tab'] ) ? sanitize_key( $new_instance['new_tab'] ) : '';
 
 			return $instance;
 		}
@@ -99,6 +109,12 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 						'icon' => '',
 					),
 				);
+			}
+
+			foreach ( (array) $instance['social_icons'] as $key => $social_icon ) {
+				if ( is_array( $social_icon ) && isset( $social_icon['icon'] ) && 'fa-dribble' === $social_icon['icon'] ) {
+					$instance['social_icons'][ $key ]['icon'] = 'fa-dribbble';
+				}
 			}
 
 			$new_tab  = empty( $instance['new_tab'] ) ? '' : $instance['new_tab'];
@@ -143,7 +159,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 						<option value="fa-flickr" <?php selected( '{{icon}}', 'fa-flickr' ); ?>>Flickr</option>
 						<option value="fa-vimeo-square" <?php selected( '{{icon}}', 'fa-vimeo-square' ); ?>>Vimeo</option>
 						<option value="fa-linkedin" <?php selected( '{{icon}}', 'fa-linkedin' ); ?>>Linkedin</option>
-						<option value="fa-dribble" <?php selected( '{{icon}}', 'fa-dribble' ); ?>>Dribble</option>
+						<option value="fa-dribbble" <?php selected( '{{icon}}', 'fa-dribbble' ); ?>>Dribbble</option>
 						<option value="fa-wordpress" <?php selected( '{{icon}}', 'fa-wordpress' ); ?>>Wordpress</option>
 						<option value="fa-rss" <?php selected( '{{icon}}', 'fa-rss' ); ?>>RSS</option>
 					</select>
@@ -154,7 +170,11 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 					<a href="#" class="pt-remove-social-icon  js-pt-remove-social-icon"><span class="dashicons dashicons-dismiss"></span> <?php _e( 'Remove social icon', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-social-icons" id="social-icons-<?php echo $this->current_widget_id; ?>">
+			<div class="pt-widget-social-icons" id="social-icons-<?php echo $this->current_widget_id; ?>"
+				data-pw-repeater="SocialIcons"
+				data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>"
+				data-pw-rows="<?php echo esc_attr( wp_json_encode( array_values( (array) $instance['social_icons'] ) ) ); ?>"
+				data-pw-ready-name="<?php echo esc_attr( $this->get_field_name( 'social_icons_ready' ) ); ?>">
 				<div class="social-icons"></div>
 				<p>
 					<a href="#" class="button  js-pt-add-social-icon"><?php _e( 'Add New Social Icon', 'proteuswidgets' ); ?></a>
@@ -162,14 +182,11 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 			</div>
 			<script type="text/javascript">
 				(function() {
-					// repopulate the form
-					var socialIconsJSON = <?php echo wp_json_encode( $instance['social_icons'] ) ?>;
-
 					// get the right widget id and remove the added < > characters at the start and at the end.
 					var widgetId = '<<?php echo esc_js( $this->current_widget_id ); ?>>'.slice( 1, -1 );
 
-					if ( _.isFunction( ProteusWidgets.Utils.repopulateSocialIcons ) ) {
-						ProteusWidgets.Utils.repopulateSocialIcons( socialIconsJSON, widgetId );
+					if ( _.isFunction( ProteusWidgets.Utils.initRepeaters ) ) {
+						ProteusWidgets.Utils.initRepeaters( jQuery( '#social-icons-' + widgetId ) );
 					}
 				})();
 			</script>

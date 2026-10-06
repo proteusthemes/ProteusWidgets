@@ -37,6 +37,11 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		 * @param array $instance
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'page_id' => 0,
+				'layout'  => 'block',
+			) );
+
 			// Prepare data for mustache template
 			$page_id            = absint( $instance['page_id'] );
 			$instance['layout'] = sanitize_key( $instance['layout'] );
@@ -48,19 +53,30 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 				$thumbnail_size = 'inline' === $instance['layout'] ? 'pw-inline' : 'pw-page-box';
 			}
 
-			// Get basic page info
-			if ( $page_id ) {
-				$page = (array) get_post( $page_id );
+			if ( ! $page_id ) {
+				return;
 			}
+
+			// Get basic page info
+			$page = get_post( $page_id, ARRAY_A );
+
+			if ( ! $page || 'publish' !== $page['post_status'] || ! is_post_type_viewable( $page['post_type'] ) ) {
+				return;
+			}
+
+			$is_protected = '' !== $page['post_password'];
 
 			// Prepare the excerpt text
-			$excerpt = wp_strip_all_tags( ! empty( $page['post_excerpt'] ) ? $page['post_excerpt'] : $page['post_content'] );
+			$limit = 'inline' === $instance['layout'] ? self::INLINE_EXCERPT : self::BLOCK_EXCERPT;
 
-			if ( 'inline' === $instance['layout'] && strlen( $excerpt ) > self::INLINE_EXCERPT ) {
-				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', self::INLINE_EXCERPT ) ) . ' &hellip;';
-			}
-			elseif ( strlen( $excerpt ) > self::BLOCK_EXCERPT ) {
-				$excerpt = substr( $excerpt, 0, strpos( $excerpt , ' ', self::BLOCK_EXCERPT ) ) . ' &hellip;';
+			$excerpt = $is_protected ? '' : ( ! empty( $page['post_excerpt'] ) ? $page['post_excerpt'] : $page['post_content'] );
+			$excerpt = strip_shortcodes( $excerpt );
+			$excerpt = preg_replace( '#</(p|div|h[1-6]|li|blockquote|td|th|tr|section|article|figcaption)>|<br\s*/?>#i', '$0 ', $excerpt );
+			$excerpt = wp_strip_all_tags( $excerpt, true );
+
+			if ( strlen( $excerpt ) > $limit ) {
+				$cut     = strpos( $excerpt, ' ', $limit );
+				$excerpt = false === $cut ? wp_html_excerpt( $excerpt, $limit, ' &hellip;' ) : substr( $excerpt, 0, $cut ) . ' &hellip;';
 			}
 
 			$page['post_excerpt'] = sanitize_text_field( $excerpt );
@@ -85,6 +101,10 @@ if ( ! class_exists( 'PW_Featured_Page' ) ) {
 		 * @param array $old_instance The previous options
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'page_id' => 0,
+				'layout'  => 'block',
+			) );
 			$instance = array();
 
 			$instance['page_id'] = absint( $new_instance['page_id'] );

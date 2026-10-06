@@ -43,23 +43,32 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
+			$instance = wp_parse_args( (array) $instance, array(
+				'title'       => 'Facebook',
+				'colorscheme' => 'light',
+				'like_link'   => 'https://www.facebook.com/ProteusThemes',
+				'height'      => 290,
+				'background'  => '#ffffff',
+			) );
+
 			// Prepare data for mustache template
-			$instance['title']      = $args['before_title'] . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $args['after_title'];
+			$title                  = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
+			$instance['title']      = ! empty( $title ) ? $args['before_title'] . $title . $args['after_title'] : '';
 			$instance['height']     = absint( $instance['height'] );
-			$instance['background'] = esc_attr( $instance['background'] );
+			$background             = sanitize_hex_color( isset( $instance['background'] ) ? $instance['background'] : '' );
+			$instance['background'] = $background ? $background : '#ffffff';
 
 			// params for the iframe
-			// @see https://developers.facebook.com/docs/plugins/like-box-for-pages
+			// @see https://developers.facebook.com/docs/plugins/page-plugin
 
 			$fb_params = array(
-				'colorscheme' => $instance['colorscheme'],
-				'stream'      => 'false',
-				'show_border' => 'false',
-				'header'      => 'false',
-				'show_faces'  => 'true',
-				'width'       => 263,
-				'height'      => $instance['height'],
-				'href'        => $instance['like_link'],
+				'href'                  => $instance['like_link'],
+				'width'                 => 263,
+				'height'                => $instance['height'],
+				'show_facepile'         => 'true',
+				'small_header'          => 'false',
+				'hide_cover'            => 'false',
+				'adapt_container_width' => 'true',
 			);
 
 			// Mustache widget-facebook template rendering
@@ -81,13 +90,21 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 		 * @return array Updated safe values to be saved.
 		 */
 		public function update( $new_instance, $old_instance ) {
+			$new_instance = wp_parse_args( (array) $new_instance, array(
+				'title'       => 'Facebook',
+				'colorscheme' => 'light',
+				'like_link'   => 'https://www.facebook.com/ProteusThemes',
+				'height'      => 290,
+				'background'  => '#ffffff',
+			) );
 			$instance = array();
 
 			$instance['title']       = wp_kses_post( $new_instance['title'] );
 			$instance['colorscheme'] = sanitize_key( $new_instance['colorscheme'] );
 			$instance['like_link']   = esc_url_raw( $new_instance['like_link'] );
 			$instance['height']      = absint( $new_instance['height'] );
-			$instance['background']  = esc_attr( $new_instance['background'] );
+			$background              = sanitize_hex_color( isset( $new_instance['background'] ) ? $new_instance['background'] : '' );
+			$instance['background']  = $background ? $background : '#ffffff';
 
 			return $instance;
 		}
@@ -122,13 +139,8 @@ if ( ! class_exists( 'PW_Facebook' ) ) {
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'height' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'height' ) ); ?>" type="number" min="0" step="10" value="<?php echo esc_attr( $height ); ?>" />
 			</p>
 
-			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'colorscheme' ) ); ?>"><?php _e( 'Color scheme:', 'proteuswidgets' ); ?></label> <br />
-				<select id="<?php echo esc_attr( $this->get_field_id( 'colorscheme' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'colorscheme' ) ); ?>">
-					<option value="light"<?php selected( $colorscheme, 'light' ); ?>><?php _e( 'Light', 'proteuswidgets' ); ?></option>
-					<option value="dark"<?php selected( $colorscheme, 'dark' ); ?>><?php _e( 'Dark', 'proteuswidgets' ); ?></option>
-				</select>
-			</p>
+			<?php // Page Plugin has no color scheme option; retain the legacy value for custom views. ?>
+			<input type="hidden" name="<?php echo esc_attr( $this->get_field_name( 'colorscheme' ) ); ?>" value="<?php echo esc_attr( $colorscheme ); ?>" />
 
 			<p>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'background' ) ); ?>"><?php _e( 'Background color:', 'proteuswidgets' ); ?></label> <br>
