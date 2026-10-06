@@ -227,6 +227,25 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		}
 	}
 
+	function test_facebook_posts_checkbox_selects_page_plugin_tabs() {
+		$args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '' );
+		foreach ( array( 'on' => 'timeline', '' => '' ) as $show_posts => $tabs ) {
+			ob_start();
+			try {
+				( new PW_Facebook() )->widget( $args, array( 'show_posts' => $show_posts ) );
+			}
+			finally {
+				$html = ob_get_clean();
+			}
+			$this->assertSame( 1, preg_match( '/<iframe src="([^"]+)"/', $html, $matches ) );
+			$url = html_entity_decode( $matches[1], ENT_QUOTES, 'UTF-8' );
+			$this->assertSame( '/plugins/page.php', wp_parse_url( $url, PHP_URL_PATH ) );
+			parse_str( wp_parse_url( $url, PHP_URL_QUERY ), $query );
+			$this->assertSame( $tabs, $query['tabs'] );
+			$this->assertArrayNotHasKey( 'show_posts', $query );
+		}
+	}
+
 	function test_latest_news_renders_without_from_and_to() {
 		$args    = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '', 'widget_id' => 'pw-1' );
 		$post_id = wp_insert_post( array( 'post_status' => 'publish', 'post_title' => 'Only post' ) );
