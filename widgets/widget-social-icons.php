@@ -177,7 +177,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 					<a href="#" class="pt-remove-social-icon  js-pt-remove-social-icon"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Social Icon', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-social-icons" id="social-icons-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="SocialIcons" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $instance['social_icons'] ) ); ?>">
+			<div class="pt-widget-social-icons" id="social-icons-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="SocialIcons" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $instance['social_icons'], JSON_HEX_AMP ) ); ?>">
 				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'social_icons_ready' ) ); ?>" value="1" disabled />
 				<div class="social-icons"></div>
 				<p>

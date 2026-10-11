@@ -160,7 +160,7 @@ if ( ! class_exists( 'PW_Pricing_List' ) ) {
 					</div>
 				</div>
 			</script>
-			<div class="pt-widget-pricing-list-items" id="pricing-list-items-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="PricingListItems" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $items ) ); ?>">
+			<div class="pt-widget-pricing-list-items" id="pricing-list-items-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="PricingListItems" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $items, JSON_HEX_AMP ) ); ?>">
 				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'items_ready' ) ); ?>" value="1" disabled />
 				<div class="pricing-list-items  js-pt-sortable-pricing-lists"></div>
 				<p>
