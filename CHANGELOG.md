@@ -8,6 +8,12 @@ This file documents the v3.x → 5.0 line. The parallel 4.x line (used by Woonde
 
 ## [Unreleased]
 
+## [5.0.4] – 2026-10-11
+
+### Fixed
+
+- Repeating items keep text such as `&amp;` or `&lt;b&gt;` unchanged when a widget form is opened and saved again.
+
 ## [5.0.3] – 2026-10-03
 
 Security hardening and bug fixes.
@@ -75,7 +81,8 @@ Security hardening and bug fixes.
 - Travis CI configuration (`aa4b637`) — replaced by GitHub Actions.
 - `Gruntfile.js`-driven i18n — superseded by WP-CLI scripts.
 
-[Unreleased]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.3...HEAD
+[Unreleased]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.4...HEAD
+[5.0.4]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.3...v5.0.4
 [5.0.3]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.2...v5.0.3
 [5.0.2]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.1...v5.0.2
 [5.0.1]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.0...v5.0.1
