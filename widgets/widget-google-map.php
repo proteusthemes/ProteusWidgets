@@ -220,7 +220,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 			<div class="pt-widget-locations" id="locations-<?php echo $this->current_widget_id; ?>"
 				data-pw-repeater="Locations"
 				data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>"
-				data-pw-rows="<?php echo esc_attr( wp_json_encode( array_values( (array) $locations ) ) ); ?>"
+				data-pw-rows="<?php echo esc_attr( wp_json_encode( array_values( (array) $locations ), JSON_HEX_AMP ) ); ?>"
 				data-pw-ready-name="<?php echo esc_attr( $this->get_field_name( 'locations_ready' ) ); ?>">
 				<div class="locations"></div>
 				<p>

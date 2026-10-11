@@ -269,7 +269,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 			<div class="pt-widget-testimonials" id="testimonials-<?php echo $this->current_widget_id; ?>"
 				data-pw-repeater="Testimonials"
 				data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>"
-				data-pw-rows="<?php echo esc_attr( wp_json_encode( array_values( (array) $testimonials ) ) ); ?>"
+				data-pw-rows="<?php echo esc_attr( wp_json_encode( array_values( (array) $testimonials ), JSON_HEX_AMP ) ); ?>"
 				data-pw-ready-name="<?php echo esc_attr( $this->get_field_name( 'testimonials_ready' ) ); ?>">
 				<div class="testimonials"></div>
 				<p>
