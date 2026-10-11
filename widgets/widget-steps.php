@@ -239,7 +239,7 @@ if ( ! class_exists( 'PW_Steps' ) ) {
 					<a href="#" class="pt-remove-step-item  js-pt-remove-step-item"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Step', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-step-items" id="step-items-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="StepItems" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $instance['items'] ) ); ?>">
+			<div class="pt-widget-step-items" id="step-items-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="StepItems" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $instance['items'], JSON_HEX_AMP ) ); ?>">
 				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'items_ready' ) ); ?>" value="1" disabled />
 				<div class="step-items"></div>
 				<p>
