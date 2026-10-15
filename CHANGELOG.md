@@ -8,7 +8,7 @@ This file documents the v3.x → 5.0 line. The parallel 4.x line (used by Woonde
 
 ## [Unreleased]
 
-## [5.0.4] – 2026-10-11
+## [5.0.4] – 2026-10-14
 
 ### Fixed
 
