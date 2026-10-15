@@ -213,7 +213,7 @@ if ( ! class_exists( 'PW_Google_Map' ) ) {
 					<a href="#" class="pt-remove-location  js-pt-remove-location"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Location', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-locations" id="locations-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="Locations" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $locations ) ); ?>">
+			<div class="pt-widget-locations" id="locations-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="Locations" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $locations, JSON_HEX_AMP ) ); ?>">
 				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'locations_ready' ) ); ?>" value="1" disabled />
 				<div class="locations"></div>
 				<p>
