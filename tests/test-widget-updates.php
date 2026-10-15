@@ -548,6 +548,43 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		}
 	}
 
+	function test_repeater_rows_keep_encoded_characters_when_the_form_loads() {
+		$enable_lists = function ( $fields ) {
+			return array_merge( $fields, array( 'carousel_instead_of_image' => true, 'skills' => true, 'icon_list_items' => true ) );
+		};
+		$text = 'Tom &amp; Jerry &lt;b&gt;';
+		$rows = array( array( 'id' => 1, 'title' => $text ) );
+		add_filter( 'pw/person_profile_widget_settings', $enable_lists );
+		try {
+			foreach ( array(
+				'PW_About_Us'       => array( 'people' ),
+				'PW_Accordion'      => array( 'items' ),
+				'PW_Google_Map'     => array( 'locations' ),
+				'PW_Number_Counter' => array( 'counters' ),
+				'PW_Person_Profile' => array( 'social_icons', 'skills', 'icon_list_items', 'carousel' ),
+				'PW_Pricing_List'   => array( 'items' ),
+				'PW_Social_Icons'   => array( 'social_icons' ),
+				'PW_Steps'          => array( 'items' ),
+				'PW_Testimonials'   => array( 'testimonials' ),
+			) as $widget_class => $fields ) {
+				$widget = new $widget_class();
+				$widget->_set( 3 );
+				ob_start();
+				$widget->form( array_fill_keys( $fields, $rows ) );
+				preg_match_all( '/data-pw-rows="([^"]*)"/', ob_get_clean(), $matches );
+
+				$this->assertCount( count( $fields ), $matches[1], $widget_class );
+				foreach ( $matches[1] as $attribute ) {
+					$attribute_rows = json_decode( html_entity_decode( $attribute, ENT_QUOTES | ENT_HTML5, 'UTF-8' ), true );
+					$this->assertSame( $text, $attribute_rows[0]['title'], $widget_class );
+				}
+			}
+		}
+		finally {
+			remove_filter( 'pw/person_profile_widget_settings', $enable_lists );
+		}
+	}
+
 	function test_testimonials_form_keeps_a_cleared_title() {
 		$widget = new PW_Testimonials();
 		$widget->_set( 2 );

@@ -163,7 +163,7 @@ if ( ! class_exists( 'PW_Accordion' ) ) {
 					</div>
 				</div>
 			</script>
-			<div class="pt-widget-accordion-items" id="accordion-items-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="AccordionItems" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $instance['items'] ) ); ?>">
+			<div class="pt-widget-accordion-items" id="accordion-items-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="AccordionItems" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $instance['items'], JSON_HEX_AMP ) ); ?>">
 				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'items_ready' ) ); ?>" value="1" disabled />
 				<div class="accordion-items  js-pt-sortable-accordions"></div>
 				<p>

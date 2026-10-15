@@ -362,7 +362,7 @@ if ( ! class_exists( 'PW_Testimonials' ) ) {
 					</div>
 				</div>
 			</script>
-			<div class="pt-widget-testimonials" id="testimonials-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="Testimonials" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $testimonials ) ); ?>">
+			<div class="pt-widget-testimonials" id="testimonials-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="Testimonials" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $testimonials, JSON_HEX_AMP ) ); ?>">
 				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'testimonials_ready' ) ); ?>" value="1" disabled />
 				<div class="testimonials  <?php echo $this->supports_multiple_testimonials ? 'js-pt-sortable-testimonials' : ''; ?>"></div>
 

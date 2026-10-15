@@ -202,7 +202,7 @@ if ( ! class_exists( 'PW_Number_Counter' ) ) {
 					<a href="#" class="pt-remove-counter  js-pt-remove-counter"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Counter', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-about-us" id="counters-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="Counters" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $counters ) ); ?>">
+			<div class="pt-widget-about-us" id="counters-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="Counters" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $counters, JSON_HEX_AMP ) ); ?>">
 				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'counters_ready' ) ); ?>" value="1" disabled />
 				<div class="counters"></div>
 				<p>

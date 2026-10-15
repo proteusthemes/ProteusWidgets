@@ -209,7 +209,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 					<a href="#" class="pt-remove-person  js-pt-remove-person"><span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Remove Person', 'proteuswidgets' ); ?></a>
 				</p>
 			</script>
-			<div class="pt-widget-about-us" id="people-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="People" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $people ) ); ?>">
+			<div class="pt-widget-about-us" id="people-<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-repeater="People" data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>" data-pw-rows="<?php echo esc_attr( wp_json_encode( $people, JSON_HEX_AMP ) ); ?>">
 				<input type="hidden" class="js-pw-repeater-ready" name="<?php echo esc_attr( $this->get_field_name( 'people_ready' ) ); ?>" value="1" disabled />
 				<div class="people"></div>
 				<p>
