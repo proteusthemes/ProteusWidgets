@@ -31,16 +31,16 @@ if ( ! class_exists( 'PW_Widget' ) ) {
 
 			// Set the mustache engine
 			// Learn more: https://github.com/bobthecow/mustache.php/wiki/Template-Loading
-			$this->mustache = new Mustache_Engine(
+			$this->mustache = new \Mustache\Engine(
 				array(
-					'loader' => new Mustache_Loader_CascadingLoader(
+					'loader' => new \Mustache\Loader\CascadingLoader(
 						array(
 							// FilesystemLoader from configurable path
-							new Mustache_Loader_FilesystemLoader( apply_filters( 'pw/widget_views_path', PW_PATH . 'widgets/views' ) ),
+							new \Mustache\Loader\FilesystemLoader( apply_filters( 'pw/widget_views_path', PW_PATH . 'widgets/views' ) ),
 							// Default FilesystemLoader from this plugin
-							new Mustache_Loader_FilesystemLoader( PW_PATH . 'widgets/views' ),
+							new \Mustache\Loader\FilesystemLoader( PW_PATH . 'widgets/views' ),
 							// Default string longer, if nothing works from above
-							new Mustache_Loader_StringLoader,
+							new \Mustache\Loader\StringLoader,
 						)
 					)
 				)

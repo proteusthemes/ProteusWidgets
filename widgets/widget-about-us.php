@@ -189,7 +189,7 @@ if ( ! class_exists( 'PW_About_Us' ) ) {
 			<div class="pt-widget-about-us" id="people-<?php echo $this->current_widget_id; ?>"
 				data-pw-repeater="People"
 				data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>"
-				data-pw-rows="<?php echo esc_attr( wp_json_encode( array_values( (array) $people ) ) ); ?>"
+				data-pw-rows="<?php echo esc_attr( wp_json_encode( array_values( (array) $people ), JSON_HEX_AMP ) ); ?>"
 				data-pw-ready-name="<?php echo esc_attr( $this->get_field_name( 'people_ready' ) ); ?>">
 				<div class="people"></div>
 				<p>

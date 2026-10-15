@@ -173,7 +173,7 @@ if ( ! class_exists( 'PW_Social_Icons' ) ) {
 			<div class="pt-widget-social-icons" id="social-icons-<?php echo $this->current_widget_id; ?>"
 				data-pw-repeater="SocialIcons"
 				data-pw-widget-id="<?php echo esc_attr( $this->current_widget_id ); ?>"
-				data-pw-rows="<?php echo esc_attr( wp_json_encode( array_values( (array) $instance['social_icons'] ) ) ); ?>"
+				data-pw-rows="<?php echo esc_attr( wp_json_encode( array_values( (array) $instance['social_icons'] ), JSON_HEX_AMP ) ); ?>"
 				data-pw-ready-name="<?php echo esc_attr( $this->get_field_name( 'social_icons_ready' ) ); ?>">
 				<div class="social-icons"></div>
 				<p>
