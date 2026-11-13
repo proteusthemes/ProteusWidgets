@@ -8,6 +8,21 @@ This file documents the v3.x → 5.0 line. The parallel 4.x line (used by Woonde
 
 ## [Unreleased]
 
+## [5.1.0] – 2026-11-13
+
+Accessibility fixes toward WCAG 2.1 AA.
+
+### Changed
+
+- Accordion items open with a `<button class="accordion__toggle">` inside a `role="heading"` element instead of a link inside an `<h4>`, and the list and panels are no longer marked as tabs: each panel is a region labelled by its heading. Themes that style `.panel-title a` or the `h4` need the same rules for the button and the new heading element.
+- Testimonials and About Us carousels no longer mark their slides as a listbox.
+
+### Fixed
+
+- Social Icons and Person Profile icon links name their network for screen readers, taken from the icon class (or the link's host), and hide the icon itself from them.
+- The Featured Page picture link, which repeats the title link, is hidden from screen readers and skipped by Tab.
+- The Facebook widget's iframe has a title.
+
 ## [5.0.4] – 2026-10-14
 
 ### Fixed
@@ -81,7 +96,8 @@ Security hardening and bug fixes.
 - Travis CI configuration (`aa4b637`) — replaced by GitHub Actions.
 - `Gruntfile.js`-driven i18n — superseded by WP-CLI scripts.
 
-[Unreleased]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.4...HEAD
+[Unreleased]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.1.0...HEAD
+[5.1.0]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.4...v5.1.0
 [5.0.4]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.3...v5.0.4
 [5.0.3]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.2...v5.0.3
 [5.0.2]: https://github.com/proteusthemes/ProteusWidgets/compare/v5.0.1...v5.0.2
