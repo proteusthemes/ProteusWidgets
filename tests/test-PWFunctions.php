@@ -161,8 +161,12 @@ class PWFunctionsTest extends WP_UnitTestCase {
 			'fa-envelope-o'           => 'Envelope',
 			'fa-2x fa-stack-overflow' => 'Stack Overflow',
 			'fa-pinterest-circle'     => 'Pinterest',
+			'fa-facebook fa-2x'       => 'Facebook',
+			'fa-lg fa-twitter'        => 'Twitter',
+			'fa-solid fa-user'        => 'User',
 			''                        => 'example.com',
 			'icon-custom'             => 'example.com',
+			'fa-fw'                   => 'example.com',
 		) as $icon_class => $expected ) {
 			$this->assertSame( $expected, PW_Functions::get_social_network_name( $icon_class, 'https://example.com/profile' ), $icon_class );
 		}

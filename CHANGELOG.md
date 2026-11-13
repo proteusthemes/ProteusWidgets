@@ -14,12 +14,12 @@ Accessibility fixes toward WCAG 2.1 AA.
 
 ### Changed
 
-- Accordion items open with a `<button class="accordion__toggle">` inside a `role="heading"` element instead of a link inside an `<h4>`, and the list and panels are no longer marked as tabs: each panel is a region labelled by its heading. Themes that style `.panel-title a` or the `h4` need the same rules for the button and the new heading element.
+- Accordion items open with a `<button class="accordion__toggle">` instead of a link inside the `h4.panel-title`, and the list and panels are no longer marked as tabs: each panel is a region labelled by its heading. Themes that style `.panel-title a` need the same rules for the button.
 - Testimonials and About Us carousels no longer mark their slides as a listbox.
 
 ### Fixed
 
-- Social Icons and Person Profile icon links name their network for screen readers, taken from the icon class (or the link's host), and hide the icon itself from them.
+- Social Icons and Person Profile icon links name their network for screen readers, taken from the icon class, skipping Font Awesome modifier and style classes (or the link's host), and hide the icon itself from them.
 - The Featured Page picture link, which repeats the title link, is hidden from screen readers and skipped by Tab.
 - The Facebook widget's iframe has a title.
 
