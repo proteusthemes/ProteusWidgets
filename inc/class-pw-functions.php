@@ -218,7 +218,7 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 			$name = '';
 
 			foreach ( preg_split( '/\s+/', (string) $icon_class, -1, PREG_SPLIT_NO_EMPTY ) as $class_name ) {
-				if ( 0 === strpos( $class_name, 'fa-' ) ) {
+				if ( 0 === strpos( $class_name, 'fa-' ) && ! preg_match( '/^fa-(xs|sm|lg|([1-9]|10)x|fw|spin|pulse|border|inverse|li|ul|pull-(left|right|start|end)|rotate-(90|180|270|by)|flip-(horizontal|vertical|both)|stack(-[12]x)?|solid|regular|brands|light|thin|duotone|sharp)$/', $class_name ) ) {
 					$name = substr( $class_name, 3 );
 				}
 			}
