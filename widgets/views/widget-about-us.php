@@ -1,7 +1,7 @@
 <?php echo $args['before_widget']; ?>
 
 	<div id="carousel-people-<?php echo esc_attr( $args['widget_id'] ); ?>" class="carousel slide" data-ride="carousel" data-interval="<?php echo esc_attr( $instance['slider_settings'] ); ?>">
-		<div class="carousel-inner" role="listbox">
+		<div class="carousel-inner">
 			<?php foreach ( $people as $person ) : ?>
 				<div class="item <?php echo isset( $person['active'] ) ? esc_attr( $person['active'] ) : ''; ?>">
 					<?php if ( ! empty( $person['tag'] ) ) : ?>

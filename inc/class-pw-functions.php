@@ -213,5 +213,23 @@ if ( ! class_exists( 'PW_Functions' ) ) {
 
 			return 'fas ' . $class_string;
 		}
+
+		public static function get_social_network_name( $icon_class, $link ) {
+			$name = '';
+
+			foreach ( preg_split( '/\s+/', (string) $icon_class, -1, PREG_SPLIT_NO_EMPTY ) as $class_name ) {
+				if ( 0 === strpos( $class_name, 'fa-' ) ) {
+					$name = substr( $class_name, 3 );
+				}
+			}
+
+			$name = ucwords( str_replace( '-', ' ', preg_replace( '/-(square|official|circle|alt|f|o)$/', '', $name ) ) );
+
+			if ( '' === trim( $name ) ) {
+				$name = (string) wp_parse_url( (string) $link, PHP_URL_HOST );
+			}
+
+			return $name;
+		}
 	}
 }

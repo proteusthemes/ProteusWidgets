@@ -605,4 +605,22 @@ class WidgetUpdatesTest extends WP_UnitTestCase {
 		$args = array( 'before_widget' => '', 'after_widget' => '', 'before_title' => '<h2>', 'after_title' => '</h2>', 'widget_id' => 'pw-1' );
 		$this->assertStringNotContainsString( '<h2>', $this->render_widget( 'PW_Testimonials', array( 'title' => '', 'testimonials' => array( array( 'id' => 1, 'quote' => 'Q' ) ) ), $args ) );
 	}
+
+	function test_get_social_network_name() {
+		foreach ( array(
+			'fa-facebook'             => 'Facebook',
+			'fa  fa-facebook-square'  => 'Facebook',
+			'fab fa-facebook-f'       => 'Facebook',
+			'fa-google-plus-official' => 'Google Plus',
+			'fa-envelope-o'           => 'Envelope',
+			'fa-2x fa-stack-overflow' => 'Stack Overflow',
+			'fa-pinterest-circle'     => 'Pinterest',
+			''                        => 'example.com',
+			'icon-custom'             => 'example.com',
+		) as $icon_class => $expected ) {
+			$this->assertSame( $expected, PW_Functions::get_social_network_name( $icon_class, 'https://example.com/profile' ), $icon_class );
+		}
+
+		$this->assertSame( '', PW_Functions::get_social_network_name( '', '' ) );
+	}
 }
