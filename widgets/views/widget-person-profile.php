@@ -8,7 +8,7 @@
 			<?php if ( ! empty( $instance['social_icons'] ) ) : ?>
 				<div class="person-profile__social-icons">
 					<?php foreach ( $instance['social_icons'] as $icon ) : ?>
-						<a class="person-profile__social-icon" href="<?php echo esc_url( $icon['link'] ); ?>" target="<?php echo ( ! empty( $instance['new_tab'] ) ) ? '_blank' : '_self' ?>"><i class="fa  <?php echo esc_attr( $icon['icon'] ); ?>"></i></a>
+						<a class="person-profile__social-icon" href="<?php echo esc_url( $icon['link'] ); ?>" target="<?php echo ( ! empty( $instance['new_tab'] ) ) ? '_blank' : '_self' ?>"><i class="fa  <?php echo esc_attr( $icon['icon'] ); ?>" aria-hidden="true"></i><span class="screen-reader-text"><?php echo esc_html( PW_Functions::get_social_network_name( $icon['icon'], $icon['link'] ) ); ?></span></a>
 					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>

@@ -151,4 +151,26 @@ class PWFunctionsTest extends WP_UnitTestCase {
 			wp_delete_post( $page_id, true );
 		}
 	}
+
+	function test_get_social_network_name() {
+		foreach ( array(
+			'fa-facebook'             => 'Facebook',
+			'fa  fa-facebook-square'  => 'Facebook',
+			'fab fa-facebook-f'       => 'Facebook',
+			'fa-google-plus-official' => 'Google Plus',
+			'fa-envelope-o'           => 'Envelope',
+			'fa-2x fa-stack-overflow' => 'Stack Overflow',
+			'fa-pinterest-circle'     => 'Pinterest',
+			'fa-facebook fa-2x'       => 'Facebook',
+			'fa-lg fa-twitter'        => 'Twitter',
+			'fa-solid fa-user'        => 'User',
+			''                        => 'example.com',
+			'icon-custom'             => 'example.com',
+			'fa-fw'                   => 'example.com',
+		) as $icon_class => $expected ) {
+			$this->assertSame( $expected, PW_Functions::get_social_network_name( $icon_class, 'https://example.com/profile' ), $icon_class );
+		}
+
+		$this->assertSame( '', PW_Functions::get_social_network_name( '', '' ) );
+	}
 }

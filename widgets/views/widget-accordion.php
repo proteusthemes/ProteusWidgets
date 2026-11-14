@@ -5,17 +5,17 @@
 		echo $args['before_title'] . wp_kses_post( $instance['preped_title'] ) . $args['after_title'];
 	}
 ?>
-	<div class="accordion panel-group" id="accordion-<?php echo esc_attr( $args['widget_id'] ); ?>" role="tablist" aria-multiselectable="true">
+	<div class="accordion panel-group" id="accordion-<?php echo esc_attr( $args['widget_id'] ); ?>">
 	<?php foreach ( $items as $item ) : ?>
 		<div class="accordion__panel  panel  panel-default">
-			<div class="accordion__heading  panel-heading" role="tab" id="heading-<?php echo esc_attr( $args['widget_id'] ) . '-' . esc_attr( $item['id'] ); ?>">
+			<div class="accordion__heading  panel-heading" id="heading-<?php echo esc_attr( $args['widget_id'] ) . '-' . esc_attr( $item['id'] ); ?>">
 				<h4 class="panel-title">
-					<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion-<?php echo esc_attr( $args['widget_id'] ); ?>" href="#collapse-<?php echo esc_attr( $args['widget_id'] ) . '-' . esc_attr( $item['id'] ); ?>" aria-expanded="false" aria-controls="collapse-<?php echo esc_attr( $args['widget_id'] ) . '-' . esc_attr( $item['id'] ); ?>">
+					<button type="button" class="accordion__toggle  collapsed" data-toggle="collapse" data-parent="#accordion-<?php echo esc_attr( $args['widget_id'] ); ?>" data-target="#collapse-<?php echo esc_attr( $args['widget_id'] ) . '-' . esc_attr( $item['id'] ); ?>" aria-expanded="false" aria-controls="collapse-<?php echo esc_attr( $args['widget_id'] ) . '-' . esc_attr( $item['id'] ); ?>">
 						<?php echo wp_kses_post( $item['title'] ); ?>
-					</a>
+					</button>
 				</h4>
 			</div>
-			<div id="collapse-<?php echo esc_attr( $args['widget_id'] ) . '-' . esc_attr( $item['id'] ); ?>" class="accordion__content  panel-collapse  collapse" role="tabpanel" aria-labelledby="heading-<?php echo esc_attr( $args['widget_id'] ) . '-' . esc_attr( $item['id'] ); ?>">
+			<div id="collapse-<?php echo esc_attr( $args['widget_id'] ) . '-' . esc_attr( $item['id'] ); ?>" class="accordion__content  panel-collapse  collapse" role="region" aria-labelledby="heading-<?php echo esc_attr( $args['widget_id'] ) . '-' . esc_attr( $item['id'] ); ?>">
 				<div class="panel-body">
 					<?php echo wp_kses_post( $item['content'] ); ?>
 				</div>

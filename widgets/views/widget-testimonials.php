@@ -15,7 +15,7 @@
 
 		<div id="carousel-testimonials-<?php echo esc_attr( $args['widget_id'] ); ?>" class="carousel slide" data-ride="carousel" data-interval="<?php echo esc_attr( $instance['slider_settings'] ); ?>">
 			<!-- Wrapper for slides -->
-			<div class="carousel-inner" role="listbox">
+			<div class="carousel-inner">
 				<div class="item active">
 					<div class="row">
 						<?php foreach ( $testimonials as $testimonial ) : ?>

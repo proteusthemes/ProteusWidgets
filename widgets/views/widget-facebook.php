@@ -7,7 +7,7 @@
 ?>
 
 	<div class="iframe-like-box">
-		<iframe src="https://www.facebook.com/plugins/page.php?<?php echo esc_attr( $http_query ); ?>" frameborder="0"></iframe>
+		<iframe src="https://www.facebook.com/plugins/page.php?<?php echo esc_attr( $http_query ); ?>" title="<?php esc_attr_e( 'Facebook page', 'proteuswidgets' ); ?>" frameborder="0"></iframe>
 	</div>
 
 	<style type="text/css">
